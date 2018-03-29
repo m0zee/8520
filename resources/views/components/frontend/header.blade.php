@@ -265,7 +265,8 @@
                                 </li>
                             </ul>
                         </div><!--start .author__notification_area -->
-
+                         
+                         @if (Auth::user())
                         <!--start .author-author__info-->
                         <div class="author-author__info inline has_dropdown">
                             <div class="author__avatar">
@@ -274,7 +275,7 @@
                             </div>
                             <div class="autor__info">
                                 <p class="name">
-                                    Jhon Doe
+                                    {{ Auth::user()->name }}
                                 </p>
                                 <p class="ammount">$20.45</p>
                             </div>
@@ -295,10 +296,17 @@
                                 </ul>
                             </div>
                         </div><!--end /.author-author__info-->
+                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="author-area__seller-btn inline">logout</a>
+                        @else
 
                         <a href="{{ url('login') }}" class="author-area__seller-btn inline">Login</a>
-                    </div><!-- end .author-area -->
 
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                        @endif
+                    </div><!-- end .author-area -->
+                    
                     <!-- author area restructured for mobile -->
                     <div class="mobile_content ">
                         <span class="lnr lnr-user menu_icon"></span>

@@ -11,18 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
 
-Route::get('/login', function () {
-    return view('frontend.login');
-});
+// Route::get('/login', function () {
+//     return view('frontend.login');
+// });
 
-Route::get('/signup', function () {
-    return view('frontend.signup');
-});
+// Route::get('/signup', function () {
+//     return view('frontend.signup');
+// });
 
 Route::get('/recover-password', function () {
     return view('frontend.recover_password');
 });
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');

@@ -109,7 +109,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <form action="#">
+                    <form method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
                         <div class="cardify login">
                             <div class="login--header">
                                 <h3>Welcome Back</h3>
@@ -119,12 +120,12 @@
                             <div class="login--form">
                                 <div class="form-group">
                                     <label for="user_name">Username</label>
-                                    <input id="user_name" type="text" class="text_field" placeholder="Enter your username...">
+                                    <input id="user_name" type="text" name="email" class="text_field" placeholder="Enter your username...">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="pass">Password</label>
-                                    <input id="pass" type="text" class="text_field" placeholder="Enter your password...">
+                                    <input id="pass" type="password" name="password" class="text_field" placeholder="Enter your password...">
                                 </div>
 
                                 <div class="form-group">
@@ -149,7 +150,7 @@
     
                                 <div class="login_assist">
                                     <p class="recover">Lost your <a href="pass-recovery.html">username</a> or <a href="pass-recovery.html">password</a>?</p>
-                                    <p class="signup">Don't have an <a href="{{ url('/signup') }}">account</a>?</p>
+                                    <p class="signup">Don't have an <a href="{{ url('/register') }}">account</a>?</p>
                                 </div>
                             </div><!-- end .login form -->
                         </div><!-- end .cardify -->
