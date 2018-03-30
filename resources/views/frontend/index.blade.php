@@ -2,12 +2,13 @@
 
 @section('title', 'Home')
 @section('content')
+
 <!--================================
     START HERO AREA
 =================================-->
 <section class="hero-area bgimage">
     <div class="bg_image_holder">
-        <img src="{{ url( 'images/hero_area_bg1.jpg' ) }}" alt="background-image">
+        <img src="images/hero_area_bg1.jpg" alt="background-image">
     </div>
     <!-- start hero-content -->
     <div class="hero-content content_above">
@@ -16,8 +17,8 @@
             <!-- start .container -->
             <div class="container">
                 <!-- start row -->
-                <div class="row">
-                    <!-- start col-md-12 -->
+                <!-- <div class="row">
+                    
                     <div class="col-md-12">
                         <div class="hero__content__title">
                             <h1>
@@ -27,13 +28,13 @@
                             <p class="tagline">MartPlace is the most powerful, & customizable template for Easy Digital Downloads Products</p>
                         </div>
 
-                        <!-- start .hero__btn-area-->
+                        
                         <div class="hero__btn-area">
                             <a href="all-products.html" class="btn btn--round btn--lg">View All Products</a>
                             <a href="all-products.html" class="btn btn--round btn--lg">Popular Products</a>
-                        </div><!-- end .hero__btn-area-->
-                    </div><!-- end /.col-md-12 -->
-                </div><!-- end /.row -->
+                        </div>
+                    </div>
+                </div> --><!-- end /.row -->
             </div><!-- end /.container -->
         </div><!-- end .contact_wrapper -->
     </div><!-- end hero-content -->
@@ -72,335 +73,8 @@
     END HERO AREA
 =================================-->
 
-<!--================================
-    START FEATURE AREA
-=================================-->
-<section class="features section--padding">
-    <!-- start container -->
-    <div class="container">
-        <!-- start row -->
-        <div class="row">
-            <!-- start search-area -->
-            <div class="col-md-4">
-                <div class="feature">
-                    <div class="feature__img">
-                        <img src="{{ url( 'images/feature1.png' ) }}" alt="feature">
-                    </div>
-                    <div class="feature__title">
-                        <h3>Best UX Research</h3>
-                    </div>
-                    <div class="feature__desc">
-                        <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                            the mattis, leo quam aliquet diam
-                            congue is laoreet elit metus.</p>
-                    </div>
-                </div><!-- end /.feature -->
-            </div><!-- end /.col-md-4 -->
 
-            <!-- start search-area -->
-            <div class="col-md-4">
-                <div class="feature">
-                    <div class="feature__img">
-                        <img src="{{ url( 'images/feature2.png' ) }}" alt="feature">
-                    </div>
-                    <div class="feature__title">
-                        <h3>Fully Responsive</h3>
-                    </div>
-                    <div class="feature__desc">
-                        <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                            the mattis, leo quam aliquet diam
-                            congue is laoreet elit metus.</p>
-                    </div>
-                </div><!-- end /.feature -->
-            </div><!-- end /.col-md-4 -->
-
-            <!-- start search-area -->
-            <div class="col-md-4">
-                <div class="feature">
-                    <div class="feature__img">
-                        <img src="{{ url( 'images/feature3.png' ) }}" alt="feature">
-                    </div>
-                    <div class="feature__title">
-                        <h3>Buy & Sell Easily</h3>
-                    </div>
-                    <div class="feature__desc">
-                        <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                            the mattis, leo quam aliquet diam
-                            congue is laoreet elit metus.</p>
-                    </div>
-                </div><!-- end /.feature -->
-            </div><!-- end /.col-md-4 -->
-        </div><!-- end /.row -->
-    </div><!-- end /.container -->
-</section>
-<!--================================
-    END FEATURE AREA
-=================================-->
-
-
-<!--================================
-    START FEATURED PRODUCT AREA
-=================================-->
-<section class="featured-products bgcolor  section--padding">
-    <!-- start /.container -->
-    <div class="container">
-        <!-- start row -->
-        <div class="row">
-            <!-- start col-md-12 -->
-            <div class="col-md-12">
-                <div class="product-title-area ">
-                    <div class="product__title">
-                        <h2>Weekly Featured Products</h2>
-                    </div>
-
-                    <div class="product__slider-nav rounded">
-                        <span class="lnr lnr-chevron-left nav_left"></span>
-                        <span class="lnr lnr-chevron-right nav_right"></span>
-                    </div>
-                </div>
-            </div><!-- end /.col-md-12 -->
-        </div><!-- end /.row -->
-    </div>
-
-    <!-- start .featured-product-slider -->
-
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 no0-padding">
-                <div class="featured-product-slider prod-slider1">
-                    <div class="featured__single-slider">
-                        <div class="featured__preview-img">
-                            <img src="{{ url( 'images/featprod.jpg' ) }}" alt="Featured products">
-                            <div class="prod_btn">
-                                <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                            </div>
-                        </div><!-- end /.featured__preview-img -->
-
-                        <div class="featured__product-description">
-                            <div class="product-desc desc--featured">
-                                <a href="single-product.html" class="product_title"><h4>Rida - vCard, Portfolio / Resume Template</h4></a>
-                                <ul class="titlebtm">
-                                    <li>
-                                        <img class="auth-img" src="{{ url( 'images/auth.jpg' ) }}" alt="author image">
-                                        <p><a href="#">AazzTech</a></p>
-                                    </li>
-                                    <li class="product_cat">
-                                        <a href="#"><span class="lnr lnr-book"></span> WordPress</a>
-                                    </li>
-                                </ul><!-- end /.titlebtm -->
-
-                                <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                    leo quam aliquet congue placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                    leo quam aliquet congue justo ut scelerisque.</p>
-                            </div><!-- end /.product-desc -->
-
-                            <div class="product_data">
-                                <div class="tags tags--round">
-                                    <ul>
-                                        <li><a href="#">website</a></li>
-                                        <li><a href="#">plugin</a></li>
-                                        <li><a href="#">landing page</a></li>
-                                    </ul>
-                                </div><!-- end /.tags -->
-                                <div class="product-purchase featured--product-purchase">
-                                    <div class="price_love">
-                                        <span>$10 - $50</span>
-                                        <p><span class="lnr lnr-heart"></span> 90</p>
-                                    </div>
-                                    <div class="sell"><p><span class="lnr lnr-cart"></span><span>16</span></p></div>
-
-                                    <div class="rating product--rating">
-                                        <ul>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- end /.product-purchase -->
-                            </div>
-                        </div><!-- end /.featured__product-description -->
-                    </div><!--end /.featured__single-slider-->
-
-                    <div class="featured__single-slider">
-                        <div class="featured__preview-img">
-                            <img src="{{ url( 'images/featprod.jpg' ) }}" alt="Featured products">
-                            <div class="prod_btn">
-                                <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                            </div>
-                        </div><!-- end /.featured__preview-img -->
-
-                        <div class="featured__product-description">
-                            <div class="product-desc desc--featured">
-                                <a href="single-product.html" class="product_title"><h4>One Page Resume Template</h4></a>
-                                <ul class="titlebtm">
-                                    <li>
-                                        <img class="auth-img" src="{{ url( 'images/auth.jpg' ) }}" alt="author image">
-                                        <p><a href="#">AazzTech</a></p>
-                                    </li>
-                                    <li class="product_cat">
-                                        <a href="#"><span class="lnr lnr-book"></span> WordPress</a>
-                                    </li>
-                                </ul><!-- end /.titlebtm -->
-
-                                <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                    leo quam aliquet congue placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                    leo quam aliquet congue justo ut scelerisque.</p>
-                            </div><!-- end /.product-desc -->
-
-                            <div class="product_data">
-                                <div class="tags tags--round">
-                                    <ul>
-                                        <li><a href="#">website</a></li>
-                                        <li><a href="#">plugin</a></li>
-                                        <li><a href="#">landing page</a></li>
-                                    </ul>
-                                </div><!-- end /.tags -->
-                                <div class="product-purchase featured--product-purchase">
-                                    <div class="price_love">
-                                        <span>$10 - $50</span>
-                                        <p><span class="lnr lnr-heart"></span> 90</p>
-                                    </div>
-                                    <div class="sell"><p><span class="lnr lnr-cart"></span><span>16</span></p></div>
-
-                                    <div class="rating product--rating">
-                                        <ul>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- end /.product-purchase -->
-                            </div>
-                        </div><!-- end /.featured__product-description -->
-                    </div><!--end /.featured__single-slider-->
-
-                    <div class="featured__single-slider">
-                        <div class="featured__preview-img">
-                            <img src="{{ url( 'images/featprod.jpg' ) }}" alt="Featured products">
-                            <div class="prod_btn">
-                                <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                            </div>
-                        </div><!-- end /.featured__preview-img -->
-
-                        <div class="featured__product-description">
-                            <div class="product-desc desc--featured">
-                                <a href="single-product.html" class="product_title"><h4>AppsPress App Landing</h4></a>
-                                <ul class="titlebtm">
-                                    <li>
-                                        <img class="auth-img" src="{{ url( 'images/auth.jpg' ) }}" alt="author image">
-                                        <p><a href="#">AazzTech</a></p>
-                                    </li>
-                                    <li class="product_cat">
-                                        <a href="#"><span class="lnr lnr-book"></span> WordPress</a>
-                                    </li>
-                                </ul><!-- end /.titlebtm -->
-
-                                <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                    leo quam aliquet congue placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                    leo quam aliquet congue justo ut scelerisque.</p>
-                            </div><!-- end /.product-desc -->
-
-                            <div class="product_data">
-                                <div class="tags tags--round">
-                                    <ul>
-                                        <li><a href="#">website</a></li>
-                                        <li><a href="#">plugin</a></li>
-                                        <li><a href="#">landing page</a></li>
-                                    </ul>
-                                </div><!-- end /.tags -->
-                                <div class="product-purchase featured--product-purchase">
-                                    <div class="price_love">
-                                        <span>$10 - $50</span>
-                                        <p><span class="lnr lnr-heart"></span> 90</p>
-                                    </div>
-                                    <div class="sell"><p><span class="lnr lnr-cart"></span><span>16</span></p></div>
-
-                                    <div class="rating product--rating">
-                                        <ul>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- end /.product-purchase -->
-                            </div>
-                        </div><!-- end /.featured__product-description -->
-                    </div><!--end /.featured__single-slider-->
-
-                    <div class="featured__single-slider">
-                        <div class="featured__preview-img">
-                            <img src="{{ url( 'images/featprod.jpg' ) }}" alt="Featured products">
-                            <div class="prod_btn">
-                                <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                            </div>
-                        </div><!-- end /.featured__preview-img -->
-
-                        <div class="featured__product-description">
-                            <div class="product-desc desc--featured">
-                                <a href="single-product.html" class="product_title"><h4>MartPlace - Digital Marketplace</h4></a>
-                                <ul class="titlebtm">
-                                    <li>
-                                        <img class="auth-img" src="{{ url( 'images/auth.jpg' ) }}" alt="author image">
-                                        <p><a href="#">AazzTech</a></p>
-                                    </li>
-                                    <li class="product_cat">
-                                        <a href="#"><span class="lnr lnr-book"></span> WordPress</a>
-                                    </li>
-                                </ul><!-- end /.titlebtm -->
-
-                                <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                    leo quam aliquet congue placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                    leo quam aliquet congue justo ut scelerisque.</p>
-                            </div><!-- end /.product-desc -->
-
-                            <div class="product_data">
-                                <div class="tags tags--round">
-                                    <ul>
-                                        <li><a href="#">website</a></li>
-                                        <li><a href="#">plugin</a></li>
-                                        <li><a href="#">landing page</a></li>
-                                    </ul>
-                                </div><!-- end /.tags -->
-                                <div class="product-purchase featured--product-purchase">
-                                    <div class="price_love">
-                                        <span>$10 - $50</span>
-                                        <p><span class="lnr lnr-heart"></span> 90</p>
-                                    </div>
-                                    <div class="sell"><p><span class="lnr lnr-cart"></span><span>16</span></p></div>
-
-                                    <div class="rating product--rating">
-                                        <ul>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                            <li><span class="fa fa-star"></span></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- end /.product-purchase -->
-                            </div>
-                        </div><!-- end /.featured__product-description -->
-                    </div><!--end /.featured__single-slider-->
-                </div>
-            </div>
-        </div><!-- end /.featured__preview-img -->
-    </div><!-- end /.featured-product-slider -->
-</section>
-<!--================================
-    END FEATURED PRODUCT AREA
-=================================-->
+  
 
 
 <!--================================
@@ -409,54 +83,6 @@
 <section class="products section--padding">
     <!-- start container -->
     <div class="container">
-        <!-- start row -->
-        <div class="row">
-            <!-- start col-md-12 -->
-            <div class="col-md-12">
-                <div class="product-title-area">
-                    <div class="product__title">
-                        <h2>Newest Release Products</h2>
-                    </div>
-
-                    <div class="filter__menu">
-                        <p>Filter by:</p>
-                        <div class="filter__menu_icon" >
-                            <a href="#" id="drop1" class="dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="svg" src="{{ url( 'images/svg/menu' ) }}.svg" alt="menu icon" >
-                            </a>
-
-
-                            <ul class="filter_dropdown dropdown dropdown-menu" aria-labelledby="drop1">
-                                <li><a href="#">Trending items</a></li>
-                                <li><a href="#">Best seller</a></li>
-                                <li><a href="#">Best rating</a></li>
-                                <li><a href="#">Low price</a></li>
-                                <li><a href="#">High price</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end /.col-md-12 -->
-        </div><!-- end /.row -->
-
-        <!-- start row -->
-        <div class="row">
-            <!-- start .col-md-12 -->
-            <div class="col-md-12">
-                <div class="sorting">
-                    <ul>
-                        <li><a href="#">Plugins</a></li>
-                        <li><a href="#">WordPress</a></li>
-                        <li><a href="#">Site Template</a></li>
-                        <li><a href="#">PSD Template</a></li>
-                        <li><a href="#">Joomla</a></li>
-                        <li><a href="#">User Interface</a></li>
-                        <li><a href="#">Landing Page</a></li>
-                        <li><a href="#">Software</a></li>
-                    </ul>
-                </div>
-            </div><!-- end /.col-md-12 -->
-        </div><!-- end /.row -->
 
         <!-- start .row -->
         <div class="row">
@@ -466,7 +92,7 @@
                 <div class="product product--card">
 
                     <div class="product__thumbnail">
-                        <img src="{{ url( 'images/p1.jpg' ) }}" alt="Product Image">
+                        <img src="images/p1.jpg" alt="Product Image">
                         <div class="prod_btn">
                             <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                             <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -477,7 +103,7 @@
                         <a href="single-product.html" class="product_title"><h4>MartPlace Extension Bundle</h4></a>
                         <ul class="titlebtm">
                             <li>
-                                <img class="auth-img" src="{{ url( 'images/auth.jpg' ) }}" alt="author image">
+                                <img class="auth-img" src="images/auth.jpg" alt="author image">
                                 <p><a href="#">AazzTech</a></p>
                             </li>
                             <li class="product_cat">
@@ -505,7 +131,7 @@
                 <div class="product product--card">
 
                     <div class="product__thumbnail">
-                        <img src="{{ url( 'images/p2.jpg' ) }}" alt="Product Image">
+                        <img src="images/p2.jpg" alt="Product Image">
                         <div class="prod_btn">
                             <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                             <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -516,7 +142,7 @@
                         <a href="single-product.html" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
                         <ul class="titlebtm">
                             <li>
-                                <img class="auth-img" src="{{ url( 'images/auth2.jpg' ) }}" alt="author image">
+                                <img class="auth-img" src="images/auth2.jpg" alt="author image">
                                 <p><a href="#">AazzTech</a></p>
                             </li>
                             <li class="product_cat">
@@ -544,7 +170,7 @@
                 <div class="product product--card">
 
                     <div class="product__thumbnail">
-                        <img src="{{ url( 'images/p3.jpg' ) }}" alt="Product Image">
+                        <img src="images/p3.jpg" alt="Product Image">
                         <div class="prod_btn">
                             <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                             <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -555,7 +181,7 @@
                         <a href="single-product.html" class="product_title"><h4>Visibility Manager Subscriptions</h4></a>
                         <ul class="titlebtm">
                             <li>
-                                <img class="auth-img" src="{{ url( 'images/auth3.jpg' ) }}" alt="author image">
+                                <img class="auth-img" src="images/auth3.jpg" alt="author image">
                                 <p><a href="#">AazzTech</a></p>
                             </li>
                             <li class="product_cat">
@@ -592,7 +218,7 @@
                 <div class="product product--card">
 
                     <div class="product__thumbnail">
-                        <img src="{{ url( 'images/p4.jpg' ) }}" alt="Product Image">
+                        <img src="images/p4.jpg" alt="Product Image">
                         <div class="prod_btn">
                             <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                             <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -603,7 +229,7 @@
                         <a href="single-product.html" class="product_title"><h4>Ajax Live Search</h4></a>
                         <ul class="titlebtm">
                             <li>
-                                <img class="auth-img" src="{{ url( 'images/auth.jpg' ) }}" alt="author image">
+                                <img class="auth-img" src="images/auth.jpg" alt="author image">
                                 <p><a href="#">AazzTech</a></p>
                             </li>
                             <li class="product_cat">
@@ -631,7 +257,7 @@
                 <div class="product product--card">
 
                     <div class="product__thumbnail">
-                        <img src="{{ url( 'images/p5.jpg' ) }}" alt="Product Image">
+                        <img src="images/p5.jpg" alt="Product Image">
                         <div class="prod_btn">
                             <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                             <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -642,7 +268,7 @@
                         <a href="single-product.html" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
                         <ul class="titlebtm">
                             <li>
-                                <img class="auth-img" src="{{ url( 'images/auth2.jpg' ) }}" alt="author image">
+                                <img class="auth-img" src="images/auth2.jpg" alt="author image">
                                 <p><a href="#">AazzTech</a></p>
                             </li>
                             <li class="product_cat">
@@ -670,7 +296,7 @@
                 <div class="product product--card">
 
                     <div class="product__thumbnail">
-                        <img src="{{ url( 'images/p6.jpg' ) }}" alt="Product Image">
+                        <img src="images/p6.jpg" alt="Product Image">
                         <div class="prod_btn">
                             <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                             <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -681,7 +307,7 @@
                         <a href="single-product.html" class="product_title"><h4>Visibility Manager Subscriptions</h4></a>
                         <ul class="titlebtm">
                             <li>
-                                <img class="auth-img" src="{{ url( 'images/auth3.jpg' ) }}" alt="author image">
+                                <img class="auth-img" src="images/auth3.jpg" alt="author image">
                                 <p><a href="#">AazzTech</a></p>
                             </li>
                             <li class="product_cat">
@@ -759,7 +385,7 @@
                     <div class="product product--card">
 
                         <div class="product__thumbnail">
-                            <img src="{{ url( 'images/p4.jpg' ) }}" alt="Product Image">
+                            <img src="images/p4.jpg" alt="Product Image">
                             <div class="prod_btn">
                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                                 <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -770,7 +396,7 @@
                             <a href="#" class="product_title"><h4>Ajax Live Search</h4></a>
                             <ul class="titlebtm">
                                 <li>
-                                    <img class="auth-img" src="{{ url( 'images/auth.jpg' ) }}" alt="author image">
+                                    <img class="auth-img" src="images/auth.jpg" alt="author image">
                                     <p><a href="#">AazzTech</a></p>
                                 </li>
                                 <li class="product_cat">
@@ -795,7 +421,7 @@
                     <div class="product product--card">
 
                         <div class="product__thumbnail">
-                            <img src="{{ url( 'images/p2.jpg' ) }}" alt="Product Image">
+                            <img src="images/p2.jpg" alt="Product Image">
                             <div class="prod_btn">
                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                                 <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -806,7 +432,7 @@
                             <a href="#" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
                             <ul class="titlebtm">
                                 <li>
-                                    <img class="auth-img" src="{{ url( 'images/auth2.jpg' ) }}" alt="author image">
+                                    <img class="auth-img" src="images/auth2.jpg" alt="author image">
                                     <p><a href="#">AazzTech</a></p>
                                 </li>
                                 <li class="product_cat">
@@ -831,7 +457,7 @@
                     <div class="product product--card">
 
                         <div class="product__thumbnail">
-                            <img src="{{ url( 'images/p6.jpg' ) }}" alt="Product Image">
+                            <img src="images/p6.jpg" alt="Product Image">
                             <div class="prod_btn">
                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                                 <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -842,7 +468,7 @@
                             <a href="#" class="product_title"><h4>Visibility Manager Subscriptions</h4></a>
                             <ul class="titlebtm">
                                 <li>
-                                    <img class="auth-img" src="{{ url( 'images/auth3.jpg' ) }}" alt="author image">
+                                    <img class="auth-img" src="images/auth3.jpg" alt="author image">
                                     <p><a href="#">AazzTech</a></p>
                                 </li>
                                 <li class="product_cat">
@@ -867,7 +493,7 @@
                     <div class="product product--card">
 
                         <div class="product__thumbnail">
-                            <img src="{{ url( 'images/p4.jpg' ) }}" alt="Product Image">
+                            <img src="images/p4.jpg" alt="Product Image">
                             <div class="prod_btn">
                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                                 <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -878,7 +504,7 @@
                             <a href="#" class="product_title"><h4>Ajax Live Search</h4></a>
                             <ul class="titlebtm">
                                 <li>
-                                    <img class="auth-img" src="{{ url( 'images/auth.jpg' ) }}" alt="author image">
+                                    <img class="auth-img" src="images/auth.jpg" alt="author image">
                                     <p><a href="#">AazzTech</a></p>
                                 </li>
                                 <li class="product_cat">
@@ -903,7 +529,7 @@
                     <div class="product product--card">
 
                         <div class="product__thumbnail">
-                            <img src="{{ url( 'images/p2.jpg' ) }}" alt="Product Image">
+                            <img src="images/p2.jpg" alt="Product Image">
                             <div class="prod_btn">
                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                                 <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -914,7 +540,7 @@
                             <a href="#" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
                             <ul class="titlebtm">
                                 <li>
-                                    <img class="auth-img" src="{{ url( 'images/auth2.jpg' ) }}" alt="author image">
+                                    <img class="auth-img" src="images/auth2.jpg" alt="author image">
                                     <p><a href="#">AazzTech</a></p>
                                 </li>
                                 <li class="product_cat">
@@ -939,7 +565,7 @@
                     <div class="product product--card">
 
                         <div class="product__thumbnail">
-                            <img src="{{ url( 'images/p6.jpg' ) }}" alt="Product Image">
+                            <img src="images/p6.jpg" alt="Product Image">
                             <div class="prod_btn">
                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                                 <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -950,7 +576,7 @@
                             <a href="#" class="product_title"><h4>Visibility Manager Subscriptions</h4></a>
                             <ul class="titlebtm">
                                 <li>
-                                    <img class="auth-img" src="{{ url( 'images/auth3.jpg' ) }}" alt="author image">
+                                    <img class="auth-img" src="images/auth3.jpg" alt="author image">
                                     <p><a href="#">AazzTech</a></p>
                                 </li>
                                 <li class="product_cat">
@@ -984,7 +610,7 @@
 =================================-->
 <section class="counter-up-area bgimage">
     <div class="bg_image_holder">
-        <img src="{{ url( 'images/countbg.jpg' ) }}" alt="">
+        <img src="images/countbg.jpg" alt="">
     </div>
     <!-- start .container -->
     <div class="container content_above">
@@ -1132,311 +758,9 @@
     END COUNTER UP AREA
 =================================-->
 
-<!--================================
-    START SELL BUY
-=================================-->
-<section class="proposal-area">
-
-    <!-- start container-fluid -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 no-padding">
-                <div class="proposal proposal--left bgimage">
-                    <div class="bg_image_holder">
-                        <img src="{{ url( 'images/bbg.png' ) }}" alt="prop image">
-                    </div>
-                    <div class="content_above">
-                        <div class="proposal__icon ">
-                            <img src="{{ url( 'images/buy.png' ) }}" alt="Buy icon">
-                        </div>
-                        <div class="proposal__content ">
-                            <h1 class="text--white">Sell Your Products</h1>
-                            <p class="text--white">Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                the mattis, leo quam aliquet diamcongue is laoreet elit metus.</p>
-                        </div>
-                        <a href="#" class="btn--round btn btn--lg btn--white">Become an Author</a>
-                    </div>
-                </div><!-- end /.proposal -->
-            </div>
-
-            <div class="col-md-6 no-padding">
-                <div class="proposal proposal--right">
-                    <div class="bg_image_holder">
-                        <img src="{{ url( 'images/sbg.png' ) }}" alt="this is magic">
-                    </div>
-                    <div class="content_above">
-                        <div class="proposal__icon">
-                            <img src="{{ url( 'images/sell.png' ) }}" alt="Sell icon">
-                        </div>
-                        <div class="proposal__content ">
-                            <h1 class="text--white">Start Shopping Today</h1>
-                            <p class="text--white">Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                the mattis, leo quam aliquet diamcongue is laoreet elit metus.</p>
-                        </div>
-                        <a href="#" class="btn--round btn btn--lg btn--white">Start Shopping</a>
-                    </div>
-                </div><!-- end /.proposal -->
-            </div>
-        </div>
-    </div><!-- start container-fluid -->
-</section>
-<!--================================
-    END SELL BUY
-=================================-->
-
-<!--================================
-    START TESTIMONIAL
-=================================-->
-<section class="testimonial-area section--padding">
-    <!-- start .container -->
-    <div class="container">
-        <!-- start row -->
-        <div class="row">
-            <!-- start col-md-12 -->
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h1>Our Clients  <span class="highlighted">Feedback</span></h1>
-                    <p>Laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats. Lid est laborum dolo rumes fugats untras.</p>
-                </div>
-            </div><!-- end /.col-md-12 -->
-        </div><!-- end /.row -->
-
-        <!-- start row -->
-        <div class="row">
-            <!-- start .col-md-12 -->
-            <div class="col-md-12">
-                <div class="testimonial-slider">
-                    <div class="testimonial">
-                        <div class="testimonial__about">
-                            <div class="avatar v_middle"><img src="{{ url( 'images/test1.jpg' ) }}" alt="Testimonial Avatar"></div>
-                            <div class="name-designation v_middle">
-                                <h4 class="name">Tubeda Pagla</h4>
-                                <span class="desig">Product Designer</span>
-                            </div>
-                            <span class="lnr lnr-bubble quote-icon"></span>
-                        </div>
-                        <div class="testimonial__text">
-                            <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                leo quam aliquet diam congue is the laoreet elit metus. Nunc placerat mi is id nisi interdum is mollis.
-                                Praesent the pharetra, justo ut scelerisque.</p>
-                        </div>
-                    </div><!-- end /.testimonial -->
-
-                    <div class="testimonial">
-                        <div class="testimonial__about">
-                            <div class="avatar v_middle"><img src="{{ url( 'images/test2.jpg' ) }}" alt="Testimonial Avatar"></div>
-                            <div class="name-designation v_middle">
-                                <h4 class="name">Tarashi Hamada</h4>
-                                <span class="desig">Quality Ninja</span>
-                            </div>
-                            <span class="lnr lnr-bubble quote-icon"></span>
-                        </div>
-                        <div class="testimonial__text">
-                            <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                leo quam aliquet diam congue is the laoreet elit metus. Nunc placerat mi is id nisi interdum is mollis.
-                                Praesent the pharetra, justo ut scelerisque.</p>
-                        </div>
-                    </div><!-- end /.testimonial -->
-
-                    <div class="testimonial">
-                        <div class="testimonial__about">
-                            <div class="avatar v_middle"><img src="{{ url( 'images/test1.jpg' ) }}" alt="Testimonial Avatar"></div>
-                            <div class="name-designation v_middle">
-                                <h4 class="name">Tubeda Pagla</h4>
-                                <span class="desig">Product Designer</span>
-                            </div>
-                            <span class="lnr lnr-bubble quote-icon"></span>
-                        </div>
-                        <div class="testimonial__text">
-                            <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                leo quam aliquet diam congue is the laoreet elit metus. Nunc placerat mi is id nisi interdum is mollis.
-                                Praesent the pharetra, justo ut scelerisque.</p>
-                        </div>
-                    </div><!-- end /.testimonial -->
-
-                    <div class="testimonial">
-                        <div class="testimonial__about">
-                            <div class="avatar v_middle"><img src="{{ url( 'images/test2.jpg' ) }}" alt="Testimonial Avatar"></div>
-                            <div class="name-designation v_middle">
-                                <h4 class="name">Tarashi Hamada</h4>
-                                <span class="desig">Quality Ninja</span>
-                            </div>
-                            <span class="lnr lnr-bubble quote-icon"></span>
-                        </div>
-                        <div class="testimonial__text">
-                            <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-                                leo quam aliquet diam congue is the laoreet elit metus. Nunc placerat mi is id nisi interdum is mollis.
-                                Praesent the pharetra, justo ut scelerisque.</p>
-                        </div>
-                    </div><!-- end /.testimonial -->
-                </div><!-- end /.testimonial_slider -->
-
-                <div class="all-testimonial">
-                    <a href="testimonial.html" class="btn btn--lg btn--round">View All Reviews</a>
-                </div>
-            </div><!-- end /.col-md-12 -->
-        </div><!-- end /.row -->
-    </div><!-- end container -->
-</section>
-<!--================================
-    END TESTIMONIAL
-=================================-->
-
-<!--================================
-    START LATEST NEWS
-=================================-->
-<section class="latest-news section--padding">
-    <!-- start /.container -->
-    <div class="container">
-        <!-- start row -->
-        <div class="row">
-            <!-- start col-md-12 -->
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h1>Latest <span class="highlighted">News</span></h1>
-                    <p>Laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats. Lid est laborum dolo rumes fugats untras.</p>
-                </div>
-            </div><!-- end /.col-md-12 -->
-        </div><!-- end /.row -->
-
-        <!-- start .row -->
-        <div class="row">
-            <!-- start .col-md-4 -->
-            <div class="col-md-4 col-sm-6">
-                <div class="news">
-                    <div class="news__thumbnail">
-                        <img src="{{ url( 'images/news1.png' ) }}" alt="News Thumbnail">
-                    </div>
-                    <div class="news__content">
-                        <a href="#" class="news-title"><h4>Web Design Trends in 2017</h4></a>
-                        <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                            the mattis, leo quam aliquet congue.</p>
-                    </div>
-                    <div class="news__meta">
-                        <div class="date">
-                            <span class="lnr lnr-clock"></span>
-                            <p>24 Feb 2017</p>
-                        </div>
-
-                        <div class="other">
-                            <ul>
-                                <li>
-                                    <span class="lnr lnr-bubble"></span>
-                                    <span>45</span>
-                                </li>
-                                <li>
-                                    <span class="lnr lnr-eye"></span>
-                                    <span>345</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end /.col-md-4 -->
-
-            <!-- start .col-md-4 -->
-            <div class="col-md-4 col-sm-6">
-                <div class="news">
-                    <div class="news__thumbnail">
-                        <img src="{{ url( 'images/news2.png' ) }}" alt="News Thumbnail">
-                    </div>
-                    <div class="news__content">
-                        <a href="#" class="news-title"><h4>The best advices to start your own project</h4></a>
-                        <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                            the mattis, leo quam aliquet congue.</p>
-                    </div>
-                    <div class="news__meta">
-                        <div class="date">
-                            <span class="lnr lnr-clock"></span>
-                            <p>15 Mar 2017</p>
-                        </div>
-
-                        <div class="other">
-                            <ul>
-                                <li>
-                                    <span class="lnr lnr-bubble"></span>
-                                    <span>45</span>
-                                </li>
-                                <li>
-                                    <span class="lnr lnr-eye"></span>
-                                    <span>345</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end /.col-md-4 -->
-
-            <!-- start .col-md-4 -->
-            <div class="col-md-4 col-sm-6">
-                <div class="news">
-                    <div class="news__thumbnail">
-                        <img src="{{ url( 'images/news1.png' ) }}" alt="News Thumbnail">
-                    </div>
-                    <div class="news__content">
-                        <a href="#" class="news-title"><h4>Best Tomato Sauce in town</h4></a>
-                        <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                            the mattis, leo quam aliquet congue.</p>
-                    </div>
-                    <div class="news__meta">
-                        <div class="date">
-                            <span class="lnr lnr-clock"></span>
-                            <p>20 Dec 2016</p>
-                        </div>
-
-                        <div class="other">
-                            <ul>
-                                <li>
-                                    <span class="lnr lnr-bubble"></span>
-                                    <span>45</span>
-                                </li>
-                                <li>
-                                    <span class="lnr lnr-eye"></span>
-                                    <span>345</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end /.col-md-4 -->
-        </div><!-- end /.row -->
-    </div><!-- end /.container -->
-</section>
-<!--================================
-    END LATEST NEWS
-=================================-->
-
-<!--================================
-    START SPECIAL FEATURES AREA
-=================================-->
-<section class="special-feature-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="special-feature feature--1">
-                    <img src="{{ url( 'images/spf1.png' ) }}" alt="Special Feature image">
-                    <h3 class="special__feature-title">30 Days Money Back <span class="highlight">Guarantee</span></h3>
-                </div>
-            </div><!-- end /.col-md-6 -->
-            <div class="col-md-6">
-                <div class="special-feature feature--2">
-                    <img src="{{ url( 'images/spf2.png' ) }}" alt="Special Feature image">
-                    <h3 class="special__feature-title">Fast and Friendly <span class="highlight">Support</span></h3>
-                </div>
-            </div><!-- end /.col-md-6 -->
-        </div><!-- end /.row -->
-    </div><!-- end /.container -->
-</section>
-<!--================================
-    END SPECIAL FEATURES AREA
-=================================-->
-
-<!--================================
-    START CALL TO ACTION AREA
-=================================-->
 <section class="call-to-action bgimage">
     <div class="bg_image_holder">
-        <img src="{{ url( 'images/calltobg.jpg' ) }}" alt="">
+        <img src="images/calltobg.jpg" alt="">
     </div>
     <div class="container content_above">
         <div class="row">

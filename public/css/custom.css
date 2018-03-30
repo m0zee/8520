@@ -1,3 +1,8 @@
 .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
   margin-top :-10px;
 }
+
+.hero-area 
+{
+  height: 500px;
+}
