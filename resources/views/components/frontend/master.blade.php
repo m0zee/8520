@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ url( 'css/trumbowyg.min.css' ) }}">
     <link rel="stylesheet" href="{{ url( 'css/bootstrap/bootstrap.min.css' ) }}">
     <link rel="stylesheet" href="{{ url( 'css/style.css' ) }}">
+    <link rel="stylesheet" href="{{ url( 'css/custom.css' ) }}">
     <!-- endinject -->
 
     <!-- page css -->

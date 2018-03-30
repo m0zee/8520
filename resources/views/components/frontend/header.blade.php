@@ -16,7 +16,7 @@
                 <div class="col-md-8 col-md-offset-1 col-xs-5 col-sm-9 v_middle">
                     <!-- start .author-area -->
                     <div class="author-area">
-                        <a href="signup.html" class="author-area__seller-btn inline">Become a Seller</a>
+                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">Become a Seller</a>
 
                         <div class="author__notification_area">
                             <ul>
@@ -297,13 +297,14 @@
                             </div>
                         </div><!--end /.author-author__info-->
                         <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="author-area__seller-btn inline">logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                         @else
 
                         <a href="{{ url('login') }}" class="author-area__seller-btn inline">Login</a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
+                        
                         @endif
                     </div><!-- end .author-area -->
                     
@@ -370,7 +371,7 @@
                                 </ul>
                             </div>
 
-                            <div class="text-center"><a href="signup.html" class="author-area__seller-btn inline">Become a Seller</a></div>
+                            <div class="text-center"><a href="{{ route('register') }}" class="author-area__seller-btn inline">Become a Seller</a></div>
                         </div>
                     </div><!-- end /.mobile_content -->
                 </div><!-- end /.col-md-5 -->
@@ -541,7 +542,7 @@
                                                         <li><a href="support-forum.html">Support Forum</a></li>
                                                         <li><a href="support-forum-detail.html">Forum Details</a></li>
                                                         <li><a href="login.html">Login</a></li>
-                                                        <li><a href="signup.html">Register</a></li>
+                                                        <li><a href="{{ route('register') }}">Register</a></li>
                                                         <li><a href="recover-pass.html">Recovery Password</a></li>
                                                         <li><a href="customer-dashboard.html">Customer Dashboard</a></li>
                                                         <li><a href="customer-downloads.html">Customer Downloads</a></li>

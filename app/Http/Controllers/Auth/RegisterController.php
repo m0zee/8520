@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use App\Jobs\SendVerificationEmail;
+
 class RegisterController extends Controller
 {
     /*
@@ -39,6 +43,21 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+        dispatch(new SendVerificationEmail($user));
+
+        return view('verification');
+        // return $this->registered($request, $user)
+        //                 ?: redirect($this->redirectPath());
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -66,6 +85,19 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'user_type_id' => $data['user_type_id'],
+            'status' => '1',
+            'email_token' => base64_encode($data['email'])
         ]);
+    }
+
+
+    public function verify($token)
+    {
+        $user = User::where('email_token',$token)->first();
+        $user->verified = 1;
+        if($user->save()){
+            return view('emailconfirm',['user'=>$user]);
+        }
     }
 }

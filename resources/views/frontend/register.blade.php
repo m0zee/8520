@@ -58,9 +58,9 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email_ad">Email Address</label>
-                                <input id="email_ad" type="text" name="email" class="text_field" placeholder="Enter your email address">
+                                <input id="email_ad" type="text" name="email" value="{{ old('email') }}" class="text_field" placeholder="Enter your email address">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -70,7 +70,7 @@
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label for="password">Password</label>
                                 <input id="password" type="password" name="password" class="text_field" placeholder="Enter your password...">
 
@@ -85,6 +85,16 @@
                             <div class="form-group">
                                 <label for="con_pass">Confirm Password</label>
                                 <input id="con_pass" type="password" class="text_field" name="password_confirmation" placeholder="Confirm password">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="radio-inline" >
+                                    <input type="radio" id="buyer" value="1" checked name="user_type_id" >Buyer
+                                </label>
+                                
+                                <label class="radio-inline">
+                                    <input type="radio" id="vendor" value="2" name="user_type_id" >Vendor
+                                </label>
                             </div>
 
                             <button class="btn btn--md btn--round register_btn" type="submit">Register Now</button>
