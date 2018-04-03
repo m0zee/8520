@@ -1,0 +1,17 @@
+https://aazztech.com/demos/themes/html/martplace/dist/author.html == Supplier Profile page
+
+https://aazztech.com/demos/themes/html/martplace/dist/category-grid.html# == Search all product / Product Tab
+
+https://aazztech.com/demos/themes/html/martplace/dist/single-product.html# === Product Detail page
+
+https://aazztech.com/demos/themes/html/martplace/dist/author-followers.html === Vendor Profile page
+
+https://aazztech.com/demos/themes/html/martplace/dist/edit-item.html ====== Vendor Edit
+
+https://aazztech.com/demos/themes/html/martplace/dist/dashboard-upload.html ===== ====== Vendor Product Add
+
+
+https://aazztech.com/demos/themes/html/martplace/dist/dashboard.html === DashBoard
+
+
+
