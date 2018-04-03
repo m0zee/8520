@@ -16,9 +16,9 @@
                 <div class="col-md-8 col-md-offset-1 col-xs-5 col-sm-9 v_middle">
                     <!-- start .author-area -->
                     <div class="author-area">
-                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">Become a Vendor / Buyer</a>
+                        
 
-                        <div class="author__notification_area">
+                        <div class="author__notification_area" style=" visibility: hidden;">
                             <ul>
                                 <li class="has_dropdown">
                                     <div class="icon_wrap">
@@ -251,7 +251,7 @@
                             {{ csrf_field() }}
                         </form>
                         @else
-
+                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">Become a Vendor / Buyer</a>
                         <a href="{{ url('login') }}" class="author-area__seller-btn inline">Login</a>
 
                         
