@@ -27,6 +27,10 @@ Route::get('/recover-password', function () {
     return view('frontend.recover_password');
 });
 Auth::routes();
+Route::get('admin/login', function()
+{
+	return view('backend.login');
+});
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
