@@ -1,4 +1,7 @@
 @extends('components.backend.master')
+@php
+    $active = 'users';
+@endphp
 
 @section('title', 'Login')
 @section('content')
@@ -20,6 +23,7 @@
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
+    
         @include('components.backend.menu')
     <!--================================
         END BREADCRUMB AREA
@@ -36,59 +40,39 @@
                         <div class="modules__content">
                             <div class="withdraw_module withdraw_history">
                                 <div class="withdraw_table_header">
-                                    <h3>Withdrawal History</h3>
+                                    <h3>{{ $user_type->name }} List</h3>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table withdraw__table">
                                         <thead>
                                         <tr>
-                                            <th>Date</th>
-                                            <th>Payment Method</th>
-                                            <th>Amount</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>is Approved</th>
                                             <th>Status</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        <tr>
-                                            <td>09 Jul 2017</td>
-                                            <td>Payoneer</td>
-                                            <td class="bold">$568.50</td>
-                                            <td class="pending"><span>Pending</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>20 May 2017</td>
-                                            <td>Payoneer</td>
-                                            <td class="bold">$1300.50</td>
-                                            <td class="paid"><span>Paid</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>16 Dec 2016</td>
-                                            <td>Local Bank (USD) - Account ending in 5790</td>
-                                            <td class="bold">$2380</td>
-                                            <td class="paid"><span>Paid</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>09 Jul 2017</td>
-                                            <td>Payoneer</td>
-                                            <td class="bold">$568.50</td>
-                                            <td class="pending"><span>Pending</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>20 May 2017</td>
-                                            <td>Payoneer</td>
-                                            <td class="bold">$1300.50</td>
-                                            <td class="paid"><span>Paid</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>16 Dec 2016</td>
-                                            <td>Local Bank (USD) - Account ending in 5790</td>
-                                            <td class="bold">$2380</td>
-                                            <td class="paid"><span>Paid</span></td>
-                                        </tr>
+                                            @if ($users != NULL)
+                                                @foreach ($users as $user)
+                                            
+                                                
+                                            
+                                                    <tr>
+                                                        <td>{{ $user->name }}</td>
+                                                        <td>{{ $user->email }}</td>
+                                                        <form action="{{route('admin.user.approve', [ 'user_id' => $user->id ] ) }}" method="POST">
+                                                        <input name="_method" type="hidden" value="PUT">
+                                                        {{ csrf_field() }}
+                                                            <td class="bold ">
+                                                                <button class="btn btn-primary btn-sm btn--round" type="submit">{{ ($user->approved_by == NULL) ? 'Pending' : "Approved" }}</button>
+                                                            </td>
+                                                        </form>
+                                                        <td class="pending"><span>{{ ($user->status == 1) ? 'Active' : "Deactive" }}</span></td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

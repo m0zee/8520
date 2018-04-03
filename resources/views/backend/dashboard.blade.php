@@ -1,5 +1,7 @@
 @extends('components.backend.master')
-
+@php
+    $active = 'dashboard';
+@endphp
 @section('title', 'Login')
 @section('content')
 
