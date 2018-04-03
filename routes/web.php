@@ -26,7 +26,10 @@ use App\Http\Middleware\CheckAdminLogin;
 Route::get('/recover-password', function () {
     return view('frontend.recover_password');
 });
-Route::get('/contact', 'HomeController@contact')->name("contact");
+
+Route::get('/contact', function(){
+	return view('frontend.contact');
+})->name("contact");
 
 Auth::routes();
 Route::get('admin/login', function()
