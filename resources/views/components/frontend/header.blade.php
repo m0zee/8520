@@ -16,7 +16,7 @@
                 <div class="col-md-8 col-md-offset-1 col-xs-5 col-sm-9 v_middle">
                     <!-- start .author-area -->
                     <div class="author-area">
-                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">Become a Seller</a>
+                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">Become a Vendor / Buyer</a>
 
                         <div class="author__notification_area">
                             <ul>
@@ -212,57 +212,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="has_dropdown">
-                                    <div class="icon_wrap">
-                                        <span class="lnr lnr-cart"></span> <span class="notification_count purch">2</span>
-                                    </div>
-
-                                    <div class="dropdown dropdown--cart">
-                                        <div class="cart_area">
-                                            <div class="cart_product">
-                                                <div class="product__info">
-                                                    <div class="thumbn">
-                                                        <img src="{{ url( 'images/capro1.jpg' ) }}" alt="cart product thumbnail">
-                                                    </div>
-                                                    
-                                                    <div class="info">
-                                                        <a class="title" href="single-product.html">Finance and Consulting Business Theme</a>
-                                                        <div class="cat"><a href="#"><img src="{{ url( 'images/catword.png' ) }}" alt="">Wordpress</a></div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="product__action">
-                                                    <a href="#"><span class="lnr lnr-trash"></span></a>
-                                                    <p>$60</p>
-                                                </div>
-                                            </div>
-                                            <div class="cart_product">
-                                                <div class="product__info">
-                                                    <div class="thumbn">
-                                                        <img src="{{ url( 'images/capro2.jpg' ) }}" alt="cart product thumbnail">
-                                                    </div>
-
-                                                    <div class="info">
-                                                        <a class="title" href="single-product.html">Flounce - Multipurpose OpenCart Theme</a>
-                                                        <div class="cat"><a href="#"><img src="{{ url( 'images/catword.png' ) }}" alt="">Wordpress</a></div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="product__action">
-                                                    <a href="#"><span class="lnr lnr-trash"></span></a>
-                                                    <p>$60</p>
-                                                </div>
-                                            </div>
-                                            <div class="total">
-                                                <p><span>Total :</span>$80</p>
-                                            </div>
-                                            <div class="cart_action">
-                                                <a class="go_cart" href="cart.html">View Cart</a>
-                                                <a class="go_checkout" href="checkout.html">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                
                             </ul>
                         </div><!--start .author__notification_area -->
                          
@@ -409,7 +359,7 @@
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
                                 <li><a href="{{ url('') }}">HOME</a></li>
-                                <li class="has_dropdown">
+                               {{--  <li class="has_dropdown">
                                     <a href="all-products-list.html">all product</a>
                                     <div class="dropdown dropdown--menu">
                                         <ul>
@@ -420,10 +370,10 @@
                                             <li><a href="#">Top Authors</a></li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li> --}}
                                 <li class="has_dropdown">
-                                    <a href="#">categories</a>
-                                    <div class="dropdown dropdown--menu">
+                                    <a href="#">Products</a>
+                                   {{--  <div class="dropdown dropdown--menu">
                                         <ul>
                                             <li><a href="category-grid.html">Popular Items</a></li>
                                             <li><a href="category-grid.html">Admin Templates</a></li>
@@ -435,11 +385,11 @@
                                             <li><a href="category-grid.html">Entertainment</a></li>
                                             <li><a href="category-grid.html">Landing Pages</a></li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </li>
                                 <li class="has_megamenu">
-                                    <a href="#">Elements</a>
-                                    <div class="dropdown_megamenu contained">
+                                    <a href="#">Vendors</a>
+                                    {{-- <div class="dropdown_megamenu contained">
                                         <div class="megamnu_module">
                                             <div class="menu_items">
                                                 <div class="menu_column">
@@ -481,11 +431,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </li>
                                 <li class="has_megamenu">
-                                    <a href="#">Pages</a>
-                                    <div class="dropdown_megamenu">
+                                    <a href="#">Buy Requirements</a>
+                                    {{-- <div class="dropdown_megamenu">
                                         <div class="megamnu_module">
                                             <div class="menu_items">
                                                 <div class="menu_column">
@@ -576,9 +526,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </li>
-                                <li><a href="contact.html">contact</a></li>
+                                <li><a href="{{ route( 'contact' ) }}">contact</a></li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
 
