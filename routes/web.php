@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Middleware\CheckAdminLogin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +30,10 @@ Auth::routes();
 Route::get('admin/login', function()
 {
 	return view('backend.login');
+});
+
+Route::group(['middleware' => 'CheckAdminLogin'], function(){
+	Route::get('/admin/dashboard', 'Backend\DashboardController@index')->name('admin.dashboard');
 });
 
 Route::get('/', 'HomeController@index')->name('home');
