@@ -2,6 +2,7 @@
 use App\Http\Middleware\CheckAdminLogin;
 // sawood
 // Moiz
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
