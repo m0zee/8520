@@ -40,7 +40,9 @@ Route::get('admin/login', function()
 Route::group(['middleware' => 'CheckAdminLogin'], function(){
 	
 	Route::get('/admin/dashboard', 'Backend\DashboardController@index')->name('admin.dashboard');
-	Route::get('/admin/user/{type}', 'Backend\UserController@index')->name('admin.userlist');
+	
+	Route::get('/admin/users/{type}', 'Backend\UserController@index')->name('admin.userlist');
+	Route::put('/admin/users/{user_id}/approve/', 'Backend\UserController@approve')->name('admin.user.approve');
 	// Route::get('/admin/user/vendors', 'Backend\VendorController@index')->name('admin.buyer');
 });
 

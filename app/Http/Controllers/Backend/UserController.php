@@ -4,7 +4,9 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User\;
+use \App\User;
+use \App\UserType;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -13,9 +15,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user_type)
     {
-        return view('backend.users.index');
+        $user_type = UserType::where('name', $user_type)->first();
+        $user = User::where('user_type_id', $user_type->id)
+               ->orderBy('id', 'desc')
+               ->get();
+        return view('backend.users.index')->with('users', $user)->with('user_type', $user_type);
     }
 
     /**
@@ -82,5 +88,20 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function approve($user_id)
+    {
+        $user = User::where('id', $user_id)->first();
+        if ( $user->approved_by == null ) {
+            User::where('id', $user_id)
+            ->update([
+                'approved_by' => Auth::user()->id ,
+                'approved_at' => date('Y-m-d H:i:s')
+            ]);
+        }
+        return redirect(route('admin.userlist', ['vendor']));
     }
 }

@@ -24,5 +24,13 @@ class UsersTableSeeder extends Seeder
 	            'password' => bcrypt('secret'),
 	        ]);
     	}
+
+        DB::table('users')->insert([
+            'name' => 'Abdul Moiz',
+            'email' => 'moiz.hanif786@gmail.com',
+            'user_type_id' => '3',
+            'status' => '1',
+            'password' => bcrypt('321321'),
+        ]);
     }
 }
