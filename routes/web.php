@@ -1,7 +1,5 @@
 <?php
 use App\Http\Middleware\CheckAdminLogin;
-// sawood
->>>>>>> 27a6ce276ccfaad44cd6765a4bae9ca8256269a5
 /*
 |--------------------------------------------------------------------------
 | Web Routes
