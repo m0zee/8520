@@ -14,4 +14,7 @@ https://aazztech.com/demos/themes/html/martplace/dist/dashboard-upload.html ====
 https://aazztech.com/demos/themes/html/martplace/dist/dashboard.html === DashBoard
 
 
+https://aazztech.com/demos/themes/html/martplace/dist/table.html === Tables 
+
+
 
