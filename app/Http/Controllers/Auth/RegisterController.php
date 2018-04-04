@@ -58,6 +58,12 @@ class RegisterController extends Controller
         //                 ?: redirect($this->redirectPath());
     }
 
+
+    public function showRegistrationForm()
+    {
+        return view('frontend.register');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
