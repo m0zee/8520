@@ -8,6 +8,6 @@ class UserType extends Model
 {
      public function user()
     {
-        return $this->hasMany('App\User'); // links this->id to events.course_id
+        return $this->hasMany('App\User');
     }
 }
