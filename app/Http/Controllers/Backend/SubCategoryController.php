@@ -4,26 +4,20 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use \App\User;
-use \App\UserType;
-use Illuminate\Support\Facades\Auth;
+use App\SubCategory as SubCategory;
 
-class UserController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user_type)
+    public function index($category_id)
     {
-        $user_type = UserType::where('name', $user_type)->first();
+        $subcategory = SubCategory::where('category_id', $category_id)->get();
+        return view('backend.subcategory.index')->with('subcategories', $subcategory);
 
-        // $user = User::where('user_type_id', $user_type->id)
-        //        ->orderBy('id', 'desc')
-        //        ->get();
-        $user = $user_type->user;
-        return view('backend.users.index')->with('users', $user)->with('user_type', $user_type);
     }
 
     /**
@@ -33,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
+        return view('backend.subcategory.create');
     }
 
     /**
@@ -42,9 +36,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $category_id)
     {
-        //
+        SubCategory::create([
+            'name' => $request->input('name') ,
+            'slug' => str_slug( $request->input('name') ) ,
+            'category_id' => $category_id
+        ]);
+        return redirect(route('admin.subcategories.index', [$category_id]));
     }
 
     /**
@@ -87,35 +86,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($category_id, $id)
     {
-        //
-    }
-
-
-
-    public function approve($user_id)
-    {
-        $user = User::where('id', $user_id)->first();
-        if ( $user->approved_by == null ) {
-            User::where('id', $user_id)
-            ->update([
-                'approved_by' => Auth::user()->id ,
-                'approved_at' => date('Y-m-d H:i:s')
-            ]);
-        }
-        return redirect(route('admin.userlist', ['vendor']));
-    }
-
-
-    public function statusUpdate($user_id)
-    {
-        $user = User::where('id', $user_id)->first();
-        $new_status = ($user->status == 1) ? 0 : 1 ;
-        User::where('id', $user_id)
-            ->update([
-                'status' => $new_status,
-            ]);
-        return redirect(route('admin.userlist', [$user->user_type->name]));
+        SubCategory::destroy($id);
+        return redirect(route('admin.subcategories.index', [$category_id]));
     }
 }

@@ -3,7 +3,7 @@
     $active = 'users';
 @endphp
 
-@section('title', 'Login')
+@section('title', 'Category')
 @section('content')
 <!--================================
         START BREADCRUMB AREA
@@ -40,51 +40,37 @@
                         <div class="modules__content">
                             <div class="withdraw_module withdraw_history">
                                 <div class="withdraw_table_header">
-                                    <h3>{{ $user_type->name }} List</h3>
+                                    <h3 class="pull-left"> List</h3>
+                                    <a href="{{ route('admin.categories.create') }}" class="pull-right btn btn--round btn-primary btn-sm"><i class="fa fa-plus"></i> Create</a>
+                                    <div style="clear:both"></div>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table withdraw__table">
                                         <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Is Approved</th>
-                                            <th>Status</th>
-                                            <th>Approved at</th>
+                                            <th>Manage</th>
+                                            <th>Option</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                            @if ($users != NULL)
-                                                @foreach ($users as $user)
+                                            @if (isset($categories) && $categories != NULL)
+                                                @foreach ($categories as $category)
                                             
                                                 
                                             
                                                     <tr>
-                                                        <td>{{ $user->name }}</td>
-                                                        <td>{{ $user->email }}</td>
-                                                        <form action="{{route('admin.user.approve', [ 'user_id' => $user->id ] ) }}" method="POST">
-                                                        <input name="_method" type="hidden" value="PUT">
-                                                        {{ csrf_field() }}
-                                                            <td class="bold ">
-                                                                @if (($user->approved_by == NULL))
-                                                                    <button class="btn btn-warning btn-sm btn--round" type="submit">Pending</button>
-                                                                @else
-                                                                    <span class="btn btn-success btn-sm btn--round">Approved</span>
-                                                                @endif
-                                                            </td>
-                                                        </form>
+                                                        <td>{{ $category->name }}</td>
+                                                        <td><a href="{{ route('admin.subcategories.index',[ $category->id ]) }}" class="btn btn-primary btn--round btn-sm">Manage</a></td>
 
-                                                            <form action="{{route('admin.user.status', [ 'user_id' => $user->id ] ) }}" method="POST">
-                                                            <input name="_method" type="hidden" value="PUT">
-                                                            {{ csrf_field() }}
-                                                                <td class="bold ">
-                                                                    <button class="btn {{ ($user->status == 1) ? 'btn-primary' : "btn-danger" }} btn-sm btn--round" type="submit">{{ ($user->status == 1) ? 'Active' : "Deactive" }}</button>
-                                                                </td>
-                                                            </form>
-
-                                                            
-                                                        <td class="bold"><span>{{ ($user->approved_at != NULL) ? date('d-M-Y', strtotime($user->approved_at)) : '' }}</span></td>
+                                                        <td>
+                                                            <form action="{{ route('admin.categories.destroy', [$category->id]) }}" method="POST">
+                                                                     <input name="_method" type="hidden" value="DELETE">
+                                                                    {{csrf_field()}}
+                                                                    <button class="btn btn-danger btn--round btn-sm" type="submit">Delete</button>
+                                                                </form>
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             @endif
