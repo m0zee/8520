@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('status');
             $table->rememberToken();
             $table->integer('approved_by')->nullable();
-            $table->date('approved_at')->nullable();
+            $table->timestamp('approved_at')->nullable();
             $table->timestamps();
         });
     }

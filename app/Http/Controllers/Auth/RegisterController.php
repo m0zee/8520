@@ -61,9 +61,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        // return view('frontend.register');
-        return view('emailconfirm');
-
+        return view('frontend.register');
     }
 
     /**
