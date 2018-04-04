@@ -28,8 +28,12 @@ Route::get('/recover-password', function () {
 });
 
 Route::get('/contact', function(){
-	return view('frontend.contact');
+	return view('frontend.contact')->with( 'blue_menu', true );
 })->name("contact");
+
+Route::get('/products', function(){
+	return view('frontend.products')->with( 'blue_menu', true );
+})->name("products");
 
 Auth::routes();
 Route::get('admin/login', function()

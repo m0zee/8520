@@ -21,16 +21,16 @@ class UsersTableSeeder extends Seeder
                 'email' => $faker->email,
 	            'user_type_id' => $faker->randomElement([1, 2]),
                 'status' => '1',
-	            'password' => bcrypt('secret'),
+	            'password' => bcrypt('123123'),
 	        ]);
     	}
 
         DB::table('users')->insert([
-            'name' => 'Abdul Moiz',
-            'email' => 'moiz.hanif786@gmail.com',
+            'name' => 'Admin',
+            'email' => 'admin@pakmaterial.com',
             'user_type_id' => '3',
             'status' => '1',
-            'password' => bcrypt('321321'),
+            'password' => bcrypt('123123'),
         ]);
     }
 }

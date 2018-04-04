@@ -1,4 +1,4 @@
-<div class="menu-area">
+<div class="menu-area {{ isset( $blue_menu ) ? 'menu--style1' : '' }}">
     <!-- start .top-menu-area -->
     <div class="top-menu-area">
         <!-- start .container -->
@@ -227,7 +227,7 @@
                                 <p class="name">
                                     {{ Auth::user()->name }}
                                 </p>
-                                <p class="ammount">$20.45</p>
+                                <p class="ammount">User-Type</p>
                             </div>
 
                             <div class="dropdown dropdown--author">
@@ -235,18 +235,16 @@
                                     <li><a href="author.html"><span class="lnr lnr-user"></span>Profile</a></li>
                                     <li><a href="dashboard.html"><span class="lnr lnr-home"></span> Dashboard</a></li>
                                     <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
-                                    <li><a href="cart.html"><span class="lnr lnr-cart"></span>Purchases</a></li>
-                                    <li><a href="favourites.html"><span class="lnr lnr-heart"></span> Favourite</a></li>
-                                    <li><a href="dashboard-add-credit.html"><span class="lnr lnr-dice"></span>Add Credits</a></li>
-                                    <li><a href="dashboard-statement.html"><span class="lnr lnr-chart-bars"></span>Sale Statement</a></li>
-                                    <li><a href="dashboard-upload.html"><span class="lnr lnr-upload"></span>Upload Item</a></li>
-                                    <li><a href="dashboard-manage-item.html"><span class="lnr lnr-book"></span>Manage Item</a></li>
-                                    <li><a href="dashboard-withdrawal.html"><span class="lnr lnr-briefcase"></span>Withdrawals</a></li>
+                                    <li><a href="dashboard-manage-item.html"><span class="lnr lnr-book"></span>Manage Item</a>
+                                    </li>
                                     <li><a href="#"><span class="lnr lnr-exit"></span>Logout</a></li>
                                 </ul>
                             </div>
                         </div><!--end /.author-author__info-->
-                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="author-area__seller-btn inline">logout</a>
+                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">
+                        <span class="lnr lnr-home"></span>
+                        Dashboard</a>
+                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="author-area__seller-btn inline"><span class="lnr lnr-exit"></span> logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
@@ -372,7 +370,7 @@
                                     </div>
                                 </li> --}}
                                 <li class="has_dropdown">
-                                    <a href="#">Products</a>
+                                    <a href="{{ route( 'products' ) }}">Products</a>
                                    {{--  <div class="dropdown dropdown--menu">
                                         <ul>
                                             <li><a href="category-grid.html">Popular Items</a></li>

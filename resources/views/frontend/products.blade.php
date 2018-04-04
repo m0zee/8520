@@ -52,7 +52,7 @@
                             </div>
                         </div><!-- end /.sidebar-card -->
     
-                        <div class="sidebar-card card--slider">
+                       {{--  <div class="sidebar-card card--slider">
                                 <a class="card-title" href="#collapse3" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapse3">
                                     <h4>Filter Products<span class="lnr lnr-chevron-down"></span></h4>
                                 </a>
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- end /.sidebar-card -->
+                            </div> --}}<!-- end /.sidebar-card -->
                         </aside><!-- end aside -->
                 </div><!-- end /.col-md-3 -->
 
@@ -156,9 +156,9 @@
 
                                 <div class="product-purchase">
                                     <div class="price_love">
-                                        <span>$15</span>
+                                        <span>More Info</span>
                                     </div>
-                                    <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
+                                    <a href="#"><i class="fas fa-envelope"></i></span>Contact</a>
                                 </div><!-- end /.product-purchase -->
                             </div><!-- end /.single-product -->
                         </div><!-- end /.col-md-4 -->
@@ -171,7 +171,7 @@
                                     <img src="images/p4.jpg" alt="Product Image">
                                     <div class="prod_btn">
                                         <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                        <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
+                                        <a href="single-product.html" class="transparent btn--sm btn--round">Contact</a>
                                     </div><!-- end /.prod_btn -->
                                 </div><!-- end /.product__thumbnail -->
 
@@ -201,9 +201,9 @@
 
                                 <div class="product-purchase">
                                     <div class="price_love">
-                                        <span>$15</span>
+                                        <span>More Info</span>
                                     </div>
-                                    <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
+                                    <a href="#"><span class="lnr lnr-book"></span>Contact</a>
                                 </div><!-- end /.product-purchase -->
                             </div><!-- end /.single-product -->
                         </div><!-- end /.col-md-4 -->
@@ -218,7 +218,7 @@
                                     <img src="images/p4.jpg" alt="Product Image">
                                     <div class="prod_btn">
                                         <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                        <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
+                                        <a href="single-product.html" class="transparent btn--sm btn--round">Contact</a>
                                     </div><!-- end /.prod_btn -->
                                 </div><!-- end /.product__thumbnail -->
 

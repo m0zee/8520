@@ -93,7 +93,7 @@
                         <img src="images/p1.jpg" alt="Product Image">
                         <div class="prod_btn">
                             <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                            <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
+                            <a href="single-product.html" class="transparent btn--sm btn--round">Contact</a>
                         </div><!-- end /.prod_btn -->
                     </div><!-- end /.product__thumbnail -->
 
@@ -104,9 +104,6 @@
                                 <img class="auth-img" src="images/auth.jpg" alt="author image">
                                 <p><a href="#">AazzTech</a></p>
                             </li>
-                            <li class="product_cat">
-                                <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
-                            </li>
                         </ul>
 
                         <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
@@ -115,10 +112,10 @@
 
                     <div class="product-purchase">
                         <div class="price_love">
-                            <span>$10 - $50</span>
-                            <p><span class="lnr lnr-heart"></span> 90</p>
+                            <span>Contact</span>
+                            
                         </div>
-                        <div class="sell"><p><span class="lnr lnr-cart"></span><span>16</span></p></div>
+                        
                     </div><!-- end /.product-purchase -->
                 </div><!-- end /.single-product -->
             </div><!-- end /.col-md-4 -->
