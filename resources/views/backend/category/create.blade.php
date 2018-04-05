@@ -14,11 +14,12 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active"><a href="#">Table</a></li>
+                            <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                            <li><a href="{{ route('admin.categories.index') }}">Category</a></li>
+                            <li><a href="{{ route('admin.categories.create') }}">Create</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Table</h1>
+                    <h1 class="page-title">Category Create</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -59,7 +60,7 @@
                             </div><!-- end /.information_module -->
 
                             <div class="dashboard_setting_btn">
-                                <button type="submit" class="btn btn--round btn--md">Save Change</button>
+                                <button type="submit" class="btn btn--round btn--md">Save</button>
                             </div>
                         </div><!-- end /.col-md-12 -->
                     </div><!-- end /.row -->

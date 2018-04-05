@@ -14,11 +14,12 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active"><a href="#">Table</a></li>
+                            <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                            <li><a href="{{ route('admin.categories.index') }}">Category</a></li>
+                            <li><a href="#">{{ $category->name }}</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Table</h1>
+                    <h1 class="page-title">Manage Category</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -40,7 +41,7 @@
                         <div class="modules__content">
                             <div class="withdraw_module withdraw_history">
                                 <div class="withdraw_table_header">
-                                    <h3 class="pull-left"> List</h3>
+                                    <h3 class="pull-left">Sub Category List ( {{ $category->name }} ) </h3>
                                     <a href="{{ route('admin.subcategories.create', Request::segment(3)) }}" class="pull-right btn btn--round btn-primary btn-sm"><i class="fa fa-plus"></i> Create</a>
                                     <div style="clear:both"></div>
                                 </div>
