@@ -14,11 +14,13 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active"><a href="#">Table</a></li>
+                            <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                            <li><a href="{{ route('admin.categories.index') }}">Category</a></li>
+                            <li><a href="{{ route('admin.subcategories.index', [$category->id]) }}">{{ $category->name }}</a></li>
+                            <li><a href="#">Edit</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Table</h1>
+                    <h1 class="page-title">Edit Sub Category</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -44,14 +46,19 @@
                         <div class="col-md-12">
                             <div class="information_module">
                                 <a class="toggle_title">
-                                    <h4>Create Category</h4>
+                                    <h4>Edit Sub Category</h4>
                                 </a>
 
                                 <div class="information__set toggle_module">
                                     <div class="information_wrapper form--fields">
-                                        <div class="form-group">
+                                        <div class="form-group {{ ($errors->first('name') ) ? 'has-error' : '' }}">
                                             <label for="name">Name</label>
-                                            <input type="text" name="name" id="name" class="text_field" placeholder="Category Name" value="{{ $sub_category->name }}">
+                                            <input type="text" name="name" id="name" class="text_field" placeholder="Category Name" value="{{ (old('name')) ? old('name') : $sub_category->name }}">
+                                            @if ($errors->first('name'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('name') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                        
                                     </div><!-- end /.information_wrapper -->

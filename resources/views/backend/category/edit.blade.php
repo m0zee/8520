@@ -14,11 +14,12 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active"><a href="#">Table</a></li>
+                            <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                            <li><a href="{{ route('admin.categories.index') }}">Category</a></li>
+                            <li class="active"><a href="#">Edit</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Table</h1>
+                    <h1 class="page-title">Category Edit</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -36,7 +37,6 @@
 
         <div class="dashboard_contents">
             <div class="container">
-
 
                 <form action="{{ route('admin.categories.update', [$category->id]) }}" method="POST" class="setting_form">
                     <input type="hidden" name="_method" value="PUT">

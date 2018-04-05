@@ -5,7 +5,7 @@
                 <ul class="dashboard_menu">
                     <li class="{{ ($active == 'dashboard') ? 'active' : ''  }}"><a href="{{ route('admin.dashboard')}}"><span class="lnr lnr-home"></span>Dashboard</a></li>
                     <li class="{{ ($active == 'users') ? 'active' : ''  }}"><a href="{{ route('admin.userlist', ['pamarm1' => 'vendor']) }}"><span class="lnr lnr-users"></span>Users</a></li>
-                    <li><a href="{{ route('admin.categories.index') }}"><span class="lnr lnr-dice"></span>Category</a></li>
+                    <li class="{{ ($active == 'category') ? 'active' : ''  }}"><a href="{{ route('admin.categories.index') }}"><span class="lnr lnr-dice"></span>Category</a></li>
                     
                     <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Purchase</a></li>
                     <li><a href="dashboard-add-credit.html"><span class="lnr lnr-cog"></span>Add Credits</a></li>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SubCategory as SubCategory;
+use App\Category as Category;
 
 class SubCategoryController extends Controller
 {
@@ -15,8 +16,9 @@ class SubCategoryController extends Controller
      */
     public function index($category_id)
     {
+        $category = Category::find($category_id);
         $subcategory = SubCategory::where('category_id', $category_id)->get();
-        return view('backend.subcategory.index')->with('subcategories', $subcategory);
+        return view('backend.subcategory.index')->with('subcategories', $subcategory)->with('category', $category);
 
     }
 
@@ -25,9 +27,11 @@ class SubCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($category_id)
     {
-        return view('backend.subcategory.create');
+        // $category_id = Request::segment(3);
+        $category = Category::find($category_id);
+        return view('backend.subcategory.create')->with('category', $category);
     }
 
     /**
@@ -38,9 +42,14 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request, $category_id)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:sub_categories'
-        ]);
+        $this->validate($request, 
+            [
+                'name' => 'required|unique:sub_categories'
+            ],
+            [
+                'unique' => 'The :attribute must be unique.',
+            ]
+        );
 
 
         SubCategory::create([
@@ -70,8 +79,9 @@ class SubCategoryController extends Controller
      */
     public function edit($category_id, $id)
     {
+        $category = Category::find($category_id);
         $sub_category = SubCategory::find($id);
-        return view('backend.subcategory.edit')->with('sub_category', $sub_category);
+        return view('backend.subcategory.edit')->with('sub_category', $sub_category)->with('category', $category);
     }
 
     /**
@@ -83,6 +93,16 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, $category_id, $id)
     {
+
+        $this->validate($request, 
+            [
+                'name' => 'required|unique:sub_categories,name,'.$id
+            ],
+            [
+                'unique' => 'The :attribute must be unique.',
+            ]
+        );
+
         SubCategory::where('id', $id)->update([
             'name' => $request->input('name'),
             'slug' => str_slug( $request->input('name') ),
