@@ -1,6 +1,6 @@
 @extends('components.backend.master')
 @php
-    $active = 'users';
+    $active = 'category';
 @endphp
 
 @section('title', 'Category')
