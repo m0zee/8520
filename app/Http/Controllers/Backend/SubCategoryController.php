@@ -38,6 +38,11 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request, $category_id)
     {
+        $this->validate($request, [
+            'name' => 'required|unique:sub_categories'
+        ]);
+
+
         SubCategory::create([
             'name' => $request->input('name') ,
             'slug' => str_slug( $request->input('name') ) ,
@@ -63,9 +68,10 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($category_id, $id)
     {
-        //
+        $sub_category = SubCategory::find($id);
+        return view('backend.subcategory.edit')->with('sub_category', $sub_category);
     }
 
     /**
@@ -75,9 +81,13 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $category_id, $id)
     {
-        //
+        SubCategory::where('id', $id)->update([
+            'name' => $request->input('name'),
+            'slug' => str_slug( $request->input('name') ),
+        ]);
+        return redirect( route('admin.subcategories.index', [$category_id] ) );
     }
 
     /**

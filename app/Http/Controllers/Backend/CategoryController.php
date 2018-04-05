@@ -62,9 +62,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id )
     {
-        //
+        $category = Category::find($id);
+        return view('backend.category.edit')->with('category', $category);
     }
 
     /**
@@ -76,7 +77,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Category::where('id', $id)->update([
+            'name' => $request->input('name'),
+            'slug' => str_slug($request->input('name'))
+        ]);
+        return redirect( route('admin.categories.index') );
     }
 
     /**

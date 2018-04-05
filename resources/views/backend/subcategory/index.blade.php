@@ -63,10 +63,11 @@
                                                         <td>{{ $subcategory->name }}</td>
                                                         
                                                         <td>
+                                                            <a href="{{ route('admin.subcategories.edit', [Request::segment(3), $subcategory->id]) }}" class="btn btn-info btn--round btn-sm pull-left"><i class="fa fa-pencil"></i></a>
                                                             <form action="{{ route('admin.subcategories.destroy', [Request::segment(3), $subcategory->id]) }}" method="POST">
                                                                  <input name="_method" type="hidden" value="DELETE">
                                                                 {{csrf_field()}}
-                                                                <button class="btn btn-danger btn--round btn-sm" type="submit">Delete</button>
+                                                                <button class="btn btn-danger btn--round btn-sm" type="submit"><i class="fa fa-trash"></i></button>
                                                             </form>
                                                         </td>
                                                     </tr>

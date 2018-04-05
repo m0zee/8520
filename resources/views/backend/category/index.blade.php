@@ -65,11 +65,15 @@
                                                         <td><a href="{{ route('admin.subcategories.index',[ $category->id ]) }}" class="btn btn-primary btn--round btn-sm">Manage</a></td>
 
                                                         <td>
+
+                                                            <a href="{{ route('admin.categories.edit',[ $category->id ]) }}" class="btn btn-info btn--round btn-sm pull-left"><i class="fa fa-pencil"></i></a>
+
+
                                                             <form action="{{ route('admin.categories.destroy', [$category->id]) }}" method="POST">
-                                                                     <input name="_method" type="hidden" value="DELETE">
-                                                                    {{csrf_field()}}
-                                                                    <button class="btn btn-danger btn--round btn-sm" type="submit">Delete</button>
-                                                                </form>
+                                                                <input name="_method" type="hidden" value="DELETE">
+                                                                {{csrf_field()}}
+                                                                <button class="btn btn-danger btn--round btn-sm" type="submit"><i class="fa fa-trash"></i></button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach
