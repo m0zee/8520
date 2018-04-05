@@ -1,0 +1,45 @@
+=======Vendors=======
+
+Id
+Credential_id
+Compnay_Name
+Company_Address
+Mobile_number
+Phone_number
+Cash
+Cheque
+Visa / Master Card
+Created_at
+Status
+Approvd_at 
+Updated_at
+
+
+=====Products======
+Id 
+product_ref
+Sub_category
+Product_name
+Brand_name
+Made_country
+Max_supply
+Price
+Status
+Created_at
+Updated_at
+Slug
+
+==== Review Comment ===
+
+Id
+Comment
+Is_main
+Comment_by
+Commnet_at
+
+==== Rating ====
+
+Id
+
+
+
