@@ -40,7 +40,7 @@
                         <div class="modules__content">
                             <div class="withdraw_module withdraw_history">
                                 <div class="withdraw_table_header">
-                                    <h3>{{ $user_type->name }} List</h3>
+                                    <h3><span class="lnr lnr-users"></span>{{ $user_type->name }} List</h3>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table withdraw__table">

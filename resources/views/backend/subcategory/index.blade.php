@@ -48,7 +48,7 @@
                                     <table class="table withdraw__table">
                                         <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Category Name</th>
                                             <th>Option</th>
                                         </tr>
                                         </thead>
