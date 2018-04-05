@@ -2,9 +2,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <ul class="dashboard_menu">
+                <ul class="dashboard_menu has_dropdown">
                     <li class="{{ ($active == 'dashboard') ? 'active' : ''  }}"><a href="{{ route('admin.dashboard')}}"><span class="lnr lnr-home"></span>Dashboard</a></li>
-                    <li class="{{ ($active == 'users') ? 'active' : ''  }}"><a href="{{ route('admin.userlist', ['pamarm1' => 'vendor']) }}"><span class="lnr lnr-users"></span>Users</a></li>
+                    <li class="{{ ($active == 'users') ? 'active' : ''  }} "><a href="{{ route('admin.userlist', ['pamarm1' => 'vendor']) }}"><span class="lnr lnr-users"></span>Users</a>
+                    <div class="dropdown dropdown--menu">
+                                        <ul>
+                                            <li><a href="all-products.html">Recent Items</a></li>
+                                            <li><a href="all-products.html">Popular Items</a></li>
+                                        </ul>
+                                    </div>
+
+                    </li>
                     <li><a href="{{ route('admin.categories.index') }}"><span class="lnr lnr-dice"></span>Category</a></li>
                     
                     <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Purchase</a></li>
