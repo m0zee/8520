@@ -110,13 +110,15 @@
                             the mattis, leo quam aliquet congue.</p>
                     </div><!-- end /.product-desc -->
 
-                    <div class="product-purchase">
-                        <div class="price_love">
-                            <span>Contact</span>
-                            
-                        </div>
-                        
-                    </div><!-- end /.product-purchase -->
+                    <div class="product-purchase text-center">
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-list"></span> More Info
+                                    </button>
+
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-envelope"></span> Contact
+                                    </button>
+                                </div><!-- end /.product-purchase -->
                 </div><!-- end /.single-product -->
             </div><!-- end /.col-md-4 -->
 
@@ -129,7 +131,7 @@
                         <img src="images/p2.jpg" alt="Product Image">
                         <div class="prod_btn">
                             <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                            <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
+                            <a href="single-product.html" class="transparent btn--sm btn--round">Contact</a>
                         </div><!-- end /.prod_btn -->
                     </div><!-- end /.product__thumbnail -->
 
@@ -149,13 +151,15 @@
                             the mattis, leo quam aliquet congue.</p>
                     </div><!-- end /.product-desc -->
 
-                    <div class="product-purchase">
-                        <div class="price_love">
-                            <span>$10</span>
-                            <p><span class="lnr lnr-heart"></span> 48</p>
-                        </div>
-                        <div class="sell"><p><span class="lnr lnr-cart"></span><span>50</span></p></div>
-                    </div><!-- end /.product-purchase -->
+                     <div class="product-purchase text-center">
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-list"></span> More Info
+                                    </button>
+
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-envelope"></span> Contact
+                                    </button>
+                                </div><!-- end /.product-purchase -->
                 </div><!-- end /.single-product -->
             </div><!-- end /.col-md-4 -->
 
@@ -168,7 +172,7 @@
                         <img src="images/p3.jpg" alt="Product Image">
                         <div class="prod_btn">
                             <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                            <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
+                            <a href="single-product.html" class="transparent btn--sm btn--round">Contact</a>
                         </div><!-- end /.prod_btn -->
                     </div><!-- end /.product__thumbnail -->
 
@@ -187,8 +191,18 @@
                         <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
                             the mattis, leo quam aliquet congue.</p>
                     </div><!-- end /.product-desc -->
+                        
+                     <div class="product-purchase text-center">
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-list"></span> More Info
+                                    </button>
 
-                    <div class="product-purchase">
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-envelope"></span> Contact
+                                    </button>
+                                </div><!-- end /.product-purchase -->
+
+                    {{-- <div class="product-purchase">
                         <div class="price_love">
                             <span>Free</span>
                             <p><span class="lnr lnr-heart"></span> 24</p>
@@ -203,7 +217,7 @@
                             </ul>
                         </div>
                         <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
-                    </div><!-- end /.product-purchase -->
+                    </div> --}}<!-- end /.product-purchase -->
                 </div><!-- end /.single-product -->
             </div><!-- end /.col-md-4 -->
 
@@ -236,13 +250,15 @@
                             the mattis, leo quam aliquet congue.</p>
                     </div><!-- end /.product-desc -->
 
-                    <div class="product-purchase">
-                        <div class="price_love">
-                            <span>$10 - $50</span>
-                            <p><span class="lnr lnr-heart"></span> 90</p>
-                        </div>
-                        <div class="sell"><p><span class="lnr lnr-cart"></span><span>16</span></p></div>
-                    </div><!-- end /.product-purchase -->
+                    <div class="product-purchase text-center">
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-list"></span> More Info
+                                    </button>
+
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-envelope"></span> Contact
+                                    </button>
+                                </div><!-- end /.product-purchase -->
                 </div><!-- end /.single-product -->
             </div><!-- end /.col-md-4 -->
 

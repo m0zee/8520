@@ -16,3 +16,29 @@
     padding-top: 25px !important;
     padding-bottom: 15px;
 }
+
+button.my-btn, .my-btn
+{
+    display: inline-block;
+    vertical-align: middle;
+    background: rgba(6, 116, 236, 0.1);
+    border: 0;
+    color: #0674ec;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 15px;
+    line-height: 32px;
+    /*margin-right: 15px;*/
+    transition: all 0.5s ease;
+}
+
+button.my-btn:hover, .my-btn:hover
+{
+    background-color: #0674ec;
+    color: #fff;
+}
+
+.btn--icon span
+{
+    margin-right: -1px;
+}
