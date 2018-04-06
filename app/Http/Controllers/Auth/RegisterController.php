@@ -9,7 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use App\Jobs\SendVerificationEmail;
+use App\Mail\AccountVerificationMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class RegisterController extends Controller
 {
@@ -48,10 +50,13 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+        $user = $this->create( $request->all() );
 
-        // $this->guard()->login($user);
-        dispatch(new SendVerificationEmail($user));
+        Mail::to( $user->email )->send( new AccountVerificationMail( $user->email_token ) );
+        // event(new Registered($user = $this->create($request->all())));
+
+        // // $this->guard()->login($user);
+        // dispatch(new SendVerificationEmail($user));
 
         return view('verification');
         // return $this->registered($request, $user)
@@ -93,7 +98,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'user_type_id' => $data['user_type_id'],
             'status' => '1',
-            'email_token' => base64_encode($data['email'])
+            'email_token' => base64_encode( time() . $data['email'] )
         ]);
     }
 
