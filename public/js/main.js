@@ -1,4 +1,10 @@
 (function($){
+        // ======> added by me //
+        $.ajaxSetup({
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content') }
+        });
+        // added by me <===== // 
+
         "use strict";
 
         var windowWidth = $(window).width();

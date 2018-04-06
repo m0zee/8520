@@ -1,4 +1,4 @@
-<footer class="footer-area">
+ <footer class="footer-area">
     <div class="footer-big section--padding">
         <!-- start .container -->
         <div class="container">

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="MartPlace - Complete Online Multipurpose Marketplace HTML Template">
     <meta name="keywords" content="marketplace, easy digital download, digital product, digital, html5">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
 
 
     <title>Martplace - @yield('title')</title>
@@ -66,6 +67,7 @@
 <!--//////////////////// JS GOES HERE ////////////////-->
 
 <!-- inject:js -->
+<input type="hidden" id="base_url" value="{{ url('') }}">
 <script src="{{ url( 'js/vendor/jquery/jquery-1.12.3.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/jquery/uikit.min.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/bootstrap.min.js' ) }}"></script>

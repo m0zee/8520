@@ -1,8 +1,10 @@
 =======Vendors=======
 
 Id
-Credential_id
+user_id
 Compnay_Name
+country_id
+city_id
 Company_Address
 Mobile_number
 Phone_number
@@ -10,8 +12,6 @@ Cash
 Cheque
 Visa / Master Card
 Created_at
-Status
-Approvd_at 
 Updated_at
 
 
