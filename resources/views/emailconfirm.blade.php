@@ -40,7 +40,7 @@
                             <div class="login--form ">
                                 
 
-                                <button class="btn btn--md btn--round register_btn" type="submit">Login</button>
+                                <a class="btn btn--md btn--round register_btn" href="{{ route('login') }}">Login</a>
                             </div><!-- end .login--form -->
                         </div><!-- end .cardify -->
                     

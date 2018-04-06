@@ -1,5 +1,6 @@
 <?php
 use App\Http\Middleware\CheckAdminLogin;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,9 +61,20 @@ Route::group(['middleware' => 'CheckAdminLogin'], function(){
 	        'edit' => 'admin.subcategories.edit',
 	    ]
 	]);
+});
 
-
+Route::group(['middleware' => 'CheckLogin'], function(){
+	Route::get('profile/create', 'ProfileController@create')->name('profile.create');
+	Route::post('profile/create', 'ProfileController@store')->name('profile.store');
 });
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
+
+Route::post('/get_country_state', function(Request $request){
+	return App\Country::find($request->input('country_id'))->state;
+});
+
+Route::post('/get_state_city', function(Request $request){
+	return App\State::find($request->input('state_id'))->city;
+});
