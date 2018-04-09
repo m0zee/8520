@@ -19,7 +19,6 @@ class CreateVendorDetailTable extends Migration
             $table->string('company_name');
             $table->integer('country_id');
             $table->integer('state_id');
-
             $table->integer('city_id');
             $table->string('address');
             $table->string('mobile_number');

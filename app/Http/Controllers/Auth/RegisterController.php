@@ -92,11 +92,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $last_user = User::orderBy('id', 'desc')->first();
+        $code = $this->generate_user_code($last_user->code);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'user_type_id' => $data['user_type_id'],
+            'code'          => $code,
             'status' => '1',
             'email_token' => base64_encode( time() . $data['email'] )
         ]);
@@ -110,5 +113,35 @@ class RegisterController extends Controller
         if($user->save()){
             return view('emailconfirm',['user'=>$user]);
         }
+    }
+
+
+
+    public function generate_user_code($code)
+    {
+
+        $code =  explode('-', $code );
+
+        $index  = $code[2] + 1;
+
+        $length = strlen( $index );
+
+        switch( $length )
+        {
+            case 1:
+                $index = '000' . $index;
+            break;
+            
+            case 2:
+                $index = '00' . $index;
+
+            case 2:
+                $index = '0' . $index;
+            break;
+        }
+
+        $code = 'U-'. $index;
+
+        return $code;
     }
 }

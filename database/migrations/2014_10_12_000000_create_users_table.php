@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('verified')->default(0);
             $table->string('email_token')->nullable();
             $table->integer('user_type_id');
+            $table->string('code');
             $table->integer('status');
             $table->rememberToken();
             $table->integer('approved_by')->nullable();
