@@ -48,9 +48,12 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Is Approved</th>
+                                            <th>Verified</th>
                                             <th>Status</th>
-                                            <th>Approved at</th>
+                                            @if (Request::segment(3) == 'vendor' || Request::segment(3) == 'Vendor' )
+                                                <th>Is Approved</th>
+                                                <th>Approved at</th>
+                                            @endif
                                         </tr>
                                         </thead>
 
@@ -63,28 +66,31 @@
                                                     <tr>
                                                         <td>{{ $user->name }}</td>
                                                         <td>{{ $user->email }}</td>
-                                                        <form action="{{route('admin.user.approve', [ 'user_id' => $user->id ] ) }}" method="POST">
-                                                        <input name="_method" type="hidden" value="PUT">
-                                                        {{ csrf_field() }}
+                                                        <td>{{ ($user->verified == 1) ? 'Verified' : 'Pending' }}</td>
+
+                                                        <form action="{{route('admin.user.status', [ 'user_id' => $user->id ] ) }}" method="POST">
+                                                            <input name="_method" type="hidden" value="PUT">
+                                                            {{ csrf_field() }}
                                                             <td class="bold ">
-                                                                @if (($user->approved_by == NULL))
-                                                                    <button class="btn btn-warning btn-sm btn--round" type="submit">Pending</button>
-                                                                @else
-                                                                    <span class="btn btn-success btn-sm btn--round">Approved</span>
-                                                                @endif
+                                                                <button class="btn {{ ($user->status == 1) ? 'btn-primary' : "btn-danger" }} btn-sm btn--round" type="submit">{{ ($user->status == 1) ? 'Active' : "Deactive" }}</button>
                                                             </td>
                                                         </form>
 
-                                                            <form action="{{route('admin.user.status', [ 'user_id' => $user->id ] ) }}" method="POST">
+                                                         @if (Request::segment(3) == 'vendor' || Request::segment(3) == 'Vendor' )
+                                                        <form action="{{route('admin.user.approve', [ 'user_id' => $user->id ] ) }}" method="POST">
                                                             <input name="_method" type="hidden" value="PUT">
                                                             {{ csrf_field() }}
                                                                 <td class="bold ">
-                                                                    <button class="btn {{ ($user->status == 1) ? 'btn-primary' : "btn-danger" }} btn-sm btn--round" type="submit">{{ ($user->status == 1) ? 'Active' : "Deactive" }}</button>
+                                                                    @if (($user->approved_by == NULL))
+                                                                        <button class="btn btn-warning btn-sm btn--round" type="submit">Pending</button>
+                                                                    @else
+                                                                        <span class="btn btn-success btn-sm btn--round">Approved</span>
+                                                                    @endif
                                                                 </td>
-                                                            </form>
-
-                                                            
+                                                        </form>
+                                                        
                                                         <td class="bold"><span>{{ ($user->approved_at != NULL) ? date('d-M-Y', strtotime($user->approved_at)) : '' }}</span></td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
                                             @endif
