@@ -15,7 +15,7 @@ https://aazztech.com/demos/themes/html/martplace/dist/dashboard.html === DashBoa
 
 https://aazztech.com/demos/themes/html/martplace/dist/customer-info.html ==== Add Fields
 
-https://aazztech.com/demos/themes/html/martplace/dist/table.html === Tables 
+file:///C:/Users/Sawood%20Ahmed/Downloads/themeforest-21212869-martplace-multipurpose-online-marketplace-html-template/v_1.0.2/martplace-files/src/dashboard-statement.html === Tables 
 
 
 

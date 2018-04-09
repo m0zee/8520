@@ -53,10 +53,10 @@ class LoginController extends Controller
         }
         if ($user->user_type_id == '2') 
         {
-            $detail = VendorDetail::where('user_id', $user->id)->get();
+            $detail = VendorDetail::where('user_id', $user->id)->first();
+            // return $detail;
             if ( !isset($detail->id) ) 
             {
-                
                 return redirect( route('profile.create') );
             }
         }

@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
                 'email' => $faker->email,
 	            'user_type_id' => $faker->randomElement([1, 2]),
                 'status' => '1',
+                'code' => $this->get_code($i),
 	            'password' => bcrypt('123123'),
 	        ]);
     	}
@@ -30,7 +31,32 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@pakmaterial.com',
             'user_type_id' => '3',
             'status' => '1',
+            'code' => $this->get_code('11'),
+
             'password' => bcrypt('123123'),
         ]);
+    }
+
+
+    public function get_code($index)
+    {
+
+
+        $length = strlen( $index );
+
+        switch( $length )
+        {
+            case 1:
+                $index = '00' . $index;
+            break;
+            
+            case 2:
+                $index = '0' . $index;
+            break;
+        }
+
+        $code = 'U-' . date('Y').'-'. $index;
+
+        return $code;
     }
 }

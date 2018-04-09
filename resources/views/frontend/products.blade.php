@@ -81,7 +81,7 @@
                                     <img src="images/p1.jpg" alt="Product Image">
                                     <div class="prod_btn">
                                         <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                        <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
+                                        <a href="single-product.html" class="transparent btn--sm btn--round">Contact</a>
                                     </div><!-- end /.prod_btn -->
                                 </div><!-- end /.product__thumbnail -->
 
@@ -94,26 +94,21 @@
                                             <p><a href="#">AazzTech</a></p>
                                         </li>
                                         <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
-                                            <div class="rating product--rating">
-                                                <ul>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star-half-o"></span></li>
-                                                </ul>
-                                            </div>
+                                            
+                                            
                                         </li>
                                     </ul>
 
                                 </div><!-- end /.product-desc -->
 
-                                <div class="product-purchase">
-                                    <div class="price_love">
-                                        <span>$15</span>
-                                    </div>
-                                    <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
+                                <div class="product-purchase text-center">
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-list"></span> More Info
+                                    </button>
+
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-envelope"></span> Contact
+                                    </button>
                                 </div><!-- end /.product-purchase -->
                             </div><!-- end /.single-product -->
                         </div><!-- end /.col-md-4 -->
@@ -126,7 +121,7 @@
                                     <img src="images/p2.jpg" alt="Product Image">
                                     <div class="prod_btn">
                                         <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                        <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
+                                        <a href="single-product.html" class="transparent btn--sm btn--round">Contact</a>
                                     </div><!-- end /.prod_btn -->
                                 </div><!-- end /.product__thumbnail -->
 
@@ -139,26 +134,21 @@
                                             <p><a href="#">AazzTech</a></p>
                                         </li>
                                         <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
-                                            <div class="rating product--rating">
-                                                <ul>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star-half-o"></span></li>
-                                                </ul>
-                                            </div>
+                                            
+                                            
                                         </li>
                                     </ul>
 
                                 </div><!-- end /.product-desc -->
 
-                                <div class="product-purchase">
-                                    <div class="price_love">
-                                        <span>More Info</span>
-                                    </div>
-                                    <a href="#"><i class="fas fa-envelope"></i></span>Contact</a>
+                                <div class="product-purchase text-center">
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-list"></span> More Info
+                                    </button>
+
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-envelope"></span> Contact
+                                    </button>
                                 </div><!-- end /.product-purchase -->
                             </div><!-- end /.single-product -->
                         </div><!-- end /.col-md-4 -->
@@ -184,32 +174,27 @@
                                             <p><a href="#">AazzTech</a></p>
                                         </li>
                                         <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
-                                            <div class="rating product--rating">
-                                                <ul>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star-half-o"></span></li>
-                                                </ul>
-                                            </div>
+                                            
+                                            
                                         </li>
                                     </ul>
 
                                 </div><!-- end /.product-desc -->
 
-                                <div class="product-purchase">
-                                    <div class="price_love">
-                                        <span>More Info</span>
-                                    </div>
-                                    <a href="#"><span class="lnr lnr-book"></span>Contact</a>
+                                <div class="product-purchase text-center">
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-list"></span> More Info
+                                    </button>
+
+                                    <button class="btn--icon my-btn btn--round">
+                                        <span class="lnr lnr-envelope"></span> Contact
+                                    </button>
                                 </div><!-- end /.product-purchase -->
                             </div><!-- end /.single-product -->
                         </div><!-- end /.col-md-4 -->
                     </div>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-md-4 col-sm-4">
                             <!-- start .single-product -->
                             <div class="product product--card product--card-small">
@@ -230,7 +215,7 @@
                                             <p><a href="#">AazzTech</a></p>
                                         </li>
                                         <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
+                                            
                                             <div class="rating product--rating">
                                                 <ul>
                                                     <li><span class="fa fa-star"></span></li>
@@ -274,7 +259,7 @@
                                             <p><a href="#">AazzTech</a></p>
                                         </li>
                                         <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
+                                            
                                             <div class="rating product--rating">
                                                 <ul>
                                                     <li><span class="fa fa-star"></span></li>
@@ -319,7 +304,7 @@
                                             <p><a href="#">AazzTech</a></p>
                                         </li>
                                         <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
+                                            
                                             <div class="rating product--rating">
                                                 <ul>
                                                     <li><span class="fa fa-star"></span></li>
@@ -366,7 +351,7 @@
                                             <p><a href="#">AazzTech</a></p>
                                         </li>
                                         <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
+                                            
                                             <div class="rating product--rating">
                                                 <ul>
                                                     <li><span class="fa fa-star"></span></li>
@@ -411,7 +396,7 @@
                                             <p><a href="#">AazzTech</a></p>
                                         </li>
                                         <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
+                                            
                                             <div class="rating product--rating">
                                                 <ul>
                                                     <li><span class="fa fa-star"></span></li>
@@ -456,7 +441,7 @@
                                             <p><a href="#">AazzTech</a></p>
                                         </li>
                                         <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
+                                            
                                             <div class="rating product--rating">
                                                 <ul>
                                                     <li><span class="fa fa-star"></span></li>
@@ -479,142 +464,9 @@
                                 </div><!-- end /.product-purchase -->
                             </div><!-- end /.single-product -->
                         </div><!-- end /.col-md-4 -->
-                    </div>
+                    </div> --}}
 
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4">
-                            <!-- start .single-product -->
-                            <div class="product product--card product--card-small">
-
-                                <div class="product__thumbnail">
-                                    <img src="images/p4.jpg" alt="Product Image">
-                                    <div class="prod_btn">
-                                        <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                        <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                                    </div><!-- end /.prod_btn -->
-                                </div><!-- end /.product__thumbnail -->
-
-                                <div class="product-desc">
-                                    <a href="#" class="product_title"><h4>Rida - Onepage Resume/portfolio Template</h4></a>
-                                    <ul class="titlebtm">
-                                        <li>
-                                            <img class="auth-img" src="images/auth2.jpg" alt="author image">
-                                            <p><a href="#">AazzTech</a></p>
-                                        </li>
-                                        <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
-                                            <div class="rating product--rating">
-                                                <ul>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star-half-o"></span></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                </div><!-- end /.product-desc -->
-
-                                <div class="product-purchase">
-                                    <div class="price_love">
-                                        <span>$15</span>
-                                    </div>
-                                    <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
-                                </div><!-- end /.product-purchase -->
-                            </div><!-- end /.single-product -->
-                        </div><!-- end /.col-md-4 -->
-
-                        <div class="col-md-4 col-sm-4">
-                            <!-- start .single-product -->
-                            <div class="product product--card product--card-small">
-
-                                <div class="product__thumbnail">
-                                    <img src="images/p5.jpg" alt="Product Image">
-                                    <div class="prod_btn">
-                                        <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                        <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                                    </div><!-- end /.prod_btn -->
-                                </div><!-- end /.product__thumbnail -->
-
-                                <div class="product-desc">
-                                    <a href="#" class="product_title"><h4>Deshbasito, Kakku tumi dhoro</h4></a>
-                                    <ul class="titlebtm">
-                                        <li>
-                                            <img class="auth-img" src="images/auth.jpg" alt="author image">
-                                            <p><a href="#">AazzTech</a></p>
-                                        </li>
-                                        <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
-                                            <div class="rating product--rating">
-                                                <ul>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star-half-o"></span></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                </div><!-- end /.product-desc -->
-
-                                <div class="product-purchase">
-                                    <div class="price_love">
-                                        <span>$15</span>
-                                    </div>
-                                    <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
-                                </div><!-- end /.product-purchase -->
-                            </div><!-- end /.single-product -->
-                        </div><!-- end /.col-md-4 -->
-
-                        <div class="col-md-4 col-sm-4">
-                            <!-- start .single-product -->
-                            <div class="product product--card product--card-small">
-
-                                <div class="product__thumbnail">
-                                    <img src="images/p6.jpg" alt="Product Image">
-                                    <div class="prod_btn">
-                                        <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                        <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                                    </div><!-- end /.prod_btn -->
-                                </div><!-- end /.product__thumbnail -->
-
-                                <div class="product-desc">
-                                    <a href="#" class="product_title"><h4>Finance and Consulting
-                                        Business Theme</h4></a>
-                                    <ul class="titlebtm">
-                                        <li>
-                                            <img class="auth-img" src="images/auth3.jpg" alt="author image">
-                                            <p><a href="#">AazzTech</a></p>
-                                        </li>
-                                        <li class="out_of_class_name">
-                                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
-                                            <div class="rating product--rating">
-                                                <ul>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star"></span></li>
-                                                    <li><span class="fa fa-star-half-o"></span></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                </div><!-- end /.product-desc -->
-
-                                <div class="product-purchase">
-                                    <div class="price_love">
-                                        <span>$15</span>
-                                    </div>
-                                    <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
-                                </div><!-- end /.product-purchase -->
-                            </div><!-- end /.single-product -->
-                        </div><!-- end /.col-md-4 -->
-                    </div>
+                    
                 </div><!-- end /.col-md-9 -->
             </div><!-- end /.row -->
 
