@@ -27,9 +27,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function detail()
+    {
+        return $this->hasOne( \App\VendorDetail::class );
+    }
+
 
     public function user_type()
     {
-        return $this->belongsTo('App\UserType');
+        return $this->belongsTo( 'App\UserType' );
     }
 }

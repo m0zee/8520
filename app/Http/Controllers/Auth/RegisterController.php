@@ -92,37 +92,41 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $last_user = User::orderBy('id', 'desc')->first();
-        $code = $this->generate_user_code($last_user->code);
+        $lastUser = User::orderBy( 'id', 'DESC' )->first();
+
+        $code = ( $lastUser ) ? $this->generate_user_code( $lastUser->code ) : 'u-0001';
+        
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'user_type_id' => $data['user_type_id'],
+            'name'          => $data['name'],
+            'email'         => $data['email'],
+            'password'      => bcrypt($data['password']),
+            'user_type_id'  => $data['user_type_id'],
             'code'          => $code,
-            'status' => '1',
-            'email_token' => base64_encode( time() . $data['email'] )
+            'status'        => 1,
+            'email_token'   => base64_encode( time() . $data['email'] )
         ]);
     }
 
 
     public function verify($token)
     {
-        $user = User::where('email_token',$token)->first();
+        $user = User::where( 'email_token', $token )->first();
         $user->verified = 1;
-        if($user->save()){
-            return view('emailconfirm',['user'=>$user]);
+        if( $user->save() )
+        {
+            return view( 'emailconfirm', [ 'user' => $user ] );
         }
     }
 
 
 
-    public function generate_user_code($code)
+
+
+    public function generate_user_code( $code )
     {
+        $code =  explode( '-', $code );
 
-        $code =  explode('-', $code );
-
-        $index  = $code[2] + 1;
+        $index  = $code[1] + 1;
 
         $length = strlen( $index );
 
@@ -134,13 +138,14 @@ class RegisterController extends Controller
             
             case 2:
                 $index = '00' . $index;
+            break;
 
-            case 2:
+            case 3:
                 $index = '0' . $index;
             break;
         }
 
-        $code = 'U-'. $index;
+        $code = 'u-'. $index;
 
         return $code;
     }

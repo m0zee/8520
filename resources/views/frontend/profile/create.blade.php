@@ -1,4 +1,4 @@
-    @extends('components.frontend.master')
+    @extends( 'components.frontend.master' )
 
     @section('title', 'Login')
 
@@ -30,7 +30,9 @@
             START DASHBOARD AREA
     =================================-->
     <section class="dashboard-area">
-        @include('components.frontend.vendor_menu')
+        @include( 'components.frontend.vendor_menu' )
+
+
 
         <div class="dashboard_contents">
             <div class="container">
@@ -38,7 +40,13 @@
                     <div class="col-md-12">
                         <div class="dashboard_title_area">
                             <div class="dashboard__title">
-                                <h3>Create Profile</h3>
+                                <h3>
+                                    Create Profile
+                                    <a  href="{{ route( 'profile.show', [ 'user_type_id' => Auth::user()->code ] ) }}" 
+                                        class="btn btn--round btn--md pull-right">
+                                        View as visitor
+                                    </a>
+                                </h3>
                             </div>
                         </div>
                     </div><!-- end /.col-md-12 -->
