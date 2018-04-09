@@ -11,7 +11,7 @@
     <meta name="csrf_token" content="{{ csrf_token() }}">
 
 
-    <title>Martplace - @yield('title')</title>
+    <title>Pak Material - @yield( 'title' )</title>
 
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ url( 'css/animate.css' ) }}">
@@ -40,7 +40,7 @@
 <!-- ================================
     START MENU AREA
 ================================= -->
-@include('components.frontend.header')
+@include( 'components.frontend.header' )
 <!--================================
     END MENU AREA
 =================================-->
@@ -49,7 +49,7 @@
     START CONTENT AREA
 =================================-->
 
-@yield('content')
+@yield( 'content' )
 
 
 <!--================================
@@ -59,7 +59,7 @@
 <!--================================
     START FOOTER AREA
 =================================-->
-@include('components.frontend.footer')
+@include( 'components.frontend.footer' )
 <!--================================
     END FOOTER AREA
 =================================-->
@@ -89,8 +89,8 @@
 <!-- endinject -->
 
 <!-- page js -->
-@yield('js')
-<!-- endpage js -->
+@yield( 'js' )
+<!-- end page js -->
 </body>
 
 </html>

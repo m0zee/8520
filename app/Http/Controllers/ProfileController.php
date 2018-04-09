@@ -6,20 +6,24 @@ use Illuminate\Http\Request;
 use App\Country;
 use App\User;
 use App\VendorDetail;
-use Illuminate\Support\Facades\Storage;
-// use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProfileController extends Controller
 {
     public function create()
     {
-    	$country = Country::pluck('name', 'id');
-    	$user = \Auth::user();
-    	return view('frontend.profile.create', compact('country', 'user') );
+    	$country = Country::pluck( 'name', 'id' );
+    	$user = Auth::user();
+
+    	return view( 'frontend.profile.create', compact( 'country', 'user' ) );
     }
 
 
-    public function store(Request $request)
+
+
+
+    public function store( Request $request )
     {
         $profile_img = [];
         $cover_img = [];
@@ -87,7 +91,24 @@ class ProfileController extends Controller
         $options = array_merge($data, $profile_img, $cover_img);
     	VendorDetail::create($options);
         User::find(\Auth::user()->id)->update(['name' => $request->name]);
+        return redirect( route( 'profile.create' ) )->with( 'success', 'Profile has been updated successfully' );
+    }
 
-        return redirect('vendor.profile');
+
+
+
+
+    public function show( $code )
+    {
+        $user = User::with( 'detail' )->where( 'id', Auth::user()->id )->first();
+        
+        if( ! $user )
+        {
+            return redirect( route( 'profile.create' ) )->with( 'error', 'User not found!' );
+        }
+
+        $this->data['user'] = $user;
+
+        return view( 'frontend.profile.show', $this->data );
     }
 }

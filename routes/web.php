@@ -15,21 +15,21 @@ Route::get('/recover-password', function () {
     return view('frontend.recover_password');
 });
 
-Route::get('/contact', function(){
+Route::get('/contact', function() {
 	return view('frontend.contact')->with( 'blue_menu', true );
 })->name("contact");
 
-Route::get('/products', function(){
+Route::get( '/products', function() {
 	return view('frontend.products')->with( 'blue_menu', true );
-})->name("products");
+})->name( 'products' );
 
 Auth::routes();
-Route::get('admin/login', function()
-{
+
+Route::get('admin/login', function() {
 	return view('backend.login');
 });
 
-Route::group(['middleware' => 'CheckAdminLogin'], function(){
+Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	
 	Route::get('/admin/dashboard', 'Backend\DashboardController@index')->name('admin.dashboard');
 	
@@ -37,20 +37,20 @@ Route::group(['middleware' => 'CheckAdminLogin'], function(){
 	Route::put('/admin/users/{user_id}/approve/', 'Backend\UserController@approve')->name('admin.user.approve');
 	Route::put('/admin/users/{user_id}/status/', 'Backend\UserController@statusUpdate')->name('admin.user.status');
 	// Route::get('/admin/user/vendors', 'Backend\VendorController@index')->name('admin.buyer');
-	Route::resource('admin/categories', 'Backend\CategoryController', [
+	Route::resource( 'admin/categories', 'Backend\CategoryController', [
 		'names' => [
-	        'index' => 'admin.categories.index',
-	        'store' => 'admin.categories.store',
-	        'create' => 'admin.categories.create',
-	        'destroy' => 'admin.categories.destroy',
-	        'update' => 'admin.categories.update',
-	        'show' => 'admin.categories.show',
-	        'edit' => 'admin.categories.edit',
+	        'index'		=> 'admin.categories.index',
+	        'store' 	=> 'admin.categories.store',
+	        'create' 	=> 'admin.categories.create',
+	        'destroy' 	=> 'admin.categories.destroy',
+	        'update' 	=> 'admin.categories.update',
+	        'show' 		=> 'admin.categories.show',
+	        'edit' 		=> 'admin.categories.edit',
 	    ]
 	]);
 
 
-	Route::resource('admin/categories/{category_id}/subcategories', 'Backend\SubCategoryController', [
+	Route::resource( 'admin/categories/{category_id}/subcategories', 'Backend\SubCategoryController', [
 		'names' => [
 			'index'=> 'admin.subcategories.index',
 	        'store' => 'admin.subcategories.store',
@@ -63,18 +63,30 @@ Route::group(['middleware' => 'CheckAdminLogin'], function(){
 	]);
 });
 
-Route::group(['middleware' => 'CheckLogin'], function(){
-	Route::get('profile/create', 'ProfileController@create')->name('profile.create');
-	Route::post('profile/create', 'ProfileController@store')->name('profile.store');
+
+Route::group( [ 'middleware' => 'CheckLogin' ], function() {
+	Route::resource( '/profile', 'ProfileController', [
+		'except' 		=> [ 'index', 'destroy' ],
+		'parameters'	=> [ 'profile' => 'user' ]
+	]);
+
+	Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
+		Route::get( '/reviews',  'Backend\ReviewsController@index' )->name( 'vendors.reviews.index' );
+	});
+	// Route::get('profile/create', 'ProfileController@create')->name('profile.create');
+	// Route::post('profile/create', 'ProfileController@store')->name('profile.store');
 });
+
+// Route::get( 'users/{$user_code}/profile', 'ProfileController@show' )->name( 'profile.show' );
+
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
-Route::post('/get_country_state', function(Request $request){
+Route::post('/get_country_state', function(Request $request) {
 	return App\Country::find($request->input('country_id'))->state;
 });
 
-Route::post('/get_state_city', function(Request $request){
+Route::post('/get_state_city', function(Request $request) {
 	return App\State::find($request->input('state_id'))->city;
 });
