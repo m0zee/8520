@@ -27,9 +27,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // ***************************
+    //          RELATIONS
+    // ***************************
+
     public function detail()
     {
         return $this->hasOne( \App\VendorDetail::class );
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany( \App\Review::class );
     }
 
 

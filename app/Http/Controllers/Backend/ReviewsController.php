@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Review;
 
 class ReviewsController extends Controller
 {
@@ -14,10 +15,13 @@ class ReviewsController extends Controller
      */
     public function index( $vendor_code )
     {
-        echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
-        print_r( $vendor_code );
-        echo '</pre>'; die;
-        return view( 'review.index' );
+        // \Illuminate\Support\Facades\DB::enableQueryLog();
+        $reviews = Review::with( 'vendor.detail' )->with( 'user' )->where( 'vendor_code', $vendor_code )->get();
+        // return $reviews;
+        // return \Illuminate\Support\Facades\DB::getQueryLog();
+        // $this->data['reviews'] = $reviews;
+        
+        return view( 'review.index', compact( 'reviews' ) );
     }
 
     /**
