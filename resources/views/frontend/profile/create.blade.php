@@ -44,7 +44,7 @@
                     </div><!-- end /.col-md-12 -->
                 </div><!-- end /.row -->
 
-                <form action="{{ route('profile.store') }}" class="setting_form" method="POST">
+                <form action="{{ route('profile.store') }}" class="setting_form" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-6">
@@ -59,17 +59,30 @@
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                                     <label for="full_name">Full Name <sup>*</sup></label>
-                                                    <input type="text" id="full_name" class="text_field" name="name" placeholder="Full Name" value="{{ $user->name }}">
+                                                    <input type="text" id="full_name" class="text_field" name="name" placeholder="Full Name" value="{{ $errors->has('name') ? old('name') : $user->name  }}">
+
+                                                     @if ($errors->has('name'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('name') }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         
 
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">
                                                 <label for="email">Company Name<sup>*</sup></label>
-                                                <input type="text" id="email" class="text_field" name="company_name" placeholder="Company Name" >
+                                                <input type="text" id="email" class="text_field" name="company_name" placeholder="Company Name" value="{{ old('company_name') }}">
+
+                                                @if ($errors->has('company_name'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('company_name') }}</strong>
+                                                    </span>
+                                                @endif
+
                                             </div>
                                         </div>
 
@@ -82,35 +95,51 @@
 
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="form-group">
+                                                <div class="form-group {{ $errors->has('country_id') ? ' has-error' : '' }}">
                                                     <label for="country">Country <sup>*</sup></label>
                                                     <div class="select-wrap select-wrap2">
                                                         {{ Form::select('country_id', $country, NULL, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
                                                         <span class="lnr lnr-chevron-down"></span>
+                                                        @if ($errors->has('country_id'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('country_id') }}</strong>
+                                                            </span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
                                             
                                             <div class="col-md-4">
-                                                <div class="form-group">
+                                                <div class="form-group {{ $errors->has('state_id') ? ' has-error' : '' }}">
                                                     <label for="state">State <sup>*</sup></label>
                                                     <div class="select-wrap select-wrap2">
                                                         <select name="state_id" id="state" class="text_field">
                                                             <option value="">Please Select</option>
                                                         </select>
                                                         <span class="lnr lnr-chevron-down"></span>
+                                                        @if ($errors->has('state_id'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('state_id') }}</strong>
+                                                            </span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
                                             
                                             <div class="col-md-4">
-                                                <div class="form-group">
+                                                <div class="form-group{{ $errors->has('city_id') ? ' has-error' : '' }}">
                                                     <label for="city">City <sup>*</sup></label>
                                                     <div class="select-wrap select-wrap2">
                                                         <select name="city_id" id="city" class="text_field">
                                                             <option value="">Please Select</option>
                                                         </select>
                                                         <span class="lnr lnr-chevron-down"></span>
+
+                                                        @if ($errors->has('city_id'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('city_id') }}</strong>
+                                                            </span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,9 +147,14 @@
 
 
 
-                                        <div class="form-group">
+                                        <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
                                             <label for="address">Address</label>
                                             <input type="text" id="address" class="text_field" name="address" placeholder="Write your address">
+                                            @if ($errors->has('address'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('address') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
 
                                         <div class="row">
@@ -175,6 +209,11 @@
                                                 </div><!-- end /.custom-radio -->
                                             </div>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="authbio">Description</label>
+                                            <textarea name="description" id="authbio" class="text_field" placeholder="Short brief about yourself or your account..."></textarea>
+                                        </div>
                                     </div>
                                 </div><!-- end /.information__set -->
                             </div><!-- end /.information_module -->
@@ -189,27 +228,34 @@
                                 <div class="information__set profile_images toggle_module collapse in" id="collapse3">
                                     <div class="information_wrapper">
                                         <div class="profile_image_area">
-                                            <div id="new-dp"></div>
-                                            <img src="{{url('images/authplc.png')}}" alt="Author profile area" id="old-dp" >
+                                            <div id="new-dp">
+                                                
+                                                <img src="{{url('images/authplc.png')}}" alt="Author profile area" id="old-dp" >
+                                            </div>
                                             <div class="img_info">
                                                 <p class="bold">Profile Image</p>
                                                 <p class="subtitle">JPG, GIF or PNG 100x100 px</p>
                                             </div>
 
                                             <label for="dp" class="upload_btn">
-                                                <input type="file" id="dp">
+                                                <input type="file" id="dp" name="profile_img">
                                                 <span class="btn btn--sm btn--round" aria-hidden="true">Upload Image</span>
                                             </label>
                                         </div>
 
                                         <div class="prof_img_upload">
                                             <p class="bold">Cover Image</p>
-                                            <img src="{{ url('images/cvrplc.jpg')}}" alt="The great warrior of China">
+
+                                            <div id="new-cover">
+                                                
+                                                <img src="{{ url('images/cvrplc.jpg')}}" alt="The great warrior of China" id="old-cover">
+                                            </div>
+
 
                                             <div  class="upload_title">
                                                 <p>JPG, GIF or PNG 750x370 px</p>
                                                 <label for="cover_photo" class="upload_btn">
-                                                    <input type="file" id="cover_photo">
+                                                    <input type="file" id="cover_photo" name="cover_img">
                                                     <span class="btn btn--sm btn--round" aria-hidden="true">Upload Image</span>
                                                 </label>
                                             </div>
@@ -231,7 +277,7 @@
                                             </div>
 
                                             <div class="link_field">
-                                                <input type="text" class="text_field" placeholder="ex: www.facebook.com/aazztech">
+                                                <input type="text" class="text_field" name="facebook" placeholder="ex: www.facebook.com/aazztech">
                                             </div>
                                         </div><!-- end /.social__single -->
 
@@ -241,7 +287,7 @@
                                             </div>
 
                                             <div class="link_field">
-                                                <input type="text" class="text_field" placeholder="ex: www.twitter.com/aazztech">
+                                                <input type="text" class="text_field" name="twitter" placeholder="ex: www.twitter.com/aazztech">
                                             </div>
                                         </div><!-- end /.social__single -->
 
@@ -251,29 +297,21 @@
                                             </div>
 
                                             <div class="link_field">
-                                                <input type="text" class="text_field" placeholder="ex: www.google.com/aazztech">
+                                                <input type="text" class="text_field" name="google_plus" placeholder="ex: www.google.com/aazztech">
                                             </div>
                                         </div><!-- end /.social__single -->
 
                                         <div class="social__single">
                                             <div class="social_icon">
-                                                <span class="fa fa-behance"></span>
+                                                <span class="fa fa-linkedin"></span>
                                             </div>
 
                                             <div class="link_field">
-                                                <input type="text" class="text_field" placeholder="ex: www.behance.com/aazztech">
+                                                <input type="text" class="text_field" name="linked_in" placeholder="ex: www.linkedin.com/m0zee">
                                             </div>
                                         </div><!-- end /.social__single -->
 
-                                        <div class="social__single">
-                                            <div class="social_icon">
-                                                <span class="fa fa-dribbble"></span>
-                                            </div>
 
-                                            <div class="link_field">
-                                                <input type="text" class="text_field" placeholder="ex: www.dribbble.com/aazztech">
-                                            </div>
-                                        </div><!-- end /.social__single -->
                                     </div><!-- end /.information_wrapper -->
                                 </div><!-- end /.social_profile -->
                             </div><!-- end /.information_module -->
@@ -307,6 +345,14 @@
              });
             $('#dp').imageReader({
               destination: '#new-dp'
+            });
+
+
+            $("#cover_photo").change(function (){
+                $('#old-cover').css('display', 'none');
+             });
+            $('#cover_photo').imageReader({
+              destination: '#new-cover'
             });
       });
     </script>

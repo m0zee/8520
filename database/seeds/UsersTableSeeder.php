@@ -35,6 +35,15 @@ class UsersTableSeeder extends Seeder
 
             'password' => bcrypt('123123'),
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Vendor',
+            'email' => 'vendor@pakmaterial.com',
+            'user_type_id' => '2',
+            'status' => '1',
+            'code' => $this->get_code('12'),
+            'password' => bcrypt('123123'),
+        ]);
     }
 
 
@@ -55,7 +64,7 @@ class UsersTableSeeder extends Seeder
             break;
         }
 
-        $code = 'U-' . date('Y').'-'. $index;
+        $code = 'U-' . $index;
 
         return $code;
     }

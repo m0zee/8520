@@ -22,10 +22,19 @@ class CreateVendorDetailTable extends Migration
             $table->integer('city_id');
             $table->string('address');
             $table->string('mobile_number');
-            $table->string('phone_number');
-            $table->integer('cash');
-            $table->integer('cheque');
-            $table->integer('card');
+            $table->string('phone_number')->nullable();
+            $table->integer('cash')->nullable();
+            $table->integer('cheque')->nullable();
+            $table->integer('card')->nullable();
+            $table->string('profile_img')->nullable();
+            $table->string('profile_path')->nullable();
+            $table->string('cover_img')->nullable();
+            $table->string('cover_path')->nullable();
+            $table->text('description')->nullable();
+            $table->text('facebook')->nullable();
+            $table->text('twitter')->nullable();
+            $table->text('google_plus')->nullable();
+            $table->text('linked_in')->nullable();
             $table->timestamps();
         });
     }

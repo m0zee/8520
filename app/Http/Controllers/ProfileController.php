@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Country;
 use App\User;
 use App\VendorDetail;
+use Illuminate\Support\Facades\Storage;
+// use App\Http\Requests;
 
 class ProfileController extends Controller
 {
@@ -19,8 +21,52 @@ class ProfileController extends Controller
 
     public function store(Request $request)
     {
-    	VendorDetail::create([
-    		'user_id' => \Auth::user()->id,
+        $profile_img = [];
+        $cover_img = [];
+        if ($request->hasFile('profile_img')) 
+        {
+            $this->validate($request, [
+                'profile_img' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            ]);
+
+            $path = public_path('storage/profile_img');
+            $imageName = time().'.'.$request->profile_img->getClientOriginalName();
+            $request->profile_img->move( $path, $imageName );
+
+            $profile_img = [
+                'profile_img' => $imageName,
+                'profile_img' => $path,
+            ];
+        }
+
+        if ($request->hasFile('cover_img')) 
+        {
+            $this->validate($request, [
+                'cover_img' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            ]);
+
+            $path = public_path('storage/cover_img');
+            $imageName = time().'.'.$request->cover_img->getClientOriginalName();
+            $request->cover_img->move( $path, $imageName );
+
+            $cover_img = [
+                'cover_img' => $imageName,
+                'cover_path' => $path,
+            ];
+        }
+        $this->validate($request, [
+            'name' => 'required',
+            'company_name' => 'required',
+            'country_id' => 'required',
+            'state_id' => 'required',
+            'city_id' => 'required',
+            'address' => 'required',
+            'mobile_number' => 'required',
+            'cash' => new \App\Rules\ValidateCheckbox( $this->cash ),
+        ]);
+
+        $data = [
+            'user_id' => \Auth::user()->id,
             'company_name' => $request->input('company_name') ,
             'country_id' => $request->input('country_id') ,
             'state_id' => $request->input('state_id') ,
@@ -30,8 +76,17 @@ class ProfileController extends Controller
             'phone_number' => $request->input('phone_number') ,
             'cash' => $request->input('cash') ,
             'cheque' => $request->input('cheque') ,
-            'card' => $request->input('card') ,
-        ]);
+            'card' => $request->input('card'),
+            'description' => $request->input('description'),
+            'facebook' => $request->input('facebook'),
+            'twitter' => $request->input('twitter'),
+            'google_plus' => $request->input('google_plus'),
+            'linked_in' => $request->input('linked_in'),
+        ];
+
+        $options = array_merge($data, $profile_img, $cover_img);
+    	VendorDetail::create($options);
+        User::find(\Auth::user()->id)->update(['name' => $request->name]);
 
         return redirect('vendor.profile');
     }

@@ -42,3 +42,11 @@ button.my-btn:hover, .my-btn:hover
 {
     margin-right: -1px;
 }
+
+#new-dp{
+    display: inline-block;
+}
+.social_icon span.fa-linkedin{
+
+    background-color: #0077b5;
+}
