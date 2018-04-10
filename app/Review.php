@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
+
+    // ***************************
+    //          RELATIONS
+    // ***************************
     public function vendor()
     {
     	return $this->belongsTo( \App\User::class, 'vendor_code', 'code' );
@@ -15,4 +19,12 @@ class Review extends Model
     {
     	return $this->belongsTo( \App\User::class );
     }
+
+    // ***************************
+    //          ACCESSORS
+    // ***************************
+    // public function getCreatedAtAttribute( $value )
+    // {
+    // 	# code...
+    // }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Review;
+use App\Http\Requests\VendorReviewRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewsController extends Controller
 {
@@ -16,12 +18,13 @@ class ReviewsController extends Controller
     public function index( $vendor_code )
     {
         // \Illuminate\Support\Facades\DB::enableQueryLog();
-        $reviews = Review::with( 'vendor.detail' )->with( 'user' )->where( 'vendor_code', $vendor_code )->get();
-        // return $reviews;
+        $vendor = \App\User::with( 'reviews.user.detail' )->with( 'detail')->where( 'code', $vendor_code )->first();
+
+        // return $vendor;
         // return \Illuminate\Support\Facades\DB::getQueryLog();
-        // $this->data['reviews'] = $reviews;
+        // $this->data['vendor'] = $vendor;
         
-        return view( 'review.index', compact( 'reviews' ) );
+        return view( 'review.index', compact( 'vendor' ) );
     }
 
     /**
@@ -40,9 +43,19 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( VendorReviewRequest $request )
     {
-        //
+        $review = [
+            'ratings'       => 0,
+            'review'        => $request->review,
+            'status_id'     => 1,
+            'user_id'       => Auth::user()->id,
+            'vendor_code'   => ''
+        ];
+
+        echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
+        print_r( $review );
+        echo '</pre>'; die;
     }
 
     /**

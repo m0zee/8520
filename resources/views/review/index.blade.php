@@ -3,11 +3,7 @@
 @section( 'title', 'Reviews' )
 
 @section( 'content' )
-<?php
-// echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
-// print_r( $reviews );
-// echo '</pre>'; die;
-?>
+
     <!--================================
         START BREADCRUMB AREA
     =================================-->
@@ -41,11 +37,11 @@
                         <div class="author-card sidebar-card">
                             <div class="author-infos">
                                 <div class="author_avatar">
-                                    <img src="images/author-avatar.jpg" alt="Presenting the broken author avatar :D">
+                                    <img src="{{ url( 'images/author-avatar.jpg' ) }}" alt="Presenting the broken author avatar :D">
                                 </div>
 
                                 <div class="author">
-                                    <h4>AazzTech</h4>
+                                    <h4>{{ $vendor->detail->company_name }}</h4>
                                     <p>Signed Up: 08 April 2016</p>
                                 </div><!-- end /.author -->
 
@@ -138,27 +134,27 @@
                         <div class="col-md-12">
                             <div class="product-title-area">
                                 <div class="product__title">
-                                    <h2><span class="bold">{{ $reviews->count() }}</span> Customer Reviews</h2>
+                                    <h2><span class="bold">{{ $vendor->reviews->count() }}</span> Customer Reviews</h2>
                                 </div>
                             </div><!-- end /.product-title-area -->
                             
                             <div class="thread thread_review thread_review2">
-                                @if( $reviews )
+                                @if( $vendor->reviews->count() )
                                     <ul class="media-list thread-list">
-                                        @foreach( $reviews as $review )
+                                        @foreach( $vendor->reviews as $review )
                                             <li class="single-thread">
                                                 <div class="media">
                                                     <div class="media-left">
                                                         <a href="#">
-                                                            <img class="media-object" src="images/m1.png" alt="Commentator Avatar">
+                                                            <img class="media-object" src="{{ url( 'images/m1.png' ) }}" alt="Commentator Avatar">
                                                         </a>
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="clearfix">
                                                             <div class="pull-left">
                                                                 <div class="media-heading">
-                                                                    <a href="author.html"><h4>Themexylum</h4></a>
-                                                                    <a href="#" class="rev_item">Mini - Responsive Bootstrap Dashboard</a>
+                                                                    <a href="author.html"><h4>{{ $review->user->name }}</h4></a>
+                                                                    {{-- <a href="#" class="rev_item">Mini - Responsive Bootstrap Dashboard</a> --}}
                                                                 </div>
                                                                 <div class="rating product--rating">
                                                                     <ul>
@@ -172,7 +168,7 @@
                                                                 <span class="review_tag">support</span>
                                                             </div>
 
-                                                            <div class="pull-right rev_time">9 Hours Ago</div>
+                                                            <div class="pull-right rev_time">{{ $review->created_at->diffForHumans() }}</div>
                                                         </div>
                                                         <p>{{ $review->review }}</p>
                                                     </div>
@@ -488,8 +484,37 @@
                                         </nav>
                                     </div><!-- end /.comment pagination area -->
                                 @else
-                                    <div class="alert alert-danger text">No review found!</div>
+                                    <div class="alert alert-danger text-center">No review found!</div>
                                 @endif
+
+                                <div class="comment-form-area">
+                                    <h4>Leave a comment</h4>
+                                    <!-- comment reply -->
+                                    <div class="media comment-form">
+                                        {{-- <div class="media-left">
+                                            <a href="#">
+                                                <img class="media-object" src="{{ url( 'images/m7.png' ) }}" alt="Commentator Avatar">
+                                            </a>
+                                        </div> --}}
+                                        <div class="media-body">
+                                            {{ Form::open( [ 'route' => [ 'vendors.reviews.store', $vendor->code ], 'class' => 'comment-reply-form' ] ) }}
+
+                                                <div class="form-group {{ $errors->has( 'review' ) ? 'has-error' : '' }}">
+                                                    {{ Form::textarea( 'review', old( 'review' ), [ 'placeholder' => 'Write your review here...' ] ) }}
+                                                    @if( $errors->has( 'review' ) )
+                                                        <span class="help-block">{{ $errors->first( 'review' ) }}</span>
+                                                    @endif
+                                                </div>
+                                                
+                                                <button class="btn btn--sm btn--round" type="submit">Post Comment</button>
+                                            {{ Form::close() }}
+                                        </div>
+                                    </div><!-- comment reply -->
+                                </div><!-- end /.comment-form-area -->
+
+
+
+
                             </div><!-- end /.comments -->
                         </div><!-- end /.col-md-12 -->
                     </div><!-- end /.row -->

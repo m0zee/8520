@@ -72,6 +72,7 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 
 	Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
 		Route::get( '/reviews',  'Backend\ReviewsController@index' )->name( 'vendors.reviews.index' );
+		Route::post( '/reviews',  'Backend\ReviewsController@store' )->name( 'vendors.reviews.store' );
 	});
 	// Route::get('profile/create', 'ProfileController@create')->name('profile.create');
 	// Route::post('profile/create', 'ProfileController@store')->name('profile.store');
