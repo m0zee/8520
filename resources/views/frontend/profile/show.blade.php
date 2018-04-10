@@ -39,7 +39,7 @@
                         <div class="author-card sidebar-card">
                             <div class="author-infos">
                                 <div class="author_avatar">
-                                    <img src="images/author-avatar.jpg" alt="Presenting the broken author avatar :D">
+                                    <img src="{{ asset('storage/profile_img/'.$user->detail->profile_img) }}" alt="Presenting the broken author avatar :D">
                                 </div>
 
                                 <div class="author">
@@ -49,9 +49,10 @@
 
                                 <div class="social social--color--filled">
                                     <ul>
-                                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                        <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                                        <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
+                                        <li><a href="//{{ $user->detail->facebook }}" target="_blank"><span class="fa fa-facebook"></span></a></li>
+                                        <li><a href="//{{ $user->detail->twitter }}" target="_blank"><span class="fa fa-twitter"></span></a></li>
+                                        <li><a href="//{{ $user->detail->linked_in }}" target="_blank"><span class="fa fa-linkedin"></span></a></li>
+                                        <li><a href="//{{ $user->detail->google_plus }}" target="_blank"><span class="fa fa-google-plus"></span></a></li>
                                     </ul>
                                 </div><!-- end /.social -->
 
@@ -135,7 +136,7 @@
 
                         <div class="col-md-12 col-sm-12">
                             <div class="author_module">
-                                <img src="images/authcvr.jpg" alt="author image">
+                                <img src="{{asset('storage/cover_img/'.$user->detail->cover_img)}}" alt="author image">
                             </div>
 
                             <div class="author_module about_author">
