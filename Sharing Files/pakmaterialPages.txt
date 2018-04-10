@@ -10,6 +10,8 @@ https://aazztech.com/demos/themes/html/martplace/dist/edit-item.html ====== Vend
 
 https://aazztech.com/demos/themes/html/martplace/dist/dashboard-upload.html ===== ====== Vendor Product Add
 
+https://aazztech.com/demos/themes/html/martplace/dist/dashboard-manage-item.html === List of products in vendor panel
+
 
 https://aazztech.com/demos/themes/html/martplace/dist/dashboard.html === DashBoard
 
