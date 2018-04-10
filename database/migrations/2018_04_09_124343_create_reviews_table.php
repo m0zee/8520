@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->increments( 'id' );
             $table->tinyInteger( 'ratings' );
             $table->text( 'review' );
-            $table->tinyInteger( 'review_status_id' );
+            $table->tinyInteger( 'status_id' );
             $table->integer( 'user_id' );
             $table->string( 'vendor_code' );
             $table->timestamps();
