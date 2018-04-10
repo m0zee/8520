@@ -32,10 +32,10 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -43,19 +43,41 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store( VendorReviewRequest $request )
+    public function store( VendorReviewRequest $request, $vendor_code )
     {
+        $user_id = Auth::user()->id;
+        // \Illuminate\Support\Facades\DB::enableQueryLog();
+        $row = Review::where( [ 'user_id' => $user_id, 'vendor_code' => $vendor_code ] )->first();
+        // return \Illuminate\Support\Facades\DB::getQueryLog();
+        if( $row )
+        {
+            return redirect()->back()->with( 'error', 'You have already reviewd this vendor.' );
+        }
+
         $review = [
             'ratings'       => 0,
             'review'        => $request->review,
             'status_id'     => 1,
-            'user_id'       => Auth::user()->id,
-            'vendor_code'   => ''
+            'user_id'       => $user_id,
+            'vendor_code'   => $vendor_code
         ];
 
-        echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
-        print_r( $review );
-        echo '</pre>'; die;
+        $review = Review::create( $review );
+        
+        return redirect()->back()->with( 'success', 'Your reveiw has been saved and sent to the admin for approval. You can check the status of your review in -------- section.' );
+    }
+
+    public function ratings(Request $request, $vendor_code )
+    {
+        $user_id = Auth::user()->id;
+        // \Illuminate\Support\Facades\DB::enableQueryLog();
+        $review = Review::where( [ 'user_id' => $user_id, 'vendor_code' => $vendor_code ] )->first();
+
+        if( ! $review )
+        {
+            $review->
+        }
+        return $review;
     }
 
     /**
@@ -64,10 +86,10 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -75,10 +97,10 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    // public function edit($id)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -87,10 +109,10 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -98,8 +120,8 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    // public function destroy($id)
+    // {
+    //     //
+    // }
 }

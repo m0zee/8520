@@ -27,7 +27,7 @@
     <!-- endinject -->
 
     <!-- page css -->
-    @yield('css')
+    @yield( 'css' )
     <!-- endpage css -->
 
     <!-- Favicon -->
