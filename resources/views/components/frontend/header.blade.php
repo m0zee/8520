@@ -385,9 +385,9 @@
                                         </ul>
                                     </div> --}}
                                 </li>
-                                <li class="has_megamenu">
+                                {{-- <li class="has_megamenu">
                                     <a href="#">Vendors</a>
-                                    {{-- <div class="dropdown_megamenu contained">
+                                    <div class="dropdown_megamenu contained">
                                         <div class="megamnu_module">
                                             <div class="menu_items">
                                                 <div class="menu_column">
@@ -429,8 +429,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> --}}
-                                </li>
+                                    </div>
+                                </li> --}}
                                 <li class="has_megamenu">
                                     <a href="#">Buy Requirements</a>
                                     {{-- <div class="dropdown_megamenu">

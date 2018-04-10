@@ -20,6 +20,7 @@ Id
 product_ref
 Sub_category
 Product_name
+Product Description
 Brand_name
 Made_country
 Max_supply
