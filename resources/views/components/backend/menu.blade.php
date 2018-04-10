@@ -5,13 +5,12 @@
                 <ul class="nav navbar-nav admin-menu ">
                     <li class="{{ ($active == 'dashboard') ? 'active' : ''  }}"><a href="{{ route('admin.dashboard')}}"><span class="lnr lnr-home"></span>Dashboard</a></li>
                     <li class="{{ ($active == 'users') ? 'active' : ''  }} has_dropdown"><a href="#"><span class="lnr lnr-users"></span>Users</a>
-                    <div class="dropdown dropdown--menu">
-                                        <ul>
-                                            <li><a href="{{ route('admin.userlist', ['vendor']) }}">Vendors</a></li>
-                                            <li><a href="{{ route('admin.userlist', ['buyer']) }}">Buyers</a></li>
-                                        </ul>
-                                    </div>
-
+                        <div class="dropdown dropdown--menu">
+                            <ul>
+                                <li><a href="{{ route('admin.userlist', ['vendor']) }}">Vendors</a></li>
+                                <li><a href="{{ route('admin.userlist', ['buyer']) }}">Buyers</a></li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="{{ ($active == 'category') ? 'active' : ''  }} "><a href="{{ route('admin.categories.index') }}"><span class="lnr lnr-dice"></span>Category</a></li>
                     <li><a href="dashboard-manage-item.html"><span class="lnr lnr-briefcase"></span>Manage Items</a></li>
