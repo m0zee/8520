@@ -74,9 +74,15 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 		Route::get( '/reviews',  'Backend\ReviewsController@index' )->name( 'vendors.reviews.index' );
 		Route::post( '/reviews',  'Backend\ReviewsController@store' )->name( 'vendors.reviews.store' );
 	});
+
+	Route::group( [ 'prefix' => 'my-account' ], function() {
+		Route::get( '/products',  'ProductController@index' )->name( 'my-account.product' );
+		// Route::get( '/products/create',  'ProductController@create' )->name( 'my-account.product.create' );
+	});
 	// Route::get('profile/create', 'ProfileController@create')->name('profile.create');
 	// Route::post('profile/create', 'ProfileController@store')->name('profile.store');
 });
+
 
 // Route::get( 'users/{$user_code}/profile', 'ProfileController@show' )->name( 'profile.show' );
 

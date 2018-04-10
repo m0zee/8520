@@ -31,6 +31,7 @@
     <!--================================
         START AUTHOR AREA
     =================================-->
+        @include( 'components.frontend.vendor_menu' )
     <section class="author-profile-area">
         <div class="container">
             <div class="row">
@@ -142,11 +143,7 @@
                             <div class="author_module about_author">
                                 <h2>About <span>{{ $user->detail->company_name }}</span></h2>
                                 <p>
-                                    Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattisleo quam aliquet congue. Nunc placerat mi id nisi interdum mollis. Praesent pharetra,
-                                    justo ut scelerisque the mattisleo quam aliquet congue. Nunc placerat mi id nisi interdum mollis. Prae sent pharetra, justo ut scelerisque the mattisleo quam aliquet congue.
-                                </p>
-                                <p>
-                                    Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattisleo quam aliquet congue. Nunc placerat mi id nisi interdum mollis. Praesent pharetra.
+                                    {{$user->detail->description}}
                                 </p>
                             </div>
                         </div>
