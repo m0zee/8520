@@ -301,10 +301,7 @@
                             {{ csrf_field() }}
                         </form>
                         @else
-
-                        <a href="{{ url('login') }}" class="author-area__seller-btn inline">Login</a>
-
-                        
+                            <a href="{{ url('login') }}" class="author-area__seller-btn inline">Login</a>
                         @endif
                     </div><!-- end .author-area -->
                     

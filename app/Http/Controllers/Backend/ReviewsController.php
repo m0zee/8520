@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Review;
-use App\Http\Requests\VendorReviewRequest;
-use Illuminate\Support\Facades\Auth;
 
 class ReviewsController extends Controller
 {
@@ -15,15 +13,20 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( $vendor_code )
+    public function index()
     {
-        // \Illuminate\Support\Facades\DB::enableQueryLog();
-        $vendor = \App\User::with( 'reviews.user.detail' )->with( 'detail')->where( [ 'code' => $vendor_code ] )->first(); // , 'status_id' => 2
-        // return $vendor;
-        // return \Illuminate\Support\Facades\DB::getQueryLog();
-        // $this->data['vendor'] = $vendor;
-        
-        return view( 'review.index', compact( 'vendor' ) );
+        $this->data['reviews'] = Review::where( 'status_id', 1 )->with( 'vendor', 'user' )->get();
+        // return $this->data['reviews'];
+        return view( 'backend.review.index', $this->data );
+    }
+
+    public function approve( $review_id )
+    {
+        Review::where( 'id', $review_id )->update( [ 'status_id' => 2 ] );
+        return redirect()->back()->with( 'success', 'Review has been successfully approved!' );
+        // echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
+        // print_r( $review_id );
+        // echo '</pre>'; die;
     }
 
     /**
@@ -42,41 +45,9 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store( VendorReviewRequest $request, $vendor_code )
-    {
-        $user_id = Auth::user()->id;
-        // \Illuminate\Support\Facades\DB::enableQueryLog();
-        $row = Review::where( [ 'user_id' => $user_id, 'vendor_code' => $vendor_code ] )->first();
-        // return \Illuminate\Support\Facades\DB::getQueryLog();
-        if( $row )
-        {
-            return redirect()->back()->with( 'error', 'You have already reviewd this vendor.' );
-        }
-
-        $review = [
-            'ratings'       => $request->ratings,
-            'review'        => $request->review,
-            'status_id'     => 1,
-            'user_id'       => $user_id,
-            'vendor_code'   => $vendor_code
-        ];
-
-        $review = Review::create( $review );
-        
-        return redirect()->back()->with( 'success', 'Your reveiw has been saved and sent to the admin for approval. You can check the status of your review in -------- section.' );
-    }
-
-    // public function ratings(Request $request, $vendor_code )
+    // public function store(Request $request)
     // {
-    //     $user_id = Auth::user()->id;
-    //     // \Illuminate\Support\Facades\DB::enableQueryLog();
-    //     $review = Review::where( [ 'user_id' => $user_id, 'vendor_code' => $vendor_code ] )->first();
-
-    //     if( ! $review )
-    //     {
-    //         // $review->
-    //     }
-    //     return $review;
+    //     //
     // }
 
     /**

@@ -14,10 +14,10 @@
                         <ul>
                             <li><a href="index.html">Home</a></li>
                             <li><a href="dashboard.html">Dashboard</a></li>
-                            <li class="active"><a href="#">Settings</a></li>
+                            <li class="active"><a href="#">Profile</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Author's Settings</h1>
+                    <h1 class="page-title">Company Profile Settings</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -41,7 +41,7 @@
                         <div class="dashboard_title_area">
                             <div class="dashboard__title">
                                 <h3>
-                                    Create Profile
+                                    Company Profile
                                     <a  href="{{ route( 'profile.show', [ 'user_type_id' => Auth::user()->code ] ) }}" 
                                         class="btn btn--round btn--md pull-right">
                                         View as visitor
@@ -60,7 +60,7 @@
 
                             <div class="information_module">
                                 <a class="toggle_title" href="#collapse1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapse1">
-                                    <h4>Biling Information <span class="lnr lnr-chevron-down"></span></h4>
+                                    <h4>Company Detail <span class="lnr lnr-chevron-down"></span></h4>
                                 </a>
 
                                 <div class="information__set toggle_module collapse in" id="collapse1">
@@ -225,7 +225,7 @@
                                                         <input type="checkbox" value="1" id="card" name="card" {{ $user->detail->card == 1 ? 'checked' : ' ' }}>
                                                         <label for="card">
                                                             <span class="shadow_checkbox"></span>
-                                                            <span class="radio_title">Visa / Master Card</span>
+                                                            <span class="radio_title">Visa/Master Card</span>
                                                         </label>
                                                     </div>
                                                 </div><!-- end /.custom-radio -->
@@ -233,7 +233,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="authbio">Description</label>
+                                            <label for="authbio">About Company</label>
                                             <textarea name="description" id="authbio" class="text_field" placeholder="Short brief about yourself or your account...">{{ $user->detail->description }}</textarea>
                                         </div>
                                     </div>

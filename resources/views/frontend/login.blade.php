@@ -113,14 +113,14 @@
                         {{ csrf_field() }}
                         <div class="cardify login">
                             <div class="login--header">
-                                <h3>Welcome Back</h3>
-                                <p>You can sign in with your username</p>
+                                <h3>Login to Pakmaterial</h3>
+                                <p>Great to have you back !</p>
                             </div><!-- end .login_header -->
 
                             <div class="login--form">
                                 <div class="form-group">
-                                    <label for="user_name">Username</label>
-                                    <input id="user_name" type="text" name="email" class="text_field" placeholder="Enter your username...">
+                                    <label for="user_name">Email</label>
+                                    <input id="user_name" type="text" name="email" class="text_field" placeholder="Enter your Email...">
                                 </div>
 
                                 <div class="form-group">
