@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Product as Product;
 use App\Category;
+use App\Country;
 
 
 class ProductController extends Controller
@@ -28,8 +30,11 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $countries = Country::pluck('name', 'id');
         $categories = Category::pluck('name', 'id');
-        return view('frontend.profile.product.create', compact('categories'));
+        $units = DB::table('units')->pluck('name', 'id');
+        $currencies = DB::table('currencies')->pluck('name', 'id');
+        return view('frontend.profile.product.create', compact('categories', 'countries', 'currencies', 'units'));
     }
 
     /**

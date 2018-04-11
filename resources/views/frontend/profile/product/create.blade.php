@@ -92,6 +92,14 @@
                                        </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="category">Made in</label>
+                                            <div class="select-wrap select-wrap2">
+                                                {{ Form::select('country_id', $countries, NULL, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
+                                                <span class="lnr lnr-chevron-down"></span>
+                                            </div>
+                                    </div>
+
 
                                     <div class="form-group no-margin">
                                         <p class="label">Product Description</p>

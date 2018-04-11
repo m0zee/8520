@@ -1,41 +1,73 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.8
--- http://www.phpmyadmin.net
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 11, 2018 at 05:07 AM
--- Server version: 5.5.51-38.2
--- PHP Version: 5.6.30
+-- Host: 127.0.0.1
+-- Generation Time: Apr 11, 2018 at 12:30 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ascentis_mevendors`
+-- Database: `pak_material`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_unit`
+-- Table structure for table `currencies`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_unit` (
+CREATE TABLE `currencies` (
   `id` int(11) NOT NULL,
-  `unit` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
+  `name` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_unit`
+-- Dumping data for table `currencies`
 --
 
-INSERT INTO `tbl_unit` (`id`, `unit`) VALUES
+INSERT INTO `currencies` (`id`, `name`) VALUES
+(1, 'USD'),
+(2, 'GBP'),
+(3, 'RMB'),
+(4, 'EUR'),
+(5, 'AUD'),
+(6, 'CAD'),
+(7, 'CHF'),
+(8, 'JPY'),
+(9, 'HKD'),
+(10, 'NZD'),
+(11, 'SGD'),
+(12, 'NTD'),
+(13, 'QAR');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `units`
+--
+
+CREATE TABLE `units` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `units`
+--
+
+INSERT INTO `units` (`id`, `name`) VALUES
 (1, 'Acre/Acres'),
 (2, 'Ampere/Amperes'),
 (3, 'Bag/Bags'),
@@ -133,9 +165,15 @@ INSERT INTO `tbl_unit` (`id`, `unit`) VALUES
 --
 
 --
--- Indexes for table `tbl_unit`
+-- Indexes for table `currencies`
 --
-ALTER TABLE `tbl_unit`
+ALTER TABLE `currencies`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `units`
+--
+ALTER TABLE `units`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -143,10 +181,18 @@ ALTER TABLE `tbl_unit`
 --
 
 --
--- AUTO_INCREMENT for table `tbl_unit`
+-- AUTO_INCREMENT for table `currencies`
 --
-ALTER TABLE `tbl_unit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=92;
+ALTER TABLE `currencies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `units`
+--
+ALTER TABLE `units`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
