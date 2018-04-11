@@ -78,7 +78,7 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 
 	Route::group( [ 'prefix' => 'my-account' ], function() {
 		Route::get( '/products',  'ProductController@index' )->name( 'my-account.product' );
-		// Route::get( '/products/create',  'ProductController@create' )->name( 'my-account.product.create' );
+		Route::get( '/products/create',  'ProductController@create' )->name( 'my-account.product.create' );
 	});
 	// Route::get('profile/create', 'ProfileController@create')->name('profile.create');
 	// Route::post('profile/create', 'ProfileController@store')->name('profile.store');
@@ -98,3 +98,8 @@ Route::post('/get_country_state', function(Request $request) {
 Route::post('/get_state_city', function(Request $request) {
 	return App\State::find($request->input('state_id'))->city;
 });
+
+Route::post('/get_sub_category', function(Request $request) {
+	return App\SubCategory::where('category_id', $request->input('category_id'))->get();
+});
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Product as Product;
+use App\Category;
 
 
 class ProductController extends Controller
@@ -27,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::pluck('name', 'id');
+        return view('frontend.profile.product.create', compact('categories'));
     }
 
     /**

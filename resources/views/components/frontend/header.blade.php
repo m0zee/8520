@@ -227,7 +227,7 @@
                                 <p class="name">
                                     {{ Auth::user()->name }}
                                 </p>
-                                <p class="ammount"></p>
+                                <p class="ammount">{{ Auth::user()->user_type->name }}</p>
                             </div>
 
                             <div class="dropdown dropdown--author">
