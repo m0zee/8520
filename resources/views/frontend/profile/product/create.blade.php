@@ -50,7 +50,7 @@
 
                 <div class="row">
                     <div class="col-md-8 col-sm-7">
-                        <form action="#">
+                        <form action="{{ route('my-account.product.store') }}" method="post" enctype="multipart/form-data" id="product_form">
                             <div class="upload_modules">
                                 <div class="modules__title">
                                     <h3>Product Name & Description</h3>
@@ -94,10 +94,44 @@
 
                                     <div class="form-group">
                                         <label for="category">Made in</label>
-                                            <div class="select-wrap select-wrap2">
-                                                {{ Form::select('country_id', $countries, NULL, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
-                                                <span class="lnr lnr-chevron-down"></span>
-                                            </div>
+                                        <div class="select-wrap select-wrap2">
+                                            {{ Form::select('country_id', $countries, NULL, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
+                                            <span class="lnr lnr-chevron-down"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            
+                                                <div class="col-md-3">
+                                                    <label for="category">Max Supplies</label>
+                                                    <div class="select-wrap select-wrap2">
+                                                        {{ Form::select('unit_id', $units, NULL, ['placeholder' => 'Select Unit', 'id' => 'unit'] ) }}
+                                                        <span class="lnr lnr-chevron-down"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label for="category">&nbsp;</label>
+                                                    <input type="text" name="max_supply" class="text_field" placeholder="Enter quantity">
+                                                </div>
+
+                                            
+                                                <div class="col-md-3">
+                                                    <label for="category">Amount</label>
+                                                    <div class="select-wrap select-wrap2">
+                                                        {{ Form::select('currency_id', $currencies, NULL, ['placeholder' => 'Select Currency', 'id' => 'country'] ) }}
+                                                        <span class="lnr lnr-chevron-down"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label for="category">&nbsp;</label>
+                                                    <input type="text" name="price" class="text_field" placeholder="Enter amount">
+                                                </div>
+                                            
+
+                                        </div>
                                     </div>
 
 
@@ -116,11 +150,11 @@
                                 <div class="modules__content">
                                     <div class="form-group">
                                         <div class="upload_wrapper">
-                                            <p>Upload Thumbnail <span>(JPEG or PNG 100x100px)</span></p>
+                                            <p>Product Image <span>(JPEG or PNG 100x100px)</span></p>
 
                                             <div class="custom_upload">
                                                 <label for="thumbnail">
-                                                    <input type="file" id="thumbnail" class="files">
+                                                    <input type="file" name="__files[]" id="thumbnail" class="files">
                                                     <span class="btn btn--round btn--sm">Choose File</span>
                                                 </label>
                                             </div><!-- end /.custom_upload -->
@@ -128,252 +162,24 @@
                                             <div class="progress_wrapper">
                                                 <div class="labels clearfix">
                                                     <p>Thumbnail.jpg</p>
-                                                    <span data-width="89">89%</span>
+                                                    <span data-width="89" id="progress-status">0%</span>
                                                 </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 89%;">
-                                                        <span class="sr-only">70% Complete</span>
+                                                <div class="progress" id="progress-wrp">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                                                        <span class="sr-only status">70% Complete</span>
                                                     </div>
                                                 </div>
                                             </div><!-- end /.progress_wrapper -->
 
                                             <span class="lnr upload_cross lnr-cross"></span>
                                         </div><!-- end /.upload_wrapper -->
+                                        <div id="output"><!-- error or success results --></div>
                                     </div><!-- end /.form-group -->
 
-                                    <div class="form-group">
-                                        <div class="upload_wrapper">
-                                            <p>Upload Main File <span>(ZIP - All files)</span></p>
 
-                                            <div class="custom_upload">
-                                                <label for="main_file">
-                                                    <input type="file" id="main_file" class="files">
-                                                    <span class="btn btn--round btn--sm">Choose File</span>
-                                                </label>
-                                            </div><!-- end /.custom_upload -->
-
-                                            <div class="progress_wrapper">
-                                                <div class="labels clearfix">
-                                                    <p>WordPress Blog Theme.zip</p>
-                                                    <span data-width="90">90%</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-                                                        <span class="sr-only">90% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </div><!-- end /.progress_wrapper -->
-
-                                            <span class="lnr upload_cross lnr-cross"></span>
-                                        </div><!-- end /.upload_wrapper -->
-                                    </div><!-- end /.form-group -->
-
-                                    <div class="form-group">
-                                        <div class="upload_wrapper">
-                                            <p>Upload Screenshots <span>(ZIP file of images)</span></p>
-
-                                            <div class="custom_upload">
-                                                <label for="screenshot">
-                                                    <input type="file" id="screenshot" class="files">
-                                                    <span class="btn btn--round btn--sm">Choose File</span>
-                                                </label>
-                                            </div><!-- end /.custom_upload -->
-
-                                            <div class="progress_wrapper">
-                                                <div class="labels clearfix">
-                                                    <p>Thumbnail.jpg</p>
-                                                    <span data-width="78">78%</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 78%;">
-                                                        <span class="sr-only">78% Complete</span>
-                                                    </div>
-                                                </div>
-                                            </div><!-- end /.progress_wrapper -->
-
-                                            <span class="lnr upload_cross lnr-cross"></span>
-                                        </div><!-- end /.upload_wrapper -->
-                                    </div><!-- end /.form-group -->
                                 </div><!-- end /.upload_modules -->
                             </div><!-- end /.upload_modules -->
 
-                            <div class="upload_modules">
-                                <div class="modules__title">
-                                    <h3>Others Information</h3>
-                                </div><!-- end /.module_title -->
-
-                                <div class="modules__content">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="selected">Files Included</label>
-                                                    <select name="country" id="selected" multiple class="text_field">
-                                                        <option value="php">php</option>
-                                                        <option value="html">Html</option>
-                                                        <option value="psd">psd</option>
-                                                        <option value="js">javascript</option>
-                                                        <option value="coffee">coffeescript</option>
-                                                        <option value="video">Video</option>
-                                                    </select>
-                                            </div><!-- end /.form-group -->
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="browsers">Compatible Browsers</label>
-                                                    <select name="country" id="browsers" multiple class="text_field">
-                                                        <option value="ie8">IE8</option>
-                                                        <option value="ie9">IE9</option>
-                                                        <option value="chrome">Chrome</option>
-                                                        <option value="firefox">firefox</option>
-                                                        <option value="safari">safari</option>
-                                                        <option value="video">Video</option>
-                                                    </select>
-                                            </div><!-- end /.form-group -->
-                                        </div><!-- end /.col-md-6 -->
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="columns">Columns</label>
-                                                <div class="select-wrap select-wrap2">
-                                                    <select name="country" id="columns" class="text_field">
-                                                        <option value="">Choose Columns</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4+</option>
-                                                    </select>
-                                                    <span class="lnr lnr-chevron-down"></span>
-                                                </div>
-                                            </div>
-                                        </div><!-- end /.col-md-6 -->
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="dimension">Item Dimensions</label>
-                                                <input type="text" id="dimension" class="text_field" placeholder="Ex: 1920x6000.">
-                                            </div>
-                                        </div><!-- end /.col-md-6 -->
-                                    </div><!-- end /.row -->
-                                    
-
-                                    <div class="form-group">
-                                        <label for="soft">Minimum Software Version</label>
-                                        <div class="select-wrap select-wrap2">
-                                            <select name="version" id="soft" class="text_field">
-                                                <option value="">Choose version</option>
-                                                <option value="4">WordPress 4</option>
-                                                <option value="4.1">WordPress 4.1.*</option>
-                                                <option value="4.2">WordPress 4.2.*</option>
-                                                <option value="4.3">WordPress 4.3.*</option>
-                                                <option value="4.4">WordPress 4.4.*</option>
-                                            </select>
-                                            <span class="lnr lnr-chevron-down"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group radio-group">
-                                                <p class="label">High Resolution</p>
-                                                <div class="custom-radio">
-                                                    <input type="radio" id="yes" class="" name="high_res">
-                                                    <label for="yes"><span class="circle"></span>Yes</label>
-                                                </div>
-
-                                                <div class="custom-radio">
-                                                    <input type="radio" id="no" class="" name="high_res">
-                                                    <label for="no"><span class="circle"></span>no</label>
-                                                </div>
-                                            </div>
-                                        </div><!-- end /.col-md-6 -->
-
-                                        <div class="col-md-6">
-                                            <div class="form-group radio-group">
-                                                <p class="label">Retina Ready</p>
-                                                <div class="custom-radio">
-                                                    <input type="radio" id="ryes" class="" name="retina">
-                                                    <label for="ryes"><span class="circle"></span>Yes</label>
-                                                </div>
-
-                                                <div class="custom-radio">
-                                                    <input type="radio" id="rno" class="" name="retina">
-                                                    <label for="rno"><span class="circle"></span>no</label>
-                                                </div>
-                                            </div>
-                                        </div><!-- end /.col-md-6 -->
-                                    </div><!-- end /.row -->
-
-                                    <div class="form-group">
-                                        <label for="tags">Item Tags <span>(Max 10 tags)</span></label>
-                                        <textarea name="tags" id="tags" class="text_field" placeholder="Enter your item tags here..."></textarea>
-                                    </div>
-                                </div><!-- end /.upload_modules -->
-                            </div><!-- end /.upload_modules -->
-
-                            <div class="upload_modules">
-                                <div class="modules__title">
-                                    <h3>Others Information</h3>
-                                </div><!-- end /.module_title -->
-
-                                <div class="modules__content">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="rlicense">Regular License</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">$</span>
-                                                    <input type="text" id="rlicense" class="text_field" placeholder="00.00">
-                                                </div>
-                                            </div>
-                                        </div><!-- end /.col-md-6 -->
-
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exlicense">Extended License</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">$</span>
-                                                    <input type="text" id="exlicense" class="text_field" placeholder="00.00">
-                                                </div>
-                                            </div>
-                                        </div><!-- end /.col-md-6 -->
-
-                                    </div><!-- end /.row -->
-                                    <div class="or"></div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="single_use">Single User License</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">$</span>
-                                                    <input type="text" id="single_use" class="text_field" placeholder="00.00">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="double_use">2 User License</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">$</span>
-                                                    <input type="text" id="double_use" class="text_field" placeholder="00.00">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="multi_user">Multi User License</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">$</span>
-                                                    <input type="text" id="multi_user" class="text_field" placeholder="00.00">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!-- end /.row -->
-                                </div><!-- end /.modules__content -->
-                            </div><!-- end /.upload_modules -->
 
                             <!-- submit button -->
                             <button type="submit" class="btn btn--round btn--fullwidth btn--lg">Submit Your Item for Review</button>
@@ -486,6 +292,119 @@
             });
             return row;
         }
+
+
+
+
     });
+
+        //configuration
+        var max_file_size           = 2048576; //allowed file size. (1 MB = 1048576)
+        var allowed_file_types      = ['image/png', 'image/jpeg', 'image/pjpeg']; //allowed file types
+        var result_output           = '#output'; //ID of an element for response output
+        var my_form_id              = '#product_form'; //ID of an element for response output
+        var progress_bar_id         = '#progress-wrp'; //ID of an element for response output
+        var total_files_allowed     = 1; //Number files allowed to upload
+
+
+
+        //on form submit
+        $(my_form_id).on( "submit", function(event) { 
+            event.preventDefault();
+            var proceed = true; //set proceed flag
+            var error = []; //errors
+            var total_files_size = 0;
+            
+            //reset progressbar
+            $(progress_bar_id +" .progress-bar").css("width", "0%");
+            $("#progress-status").text("0%");
+            
+            if(!window.File && window.FileReader && window.FileList && window.Blob){ //if browser doesn't supports File API
+                error.push("Your browser does not support new File API! Please upgrade."); //push error text
+        }else{
+                var total_selected_files = this.elements['__files[]'].files.length; //number of files
+                
+                //limit number of files allowed
+                if(total_selected_files > total_files_allowed){
+                    error.push( "You have selected "+total_selected_files+" file(s), " + total_files_allowed +" is maximum!"); //push error text
+                    proceed = false; //set proceed flag to false
+                }
+                 //iterate files in file input field
+                 $(this.elements['__files[]'].files).each(function(i, ifile){
+                    if(ifile.value !== ""){ //continue only if file(s) are selected
+                        if(allowed_file_types.indexOf(ifile.type) === -1){ //check unsupported file
+                            error.push( "<b>"+ ifile.name + "</b> is unsupported file type!"); //push error text
+                            proceed = false; //set proceed flag to false
+                        }
+
+                        total_files_size = total_files_size + ifile.size; //add file size to total size
+                    }
+                });
+                 
+                //if total file size is greater than max file size
+                if(total_files_size > max_file_size){ 
+                    error.push( "You have "+total_selected_files+" file(s) with total size "+total_files_size+", Allowed size is " + max_file_size +", Try smaller file!"); //push error text
+                    proceed = false; //set proceed flag to false
+                }
+                
+                var submit_btn  = $(this).find("input[type=submit]"); //form submit button  
+                
+                //if everything looks good, proceed with jQuery Ajax
+                if(proceed){
+                    //submit_btn.val("Please Wait...").prop( "disabled", true); //disable submit button
+                    var form_data = new FormData(this); //Creates new FormData object
+                    var post_url = $(this).attr("action"); //get action URL of form
+                    
+                    //jQuery Ajax to Post form data
+                    $.ajax({
+                        url : post_url,
+                        type: "POST",
+                        dataType: 'JSON',
+                        data : form_data,
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        xhr: function(){
+                            //upload Progress
+                            var xhr = $.ajaxSettings.xhr();
+                            if (xhr.upload) {
+                                xhr.upload.addEventListener('progress', function(event) {
+                                    var percent = 0;
+                                    var position = event.loaded || event.position;
+                                    var total = event.total;
+                                    if (event.lengthComputable) {
+                                        percent = Math.ceil(position / total * 100);
+                                    }
+                                    //update progressbar
+                                    $(progress_bar_id +" .progress-bar").css("width", + percent +"%");
+                                    $("#progress-status").text(percent +"%");
+                                }, true);
+                            }
+                            return xhr;
+                        },
+                        mimeType:"multipart/form-data"
+                    }).done(function(res){ //
+                        if (res.hasOwnProperty('success') ) 
+                        {
+                            window.location.href = "{{ route('my-account.product') }}"  ;
+                        }
+                        else if(res.errors != '')
+                        {
+                            alert(res.errors);
+                        }
+                        // $(my_form_id)[0].reset(); //reset form
+                        // $(result_output).html(res); //output response from server
+                        // submit_btn.val("Upload").prop( "disabled", false); //enable submit button once ajax is done
+                    });
+
+        }
+        }
+
+            $(result_output).html(""); //reset output 
+            $(error).each(function(i){ //output any error to output element
+                $(result_output).append('<div class="error">'+error[i]+"</div>");
+            });
+            
+        });
 </script>
 @endsection

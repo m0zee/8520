@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Product as Product;
 use App\Category;
 use App\Country;
+use Illuminate\Support\Facades\Validator;
 
 
 class ProductController extends Controller
@@ -45,7 +46,52 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(), [
+            '__files.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+            'brand_name' => 'required',
+            'name' => 'required',
+            'country_id' => 'required',
+            'unit_id' => 'required',
+            'max_supply' => 'required',
+            'currency_id' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+        ]);
+        if ($validator->fails())
+        {
+            return json_encode(['errors' => $validator->errors()]);
+        }
+
+        $files = $request->__files[0];
+        $path = public_path('storage/product');
+        $imageName = time().'.'.$files->getClientOriginalName();
+        $files->move( $path, $imageName );
+        
+        $lastProduct = Product::orderBy( 'id', 'DESC' )->first();
+        $code = ( $lastProduct ) ? $this->generate_code( $lastProduct->code ) : 'pr-0001';
+
+        $data = [
+            'name' => $request->name,
+            'code' => $code,
+            'description' => $request->description,
+            'brand_name' => $request->brand_name,
+            'sub_category_id' =>$request->sub_category_id,
+            'country_id' => $request->country_id,
+            'max_supply' => $request->max_supply,
+            'unit_id' => $request->unit_id,
+            'currency_id' => $request->currency_id,
+            'price' => $request->price,
+            'img_path' => $path,
+            'img' => $imageName,
+            'user_id' => Auth::user()->id,
+            'status_id' => '2'
+        ];
+
+        Product::create($data);
+        return json_encode(['success' => true]);
     }
 
     /**
@@ -91,5 +137,35 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function generate_code( $code )
+    {
+        $code =  explode( '-', $code );
+
+        $index  = $code[1] + 1;
+
+        $length = strlen( $index );
+
+        switch( $length )
+        {
+            case 1:
+                $index = '000' . $index;
+            break;
+            
+            case 2:
+                $index = '00' . $index;
+            break;
+
+            case 3:
+                $index = '0' . $index;
+            break;
+        }
+
+        $code = 'pr-'. $index;
+
+        return $code;
     }
 }

@@ -23,8 +23,11 @@ class CreateProductsTable extends Migration
             $table->string( 'country_id' ); // MADE IN Country 
             $table->integer( 'max_supply' );
             $table->integer( 'unit_id' );
+            $table->integer('currency_id');
             $table->integer( 'price' );
-            $table->integer( 'status' );
+            $table->string( 'img_path' );
+            $table->string( 'img' );
+            $table->integer( 'status_id' );
             $table->integer( 'user_id' );
             $table->timestamps();
         });

@@ -79,6 +79,7 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 	Route::group( [ 'prefix' => 'my-account' ], function() {
 		Route::get( '/products',  'ProductController@index' )->name( 'my-account.product' );
 		Route::get( '/products/create',  'ProductController@create' )->name( 'my-account.product.create' );
+		Route::post( '/products/create',  'ProductController@store' )->name( 'my-account.product.store' );
 	});
 	// Route::get('profile/create', 'ProfileController@create')->name('profile.create');
 	// Route::post('profile/create', 'ProfileController@store')->name('profile.store');
