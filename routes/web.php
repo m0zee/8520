@@ -33,9 +33,9 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	
 	Route::get('/admin/dashboard', 'Backend\DashboardController@index')->name('admin.dashboard');
 	
-	Route::get('/admin/users/{type}', 'Backend\UserController@index')->name('admin.userlist');
-	Route::put('/admin/users/{user_id}/approve/', 'Backend\UserController@approve')->name('admin.user.approve');
-	Route::put('/admin/users/{user_id}/status/', 'Backend\UserController@statusUpdate')->name('admin.user.status');
+	Route::get('/admin/users/{type}', 				'Backend\UserController@index')->name('admin.userlist');
+	Route::put('/admin/users/{user_id}/approve/', 	'Backend\UserController@approve')->name('admin.user.approve');
+	Route::put('/admin/users/{user_id}/status/', 	'Backend\UserController@statusUpdate')->name('admin.user.status');
 	// Route::get('/admin/user/vendors', 'Backend\VendorController@index')->name('admin.buyer');
 	Route::resource( 'admin/categories', 'Backend\CategoryController', [
 		'names' => [
@@ -49,18 +49,22 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	    ]
 	]);
 
-
 	Route::resource( 'admin/categories/{category_id}/subcategories', 'Backend\SubCategoryController', [
 		'names' => [
-			'index'=> 'admin.subcategories.index',
-	        'store' => 'admin.subcategories.store',
-	        'create' => 'admin.subcategories.create',
-	        'destroy' => 'admin.subcategories.destroy',
-	        'update' => 'admin.subcategories.update',
-	        'show' => 'admin.subcategories.show',
-	        'edit' => 'admin.subcategories.edit',
+			'index' 	=> 'admin.subcategories.index',
+	        'store'		=> 'admin.subcategories.store',
+	        'create'	=> 'admin.subcategories.create',
+	        'destroy' 	=> 'admin.subcategories.destroy',
+	        'update' 	=> 'admin.subcategories.update',
+	        'show' 		=> 'admin.subcategories.show',
+	        'edit' 		=> 'admin.subcategories.edit',
 	    ]
 	]);
+
+	Route::resource( 'reviews', 'Backend\ReviewsController', [
+		'only' => [ 'index' ]
+	]);
+	Route::get( 'reviews/{review_id}/approve', 'Backend\ReviewsController@approve' )->name( 'reviews.approve' );
 });
 
 
@@ -70,18 +74,22 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 		'parameters'	=> [ 'profile' => 'user' ]
 	]);
 
-	Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
-		Route::get( '/reviews',  'Backend\ReviewsController@index' )->name( 'vendors.reviews.index' );
-		Route::post( '/reviews',  'Backend\ReviewsController@store' )->name( 'vendors.reviews.store' );
-		Route::post( '/ratings',  'Backend\ReviewsController@ratings' )->name( 'vendors.ratings.store' );
-	});
-
 	Route::group( [ 'prefix' => 'my-account' ], function() {
 		Route::get( '/products',  'ProductController@index' )->name( 'my-account.product' );
 		Route::get( '/products/create',  'ProductController@create' )->name( 'my-account.product.create' );
 	});
-	// Route::get('profile/create', 'ProfileController@create')->name('profile.create');
-	// Route::post('profile/create', 'ProfileController@store')->name('profile.store');
+});
+
+
+
+Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
+	Route::resource( 'reviews', 'ReviewsController', [ 
+		'only' => [ 'index', 'store' ],
+		'names' => [
+			'index' => 'vendors.reviews.index',
+			'store' => 'vendors.reviews.store'
+		] 
+	]);
 });
 
 

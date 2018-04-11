@@ -266,7 +266,7 @@
         END AUTHOR AREA
     =================================-->
 
-    {{ Form::hidden( 'rating_url', route( 'vendors.ratings.store', Request::segment( 2 ) ), [ 'id' => 'rating_url' ] ) }}
+    {{-- {{ Form::hidden( 'rating_url', route( 'vendors.ratings.store', Request::segment( 2 ) ), [ 'id' => 'rating_url' ] ) }} --}}
 
 @endsection
 
