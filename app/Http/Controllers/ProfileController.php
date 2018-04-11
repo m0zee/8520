@@ -186,8 +186,11 @@ class ProfileController extends Controller
         {
             return redirect( route( 'profile.create' ) )->with( 'error', 'User not found!' );
         }
+        //return $user;
 
         $this->data['user'] = $user;
+
+       // return $user;
 
         return view( 'frontend.profile.show', $this->data );
     }
