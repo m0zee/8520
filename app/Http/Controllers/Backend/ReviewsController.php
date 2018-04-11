@@ -18,8 +18,7 @@ class ReviewsController extends Controller
     public function index( $vendor_code )
     {
         // \Illuminate\Support\Facades\DB::enableQueryLog();
-        $vendor = \App\User::with( 'reviews.user.detail' )->with( 'detail')->where( 'code', $vendor_code )->first();
-
+        $vendor = \App\User::with( 'reviews.user.detail' )->with( 'detail')->where( [ 'code' => $vendor_code ] )->first(); // , 'status_id' => 2
         // return $vendor;
         // return \Illuminate\Support\Facades\DB::getQueryLog();
         // $this->data['vendor'] = $vendor;
@@ -55,7 +54,7 @@ class ReviewsController extends Controller
         }
 
         $review = [
-            'ratings'       => 0,
+            'ratings'       => $request->ratings,
             'review'        => $request->review,
             'status_id'     => 1,
             'user_id'       => $user_id,
@@ -67,18 +66,18 @@ class ReviewsController extends Controller
         return redirect()->back()->with( 'success', 'Your reveiw has been saved and sent to the admin for approval. You can check the status of your review in -------- section.' );
     }
 
-    public function ratings(Request $request, $vendor_code )
-    {
-        $user_id = Auth::user()->id;
-        // \Illuminate\Support\Facades\DB::enableQueryLog();
-        $review = Review::where( [ 'user_id' => $user_id, 'vendor_code' => $vendor_code ] )->first();
+    // public function ratings(Request $request, $vendor_code )
+    // {
+    //     $user_id = Auth::user()->id;
+    //     // \Illuminate\Support\Facades\DB::enableQueryLog();
+    //     $review = Review::where( [ 'user_id' => $user_id, 'vendor_code' => $vendor_code ] )->first();
 
-        if( ! $review )
-        {
-            $review->
-        }
-        return $review;
-    }
+    //     if( ! $review )
+    //     {
+    //         // $review->
+    //     }
+    //     return $review;
+    // }
 
     /**
      * Display the specified resource.
