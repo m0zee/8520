@@ -48,6 +48,16 @@
                 </div>
             @endif;
 
+            @if( $errors->any() )
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger text-center">
+                            <strong>You have errors in the review form. Please resolve them</strong>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-md-4">
                     <aside class="sidebar sidebar_author">
@@ -72,17 +82,17 @@
 
                                 <div class="author-btn">
                                     <a href="#" class="btn btn--md btn--round">Follow</a>
-                                </div><!-- end /.author-btn -->
+                                </div>
                             </div><!-- end /.author-infos -->
                         </div><!-- end /.author-card -->
 
                         <div class="sidebar-card author-menu">
                             <ul>
                                 <li><a href="author.html">Profile</a></li>
-                                <li><a href="author-items.html">Author Items</a></li>
-                                <li><a class="active" href="author-reviews.html">Customer Reviews</a></li>
-                                <li><a href="author-followers.html">Followers (67)</a></li>
-                                <li><a href="author-following.html">Following (39)</a></li>
+                                {{-- <li><a href="author-items.html">Author Items</a></li> --}}
+                                <li><a class="active" href="{{ route( 'vendors.reviews.index', $vendor->code ) }}">Customer Reviews</a></li>
+                                {{-- <li><a href="author-followers.html">Followers (67)</a></li>
+                                <li><a href="author-following.html">Following (39)</a></li> --}}
                             </ul>
                         </div><!-- end /.author-menu -->
 
@@ -174,14 +184,15 @@
                                                                 </div>
                                                                 <div class="rating product--rating">
                                                                     <ul>
-                                                                        <li><span class="fa fa-star"></span></li>
-                                                                        <li><span class="fa fa-star"></span></li>
-                                                                        <li><span class="fa fa-star"></span></li>
-                                                                        <li><span class="fa fa-star"></span></li>
-                                                                        <li><span class="fa fa-star-half-o"></span></li>
+                                                                        @for( $i = 1; $i <= $review->ratings; $i++ )
+                                                                            <li><span class="fa fa-star"></span></li>
+                                                                        @endfor
+
+                                                                         @for( $i = 5; $i > $review->ratings; $i-- )
+                                                                            <li><span class="fa fa-star-o"></span></li>
+                                                                        @endfor
                                                                     </ul>
                                                                 </div>
-                                                                {{-- <span class="review_tag">support</span> --}}
                                                             </div>
 
                                                             <div class="pull-right rev_time">{{ $review->created_at->diffForHumans() }}</div>
@@ -210,19 +221,21 @@
                                 <div class="comment-form-area">
                                     <h4>Write a review</h4>
 
-                                    <select id="ratings">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
+                                    {{ Form::open( [ 'route' => [ 'vendors.reviews.store', $vendor->code ], 'class' => 'comment-reply-form' ] ) }}
 
-                                    <div class="media comment-form">
-                                        
-                                        <div class="media-body">
-                                            {{ Form::open( [ 'route' => [ 'vendors.reviews.store', $vendor->code ], 'class' => 'comment-reply-form' ] ) }}
+                                        <div class="form-group {{ $errors->has( 'selected_ratings' ) ? 'has-error' : '' }}">
+                                            {{ Form::select( 'ratings', [ 
+                                                '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5' 
+                                                ], '', [ 'id' => 'ratings', 'class' => 'form-control' ] ) }}
+                                                {{ Form::hidden( 'selected_ratings', old( 'selected_ratings' ), [ 'id' => 'selected_ratings' ] ) }}
+                                                @if( $errors->has( 'selected_ratings' ) )
+                                                    <span class="help-block">{{ $errors->first( 'selected_ratings' ) }}</span>
+                                                @endif
+                                        </div>
 
+                                        <div class="media comment-form">
+                                            
+                                            <div class="media-body">
                                                 <div class="form-group {{ $errors->has( 'review' ) ? 'has-error' : '' }}">
                                                     {{ Form::textarea( 'review', old( 'review' ), [ 'placeholder' => 'Write your review here...' ] ) }}
                                                     @if( $errors->has( 'review' ) )
@@ -231,10 +244,11 @@
                                                 </div>
                                                 
                                                 <button class="btn btn--sm btn--round" type="submit">Post Comment</button>
-                                            {{ Form::close() }}
-                                        </div>
+                                            </div>
 
-                                    </div><!-- comment reply -->
+                                        </div><!-- comment reply -->
+
+                                    {{ Form::close() }}
                                 </div><!-- end /.comment-form-area -->
 
 

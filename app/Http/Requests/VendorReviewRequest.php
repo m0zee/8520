@@ -24,7 +24,8 @@ class VendorReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'review' => 'required'
+            'selected_ratings'  => 'required|regex:/[1-5]/',
+            'review'            => 'required',
         ];
     }
 
@@ -36,7 +37,9 @@ class VendorReviewRequest extends FormRequest
     public function messages()
     {
         return [
-            'review.required' => 'Please type :attribute.'
+            'selected_ratings.required' => 'Please rate this vendor',
+            'selected_ratings.regex'    => 'Please rate this vendor',
+            'review.required'           => 'Please type :attribute.'
         ];
     }
 }
