@@ -4,6 +4,7 @@
             <div class="col-md-12">
                 <ul class="dashboard_menu">
                     <li><a href="dashboard.html"><span class="lnr lnr-home"></span>Dashboard</a></li>
+                    <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Company Profile</a></li>
                     <li class="active"><a href="{{ route('my-account.product') }}"><span class="lnr lnr-cog"></span>Product</a></li>
                     <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Purchase</a></li>
                     <li><a href="dashboard-add-credit.html"><span class="lnr lnr-dice"></span>Add Credits</a></li>

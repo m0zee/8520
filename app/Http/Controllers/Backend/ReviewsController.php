@@ -75,7 +75,7 @@ class ReviewsController extends Controller
 
         if( ! $review )
         {
-            $review->
+            //$review->
         }
         return $review;
     }
