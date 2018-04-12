@@ -3,11 +3,10 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="dashboard_menu">
-                    <li><a href="dashboard.html"><span class="lnr lnr-home"></span>Dashboard</a></li>
-                    <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Company Profile</a></li>
-                    <li class="active"><a href="{{ route('my-account.product') }}"><span class="lnr lnr-cog"></span>Product</a></li>
-                    <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Purchase</a></li>
-                    <li><a href="dashboard-manage-item.html"><span class="lnr lnr-briefcase"></span>Manage Items</a></li>
+                    <li class="active"><a href="{{ url('dashboard') }}"><span class="lnr lnr-home"></span>Dashboard</a></li>
+                    <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Profile</a></li>
+                    <li><a href="#"><span class="lnr lnr-cog"></span>Reviews</a></li>
+                    <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Shortlist</a></li>
                     <li><a href="dashboard-withdrawal.html"><span class="lnr lnr-briefcase"></span>Withdrawals</a></li>
                 </ul><!-- end /.dashboard_menu -->
             </div><!-- end /.col-md-12 -->

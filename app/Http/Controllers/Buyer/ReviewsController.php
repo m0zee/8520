@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Buyer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Review;
 
 class ReviewsController extends Controller
 {
@@ -15,31 +14,7 @@ class ReviewsController extends Controller
      */
     public function index()
     {
-        $this->data['reviews'] = Review::with( 'vendor', 'user', 'status' )->paginate( 10 );
-        // return $this->data['reviews'];
-        return view( 'backend.review.index', $this->data );
-    }
-
-
-
-
-
-    public function approve( $review_id )
-    {
-        Review::where( 'id', $review_id )->update( [ 'status_id' => 2 ] );
-
-        return redirect()->back()->with( 'success', 'Review has been successfully approved!' );
-    }
-
-
-
-
-
-    public function reject( $review_id )
-    {
-        Review::where( 'id', $review_id )->update( [ 'status_id' => 3 ] );
-
-        return redirect()->back()->with( 'success', 'Review rejected.' );
+        return view('buyer.review.index');
     }
 
     /**
@@ -47,10 +22,10 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     //
-    // }
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -58,10 +33,10 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
+    public function store(Request $request)
+    {
+        //
+    }
 
     /**
      * Display the specified resource.
@@ -69,10 +44,10 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //     //
-    // }
+    public function show($id)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -80,10 +55,10 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id)
-    // {
-    //     //
-    // }
+    public function edit($id)
+    {
+        //
+    }
 
     /**
      * Update the specified resource in storage.
@@ -92,10 +67,10 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
+    public function update(Request $request, $id)
+    {
+        //
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -103,8 +78,8 @@ class ReviewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function destroy($id)
-    // {
-    //     //
-    // }
+    public function destroy($id)
+    {
+        //
+    }
 }
