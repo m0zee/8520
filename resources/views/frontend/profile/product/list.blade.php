@@ -2,6 +2,8 @@
 
 @section( 'title', 'Product' )
 
+@section( 'body_class', 'dashboard-edit' )
+
 @section( 'content' )
 
 
@@ -46,7 +48,7 @@
 
                             <div class="pull-right">
                                 <div class="filter__option filter--text">
-                                    <p><span>26</span> Products</p>
+                                    <p><span>{{ $products->count() }}</span> Products</p>
                                 </div>
 
                                 {{-- <div class="filter__option filter--select">
@@ -66,13 +68,24 @@
                 </div><!-- end /.row -->
 
                 <div class="row">
+                @if ($products->count() > 0)
+                        
+                    @foreach ($products as $product)
+                        {{-- expr --}}
+                    
                     <!-- start .col-md-4 -->
                     <div class="col-md-4 col-sm-6">
                         <!-- start .single-product -->
                         <div class="product product--card">
 
                             <div class="product__thumbnail">
-                                <img src="images/p1.jpg" alt="Product Image">
+
+                            @if (file_exists( $product->img_path.'/'.$product->img ))
+                                <img src="{{ asset('storage/product/'.$product->img) }}" alt="Product Image" width="360px" height="229px">
+                            @else
+                                <img src="{{ asset('images/p1.jpg') }}" alt="Product Image" width="360px" height="229px">
+
+                            @endif
 
                                 <div class="prod_option">
                                     <a href="#" id="drop2" class="dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -90,319 +103,52 @@
                             </div><!-- end /.product__thumbnail -->
 
                             <div class="product-desc">
-                                <a href="#" class="product_title"><h4>MartPlace Extension Bundle</h4></a>
+                                <a href="#" class="product_title"><h4>{{ $product->name }}</h4></a>
                                 <ul class="titlebtm">
                                     <li>
-                                        <img class="auth-img" src="images/auth.jpg" alt="author image">
-                                        <p><a href="#">AazzTech</a></p>
+                                        <p><b>Ref :</b> {{ $product->code }}</p>
                                     </li>
+                                    
+
                                     <li class="product_cat">
-                                        <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
+                                        <b>Category:</b> 
+                                        {{ $product->sub_category->category->name }}
+                                        <span class="lnr lnr-chevron-right"></span>{{ $product->sub_category->name }}
+                                    </li>
+
+                                    <li class="product_cat">
+                                        <b>Max Supply:</b> 
+                                        {{ $product->unit->name }} : 
+                                        {{ $product->max_supply }}
                                     </li>
                                 </ul>
-
-                                <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                    the mattis, leo quam aliquet congue.</p>
                             </div><!-- end /.product-desc -->
 
                             <div class="product-purchase">
                                 <div class="price_love">
-                                    <span>$10 - $50</span>
-                                    <p><span class="lnr lnr-heart"></span> 90</p>
+                                    <span>{{ $product->currency->name.' '.$product->price }}</span>
                                 </div>
-                                <div class="sell"><p><span class="lnr lnr-cart"></span><span>16</span></p></div>
-                            </div><!-- end /.product-purchase -->
-                        </div><!-- end /.single-product -->
-                    </div><!-- end /.col-md-4 -->
+                                @php
+                                    if($product->status_id == '1')
+                                        $class = 'label-warning';
 
-                    <!-- start .col-md-4 -->
-                    <div class="col-md-4 col-sm-6">
-                        <!-- start .single-product -->
-                        <div class="product product--card">
+                                    elseif ($product->status_id == '2') 
+                                        $class = 'label-success';
 
-                            <div class="product__thumbnail">
-                                <img src="images/p2.jpg" alt="Product Image">
+                                    else
+                                        $class = 'label-danger';
 
-                                <div class="prod_option">
-                                    <a href="#" id="drop1" class="dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <span class="lnr lnr-cog setting-icon"></span>
-                                    </a>
+                                @endphp
 
-                                    <div class="options dropdown-menu" aria-labelledby="drop1">
-                                        <ul>
-                                            <li><a href="edit-item.html"><span class="lnr lnr-pencil"></span>Edit</a></li>
-                                            <li><a href="#"><span class="lnr lnr-eye"></span>Hide</a></li>
-                                            <li><a href="#" class="delete"><span class="lnr lnr-trash"></span>Delete</a></li>
-                                        </ul>
+                                    <div class="label {{ $class }} price_love">
+                                        {{ $product->status->name }}
                                     </div>
-                                </div>
-                            </div><!-- end /.product__thumbnail -->
-
-                            <div class="product-desc">
-                                <a href="#" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
-                                <ul class="titlebtm">
-                                    <li>
-                                        <img class="auth-img" src="images/auth2.jpg" alt="author image">
-                                        <p><a href="#">AazzTech</a></p>
-                                    </li>
-                                    <li class="product_cat">
-                                        <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
-                                    </li>
-                                </ul>
-
-                                <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                    the mattis, leo quam aliquet congue.</p>
-                            </div><!-- end /.product-desc -->
-
-                            <div class="product-purchase">
-                                <div class="price_love">
-                                    <span>$10</span>
-                                    <p><span class="lnr lnr-heart"></span> 48</p>
-                                </div>
-
-                                <div class="rating product--rating">
-                                    <ul>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star-half-o"></span></li>
-                                    </ul>
-                                </div>
-
-                                <div class="sell"><p><span class="lnr lnr-cart"></span><span>50</span></p></div>
                             </div><!-- end /.product-purchase -->
                         </div><!-- end /.single-product -->
                     </div><!-- end /.col-md-4 -->
 
-                    <!-- start .col-md-4 -->
-                    <div class="col-md-4 col-sm-6">
-                        <!-- start .single-product -->
-                        <div class="product product--card">
+                    @endforeach
 
-                            <div class="product__thumbnail">
-                                <img src="images/p3.jpg" alt="Product Image">
-
-                                <div class="prod_option">
-                                    <a href="#" id="drop4" class="dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <span class="lnr lnr-cog setting-icon"></span>
-                                    </a>
-
-                                    <div class="options dropdown-menu" aria-labelledby="drop4">
-                                        <ul>
-                                            <li><a href="edit-item.html"><span class="lnr lnr-pencil"></span>Edit</a></li>
-                                            <li><a href="#"><span class="lnr lnr-eye"></span>Hide</a></li>
-                                            <li><a href="#" class="delete"><span class="lnr lnr-trash"></span>Delete</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!-- end /.product__thumbnail -->
-
-                            <div class="product-desc">
-                                <a href="#" class="product_title"><h4>Visibility Manager Subscriptions</h4></a>
-                                <ul class="titlebtm">
-                                    <li>
-                                        <img class="auth-img" src="images/auth3.jpg" alt="author image">
-                                        <p><a href="#">AazzTech</a></p>
-                                    </li>
-                                    <li class="product_cat">
-                                        <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
-                                    </li>
-                                </ul>
-
-                                <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                    the mattis, leo quam aliquet congue.</p>
-                            </div><!-- end /.product-desc -->
-
-                            <div class="product-purchase">
-                                <div class="price_love">
-                                    <span>Free</span>
-                                    <p><span class="lnr lnr-heart"></span> 24</p>
-                                </div>
-
-                                <div class="rating product--rating">
-                                    <ul>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star-half-o"></span></li>
-                                    </ul>
-                                </div>
-
-                                <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
-                            </div><!-- end /.product-purchase -->
-                        </div><!-- end /.single-product -->
-                    </div><!-- end /.col-md-4 -->
-
-                    <!-- start .col-md-4 -->
-                    <div class="col-md-4 col-sm-6">
-                        <!-- start .single-product -->
-                        <div class="product product--card">
-
-                            <div class="product__thumbnail">
-                                <img src="images/p4.jpg" alt="Product Image">
-
-                                <div class="prod_option">
-                                    <a href="#" id="drop5" class="dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <span class="lnr lnr-cog setting-icon"></span>
-                                    </a>
-
-                                    <div class="options dropdown-menu" aria-labelledby="drop5">
-                                        <ul>
-                                            <li><a href="edit-item.html"><span class="lnr lnr-pencil"></span>Edit</a></li>
-                                            <li><a href="#"><span class="lnr lnr-eye"></span>Hide</a></li>
-                                            <li><a href="#" class="delete"><span class="lnr lnr-trash"></span>Delete</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!-- end /.product__thumbnail -->
-
-                            <div class="product-desc">
-                                <a href="#" class="product_title"><h4>Ajax Live Search</h4></a>
-                                <ul class="titlebtm">
-                                    <li>
-                                        <img class="auth-img" src="images/auth.jpg" alt="author image">
-                                        <p><a href="#">AazzTech</a></p>
-                                    </li>
-                                    <li class="product_cat">
-                                        <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
-                                    </li>
-                                </ul>
-
-                                <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                    the mattis, leo quam aliquet congue.</p>
-                            </div><!-- end /.product-desc -->
-
-                            <div class="product-purchase">
-                                <div class="price_love">
-                                    <span>$10 - $50</span>
-                                    <p><span class="lnr lnr-heart"></span> 90</p>
-                                </div>
-
-                                <div class="rating product--rating">
-                                    <ul>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star-half-o"></span></li>
-                                    </ul>
-                                </div>
-
-                                <div class="sell"><p><span class="lnr lnr-cart"></span><span>16</span></p></div>
-                            </div><!-- end /.product-purchase -->
-                        </div><!-- end /.single-product -->
-                    </div><!-- end /.col-md-4 -->
-
-                    <!-- start .col-md-4 -->
-                    <div class="col-md-4 col-sm-6">
-                        <!-- start .single-product -->
-                        <div class="product product--card">
-
-                            <div class="product__thumbnail">
-                                <img src="images/p5.jpg" alt="Product Image">
-
-                                <div class="prod_option">
-                                    <a href="#" id="drop6" class="dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <span class="lnr lnr-cog setting-icon"></span>
-                                    </a>
-
-                                    <div class="options dropdown-menu" aria-labelledby="drop6">
-                                        <ul>
-                                            <li><a href="edit-item.html"><span class="lnr lnr-pencil"></span>Edit</a></li>
-                                            <li><a href="#"><span class="lnr lnr-eye"></span>Hide</a></li>
-                                            <li><a href="#" class="delete"><span class="lnr lnr-trash"></span>Delete</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!-- end /.product__thumbnail -->
-
-                            <div class="product-desc">
-                                <a href="#" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
-                                <ul class="titlebtm">
-                                    <li>
-                                        <img class="auth-img" src="images/auth2.jpg" alt="author image">
-                                        <p><a href="#">AazzTech</a></p>
-                                    </li>
-                                    <li class="product_cat">
-                                        <a href="#"><span class="lnr lnr-book"></span>Plugin</a>
-                                    </li>
-                                </ul>
-
-                                <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                    the mattis, leo quam aliquet congue.</p>
-                            </div><!-- end /.product-desc -->
-
-                            <div class="product-purchase">
-                                <div class="price_love">
-                                    <span>$10</span>
-                                    <p><span class="lnr lnr-heart"></span> 48</p>
-                                </div>
-                                <div class="sell"><p><span class="lnr lnr-cart"></span><span>50</span></p></div>
-                            </div><!-- end /.product-purchase -->
-                        </div><!-- end /.single-product -->
-                    </div><!-- end /.col-md-4 -->
-
-                    <!-- start .col-md-4 -->
-                    <div class="col-md-4 col-sm-6">
-                        <!-- start .single-product -->
-                        <div class="product product--card">
-
-                            <div class="product__thumbnail">
-                                <img src="images/p6.jpg" alt="Product Image">
-
-                                <div class="prod_option">
-                                    <a href="#" id="drop7" class="dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <span class="lnr lnr-cog setting-icon"></span>
-                                    </a>
-
-                                    <div class="options dropdown-menu" aria-labelledby="drop7">
-                                        <ul>
-                                            <li><a href="edit-item.html"><span class="lnr lnr-pencil"></span>Edit</a></li>
-                                            <li><a href="#"><span class="lnr lnr-eye"></span>Hide</a></li>
-                                            <li><a href="#" class="delete"><span class="lnr lnr-trash"></span>Delete</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!-- end /.product__thumbnail -->
-
-                            <div class="product-desc">
-                                <a href="#" class="product_title"><h4>Visibility Manager Subscriptions</h4></a>
-                                <ul class="titlebtm">
-                                    <li>
-                                        <img class="auth-img" src="images/auth3.jpg" alt="author image">
-                                        <p><a href="#">AazzTech</a></p>
-                                    </li>
-                                    <li class="product_cat">
-                                        <a href="#"><span class="lnr lnr-book"></span>WordPress</a>
-                                    </li>
-                                </ul>
-
-                                <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                    the mattis, leo quam aliquet congue.</p>
-                            </div><!-- end /.product-desc -->
-
-                            <div class="product-purchase">
-                                <div class="price_love">
-                                    <span>Free</span>
-                                    <p><span class="lnr lnr-heart"></span> 24</p>
-                                </div>
-
-                                <div class="rating product--rating">
-                                    <ul>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star-half-o"></span></li>
-                                    </ul>
-                                </div>
-
-                                <div class="sell"><p><span class="lnr lnr-cart"></span><span>27</span></p></div>
-                            </div><!-- end /.product-purchase -->
-                        </div><!-- end /.single-product -->
-                    </div><!-- end /.col-md-4 -->
                 </div>
 
                 <div class="row">
@@ -420,6 +166,14 @@
                         </div><!-- end /.pagination-area -->
                     </div><!-- end /.col-md-12 -->
                 </div><!-- end /.row -->
+
+                @else
+
+                    <div class="col-md-12">
+                        <div class="alert alert-danger text-center"> No Product Found!</div>
+                    </div>
+
+                @endif
             </div><!-- end /.container -->
         </div><!-- end /.dashboard_menu_area -->
     </section>

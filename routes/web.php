@@ -19,9 +19,11 @@ Route::get('/contact', function() {
 	return view('frontend.contact')->with( 'blue_menu', true );
 })->name("contact");
 
-Route::get( '/products', function() {
-	return view('frontend.products')->with( 'blue_menu', true );
-})->name( 'products' );
+// Route::get( '/products', function() {
+// 	return view('frontend.products')->with( 'blue_menu', true );
+// })->name( 'products' );
+
+Route::get('/products', 'ProductController@index')->name('products');
 
 Auth::routes();
 
@@ -75,9 +77,9 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 	]);
 
 	Route::group( [ 'prefix' => 'my-account' ], function() {
-		Route::get( '/products',  'ProductController@index' )->name( 'my-account.product' );
-		Route::get( '/products/create',  'ProductController@create' )->name( 'my-account.product.create' );
-		Route::post( '/products/create',  'ProductController@store' )->name( 'my-account.product.store' );
+		Route::get( '/products',  'MyAccount\ProductController@index' )->name( 'my-account.product' );
+		Route::get( '/products/create',  'MyAccount\ProductController@create' )->name( 'my-account.product.create' );
+		Route::post( '/products/create',  'MyAccount\ProductController@store' )->name( 'my-account.product.store' );
 	});
 });
 

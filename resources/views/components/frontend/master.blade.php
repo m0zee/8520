@@ -35,7 +35,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url( 'images/favicon.png' ) }}">
 </head>
 
-<body class="home1 mutlti-vendor">
+{{-- <body class="home1 mutlti-vendor"> --}}
+<body class="@yield('body_class')">
 
 <!-- ================================
     START MENU AREA

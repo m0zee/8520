@@ -390,7 +390,7 @@
                         }
                         else if(res.errors != '')
                         {
-                            alert(res.errors);
+                            console.log(res.errors);
                         }
                         // $(my_form_id)[0].reset(); //reset form
                         // $(result_output).html(res); //output response from server

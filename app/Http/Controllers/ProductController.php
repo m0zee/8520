@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Product as Product;
+use App\Product;
 use App\Category;
 use App\Country;
 use Illuminate\Support\Facades\Validator;
@@ -20,8 +20,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::where( 'user_id', Auth::user()->id )->get();
-        return view('frontend.profile.product.list')->withProduct($product);
+        $categories = Category::with('subcategory.product')->get();
+
+        // return $categories;
+        // $product = Product::with('user.detail', 'status', 'currency', 'unit', 'sub_category.category')->where( 'status_id', 2 )->get();
+         return view('frontend.products')->with( 'blue_menu', true );
     }
 
     /**
