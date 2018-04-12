@@ -233,7 +233,7 @@
                             <div class="dropdown dropdown--author">
                                 <ul>
                                     <li><a href="{{route('profile.edit', [Auth::user()->code])}}"><span class="lnr lnr-user"></span>Profile</a></li>
-                                    <li><a href="dashboard.html"><span class="lnr lnr-home"></span> Dashboard</a></li>
+                                    <li><a href="{{url('dashboard')}}"><span class="lnr lnr-home"></span> Dashboard</a></li>
                                     <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
                                     <li><a href="{{route('my-account.product',[Auth::user()->code])}}"><span class="lnr lnr-book"></span>Products</a>
                                     </li>

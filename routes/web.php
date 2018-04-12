@@ -79,6 +79,8 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 		Route::get( '/products/create',  'ProductController@create' )->name( 'my-account.product.create' );
 		Route::post( '/products/create',  'ProductController@store' )->name( 'my-account.product.store' );
 	});
+
+	Route::resource( 'dashboard', "Buyer\DasboardController");
 });
 
 

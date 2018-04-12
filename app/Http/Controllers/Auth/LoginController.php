@@ -51,6 +51,11 @@ class LoginController extends Controller
         if($user->user_type_id == '3') {
             return redirect()->intended('/admin/dashboard');
         }
+        
+        if($user->user_type_id == '1') {
+            return redirect()->intended('dashboard');
+        }
+        
         if ($user->user_type_id == '2') 
         {
             $detail = VendorDetail::where('user_id', $user->id)->first();
