@@ -21,6 +21,11 @@ class Review extends Model
     	return $this->belongsTo( \App\User::class );
     }
 
+    public function status()
+    {
+        return $this->hasOne( \App\Status::class, 'id', 'status_id' );
+    }
+
     // ***************************
     //          ACCESSORS
     // ***************************
