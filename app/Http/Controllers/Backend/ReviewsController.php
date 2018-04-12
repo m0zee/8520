@@ -15,18 +15,31 @@ class ReviewsController extends Controller
      */
     public function index()
     {
-        $this->data['reviews'] = Review::where( 'status_id', 1 )->with( 'vendor', 'user' )->get();
+        $this->data['reviews'] = Review::with( 'vendor', 'user', 'status' )->paginate( 10 );
         // return $this->data['reviews'];
         return view( 'backend.review.index', $this->data );
     }
 
+
+
+
+
     public function approve( $review_id )
     {
         Review::where( 'id', $review_id )->update( [ 'status_id' => 2 ] );
+
         return redirect()->back()->with( 'success', 'Review has been successfully approved!' );
-        // echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
-        // print_r( $review_id );
-        // echo '</pre>'; die;
+    }
+
+
+
+
+
+    public function reject( $review_id )
+    {
+        Review::where( 'id', $review_id )->update( [ 'status_id' => 3 ] );
+
+        return redirect()->back()->with( 'success', 'Review rejected.' );
     }
 
     /**

@@ -11,27 +11,27 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/recover-password', function () {
-    return view('frontend.recover_password');
+Route::get( '/recover-password', function () {
+    return view( 'frontend.recover_password' );
 });
 
-Route::get('/contact', function() {
-	return view('frontend.contact')->with( 'blue_menu', true );
-})->name("contact");
+Route::get( '/contact', function() {
+	return view( 'frontend.contact' )->with( 'blue_menu', true );
+})->name( 'contact' );
 
 Route::get( '/products', function() {
-	return view('frontend.products')->with( 'blue_menu', true );
+	return view( 'frontend.products' )->with( 'blue_menu', true );
 })->name( 'products' );
 
 Auth::routes();
 
-Route::get('admin/login', function() {
-	return view('backend.login');
+Route::get( 'admin/login', function() {
+	return view( 'backend.login' );
 });
 
 Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	
-	Route::get('/admin/dashboard', 'Backend\DashboardController@index')->name('admin.dashboard');
+	Route::get( '/admin/dashboard', 'Backend\DashboardController@index')->name('admin.dashboard');
 	
 	Route::get('/admin/users/{type}', 				'Backend\UserController@index')->name('admin.userlist');
 	Route::put('/admin/users/{user_id}/approve/', 	'Backend\UserController@approve')->name('admin.user.approve');
@@ -65,6 +65,7 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 		'only' => [ 'index' ]
 	]);
 	Route::get( 'reviews/{review_id}/approve', 'Backend\ReviewsController@approve' )->name( 'reviews.approve' );
+	Route::get( 'reviews/{review_id}/reject', 'Backend\ReviewsController@reject' )->name( 'reviews.reject' );
 });
 
 
