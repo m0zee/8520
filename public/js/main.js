@@ -1,9 +1,10 @@
 (function($){
-        // ======> added by me //
+        // ======> added by AG-devs //
         $.ajaxSetup({
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content') }
         });
-        // added by me <===== // 
+        $( '.tip' ).tooltip();
+        // added by AG-devs <===== // 
 
         "use strict";
 

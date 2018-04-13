@@ -1,11 +1,11 @@
     @extends( 'components.frontend.master' )
 
-    @section('title', 'Login')
+    @section( 'title', 'Profile' )
 
+    @section( 'content' )
     <!--================================
         START BREADCRUMB AREA
     =================================-->
-    @section('content')
     <section class="breadcrumb-area">
         <div class="container">
             <div class="row">
@@ -31,8 +31,6 @@
     =================================-->
     <section class="dashboard-area">
         @include( 'components.frontend.vendor_menu' )
-
-
 
         <div class="dashboard_contents">
             <div class="container">
@@ -108,12 +106,12 @@
                                                     <div class="select-wrap select-wrap2">
                                                         {{ Form::select('country_id', $country, NULL, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
                                                         <span class="lnr lnr-chevron-down"></span>
-                                                        @if ($errors->has('country_id'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('country_id') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
+                                                    @if( $errors->has( 'country_id' ) )
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first( 'country_id' ) }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             
@@ -125,12 +123,12 @@
                                                             <option value="">Please Select</option>
                                                         </select>
                                                         <span class="lnr lnr-chevron-down"></span>
-                                                        @if ($errors->has('state_id'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('state_id') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
+                                                    @if( $errors->has( 'state_id' ) )
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first( 'state_id' ) }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             
@@ -142,34 +140,38 @@
                                                             <option value="">Please Select</option>
                                                         </select>
                                                         <span class="lnr lnr-chevron-down"></span>
-
-                                                        @if ($errors->has('city_id'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('city_id') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
+                                                    @if( $errors->has( 'city_id' ) )
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first( 'city_id' ) }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
 
 
 
-                                        <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
+                                        <div class="form-group {{ $errors->has( 'address' ) ? ' has-error' : '' }}">
                                             <label for="address">Address</label>
                                             <input type="text" id="address" class="text_field" name="address" placeholder="Write your address">
-                                            @if ($errors->has('address'))
+                                            @if( $errors->has( 'address' ) )
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('address') }}</strong>
+                                                    <strong>{{ $errors->first( 'address' ) }}</strong>
                                                 </span>
                                             @endif
                                         </div>
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group {{ $errors->has( 'mobile_number' ) ? ' has-error' : '' }}">
                                                     <label for="mobile_number">Mobile Number</label>
                                                     <input type="text" id="mobile_number" name="mobile_number" class="text_field" placeholder="Mobile Number">
+                                                    @if( $errors->has( 'mobile_number' ) )
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first( 'mobile_number' ) }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

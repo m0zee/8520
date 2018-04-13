@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Product;
 use App\Category;
+use App\SubCategory;
 use App\Country;
 use Illuminate\Support\Facades\Validator;
 
@@ -95,10 +96,6 @@ class ProductController extends Controller
     public function get_by_category($category_slug)
     {
         $categories = Category::with('sub_category')->where('slug', $category_slug)->first();
-        // // return $categories;
-        // foreach ($categories->sub_category as $category) {
-        //     return $category->name;
-        // }
         $products = DB::table('products as p')
                     ->select
                     (
@@ -114,12 +111,17 @@ class ProductController extends Controller
                     ->join( 'users as u', 'u.id', '=', 'p.user_id' )
                     ->join( 'vendor_details as vd', 'vd.user_id', '=', 'u.id' )
                     ->join( 'currencies as cur', 'cur.id', '=', 'p.currency_id' )
-                    // ->join( 'units as un', 'un.id', '=', 'p.unit_id' )
                     ->where('c.slug', $category_slug)
                     ->get();
-
-                    // return $products;
         return view('frontend.product.category_wise_products', compact('categories', 'products'))->with( 'blue_menu', true );
 
+    }
+
+
+    public function get_by_sub_category($category_slug, $sub_category_slug)
+    {
+        $sub_category_products = SubCategory::where('slug', $sub_category_slug )->with('product.user.detail', 'product.currency')->first();
+        // return $sub_category_products;
+        return view('frontend.product.sub_category_wise_products', compact('sub_category_products'))->with( 'blue_menu', true );
     }
 }
