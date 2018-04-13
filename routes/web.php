@@ -20,11 +20,9 @@ Route::get( '/contact', function() {
 })->name( 'contact' );
 
 
-// Route::get( '/products', function() {
-// 	return view('frontend.products')->with( 'blue_menu', true );
-// })->name( 'products' );
-
 Route::get('/products', 'ProductController@index')->name('products');
+Route::get('/categories/{category_slug}/products', 'ProductController@get_by_category')->name('categories.products');
+
 
 Auth::routes();
 

@@ -20,11 +20,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories = Category::with('subcategory.product')->get();
-
-        // return $categories;
-        // $product = Product::with('user.detail', 'status', 'currency', 'unit', 'sub_category.category')->where( 'status_id', 2 )->get();
-         return view('frontend.products')->with( 'blue_menu', true );
+        $categories = Category::get();
+        $products = Product::with('sub_category.category', 'user.detail', 'currency')->get();
+        return view('frontend.product.index', compact('categories', 'products'))->with( 'blue_menu', true );
     }
 
     /**
@@ -34,11 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $countries = Country::pluck('name', 'id');
-        $categories = Category::pluck('name', 'id');
-        $units = DB::table('units')->pluck('name', 'id');
-        $currencies = DB::table('currencies')->pluck('name', 'id');
-        return view('frontend.profile.product.create', compact('categories', 'countries', 'currencies', 'units'));
+        //
     }
 
     /**
@@ -49,52 +43,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(
-            $request->all(), [
-            '__files.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'category_id' => 'required',
-            'sub_category_id' => 'required',
-            'brand_name' => 'required',
-            'name' => 'required',
-            'country_id' => 'required',
-            'unit_id' => 'required',
-            'max_supply' => 'required',
-            'currency_id' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-        ]);
-        if ($validator->fails())
-        {
-            return json_encode(['errors' => $validator->errors()]);
-        }
-
-        $files = $request->__files[0];
-        $path = public_path('storage/product');
-        $imageName = time().'.'.$files->getClientOriginalName();
-        $files->move( $path, $imageName );
-        
-        $lastProduct = Product::orderBy( 'id', 'DESC' )->first();
-        $code = ( $lastProduct ) ? $this->generate_code( $lastProduct->code ) : 'pr-0001';
-
-        $data = [
-            'name' => $request->name,
-            'code' => $code,
-            'description' => $request->description,
-            'brand_name' => $request->brand_name,
-            'sub_category_id' =>$request->sub_category_id,
-            'country_id' => $request->country_id,
-            'max_supply' => $request->max_supply,
-            'unit_id' => $request->unit_id,
-            'currency_id' => $request->currency_id,
-            'price' => $request->price,
-            'img_path' => $path,
-            'img' => $imageName,
-            'user_id' => Auth::user()->id,
-            'status_id' => '2'
-        ];
-
-        Product::create($data);
-        return json_encode(['success' => true]);
+        //
     }
 
     /**
@@ -143,32 +92,34 @@ class ProductController extends Controller
     }
 
 
-
-    public function generate_code( $code )
+    public function get_by_category($category_slug)
     {
-        $code =  explode( '-', $code );
+        $categories = Category::with('sub_category')->where('slug', $category_slug)->first();
+        // // return $categories;
+        // foreach ($categories->sub_category as $category) {
+        //     return $category->name;
+        // }
+        $products = DB::table('products as p')
+                    ->select
+                    (
+                        'p.*', 
+                        'sc.name as sub_category_name', 'sc.slug as sub_category_slug', 
+                        'c.name as category_name', 'c.slug as category_slug', 
+                        'vd.company_name', 'vd.profile_path', 'vd.profile_img', 
+                        'cur.name as currency'
+                        // , 'un.name as unit'
+                    )
+                    ->join('sub_categories AS sc', 'sc.id', '=', 'p.sub_category_id')
+                    ->join( 'categories as c', 'c.id', '=', 'sc.category_id' )
+                    ->join( 'users as u', 'u.id', '=', 'p.user_id' )
+                    ->join( 'vendor_details as vd', 'vd.user_id', '=', 'u.id' )
+                    ->join( 'currencies as cur', 'cur.id', '=', 'p.currency_id' )
+                    // ->join( 'units as un', 'un.id', '=', 'p.unit_id' )
+                    ->where('c.slug', $category_slug)
+                    ->get();
 
-        $index  = $code[1] + 1;
+                    // return $products;
+        return view('frontend.product.category_wise_products', compact('categories', 'products'))->with( 'blue_menu', true );
 
-        $length = strlen( $index );
-
-        switch( $length )
-        {
-            case 1:
-                $index = '000' . $index;
-            break;
-            
-            case 2:
-                $index = '00' . $index;
-            break;
-
-            case 3:
-                $index = '0' . $index;
-            break;
-        }
-
-        $code = 'pr-'. $index;
-
-        return $code;
     }
 }
