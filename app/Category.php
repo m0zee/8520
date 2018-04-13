@@ -11,7 +11,7 @@ class Category extends Model
     ];
 
 
-    public function SubCategory()
+    public function sub_category()
     {
     	return $this->hasMany('App\SubCategory');
     }
