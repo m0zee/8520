@@ -1,3 +1,4 @@
+
 @extends( 'components.frontend.master' )
 
 @php  $active = 'dashboard';  @endphp
@@ -5,6 +6,7 @@
 @section( 'title', 'Dashboard' )
 
 @section( 'content' )
+
 
     <!--================================
         START BREADCRUMB AREA
@@ -16,7 +18,7 @@
                     <div class="breadcrumb">
                         <ul>
                             <li><a href="{{ url('') }}">Home</a></li>
-                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li><a href="{{ url('dashboard') }}">Dashboard</a></li>
                         </ul>
                     </div>
                     <h1 class="page-title">Buyer's Dashboard</h1>

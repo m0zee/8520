@@ -3,34 +3,26 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="dashboard_menu">
-                    <li>
+
+                    <li class="{{ ($active == 'dashboard') ? 'active' : ''  }}">
                         <a href="dashboard.html">
-                            <span class="lnr lnr-home"></span> Dashboard
+                            <span class="lnr lnr-home"></span>Dashboard
                         </a>
                     </li>
-                    <li>
-                        <a href="dashboard-purchase.html">
-                            <span class="lnr lnr-cart"></span> Company Profile
+                    <li class="{{ ($active == 'vendorProfile') ? 'active' : ''  }}">
+                        <a href="{{route('profile.edit' , [Auth::user()->code])}}">
+                            <span class="lnr lnr-cart"></span>Company Profile
                         </a>
                     </li>
-                    <li class="active">
+                    <li class="{{ ($active == 'product') ? 'active' : ''  }}" >
                         <a href="{{ route('my-account.product') }}">
-                            <span class="lnr lnr-cog"></span> Product
+                            <span class="lnr lnr-cog"></span>Product
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ ($active == 'messages') ? 'active' : ''  }}">
                         <a href="dashboard-purchase.html">
-                            <span class="lnr lnr-cart"></span> Purchase
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboard-manage-item.html">
-                            <span class="lnr lnr-briefcase"></span> Manage Items
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboard-withdrawal.html">
-                            <span class="lnr lnr-briefcase"></span> Withdrawals
+                            <span class="lnr lnr-cart"></span>Messages
+
                         </a>
                     </li>
                 </ul><!-- end /.dashboard_menu -->
