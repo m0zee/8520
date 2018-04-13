@@ -107,7 +107,7 @@ class ProductController extends Controller
                         'c.name as category_name', 'c.slug as category_slug', 
                         'vd.company_name', 'vd.profile_path', 'vd.profile_img', 
                         'cur.name as currency'
-                        // , 'un.name as unit'
+                        , 'u.code as user_code'
                     )
                     ->join('sub_categories AS sc', 'sc.id', '=', 'p.sub_category_id')
                     ->join( 'categories as c', 'c.id', '=', 'sc.category_id' )

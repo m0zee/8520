@@ -22,6 +22,7 @@ Route::get( '/contact', function() {
 
 Route::get('/products', 'ProductController@index')->name('products');
 Route::get('/categories/{category_slug}/products', 'ProductController@get_by_category')->name('categories.products');
+Route::get('/categories/{category_slug}/sub-categories/{sub_category_slug}/products', 'ProductController@get_by_category')->name('categories.sub-categories.products');
 
 
 Auth::routes();

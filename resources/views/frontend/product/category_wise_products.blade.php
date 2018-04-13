@@ -88,7 +88,7 @@
                                             
                                             <div class="prod_btn">
                                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                                <a href="single-product.html" class="transparent btn--sm btn--round">Contact</a>
+                                                <a href="{{  route('profile.show', [$product->user_code]) }}" class="transparent btn--sm btn--round">Contact</a>
                                             </div><!-- end /.prod_btn -->
                                         </div><!-- end /.product__thumbnail -->
 
@@ -101,7 +101,7 @@
                                                     @else
                                                         <img class="auth-img" src="{{ asset('images/auth.jpg') }}" alt="author image">
                                                     @endif
-                                                    <p><a href="#">{{ $product->company_name }}</a></p>
+                                                    <p><a href="{{  route('profile.show', [$product->user_code]) }}">{{ $product->company_name }}</a></p>
                                                 </li>
                                                 <br>
                                                 <li class="">
