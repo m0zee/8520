@@ -18,7 +18,7 @@
                 <div class="col-md-3">
                     <!-- start aside -->
                     <aside class="sidebar product--sidebar">
-                        <div class="sidebar-card card--category">
+                       {{--  <div class="sidebar-card card--category">
                             <a class="card-title" href="#collapse1" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapse1">
                                 <h4 >Categories <span class="lnr lnr-chevron-down"></span></h4>
                             </a>
@@ -32,7 +32,7 @@
                                     @endif
                                 </ul>
                             </div><!-- end /.collapsible_content -->
-                        </div><!-- end /.sidebar-card -->
+                        </div><!-- end /.sidebar-card --> --}}
 
                         <div class="sidebar-card card--filter">
                             <a class="card-title" href="#collapse2" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapse2">
@@ -72,8 +72,8 @@
                 <!-- start col-md-9 -->
                 <div class="col-md-9">
                     <div class="row">
-                        @if ($products->count() > 0 )
-                            @foreach ($products as $product)
+                        @if ($sub_category_products->product->count() > 0 )
+                             @foreach ($sub_category_products->product as $product)
                             
                                 <div class="col-md-4 col-sm-4">
                                     <!-- start .single-product -->
@@ -83,12 +83,12 @@
                                             @if (file_exists($product->img_path.'/'.$product->img))
                                                 <img class="auth-img" src="{{ asset('storage/product/'.$product->img) }}" alt="author image">
                                             @else
-                                                <img src="{{ asset('images/p1.jpg') }}" alt="Product Image">
+                                                <img src="images/p1.jpg" alt="Product Image">
                                             @endif
                                             
                                             <div class="prod_btn">
                                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                                <a href="{{  route('profile.show', [$product->user_code]) }}" class="transparent btn--sm btn--round">Contact</a>
+                                                <a href="{{ route('profile.show', [$product->user->code]) }}" class="transparent btn--sm btn--round">Contact</a>
                                             </div><!-- end /.prod_btn -->
                                         </div><!-- end /.product__thumbnail -->
 
@@ -96,21 +96,21 @@
                                             <a href="#" class="product_title"><h4>{{ $product->name }}</h4></a>
                                             <ul class="titlebtm">
                                                 <li>
-                                                    @if (file_exists($product->profile_path.'/'.$product->profile_img))
-                                                        <img class="auth-img" src="{{ asset('storage/profile_img/'.$product->profile_img) }}" alt="author image">
+                                                    @if (file_exists($product->user->detail->profile_path.'/'.$product->user->detail->profile_img))
+                                                        <img class="auth-img" src="{{ asset('storage/profile_img/'.$product->user->detail->profile_img) }}" alt="author image">
                                                     @else
-                                                        <img class="auth-img" src="{{ asset('images/auth.jpg') }}" alt="author image">
+                                                        <img class="auth-img" src="images/auth.jpg" alt="author image">
                                                     @endif
-                                                    <p><a href="{{  route('profile.show', [$product->user_code]) }}">{{ $product->company_name }}</a></p>
+                                                    <p><a href="{{ route('profile.show', [$product->user->code]) }}">{{ $product->user->detail->company_name }}</a></p>
                                                 </li>
                                                 <br>
                                                 <li class="">
-                                                    <a href="{{ route('categories.products', [$product->category_slug]) }}">{{ $product->category_name }}</a>
-                                                    <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->category_slug, $product->sub_category_slug]) }}">{{ $product->sub_category_name }}</a>
+                                                    <a href="{{ route('categories.products', [$product->sub_category->category->slug]) }}">{{ $product->sub_category->category->name }}</a>
+                                                    <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->sub_category->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a>
                                                 </li>
 
-                                                <li class="">
-                                                    <strong>Price : </strong>{{ $product->currency }} {{ $product->price }}</a>
+                                                <li>
+                                                    <strong>Price : </strong>{{ $product->currency->name }} {{ $product->price }}</a>
                                                 </li>
                                             </ul>
 

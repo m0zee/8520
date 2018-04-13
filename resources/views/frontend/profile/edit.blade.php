@@ -1,5 +1,7 @@
     @extends( 'components.frontend.master' )
-
+    @php
+    $vendor_active = 'vendorProfile';
+    @endphp
     @section('title', 'Login')
 
     <!--================================
