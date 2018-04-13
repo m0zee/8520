@@ -262,7 +262,7 @@
 
 @section('js')
 <script>
-    $(document).ready(function() {
+    $(function() {
         var base_url = $('#base_url').val();
         $('#category').on('change', function() {
             $this = $(this);
@@ -282,20 +282,15 @@
                     $('#sub_category').html(rows);
                 }
             });
-            
         }
 
         function makeRows(response) {
             var row = '<option value="0"> Please Select </options>';
             $.each(response, function(index, val) {
-                row +=  '<option value="'+val.id+'"> '+val.name+' </options>';
+                row += '<option value="'+val.id+'">' + val.name + '</options>';
             });
             return row;
         }
-
-
-
-
     });
 
         //configuration
@@ -324,8 +319,13 @@
         }else{
                 var total_selected_files = this.elements['__files[]'].files.length; //number of files
                 
+                //check if file is available
+                if( total_selected_files <= 0 ){
+                    error.push( "You have not selected image. Please select image."); //push error text
+                    proceed = false; //set proceed flag to false
+                }
                 //limit number of files allowed
-                if(total_selected_files > total_files_allowed){
+                else if(total_selected_files > total_files_allowed){
                     error.push( "You have selected "+total_selected_files+" file(s), " + total_files_allowed +" is maximum!"); //push error text
                     proceed = false; //set proceed flag to false
                 }
