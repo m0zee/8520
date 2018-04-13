@@ -13,17 +13,17 @@ class Review extends Model
     // ***************************
     public function vendor()
     {
-    	return $this->belongsTo( \App\User::class, 'vendor_code', 'code' );
+    	return $this->belongsTo( 'App\User', 'vendor_code', 'code' );
     }
 
     public function user()
     {
-    	return $this->belongsTo( \App\User::class );
+    	return $this->belongsTo( 'App\User' );
     }
 
     public function status()
     {
-        return $this->hasOne( \App\Status::class, 'id', 'status_id' );
+        return $this->hasOne( 'App\Status', 'id', 'status_id' );
     }
 
     // ***************************

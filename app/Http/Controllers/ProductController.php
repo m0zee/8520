@@ -22,8 +22,33 @@ class ProductController extends Controller
     public function index()
     {
         $categories = Category::get();
-        $products = Product::with('sub_category.category', 'user.detail', 'currency')->get();
-        return view('frontend.product.index', compact('categories', 'products'))->with( 'blue_menu', true );
+        $products   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->get();
+        
+        return view( 'frontend.product.index', compact( 'categories', 'products' ) )->with( 'blue_menu', true );
+    }
+
+
+
+
+
+    public function shortlist( Request $request )
+    {
+        $user = \App\User::find( Auth::user()->id );
+        $user->shortlistProducts()->attach( $request->product_id );
+
+        return [ 'status' => 200, 'message' => 'Product has been shortlisted successfully!' ];
+    }
+
+
+
+
+
+    public function unshortlist(\App\Product $product )
+    {
+        $user = \App\User::find( Auth::user()->id );
+        $user->shortlistProducts()->detach( $request->product_id );
+
+        return [ 'status' => 200, 'message' => 'Product has been removed from shortlist successfully!' ];
     }
 
     /**
@@ -31,10 +56,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -42,10 +67,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
@@ -64,10 +89,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    // public function edit($id)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -76,10 +101,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -87,24 +112,23 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    // public function destroy($id)
+    // {
+    //     //
+    // }
 
 
     public function get_by_category($category_slug)
     {
         $categories = Category::with('sub_category')->where('slug', $category_slug)->first();
         $products = DB::table('products as p')
-                    ->select
-                    (
+                    ->select(
                         'p.*', 
                         'sc.name as sub_category_name', 'sc.slug as sub_category_slug', 
                         'c.name as category_name', 'c.slug as category_slug', 
                         'vd.company_name', 'vd.profile_path', 'vd.profile_img', 
-                        'cur.name as currency'
-                        , 'u.code as user_code'
+                        'cur.name as currency',
+                        'u.code as user_code'
                     )
                     ->join('sub_categories AS sc', 'sc.id', '=', 'p.sub_category_id')
                     ->join( 'categories as c', 'c.id', '=', 'sc.category_id' )
@@ -113,8 +137,8 @@ class ProductController extends Controller
                     ->join( 'currencies as cur', 'cur.id', '=', 'p.currency_id' )
                     ->where('c.slug', $category_slug)
                     ->get();
-        return view('frontend.product.category_wise_products', compact('categories', 'products'))->with( 'blue_menu', true );
 
+        return view( 'frontend.product.category_wise_products', compact( 'categories', 'products' ) )->with( 'blue_menu', true );
     }
 
 

@@ -113,13 +113,16 @@
                                                     <strong>Price : </strong>{{ $product->currency->name }} {{ $product->price }}</a>
                                                 </li>
                                             </ul>
-
                                         </div><!-- end /.product-desc -->
 
                                         <div class="product-purchase text-center">
-                                            <button class="btn--icon my-btn btn--round">
-                                                <span class="lnr lnr-list"></span> More Info
+                                            <button data-product-id="{{ $product->id }}" data-shortlisted="{{ 0 }}"
+                                                 class="my-btn btn--round tip shortlist" title="Click to shortlist this product">
+                                                <span class="fa fa-heart-o"></span>
                                             </button>
+                                            {{-- <button class="btn--icon my-btn btn--round">
+                                                <span class="fa fa-heart"></span> 
+                                            </button> --}}
 
                                             <button class="btn--icon my-btn btn--round">
                                                 <span class="lnr lnr-envelope"></span> Contact
@@ -186,17 +189,8 @@
         END CALL TO ACTION AREA
     =================================-->
 
-
-  
-
-
-
-
-
-
-
-
-<!--================================
-    END CALL TO ACTION AREA
-=================================-->
 @endsection
+
+@section( 'js' )
+<script src="{{ url( 'js/page/frontend/product/index.js' ) }}"></script>
+@stop

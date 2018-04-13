@@ -33,12 +33,12 @@ class User extends Authenticatable
 
     public function detail()
     {
-        return $this->hasOne( \App\VendorDetail::class );
+        return $this->hasOne( 'App\VendorDetail' );
     }
 
     public function reviews()
     {
-        return $this->hasMany( \App\Review::class, 'vendor_code', 'code' );
+        return $this->hasMany( 'App\Review', 'vendor_code', 'code' );
     }
 
 
@@ -49,6 +49,11 @@ class User extends Authenticatable
 
     public function product()
     {
-        return $this->hasMany('App\Product');
+        return $this->hasMany( 'App\Product' );
+    }
+
+    public function shortlistProducts()
+    {
+        return $this->belongsToMany( 'App\Product' );
     }
 }
