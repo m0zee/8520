@@ -46,9 +46,9 @@ class ReviewsController extends Controller
     public function store( VendorReviewRequest $request, $vendor_code )
     {
         $user_id = Auth::user()->id;
-        // \Illuminate\Support\Facades\DB::enableQueryLog();
+        
         $row = Review::where( [ 'user_id' => $user_id, 'vendor_code' => $vendor_code ] )->first();
-        // return \Illuminate\Support\Facades\DB::getQueryLog();
+
         if( $row )
         {
             return redirect()->back()->with( 'error', 'You have already reviewd this vendor.' );
@@ -64,7 +64,7 @@ class ReviewsController extends Controller
 
         $review = Review::create( $review );
         
-        return redirect()->back()->with( 'success', 'Your reveiw has been saved and sent to the admin for approval. You can check the status of your review in -------- section.' );
+        return redirect()->back()->with( 'success', 'Your reveiw has been saved and sent to the admin for approval. You can check the status of your review in review section.' );
     }
 
     // public function ratings(Request $request, $vendor_code )

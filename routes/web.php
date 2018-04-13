@@ -84,7 +84,11 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 		Route::post( 'products/create',	'MyAccount\ProductController@store' )->name( 'my-account.product.store' );
 	});
 
-	Route::resource( 'dashboard', 'Buyer\DasboardController' );
+	Route::group( [ 'prefix' => 'buyer' ], function() {
+		Route::resource( 'dashboard', 	'Buyer\DashboardController', 	[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.dashboard' ] ] );
+		Route::resource( 'reviews', 	'Buyer\ReviewsController', 		[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.reviews' ] ] );
+		Route::resource( 'shortlist', 	'Buyer\ShortlistController', 	[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.shortlist' ] ] );
+	});
 });
 
 

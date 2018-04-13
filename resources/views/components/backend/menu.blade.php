@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <ul class="nav navbar-nav admin-menu ">
+                <ul class="nav navbar-nav admin-menu">
                     <li class="{{ ($active == 'dashboard') ? 'active' : ''  }}"><a href="{{ route('admin.dashboard')}}"><span class="lnr lnr-home"></span>Dashboard</a></li>
                     <li class="{{ ($active == 'users') ? 'active' : ''  }} has_dropdown">
                         <a href="#">

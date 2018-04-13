@@ -2,11 +2,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <ul class="dashboard_menu">
-                    <li class="active"><a href="{{ url('dashboard') }}"><span class="lnr lnr-home"></span>Dashboard</a></li>
+                <ul class="nav navbar-nav admin-menu">
+                    <li class="{{ ( $active == 'dashboard' ) ? 'active' : '' }}">
+                        <a href="{{ route( 'buyer.dashboard' ) }}">
+                            <span class="lnr lnr-home"></span>Dashboard
+                        </a>
+                    </li>
+                    
                     <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Profile</a></li>
-                    <li><a href="#"><span class="lnr lnr-cog"></span>Reviews</a></li>
-                    <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Shortlist</a></li>
+                    
+                    <li class="{{ ( $active == 'reviews' ) ? 'active' : '' }}">
+                        <a href="{{ route( 'buyer.reviews' ) }}">
+                            <span class="lnr lnr-cog"></span> Reviews
+                        </a>
+                    </li>
+                    <li class="{{ ( $active == 'shortlist' ) ? 'active' : '' }}">
+                        <a href="{{ route( 'buyer.shortlist' ) }}">
+                            <span class="lnr lnr-cart"></span> Shortlist
+                        </a>
+                    </li>
                     <li><a href="dashboard-withdrawal.html"><span class="lnr lnr-briefcase"></span>Withdrawals</a></li>
                 </ul><!-- end /.dashboard_menu -->
             </div><!-- end /.col-md-12 -->
