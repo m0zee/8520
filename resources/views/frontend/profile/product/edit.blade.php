@@ -1,5 +1,7 @@
 @extends( 'components.frontend.master' )
-
+@php
+    $active = 'product'; 
+@endphp
 @section( 'title', 'Product' )
 
 @section( 'content' )
@@ -51,6 +53,7 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-7">
                         <form action="{{ route('my-account.product.update', [$product->code]) }}" method="post" enctype="multipart/form-data" id="product_form">
+                            <input type="hidden" name="_method" value="PUT">
                             <div class="upload_modules">
                                 <div class="modules__title">
                                     <h3>Product Name & Description</h3>
@@ -85,11 +88,11 @@
                                        <div class="row">
                                            <div class="col-md-6">
                                                 <label for="brand_name">Brand Name <span>(Max 100 characters)</span></label>
-                                               <input type="text" id="brand_name" name="brand_name" class="text_field" placeholder="Enter your brand name here...">
+                                               <input type="text" id="brand_name" name="brand_name" class="text_field" placeholder="Enter your brand name here..." value="{{ $product->brand_name }}">
                                            </div>
                                            <div class="col-md-6">
                                                <label for="product_name">Product Name <span>(Max 100 characters)</span></label>
-                                        <input type="text" id="product_name" class="text_field" name="name" placeholder="Enter your product name here...">
+                                        <input type="text" id="product_name" class="text_field" name="name" placeholder="Enter your product name here..." value="{{ $product->name }}">
                                            </div>
                                        </div>
                                     </div>
@@ -97,7 +100,7 @@
                                     <div class="form-group">
                                         <label for="category">Made in</label>
                                         <div class="select-wrap select-wrap2">
-                                            {{ Form::select('country_id', $countries, NULL, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
+                                            {{ Form::select('country_id', $countries, $product->country_id, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
                                             <span class="lnr lnr-chevron-down"></span>
                                         </div>
                                     </div>
@@ -108,28 +111,28 @@
                                                 <div class="col-md-3">
                                                     <label for="category">Max Supplies</label>
                                                     <div class="select-wrap select-wrap2">
-                                                        {{ Form::select('unit_id', $units, NULL, ['placeholder' => 'Select Unit', 'id' => 'unit'] ) }}
+                                                        {{ Form::select('unit_id', $units, $product->unit_id, ['placeholder' => 'Select Unit', 'id' => 'unit'] ) }}
                                                         <span class="lnr lnr-chevron-down"></span>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3">
                                                     <label for="category">&nbsp;</label>
-                                                    <input type="text" name="max_supply" class="text_field" placeholder="Enter quantity">
+                                                    <input type="text" name="max_supply" value="{{ $product->max_supply }}" class="text_field" placeholder="Enter quantity">
                                                 </div>
 
                                             
                                                 <div class="col-md-3">
                                                     <label for="category">Amount</label>
                                                     <div class="select-wrap select-wrap2">
-                                                        {{ Form::select('currency_id', $currencies, NULL, ['placeholder' => 'Select Currency', 'id' => 'country'] ) }}
+                                                        {{ Form::select('currency_id', $currencies, $product->currency_id, ['placeholder' => 'Select Currency', 'id' => 'country'] ) }}
                                                         <span class="lnr lnr-chevron-down"></span>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3">
                                                     <label for="category">&nbsp;</label>
-                                                    <input type="text" name="price" class="text_field" placeholder="Enter amount">
+                                                    <input type="text" name="price" class="text_field" value="{{ $product->price }}" placeholder="Enter amount">
                                                 </div>
                                             
 
@@ -139,7 +142,7 @@
 
                                     <div class="form-group no-margin">
                                         <p class="label">Product Description</p>
-                                        <textarea name="description" class="form-control" id="trumbowyg-demo" cols="30" rows="10"></textarea>
+                                        <textarea name="description" class="form-control" id="trumbowyg-demo" cols="30" rows="10">{{ $product->description }}</textarea>
                                     </div>
                                 </div><!-- end /.modules__content -->
                             </div><!-- end /.upload_modules -->
@@ -311,7 +314,7 @@
 
     });
 
-        //configuration
+       //configuration
         var max_file_size           = 2048576; //allowed file size. (1 MB = 1048576)
         var allowed_file_types      = ['image/png', 'image/jpeg', 'image/pjpeg']; //allowed file types
         var result_output           = '#output'; //ID of an element for response output
@@ -337,8 +340,13 @@
         }else{
                 var total_selected_files = this.elements['__files[]'].files.length; //number of files
                 
+                //check if file is available
+                if( total_selected_files <= 0 ){
+                    error.push( "You have not selected image. Please select image."); //push error text
+                    proceed = false; //set proceed flag to false
+                }
                 //limit number of files allowed
-                if(total_selected_files > total_files_allowed){
+                else if(total_selected_files > total_files_allowed){
                     error.push( "You have selected "+total_selected_files+" file(s), " + total_files_allowed +" is maximum!"); //push error text
                     proceed = false; //set proceed flag to false
                 }

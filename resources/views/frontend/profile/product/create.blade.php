@@ -1,5 +1,7 @@
 @extends( 'components.frontend.master' )
-
+@php
+    $active = 'product'; 
+@endphp
 @section( 'title', 'Product' )
 
 @section( 'content' )

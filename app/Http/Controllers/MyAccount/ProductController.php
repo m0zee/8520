@@ -134,9 +134,70 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $product_code)
     {
-        //
+        $product  = Product::where('code', $product_code)->first();
+        $validator = Validator::make(
+            $request->all(), [
+            '__files.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+            'brand_name' => 'required',
+            'name' => 'required',
+            'country_id' => 'required',
+            'unit_id' => 'required',
+            'max_supply' => 'required',
+            'currency_id' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+        ]);
+        if ($validator->fails())
+        {
+            return json_encode(['errors' => $validator->errors()]);
+        }
+
+        $new_imageName = NULL ;
+
+        $files = $request->__files[0];
+        if ($files->getClientOriginalName() != NULL) 
+        {
+            $path = public_path('storage/product');
+            $new_imageName = time().'.'.$files->getClientOriginalName();
+            $files->move( $path, $new_imageName );
+        }
+        else
+        {
+            $path = $product->img_path;
+            $old_imageName = $product->img;
+        }
+
+        
+       
+
+        $data = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'brand_name' => $request->brand_name,
+            'sub_category_id' =>$request->sub_category_id,
+            'category_id' =>$request->category_id,
+            'country_id' => $request->country_id,
+            'max_supply' => $request->max_supply,
+            'unit_id' => $request->unit_id,
+            'currency_id' => $request->currency_id,
+            'price' => $request->price,
+            'img_path' => $path,
+            'img' => ($new_imageName != NULL ) ? $new_imageName : $old_imageName,
+            'user_id' => Auth::user()->id,
+            'status_id' => '2'
+        ];
+
+        Product::where('code', $product_code)->update($data);
+
+        if ( $new_imageName != NULL ) 
+        {
+            unlink($path.'/'.$product->img);
+        }
+        return json_encode(['success' => true]);
     }
 
     /**

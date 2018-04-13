@@ -2,6 +2,10 @@
 
 @section( 'title', 'Product' )
 
+@php
+    $active = 'product'; 
+@endphp
+
 @section( 'body_class', 'dashboard-edit' )
 
 @section( 'content' )
