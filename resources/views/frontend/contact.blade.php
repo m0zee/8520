@@ -1,5 +1,7 @@
 @extends('components.frontend.master')
-
+@php
+    $active = 'contact';
+    @endphp
 @section('title', 'Home')
 @section('content')
 
