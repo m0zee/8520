@@ -83,6 +83,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'brand_name' => $request->brand_name,
             'sub_category_id' =>$request->sub_category_id,
+            'category_id' =>$request->category_id,
             'country_id' => $request->country_id,
             'max_supply' => $request->max_supply,
             'unit_id' => $request->unit_id,
@@ -115,9 +116,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($product_code)
     {
-        //
+        $countries = Country::pluck('name', 'id');
+        $categories = Category::pluck('name', 'id');
+        $units = DB::table('units')->pluck('name', 'id');
+        $currencies = DB::table('currencies')->pluck('name', 'id');
+
+        $product  = Product::where('code', $product_code)->first();
+        return view('frontend.profile.product.edit', compact('categories', 'countries', 'currencies', 'units', 'product'));
     }
 
     /**

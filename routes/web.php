@@ -80,6 +80,8 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 	Route::group( [ 'prefix' => 'my-account' ], function() {
 		Route::get( 'products',  		'MyAccount\ProductController@index' )->name( 'my-account.product' );
 		Route::get( 'products/create',  'MyAccount\ProductController@create' )->name( 'my-account.product.create' );
+		Route::get( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@edit' )->name( 'my-account.product.edit' );
+		Route::put( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@update' )->name( 'my-account.product.update' );
 		Route::post( 'products/create',	'MyAccount\ProductController@store' )->name( 'my-account.product.store' );
 	});
 

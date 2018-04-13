@@ -94,7 +94,7 @@
 
                                     <div class="options dropdown-menu" aria-labelledby="drop2">
                                         <ul>
-                                            <li><a href="edit-item.html"><span class="lnr lnr-pencil"></span>Edit</a></li>
+                                            <li><a href="{{ route('my-account.product.edit', [$product->code]) }}"><span class="lnr lnr-pencil"></span>Edit</a></li>
                                             <li><a href="#"><span class="lnr lnr-eye"></span>Hide</a></li>
                                             <li><a href="#" class="delete"><span class="lnr lnr-trash"></span>Delete</a></li>
                                         </ul>
