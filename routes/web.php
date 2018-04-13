@@ -77,12 +77,12 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 	]);
 
 	Route::group( [ 'prefix' => 'my-account' ], function() {
-		Route::get( '/products',  'MyAccount\ProductController@index' )->name( 'my-account.product' );
-		Route::get( '/products/create',  'MyAccount\ProductController@create' )->name( 'my-account.product.create' );
-		Route::post( '/products/create',  'MyAccount\ProductController@store' )->name( 'my-account.product.store' );
+		Route::get( 'products',  		'MyAccount\ProductController@index' )->name( 'my-account.product' );
+		Route::get( 'products/create',  'MyAccount\ProductController@create' )->name( 'my-account.product.create' );
+		Route::post( 'products/create',	'MyAccount\ProductController@store' )->name( 'my-account.product.store' );
 	});
 
-	Route::resource( 'dashboard', "Buyer\DasboardController");
+	Route::resource( 'dashboard', 'Buyer\DasboardController' );
 });
 
 
@@ -101,18 +101,18 @@ Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
 // Route::get( 'users/{$user_code}/profile', 'ProfileController@show' )->name( 'profile.show' );
 
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
+Route::get( '/', 					'HomeController@index' )->name( 'home' );
+Route::get( 'verifyemail/{token}',	'Auth\RegisterController@verify' );
 
-Route::post('/get_country_state', function(Request $request) {
-	return App\Country::find($request->input('country_id'))->state;
+Route::post( 'get_country_state', function( Request $request ) {
+	return App\Country::find( $request->input( 'country_id' ) )->state;
 });
 
-Route::post('/get_state_city', function(Request $request) {
-	return App\State::find($request->input('state_id'))->city;
+Route::post( 'get_state_city', function( Request $request ) {
+	return App\State::find( $request->input( 'state_id' ) )->city;
 });
 
-Route::post('/get_sub_category', function(Request $request) {
-	return App\SubCategory::where('category_id', $request->input('category_id'))->get();
+Route::post( 'get_sub_category', function( Request $request ) {
+	return App\SubCategory::where( 'category_id', $request->input( 'category_id' ) )->get();
 });
 

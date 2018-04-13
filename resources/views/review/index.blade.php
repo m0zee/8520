@@ -161,14 +161,14 @@
                         <div class="col-md-12">
                             <div class="product-title-area">
                                 <div class="product__title">
-                                    <h2><span class="bold">{{ $vendor->reviews->count() }}</span> Customer Reviews</h2>
+                                    <h2><span class="bold">{{ $reviews->count() }}</span> Customer Reviews</h2>
                                 </div>
                             </div><!-- end /.product-title-area -->
                             
                             <div class="thread thread_review thread_review2">
-                                @if( $vendor->reviews->count() )
+                                @if( $reviews->count() )
                                     <ul class="media-list thread-list">
-                                        @foreach( $vendor->reviews as $review )
+                                        @foreach( $reviews as $review )
                                             <li class="single-thread">
                                                 <div class="media">
                                                     <div class="media-left">
@@ -204,16 +204,8 @@
                                         @endforeach
                                     </ul><!-- end /.media-list -->
 
-                                    <div class="pagination-area pagination-area2">
-                                        <nav class="navigation pagination " role="navigation">
-                                            <div class="nav-links">
-                                                <a class="page-numbers current" href="#">1</a>
-                                                <a class="page-numbers" href="#">2</a>
-                                                <a class="page-numbers" href="#">3</a>
-                                                <a class="next page-numbers" href="#"><span class="lnr lnr-arrow-right"></span></a>
-                                            </div>
-                                        </nav>
-                                    </div><!-- end /.comment pagination area -->
+                                    {{ $reviews->links( 'vendor.pagination.pak-material' ) }}
+                                    
                                 @else
                                     <div class="alert alert-danger text-center">No review found!</div>
                                 @endif

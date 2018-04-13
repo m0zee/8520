@@ -15,7 +15,7 @@ class ReviewsController extends Controller
      */
     public function index()
     {
-        $this->data['reviews'] = Review::with( 'vendor', 'user', 'status' )->paginate( 10 );
+        $this->data['reviews'] = Review::with( 'vendor', 'user', 'status' )->orderBy( 'id', 'DESC' )->paginate( 10 );
         // return $this->data['reviews'];
         return view( 'backend.review.index', $this->data );
     }
