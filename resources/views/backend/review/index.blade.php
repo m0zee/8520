@@ -94,7 +94,11 @@
                                                                     @endfor
                                                                 </ul>
                                                             </div>
-                                                            <br><hr>
+                                                            <span class="pull-right">
+                                                                <small>Submitted at: </small> 
+                                                                <small><strong>{!! nl2br( $review->created_at->format( 'd-m-Y h:i:s a' ) ) !!}</strong></small>
+                                                            </span>
+                                                            <hr>
                                                             {!! nl2br( $review->review ) !!}
                                                         </td>
                                                         <td>
@@ -118,7 +122,7 @@
                                                         </td>
                                                         <td>
                                                             @if( $review->created_at != $review->updated_at )
-                                                                {{ $review->updated_at->format( 'd-m-Y h:i:s a' ) }}
+                                                                <small>{{ $review->updated_at->format( 'd-m-Y h:i:s a' ) }}</small>
                                                             @endif
                                                         </td>
                                                     </tr>

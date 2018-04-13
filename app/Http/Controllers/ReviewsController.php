@@ -20,12 +20,11 @@ class ReviewsController extends Controller
      */
     public function index( $vendor_code )
     {
-        $vendor = \App\User::with( ['reviews' => function( $query ) {
-            $query->where( 'status_id', 2 )->with( 'user.detail' );
-        }], 'detail' )->where( [ 'code' => $vendor_code ] )->first();
-        
-        
-        return view( 'review.index', compact( 'vendor' ) );
+        $this->data['vendor']   = \App\User::where( [ 'code' => $vendor_code ] )->first();
+        // return $this->data['vendor'];
+        $this->data['reviews']  = \App\Review::where( [ 'status_id' => 2, 'vendor_code' => $vendor_code ] )->with( 'user.detail' )->paginate( 10 );
+
+        return view( 'review.index', $this->data );
     }
 
     /**
