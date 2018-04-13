@@ -36,34 +36,40 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware( 'guest' )->except( 'logout' );
     }
 
 
     public function showLoginForm()
     {
-        return view('frontend.login');
+        return view( 'frontend.login' );
     }
 
 
     protected function authenticated(Request $request, $user)
     {
-        if($user->user_type_id == '3') {
-            return redirect()->intended('/admin/dashboard');
-        }
-        
-        if($user->user_type_id == '1') {
-            return redirect()->intended('dashboard');
-        }
-        
-        if ($user->user_type_id == '2') 
+        switch( $user->user_type_id )
         {
-            $detail = VendorDetail::where('user_id', $user->id)->first();
-            // return $detail;
-            if ( !isset($detail->id) ) 
-            {
-                return redirect( route('profile.create') );
-            }
+            case '3':
+                return redirect()->intended( 'admin/dashboard' );
+            break;
+
+            case '2':
+                $detail = VendorDetail::where( 'user_id', $user->id )->first();
+                // return $detail;
+                if( ! isset( $detail->id ) ) 
+                {
+                    return redirect( route( 'profile.create' ) );
+                }
+            break;
+
+            case '1':
+                return redirect()->intended( 'buyer/dashboard' );
+            break;
+            
+            default:
+                # code...
+            break;
         }
     }
 }

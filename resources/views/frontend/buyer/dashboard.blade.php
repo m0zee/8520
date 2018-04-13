@@ -1,9 +1,10 @@
-@extends('components.frontend.master')
-@php
-    $active = 'dashboard';
-@endphp
-@section('title', 'Login')
-@section('content')
+@extends( 'components.frontend.master' )
+
+@php  $active = 'dashboard';  @endphp
+
+@section( 'title', 'Dashboard' )
+
+@section( 'content' )
 
     <!--================================
         START BREADCRUMB AREA
@@ -30,7 +31,7 @@
     <!--================================
             START DASHBOARD AREA
     =================================-->
-    @include('components.frontend.buyer_menu')
+    @include( 'components.frontend.buyer_menu' )
     <section class="dashboard-area">
         
 

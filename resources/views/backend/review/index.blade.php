@@ -5,7 +5,7 @@
 
 @section( 'title', 'Reviews' )
 @section( 'content' )
-<!--================================
+    <!--================================
         START BREADCRUMB AREA
     =================================-->
     <section class="breadcrumb-area">
@@ -74,13 +74,19 @@
                                         </thead>
 
                                         <tbody>
-                                            @if( $reviews != NULL && count( $reviews ) )
+                                            @if( isset( $reviews ) && $reviews != NULL && count( $reviews ) )
                                                 @foreach( $reviews as $review )
                                                     <tr>
                                                         <td>
-                                                            {{ $review->user->name }}
+                                                            <a href="{{ url( 'profile/' . $review->user->code ) }}" class="tip" title="Click to see the profile">
+                                                                {{ $review->user->name }}
+                                                            </a>
                                                         </td>
-                                                        <td>{{ $review->vendor->name }}</td>
+                                                        <td>
+                                                            <a href="{{ url( 'profile/' . $review->vendor->code ) }}" class="tip" title="Click to see the profile">
+                                                                {{ $review->vendor->name }}
+                                                            </a>
+                                                        </td>
                                                         <td>
                                                             Rating: 
                                                             <div class="rating product--rating">
@@ -112,11 +118,11 @@
                                                         </td>
                                                         <td class="actions">
                                                             <a  href="{{ route( 'reviews.approve', $review->id ) }}"
-                                                                class="btn btn--icon btn-sm btn-success btn--round approve" title="Click to approve this review">
+                                                                class="btn btn--icon btn-sm btn-success btn--round tip approve" title="Click to approve this review">
                                                                 <span class="fa fa-check"></span>
                                                             </a>
                                                             <a  href="{{ route( 'reviews.reject', $review->id ) }}"
-                                                                class="btn btn-danger btn-sm btn--round reject" title="Click to reject this review">
+                                                                class="btn btn-danger btn-sm btn--round tip reject" title="Click to reject this tip review">
                                                                 <span class="fa fa-times"></span>
                                                             </a>
                                                         </td>
