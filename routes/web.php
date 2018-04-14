@@ -74,7 +74,7 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 
 
 Route::group( [ 'middleware' => 'CheckLogin' ], function() {
-	Route::resource( '/profile', 'ProfileController', [
+	Route::resource( 'profile', 'ProfileController', [
 		'except' 		=> [ 'index', 'destroy' ],
 		'parameters'	=> [ 'profile' => 'user' ]
 	]);
@@ -90,7 +90,7 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 
 	});
 
-	Route::group( [ 'prefix' => 'buyer' ], function() {
+	Route::group( [ 'prefix' => 'buyer', 'middleware' => 'IsBuyer' ], function() {
 		Route::resource( 'dashboard', 	'Buyer\DashboardController', 	[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.dashboard' ] ] );
 		Route::resource( 'reviews', 	'Buyer\ReviewsController', 		[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.reviews' ] ] );
 		Route::resource( 'shortlist', 	'Buyer\ShortlistController', 	[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.shortlist' ] ] );

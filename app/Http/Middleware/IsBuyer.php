@@ -2,9 +2,10 @@
 
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Auth;
+
 use Closure;
 
-class CheckLogin
+class IsBuyer
 {
     /**
      * Handle an incoming request.
@@ -15,11 +16,11 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        if ( Auth::check() )
+        if( Auth::user()->user_type_id == 1 )
         {
-            return $next($request);
+            return $next( $request );
         }
 
-        return redirect( '/login' )->with( 'error', 'You are not loggedin.' );
+        return redirect( '/' )->with( 'error', 'You are not authorized for this action' );
     }
 }

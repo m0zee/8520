@@ -1,5 +1,8 @@
 $.product = $.product || {
-	baseUrl: undefined
+	baseUrl: 		undefined,
+	el: 			undefined,
+	productId: 		undefined,
+	isShortlisted:	undefined
 };
 
 $(function() {
@@ -8,29 +11,42 @@ $(function() {
 
 	// EVENT BINDINGS
 	$.product.btnShortlist.on( 'click', function( e ) {
-		var $this 			= $( this );
-
-		$.product.shortlist( $this );
+		$.product.shortlist( $( this ) );
 	});
 });
 
-$.product.shortlist = function( el ) {
-	_product_id		= el.data( 'product-id' ),
-	_is_shortlisted = el.data( 'shortlisted' );
-	var _url = $.product.baseUrl + '/products/' + ( ( isShortListed ) ? 'unshortlist' : 'shortlist' );
+
+
+
+
+$.product.shortlist = function( _el ) {
+	$.product.el 			= _el
+	$.product.productId 	= $.product.el.data( 'product-id' ),
+	$.product.isShortlisted	= $.product.el.data( 'shortlisted' ),
+	_url 					= $.product.baseUrl + '/products/' + ( ( $.product.isShortlisted ) ? 'unshortlist' : 'shortlist' );
 	
 	$.ajax({
 		url: 		_url,
 		type: 		'PUT',
 		dataType: 	'JSON',
 		data: {
-			product_id: product_id
+			product_id: $.product.productId
 		},
-		success: function( res ) {
-				console.log( res );
+		success: function( res ) { 
+			if( res.status === 200 ) {
+				$.product.el.data( 'shortlisted', ( $.product.isShortlisted ) ? 0 : 1 );
+				$.product.el.children( 'span' ).toggleClass( 'fa-heart-o fa-heart' );
+				$.product.resetProductObject();
+			}
 		},
 		error: function( err ) {
-			console.log( err.responseText );
+			console.log( 'error' );
 		}
 	});
+};
+
+$.product.resetProductObject = function() {
+	$.product.el 			= undefined;
+	$.product.productId 	= undefined;
+	$.product.isShortlisted	= undefined;
 }

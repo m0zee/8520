@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( ['CheckLogin', 'IsBuyer' ] )->only( 'shortlist' );
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +48,7 @@ class ProductController extends Controller
 
 
 
-    public function unshortlist(\App\Product $product )
+    public function unshortlist( Request $request )
     {
         $user = \App\User::find( Auth::user()->id );
         $user->shortlistProducts()->detach( $request->product_id );
