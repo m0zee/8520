@@ -64,11 +64,11 @@
                                 <div class="col-md-5">
                                     <h4 class="add_info">Category</h4>
                                 </div>
-                                {{-- <div class="col-md-2">
-                                    <h4>Price</h4>
-                                </div> --}}
                                 <div class="col-md-2">
-                                    <h4>Remove</h4>
+                                    {{-- <h4>View</h4>
+                                </div>
+                                <div class="col-md-1"> --}}
+                                    <h4>Actions</h4>
                                 </div>
                             </div>
                         </div>
@@ -83,8 +83,8 @@
 		                                        <img src="{{ asset( 'storage/product/' . $product->img ) }}" alt="" width="150" height="120">
 		                                        
 		                                        <div class="short_desc">
-		                                        	<a href="{{ url( $product->) }}">
-		                                        		categories/daisha-wyman-jr/sub-categories/marisa-lueilwitz/products
+		                                        	<a href="{{ route( 'products.show', [ $product->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}">
+		                                        		
 		                                            	<h4>{{ $product->name }}</h4>
 		                                            </a>
 		                                            <p>
@@ -101,11 +101,13 @@
 		                                    <div class="product__additional_info">
 		                                        <ul>
 		                                            <li>
-		                                                <a href="#"><img src="images/catword.png" alt="">
+		                                                <a href="#">
+		                                                	{{-- <img src="{{ asset( 'images/catword.png' ) }}" alt=""> --}}
 		                                                	{{ $product->category->name }} 
 		                                                </a>
 		                                                <span class="lnr lnr-chevron-right"></span>
-		                                                <a href="#"><img src="images/catword.png" alt="">
+		                                                <a href="#">
+		                                                	{{-- <img src="{{ asset( 'images/catword.png' ) }}" alt=""> --}}
 	                                                		{{ $product->sub_category->name }} 
 	                                                	</a>
 		                                            </li>
@@ -114,18 +116,22 @@
 		                                </div><!-- end /.col-md-3 -->
 
 		                                <div class="col-md-2 col-sm-3 v_middle">
-		                                    <div class="product__price_download">
-		                                        {{-- <div class="item_price v_middle">
-		                                            <span>$59</span>
-		                                        </div> --}}
-		                                        <div class="item_action v_middle">
+		                                    {{-- <div class=""> --}}
+		                                        <div class="item_price v_middle">
+		                                            <a href="{{ route( 'products.show', [ $product->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}" 	class="btn btn-sm btn--round btn-info tip" title="Click to view the detail of this product">
+		                                            	<span class="lnr lnr-eye"></span>
+		                                            </a>
+		                                        </div>
+		                                        <div class="v_middle">
 		                                        	{{ Form::open( [ 'route' => [ 'buyer.shortlist.destroy', $product->id ], 'method' => 'DELETE' ] ) }}
-			                                            <button type="submit" class="btn--round tip remove_from_cart" style="border: 0;"> 
+			                                            <button type="submit" 
+			                                            	class="btn btn-sm btn--round btn-danger tip" title="Click to remove this product from shortlist">
 			                                            	<span class="lnr lnr-trash"></span>
 			                                            </button>
 		                                            {{ Form::close() }}
 		                                        </div><!-- end /.item_action -->
-		                                    </div><!-- end /.product__price_download -->
+		                                    {{-- </div> --}}
+		                                    <!-- end /.product__price_download -->
 		                                </div><!-- end /.col-md-4 -->
 		                            </div><!-- end /.single_product -->
 	                            @endforeach
