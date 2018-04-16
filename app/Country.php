@@ -10,4 +10,10 @@ class Country extends Model
     {
     	return $this->hasMany('App\State');
     }
+
+
+    public function product()
+    {
+    	return $this->hasMany('App\Product');
+    }
 }
