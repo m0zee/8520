@@ -65,11 +65,27 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	    ]
 	]);
 
-	Route::resource( 'reviews', 'Backend\ReviewsController', [
-		'only' => [ 'index' ]
+	Route::resource( 'admin/reviews', 'Backend\ReviewsController', [
+		'only' => [ 'index' ],
+		'names' => [
+			'index' => 'admin.reviews.index'
+		]
 	]);
-	Route::get( 'reviews/{review_id}/approve', 'Backend\ReviewsController@approve' )->name( 'reviews.approve' );
-	Route::get( 'reviews/{review_id}/reject', 'Backend\ReviewsController@reject' )->name( 'reviews.reject' );
+	Route::get( 'admin/reviews/{review_id}/approve', 'Backend\ReviewsController@approve' )->name( 'admin.reviews.approve' );
+	Route::get( 'admin/reviews/{review_id}/reject', 'Backend\ReviewsController@reject' )->name( 'admin.reviews.reject' );
+
+	Route::resource( 'admin/products', 'Backend\ProductController', [
+		'names' => [
+	        'index'		=> 'admin.products.index',
+	        'store' 	=> 'admin.products.store',
+	        'create' 	=> 'admin.products.create',
+	        'destroy' 	=> 'admin.products.destroy',
+	        'update' 	=> 'admin.products.update',
+	        'show' 		=> 'admin.products.show',
+	        'edit' 		=> 'admin.products.edit',
+	    ]
+	]);
+	Route::put( 'admin/products/{id}/status/{status}', 'Backend\ProductController@status' )->name( 'admin.products.status' );
 });
 
 

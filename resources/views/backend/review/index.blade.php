@@ -117,12 +117,12 @@
                                                             @endif
                                                         </td>
                                                         <td class="actions">
-                                                            <a  href="{{ route( 'reviews.approve', $review->id ) }}"
+                                                            <a  href="{{ route( 'admin.reviews.approve', $review->id ) }}"
                                                                 class="btn btn--icon btn-sm btn-success btn--round tip approve" title="Click to approve this review">
                                                                 <span class="fa fa-check"></span>
                                                             </a>
-                                                            <a  href="{{ route( 'reviews.reject', $review->id ) }}"
-                                                                class="btn btn-danger btn-sm btn--round tip reject" title="Click to reject this tip review">
+                                                            <a  href="{{ route( 'admin.reviews.reject', $review->id ) }}"
+                                                                class="btn btn-danger btn-sm btn--round tip reject" title="Click to reject this review">
                                                                 <span class="fa fa-times"></span>
                                                             </a>
                                                         </td>
