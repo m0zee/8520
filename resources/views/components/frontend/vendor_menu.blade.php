@@ -4,22 +4,22 @@
             <div class="col-md-12">
                 <ul class="dashboard_menu">
 
-                    <li class="{{ ($active == 'dashboard') ? 'active' : ''  }}">
+                    <li class="{{ (isset( $active ) && $active == 'dashboard') ? 'active' : ''  }}">
                         <a href="dashboard.html">
                             <span class="lnr lnr-home"></span>Dashboard
                         </a>
                     </li>
-                    <li class="{{ ($active == 'vendorProfile') ? 'active' : ''  }}">
+                    <li class="{{ (isset( $active ) && $active == 'vendorProfile') ? 'active' : ''  }}">
                         <a href="{{route('profile.edit' , [Auth::user()->code])}}">
                             <span class="lnr lnr-cart"></span>Company Profile
                         </a>
                     </li>
-                    <li class="{{ ($active == 'product') ? 'active' : ''  }}" >
+                    <li class="{{ (isset( $active ) && $active == 'product') ? 'active' : ''  }}" >
                         <a href="{{ route('my-account.product') }}">
                             <span class="lnr lnr-cog"></span>Product
                         </a>
                     </li>
-                    <li class="{{ ($active == 'messages') ? 'active' : ''  }}">
+                    <li class="{{ (isset( $active ) && $active == 'messages') ? 'active' : ''  }}">
                         <a href="dashboard-purchase.html">
                             <span class="lnr lnr-cart"></span>Messages
 
