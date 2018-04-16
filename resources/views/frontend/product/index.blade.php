@@ -1,7 +1,7 @@
-@extends('components.frontend.master')
+@extends( 'components.frontend.master' )
 
-@section('title', 'Home')
-@section('content')
+@section( 'title', 'Home' )
+@section( 'content' )
 
 
 
@@ -24,11 +24,14 @@
                             </a>
                             <div class="collapse in collapsible-content" id="collapse1">
                                 <ul class="card-content">
-                                    @if ($categories->count() > 0)
-                                    @foreach ($categories as $category)
-                                    
-                                    <li><a href="{{ 'categories/'.$category->slug.'/products' }}"><span class="lnr lnr-chevron-right"></span>{{ $category->name }}</a></li>
-                                    @endforeach
+                                    @if( $categories->count() > 0 )
+                                        @foreach( $categories as $category )
+                                            <li>
+                                                <a href="{{ 'categories/' . $category->slug . '/products' }}">
+                                                    <span class="lnr lnr-chevron-right"></span>{{ $category->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     @endif
                                 </ul>
                             </div><!-- end /.collapsible_content -->

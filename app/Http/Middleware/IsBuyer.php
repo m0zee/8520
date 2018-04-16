@@ -20,6 +20,12 @@ class IsBuyer
         {
             return $next( $request );
         }
+        elseif( $request->ajax() )
+        {
+            $response = [ 'status' => 'error', 'message' => 'This functionality is available only for buyers.' ];
+            
+            return response( $response, \Illuminate\Http\Response::HTTP_FORBIDDEN );
+        }
 
         return redirect( '/' )->with( 'error', 'You are not authorized for this action' );
     }

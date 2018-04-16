@@ -13,8 +13,8 @@ class ProfileController extends Controller
 {
     public function create()
     {
-    	$country = Country::pluck( 'name', 'id' );
-    	$user = Auth::user();
+    	$country   = Country::pluck( 'name', 'id' );
+    	$user      = Auth::user();
 
     	return view( 'frontend.profile.create', compact( 'country', 'user' ) );
     }

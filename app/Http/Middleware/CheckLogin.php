@@ -19,6 +19,12 @@ class CheckLogin
         {
             return $next($request);
         }
+        elseif( $request->ajax() )
+        {
+            $response = [ 'status' => 'error', 'message' => 'You are not logged in. Please login to perform this action' ];
+            
+            return response( $response, \Illuminate\Http\Response::HTTP_FORBIDDEN );
+        }
 
         return redirect( '/login' )->with( 'error', 'You are not loggedin.' );
     }

@@ -19,7 +19,7 @@
                         </a>
                     </li>
                     <li class="{{ ( $active == 'shortlist' ) ? 'active' : '' }}">
-                        <a href="{{ route( 'buyer.shortlist' ) }}">
+                        <a href="{{ route( 'buyer.shortlist.index' ) }}">
                             <span class="lnr lnr-cart"></span> Shortlist
                         </a>
                     </li>
@@ -39,9 +39,3 @@
         </div><!-- end /.row -->
     </div><!-- end /.container -->
 </div><!-- end /.dashboard_menu_area -->
-
- @if( session( 'success' ) )
-    <div class="alert alert-success text-center">{{ session( 'success' ) }}</div>
-@elseif( session( 'error' ) )
-    <div class="alert alert-danger text-center">{{ session( 'error' ) }}</div>
-@endif

@@ -21,8 +21,8 @@ Route::get( '/contact', function() {
 
 
 Route::get( 'products', 			'ProductController@index' )->name( 'products' );
-Route::put( 'products/shortlist',	'ProductController@shortlist' )->name( 'products.shortlist' );
-Route::put( 'products/unshortlist',	'ProductController@unshortlist' )->name( 'products.unshortlist' );
+// Route::put( 'products/shortlist',	'ProductController@shortlist' )->name( 'products.shortlist' );
+// Route::put( 'products/unshortlist',	'ProductController@unshortlist' )->name( 'products.unshortlist' );
 Route::get( 'categories/{category_slug}/products', 'ProductController@get_by_category' )->name( 'categories.products' );
 Route::get( 'categories/{category_slug}/sub-categories/{sub_category_slug}/products', 'ProductController@get_by_sub_category' )->name( 'categories.sub-categories.products' );
 
@@ -109,7 +109,16 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 	Route::group( [ 'prefix' => 'buyer', 'middleware' => 'IsBuyer' ], function() {
 		Route::resource( 'dashboard', 	'Buyer\DashboardController', 	[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.dashboard' ] ] );
 		Route::resource( 'reviews', 	'Buyer\ReviewsController', 		[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.reviews' ] ] );
-		Route::resource( 'shortlist', 	'Buyer\ShortlistController', 	[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.shortlist' ] ] );
+		Route::resource( 'shortlist', 	'Buyer\ShortlistController', 	[ 
+			'only' => [ 'index', 'store', 'destroy' ], 
+			'names' => [ 
+				'index' 	=> 'buyer.shortlist.index',
+				'store' 	=> 'buyer.shortlist.store',
+				'destroy'	=> 'buyer.shortlist.destroy'
+			] 
+		]);
+		// Route::put( 'shortlist/add',	'Buyer\ShortlistController@create' )->name( 'buyer.shortlist.add' );
+		// Route::put( 'shortlist/delete',	'Buyer\ShortlistController@delete' )->name( 'buyer.shortlist.delete' );
 	});
 });
 

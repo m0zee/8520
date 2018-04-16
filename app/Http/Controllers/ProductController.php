@@ -16,7 +16,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware( ['CheckLogin', 'IsBuyer' ] )->only( 'shortlist' );
+        $this->middleware( ['CheckLogin' ] )->only( 'shortlist' );
     }
 
     /**
@@ -30,30 +30,6 @@ class ProductController extends Controller
         $products   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->get();
         
         return view( 'frontend.product.index', compact( 'categories', 'products' ) )->with( 'blue_menu', true );
-    }
-
-
-
-
-
-    public function shortlist( Request $request )
-    {
-        $user = \App\User::find( Auth::user()->id );
-        $user->shortlistProducts()->attach( $request->product_id );
-
-        return [ 'status' => 200, 'message' => 'Product has been shortlisted successfully!' ];
-    }
-
-
-
-
-
-    public function unshortlist( Request $request )
-    {
-        $user = \App\User::find( Auth::user()->id );
-        $user->shortlistProducts()->detach( $request->product_id );
-
-        return [ 'status' => 200, 'message' => 'Product has been removed from shortlist successfully!' ];
     }
 
     /**
@@ -83,10 +59,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    // public function show($id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.

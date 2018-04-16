@@ -13,35 +13,35 @@ class Product extends Model
 
     public function user()
     {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo( 'App\User' );
     }
 
     public function sub_category()
     {
-    	return $this->belongsTo('App\SubCategory');
+    	return $this->belongsTo( 'App\SubCategory' );
     }
 
 
     public function category()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo( 'App\Category' );
     }
 
 
     public function currency()
     {
-    	return $this->belongsTo('App\Currency');
+    	return $this->belongsTo( 'App\Currency' );
     }
 
 
     public function unit()
     {
-    	return $this->belongsTo('App\Unit');
+    	return $this->belongsTo( 'App\Unit' );
     }
 
     public function status()
     {
-    	return $this->belongsTo('App\Status');
+    	return $this->belongsTo( 'App\Status' );
     }
 
     public function users()

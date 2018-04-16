@@ -69,6 +69,7 @@
 <script src="{{ url( 'js/vendor/jquery/jquery-1.12.3.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/jquery/uikit.min.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/bootstrap.min.js' ) }}"></script>
+<script src="{{ url( 'js/vendor/bootstrap-notify/bootstrap-notify.min.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/chart.bundle.min.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/grid.min.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/jquery-ui.min.js' ) }}"></script>

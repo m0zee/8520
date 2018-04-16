@@ -1,9 +1,44 @@
+$.pakMaterial = $.pakMaterial || {};
 (function($){
         // ======> added by AG-devs //
         $.ajaxSetup({
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content') }
         });
+
         $( '.tip' ).tooltip();
+
+        $.pakMaterial.notify = function( type, message ) {
+            $.notify({
+                // title: '<h4>New notification received!</h4>',
+                message: message,
+                icon: 'fa fa-bell'
+            },
+            {
+                type: type,
+                delay: 3000,
+                allow_dismiss: true,
+                showProgressbar: false,
+                placement: {
+                    from: 'top',
+                    align: 'center'
+                },
+                animate:{
+                    enter: "animated fadeInUp",
+                    exit: "animated fadeOutDown"
+                },
+                template:   '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0} my-alert-{0}" role="alert">' +
+                                '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                                '<span data-notify="icon"></span> ' +
+                                '<span data-notify="title">{1}</span> ' +
+                                '<span data-notify="message">{2}</span>' +
+                                '<div class="progress" data-notify="progressbar">' +
+                                    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                                '</div>' +
+                                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>' 
+            }
+        );
+    };
         // added by AG-devs <===== // 
 
         "use strict";

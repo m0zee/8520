@@ -1,3 +1,18 @@
+.my-alert-danger
+{
+    color: #ff0005 !important;
+    background-color: #fcc1c2 !important;
+    border-color: #ff0005 !important;
+    text-align: center;
+}
+.my-alert-success
+{
+    color: #45ff00 !important;
+    background: #e8fce0 !important;
+    border-color: #45ff00 !important;
+    text-align: center;
+}
+
 .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
   margin-top :-10px;
 }
