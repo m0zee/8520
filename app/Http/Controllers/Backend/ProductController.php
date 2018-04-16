@@ -48,7 +48,7 @@ class ProductController extends Controller
      */
     public function show($code)
     {
-        $product = Product::where('code', $code)->with('category', 'sub_category', 'currency', 'unit', 'user.detail')->first();
+        $product = Product::where('code', $code)->with('category', 'sub_category', 'currency', 'unit', 'user.detail', 'country')->first();
         return view('backend.product.show', compact('product') );
     }
 

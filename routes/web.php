@@ -25,6 +25,7 @@ Route::get( 'products', 			'ProductController@index' )->name( 'products' );
 // Route::put( 'products/unshortlist',	'ProductController@unshortlist' )->name( 'products.unshortlist' );
 Route::get( 'categories/{category_slug}/products', 'ProductController@get_by_category' )->name( 'categories.products' );
 Route::get( 'categories/{category_slug}/sub-categories/{sub_category_slug}/products', 'ProductController@get_by_sub_category' )->name( 'categories.sub-categories.products' );
+Route::get( 'categories/{category_slug}/sub-categories/{sub_category_slug}/products/{code}/{slug}', 'ProductController@show' )->name( 'products.show' );
 
 
 Auth::routes();

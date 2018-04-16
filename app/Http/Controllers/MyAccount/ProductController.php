@@ -79,6 +79,7 @@ class ProductController extends Controller
 
         $data = [
             'name' => $request->name,
+            'slug' => $this->slugify($request->name),
             'code' => $code,
             'description' => $request->description,
             'brand_name' => $request->brand_name,
@@ -240,4 +241,7 @@ class ProductController extends Controller
 
         return $code;
     }
+
+
+
 }
