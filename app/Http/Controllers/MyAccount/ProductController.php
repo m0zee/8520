@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::with('user.detail', 'status', 'currency', 'unit', 'sub_category.category')->where( 'status_id', 2 )->get();
+        $product = Product::with('user.detail', 'status', 'currency', 'unit', 'sub_category.category')->where( 'user_id', Auth::user()->id )->get();
 
         // $vendor = \App\User::with( ['reviews' => function( $query ) {
         //     $query->where( 'status_id', 2 )->with( 'user.detail' );
@@ -240,6 +240,12 @@ class ProductController extends Controller
         $code = 'pr-'. $index;
 
         return $code;
+    }
+
+
+    public function galary($code)
+    {
+        return 'asdf';
     }
 
 

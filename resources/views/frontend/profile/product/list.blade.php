@@ -96,6 +96,10 @@
                                         <span class="lnr lnr-cog setting-icon"></span>
                                     </a>
 
+                                    <a href="{{ route('my-account.product.galary', [$product->code] ) }}" >
+                                        <span class="lnr lnr-upload setting-icon"></span>
+                                    </a>
+
                                     <div class="options dropdown-menu" aria-labelledby="drop2">
                                         <ul>
                                             <li><a href="{{ route('my-account.product.edit', [$product->code]) }}"><span class="lnr lnr-pencil"></span>Edit</a></li>
