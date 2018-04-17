@@ -116,22 +116,21 @@
 		                                </div><!-- end /.col-md-3 -->
 
 		                                <div class="col-md-2 col-sm-3 v_middle">
-		                                    {{-- <div class=""> --}}
-		                                        <div class="item_price v_middle">
-		                                            <a href="{{ route( 'products.show', [ $product->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}" 	class="btn btn-sm btn--round btn-info tip" title="Click to view the detail of this product">
-		                                            	<span class="lnr lnr-eye"></span>
-		                                            </a>
-		                                        </div>
-		                                        <div class="v_middle">
-		                                        	{{ Form::open( [ 'route' => [ 'buyer.shortlist.destroy', $product->id ], 'method' => 'DELETE' ] ) }}
-			                                            <button type="submit" 
-			                                            	class="btn btn-sm btn--round btn-danger tip" title="Click to remove this product from shortlist">
-			                                            	<span class="lnr lnr-trash"></span>
-			                                            </button>
-		                                            {{ Form::close() }}
-		                                        </div><!-- end /.item_action -->
-		                                    {{-- </div> --}}
-		                                    <!-- end /.product__price_download -->
+
+	                                        <div class="item_price v_middle">
+	                                            <a href="{{ route( 'products.show', [ $product->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}" 	class="btn btn-sm btn--round btn-info tip" title="Click to view the detail of this product">
+	                                            	<span class="lnr lnr-eye"></span>
+	                                            </a>
+	                                        </div>
+	                                        <div class="v_middle">
+	                                        	{{ Form::open( [ 'route' => [ 'buyer.shortlist.destroy', $product->id ], 'method' => 'DELETE' ] ) }}
+		                                            <button type="submit" 
+		                                            	class="btn btn-sm btn--round btn-danger tip" title="Click to remove this product from shortlist">
+		                                            	<span class="lnr lnr-trash"></span>
+		                                            </button>
+	                                            {{ Form::close() }}
+	                                        </div>
+		                                        
 		                                </div><!-- end /.col-md-4 -->
 		                            </div><!-- end /.single_product -->
 	                            @endforeach

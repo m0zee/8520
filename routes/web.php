@@ -90,24 +90,28 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 });
 
 
-Route::group( [ 'middleware' => 'CheckLogin' ], function() {
+Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
+
 	Route::resource( 'profile', 'ProfileController', [
 		'except' 		=> [ 'index', 'destroy' ],
 		'parameters'	=> [ 'profile' => 'user' ]
 	]);
 
-	Route::group( [ 'prefix' => 'my-account' ], function() {
-		Route::resource( '/', 'MyAccount\DashboardController', [ 'only' => [ 'index' ], 'names' => [ 'index' => 'vendor.dashboard' ] ] );
+	Route::group( [ 'middleware' => [ 'IsProfileCreated' ] ], function() {
+		
+		Route::group( [ 'prefix' => 'my-account' ], function() {
+			Route::resource( '/', 'MyAccount\DashboardController', [ 'only' => [ 'index' ], 'names' => [ 'index' => 'vendor.dashboard' ] ] );
 
-		Route::get( 'products',  		'MyAccount\ProductController@index' )->name( 'my-account.product' );
-		Route::get( 'products/create',  'MyAccount\ProductController@create' )->name( 'my-account.product.create' );
-		Route::get( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@edit' )->name( 'my-account.product.edit' );
-		Route::put( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@update' )->name( 'my-account.product.update' );
-		Route::post( 'products/create',	'MyAccount\ProductController@store' )->name( 'my-account.product.store' );
-
+			Route::get( 'products',  		'MyAccount\ProductController@index' )->name( 'my-account.product' );
+			Route::get( 'products/create',  'MyAccount\ProductController@create' )->name( 'my-account.product.create' );
+			Route::get( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@edit' )->name( 'my-account.product.edit' );
+			Route::put( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@update' )->name( 'my-account.product.update' );
+			Route::post( 'products/create',	'MyAccount\ProductController@store' )->name( 'my-account.product.store' );
+		});
+		
 	});
 
-	Route::group( [ 'prefix' => 'buyer', 'middleware' => 'IsBuyer' ], function() {
+	Route::group( [ 'prefix' => 'buyer', 'middleware' => ['IsBuyer'] ], function() {
 		Route::resource( 'dashboard', 	'Buyer\DashboardController', 	[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.dashboard' ] ] );
 		Route::resource( 'reviews', 	'Buyer\ReviewsController', 		[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.reviews' ] ] );
 		Route::resource( 'shortlist', 	'Buyer\ShortlistController', 	[ 
@@ -118,10 +122,9 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 				'destroy'	=> 'buyer.shortlist.destroy'
 			] 
 		]);
-		// Route::put( 'shortlist/add',	'Buyer\ShortlistController@create' )->name( 'buyer.shortlist.add' );
-		// Route::put( 'shortlist/delete',	'Buyer\ShortlistController@delete' )->name( 'buyer.shortlist.delete' );
 	});
 });
+
 
 
 

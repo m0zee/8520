@@ -1,7 +1,7 @@
 @extends('components.frontend.master')
 
-@section('title', 'Home')
-@section('content')
+@section( 'title', 'Home' )
+@section( 'content' )
 
 <!--================================
     START HERO AREA

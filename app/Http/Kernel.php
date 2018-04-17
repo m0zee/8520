@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'CheckAdminLogin'   => \App\Http\Middleware\CheckAdminLogin::class,
         'CheckLogin'        => \App\Http\Middleware\CheckLogin::class,
         'IsBuyer'           => \App\Http\Middleware\IsBuyer::class,
+        'IsProfileCreated'  => \App\Http\Middleware\IsProfileCreated::class,
     ];
 }

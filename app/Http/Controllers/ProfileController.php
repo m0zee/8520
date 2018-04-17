@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( 'IsProfileCreated', [ 'except' => ['create', 'store' ] ] );
+    }
+
+
+
+
     public function create()
     {
     	$country   = Country::pluck( 'name', 'id' );
@@ -103,11 +111,16 @@ class ProfileController extends Controller
     }
 
 
-    public function edit($code)
+    public function edit( $code )
     {
         $country    = Country::pluck( 'name', 'id' );
         $user       = User::with( 'detail' )->where( 'code', $code )->first();
-
+        
+        // if( ! $user->detai )
+        // {
+        //     return redirect( route( 'profile.create' ) );
+        // }
+        
         return view( 'frontend.profile.edit', compact( 'country', 'user' ) );
     }
 
