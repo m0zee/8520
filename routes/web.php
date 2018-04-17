@@ -72,6 +72,7 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 			'index' => 'admin.reviews.index'
 		]
 	]);
+
 	Route::get( 'admin/reviews/{review_id}/approve', 'Backend\ReviewsController@approve' )->name( 'admin.reviews.approve' );
 	Route::get( 'admin/reviews/{review_id}/reject', 'Backend\ReviewsController@reject' )->name( 'admin.reviews.reject' );
 
@@ -99,7 +100,7 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 		'except' 		=> [ 'index', 'destroy' ],
 		'parameters'	=> [ 'profile' => 'user' ]
 	]);
-	
+
 	Route::group( [ 'middleware' => [ 'IsProfileCreated' ] ], function() {
 		
 		Route::group( [ 'prefix' => 'my-account' ], function() {
@@ -152,22 +153,21 @@ Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
 	]);
 });
 
-
-// Route::get( 'users/{$user_code}/profile', 'ProfileController@show' )->name( 'profile.show' );
+Route::resource( 'comparison', 'ComparisonController', [ 'only' => [ 'index', 'store', 'destroy' ] ]);
 
 
 Route::get( '/', 					'HomeController@index' )->name( 'home' );
 Route::get( 'verifyemail/{token}',	'Auth\RegisterController@verify' );
 
 Route::post( 'get_country_state', function( Request $request ) {
-	return App\Country::find( $request->input( 'country_id' ) )->state;
+	return \App\Country::find( $request->country_id )->state;
 });
 
 Route::post( 'get_state_city', function( Request $request ) {
-	return App\State::find( $request->input( 'state_id' ) )->city;
+	return \App\State::find( $request->state_id )->city;
 });
 
 Route::post( 'get_sub_category', function( Request $request ) {
-	return App\SubCategory::where( 'category_id', $request->input( 'category_id' ) )->get();
+	return \App\SubCategory::where( 'category_id', $request->category_id )->get();
 });
 

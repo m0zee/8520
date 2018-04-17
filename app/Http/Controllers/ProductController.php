@@ -16,7 +16,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware( ['CheckLogin' ] )->only( 'shortlist' );
+        $this->middleware( [ 'CheckLogin' ] )->only( 'shortlist' );
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function index()
     {
         $categories = Category::get();
-        $products   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->get();
+        $products   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->paginate( 12 );
         
         return view( 'frontend.product.index', compact( 'categories', 'products' ) )->with( 'blue_menu', true );
     }

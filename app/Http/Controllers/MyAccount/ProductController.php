@@ -21,10 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::with('user.detail', 'status', 'currency', 'unit', 'sub_category.category')->where( 'user_id', Auth::user()->id )->get();
-
-        // $vendor = \App\User::with( ['reviews' => function( $query ) {
-        //     $query->where( 'status_id', 2 )->with( 'user.detail' );
-        // }], 'detail' )->where( [ 'code' => $vendor_code ] )->first();
+        
         return view('frontend.profile.product.list')->withProducts($product);
     }
 

@@ -6,12 +6,17 @@
 };
 
 $(function() {
-	$.product.baseUrl 		= $( '#base_url' ).val();
-	$.product.btnShortlist	= $( '.shortlist' );
+	$.product.baseUrl 			= $( '#base_url' ).val();
+	$.product.btnAddToShortlist	= $( '.add-shortlist' );
+	$.product.btnAddToCompare	= $( '.add-compare' );
 
 	// EVENT BINDINGS
-	$.product.btnShortlist.on( 'click', function( e ) {
+	$.product.btnAddToShortlist.on( 'click', function( e ) {
 		$.product.shortlist( $( this ) );
+	});
+
+	$.product.btnAddToCompare.on( 'click', function( e ) {
+		$.product.addToCompareList( $( this ) );
 	});
 });
 
@@ -45,6 +50,7 @@ $.product.shortlist = function( _el ) {
 		},
 		error: function( err ) {
 			$.pakMaterial.notify( 'danger', '<strong>' + err.responseJSON.message + '</strong>' );
+			$.product.resetProductObject();
 		}
 	});
 };
@@ -53,4 +59,31 @@ $.product.resetProductObject = function() {
 	$.product.el 			= undefined;
 	$.product.productId 	= undefined;
 	$.product.isShortlisted	= undefined;
+}
+
+$.product.addToCompareList = function( _el ) {
+	$.product.el 			= _el;
+	$.product.productId 	= $.product.el.data( 'product-id' ),
+
+	$.ajax({
+		url: 		$.product.baseUrl + '/comparison',
+		type: 		'POST',
+		dataType: 	'JSON',
+		data: {
+			product_id: $.product.productId
+		},
+		success: function( res ) { 
+			if( res.status === 'success' ) {
+				$.pakMaterial.notify( 'success', '<strong>' + res.message + '</strong>' );
+
+				$.product.resetProductObject();
+			}
+		},
+		error: function( err ) {
+			$.pakMaterial.notify( 'danger', '<strong>' + err.responseJSON.message + '</strong>' );
+			$.product.resetProductObject();
+		}
+	});
+
+	$.product.resetProductObject();
 }
