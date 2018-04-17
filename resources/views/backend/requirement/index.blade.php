@@ -16,10 +16,10 @@
                     <div class="breadcrumb">
                         <ul>
                             <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                            <li class="active"><a href="#">Category</a></li>
+                            <li class="active"><a href="#">Requirement</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Category</h1>
+                    <h1 class="page-title">Requirement</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -34,7 +34,7 @@
     <!--================================
             START DASHBOARD AREA
     =================================-->
-    @include( 'components.frontend.buyer_menu' )
+    @include('components.backend.menu')
 
     <section class="dashboard-area">
         <div class="dashboard_contents">
@@ -62,8 +62,8 @@
 	                            <div class="withdraw_module withdraw_history">
 	                                <div class="withdraw_table_header">
 	                                    <h3>
-	                                        <span class="lnr lnr-users"></span> My Requirement
-	                                        <a href="{{ route('buyer.requirements.create') }}" class="btn btn-primary btn--round btn-sm pull-right">Add</a>
+	                                        <span class="lnr lnr-users"></span> Buyer Requirement
+	                                        {{-- <a href="{{ route('buyer.requirements.create') }}" class="btn btn-primary btn--round btn-sm pull-right">Add</a> --}}
 	                                    </h3>
 	                                </div>
 	                                <div class="table-responsive">
@@ -76,7 +76,7 @@
 	                                                <th>Description</th>
 	                                                <th>Status</th>
 	                                                <th class="col-md-2">Date</th>
-	                                                <th class="col-md-2">Options</th>
+	                                                <th class="col-md-2">Action</th>
 	                                            </tr>
 	                                        </thead>
 
@@ -101,7 +101,17 @@
 	                                                        	<small>{{ $req->created_at->format( 'd-m-Y h:i:s' ) }}</small>
 	                                                        </td>
 	                                                        <td>
-	                                                        	<a href="{{ route('buyer.requirements.edit', [$req->code]) }}" class="btn btn-primary btn--round btn-sm tip" title="Click to edit this requirement"><i class="fa fa-pencil"></i></a>
+	                                                        	<form action="{{ route('admin.requirements.status', [$req->id, 'approve']) }}" method="POST">
+	                                                        		<input type="hidden" name="_method" value="PUT">
+	                                                        		{{ csrf_field() }}
+	                                                        		<button type="submit" class="btn btn--round btn-sm btn-success">Approve</button>
+	                                                        	</form>
+
+	                                                        	<form action="{{ route('admin.requirements.status', [$req->id, 'reject']) }}" method="POST">
+	                                                        		<input type="hidden" name="_method" value="PUT">
+	                                                        		{{ csrf_field() }}
+	                                                        		<button type="submit" class="btn btn--round btn-sm btn-danger">Reject</button>
+	                                                        	</form>
 	                                                        </td>
 	                                                    </tr>
 	                                                @endforeach

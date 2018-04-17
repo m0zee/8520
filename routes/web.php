@@ -87,6 +87,9 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	    ]
 	]);
 	Route::put( 'admin/products/{id}/status/{status}', 'Backend\ProductController@status' )->name( 'admin.products.status' );
+
+	Route::get('admin/requirements', 'Backend\RequirementController@index')->name('admin.requirements.index');
+	Route::put('admin/requirements/{id}/status/{status}', 'Backend\RequirementController@status')->name('admin.requirements.status');
 });
 
 
@@ -120,6 +123,17 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 				'index' 	=> 'buyer.shortlist.index',
 				'store' 	=> 'buyer.shortlist.store',
 				'destroy'	=> 'buyer.shortlist.destroy'
+			] 
+		]);
+		
+		Route::resource( 'requirements', 	'Buyer\RequirementController',
+		[
+			'names' => [ 
+				'index' => 'buyer.requirements',
+				'create' => 'buyer.requirements.create',
+				'store' => 'buyer.requirements.store',
+				'edit' => 'buyer.requirements.edit',
+				'update' => 'buyer.requirements.update'
 			] 
 		]);
 	});

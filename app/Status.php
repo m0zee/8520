@@ -16,4 +16,9 @@ class Status extends Model
     {
     	return $this->belongsTo( \App\Status::class );
     }
+
+    public function buyer_requirement()
+    {
+    	return $this->hasMany('App\BuyerRequirement');
+    }
 }

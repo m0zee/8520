@@ -17,11 +17,14 @@ class CreateBuyerRequirementsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('name');
+            $table->string('slug');
+            $table->string('code');
             $table->integer('unit_id');
+            $table->integer('quantity');
             $table->text('description');
             $table->integer('status_id');
-            $table->date('approved_at');
-            $table->integer('approved_by');
+            $table->date('approved_at')->nullable();
+            $table->integer('approved_by')->nullable();
             $table->timestamps();
         });
     }

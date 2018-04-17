@@ -25,12 +25,12 @@
                     </li>
                      <li class="{{ ( $active == 'messages') ? 'active' : ''  }}">
                         <a href="dashboard-withdrawal.html">
-                            <span class="lnr lnr-briefcase"></span>Messages
+                            <span class="lnr lnr-envelope"></span> Messages
                         </a>
                     </li>
-                    <li class="{{ ( $active == 'addrequirement') ? 'active' : ''  }}">
-                        <a href="dashboard-withdrawal.html">
-                            <span class="lnr lnr-briefcase"></span>Add Requirement
+                    <li class="{{ ( $active == 'requirement') ? 'active' : ''  }}">
+                        <a href="{{ route('buyer.requirements') }}">
+                            <span class="lnr lnr-briefcase"></span> Requirement
                         </a>
                     </li>
 

@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li class="{{ ($active == 'product') ? 'active' : ''  }}"><a href="{{ route('admin.products.index') }}"><span class="lnr lnr-briefcase"></span>Products</a></li>
-                    <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Purchase</a></li>
+                    <li class="{{ ($active == 'requirement') ? 'active' : ''  }}"><a href="{{ route('admin.requirements.index') }}"><span class="lnr lnr-cart"></span>Requirement</a></li>
                     <li><a href="dashboard-add-credit.html"><span class="lnr lnr-cog"></span>Add Credits</a></li>
                     <li><a href="dashboard-statement.html"><span class="lnr lnr-chart-bars"></span>Statements</a></li>
                     <li><a href="dashboard-upload.html"><span class="lnr lnr-upload"></span>Upload Items</a></li>

@@ -10,4 +10,9 @@ class Unit extends Model
     {
     	return $this->hasOne('App\Product');
     }
+
+    public function buyer_requirement()
+    {
+    	return $this->hasOne('App\BuyerRequirement');
+    }
 }
