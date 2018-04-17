@@ -111,14 +111,15 @@
                     </div><!-- end /.product-desc -->
 
                     <div class="product-purchase text-center">
-                                    <button class="btn--icon my-btn btn--round">
-                                        <span class="lnr lnr-list"></span> More Info
-                                    </button>
+                        <button class="btn--icon my-btn btn--round">
+                            <span class="lnr lnr-list"></span> More Info
+                        </button>
 
-                                    <button class="btn--icon my-btn btn--round">
-                                        <span class="lnr lnr-envelope"></span> Contact
-                                    </button>
-                                </div><!-- end /.product-purchase -->
+                        <button class="btn--icon my-btn btn--round">
+                            <span class="lnr lnr-envelope"></span> Contact
+                        </button>
+                    </div><!-- end /.product-purchase -->
+                    
                 </div><!-- end /.single-product -->
             </div><!-- end /.col-md-4 -->
 

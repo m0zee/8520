@@ -53,6 +53,5 @@ class ShortlistController extends Controller
         }
 
         return redirect()->back()->with( 'success', 'Product has been successfully removed from shortlist!' );
-
     }
 }

@@ -24,7 +24,7 @@
                             </a>
                             <div class="collapse in collapsible-content" id="collapse1">
                                 <ul class="card-content">
-                                    @if( $categories->count() > 0 )
+                                    @if( isset($categories) && $categories->count() > 0 )
                                         @foreach( $categories as $category )
                                             <li>
                                                 <a href="{{ 'categories/' . $category->slug . '/products' }}">
@@ -32,6 +32,10 @@
                                                 </a>
                                             </li>
                                         @endforeach
+                                    @else
+                                        <li>
+                                            <div class="alert alert-danger text-center">No category found!</div>
+                                        </li>
                                     @endif
                                 </ul>
                             </div><!-- end /.collapsible_content -->
@@ -43,55 +47,81 @@
                             </a>
                             <div class="collapse in collapsible-content" id="collapse2">
                                 <ul class="card-content">
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt1" class="" name="filter_opt"> <label for="opt1"><span class="circle"></span>Trending Products</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt2" class="" name="filter_opt"> <label for="opt2"><span class="circle"></span>Popular Products</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt3" class="" name="filter_opt"> <label for="opt3"><span class="circle"></span>New Products</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt4" class="" name="filter_opt"> <label for="opt4"><span class="circle"></span>Best Seller</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt5" class="" name="filter_opt"> <label for="opt5"><span class="circle"></span>Best Rating</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt6" class="" name="filter_opt"> <label for="opt6"><span class="circle"></span>Free Support</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt7" class="" name="filter_opt"> <label for="opt7"><span class="circle"></span>On Sale</label></div></li>
-                            </ul>
+                                    <li>
+                                        <div class="custom-checkbox2"><input type="checkbox" id="opt1" class="" name="filter_opt"> 
+                                            <label for="opt1">
+                                                <span class="circle"></span> Trending Products
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-checkbox2"><input type="checkbox" id="opt2" class="" name="filter_opt"> 
+                                            <label for="opt2">
+                                                <span class="circle"></span> Popular Products
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-checkbox2"><input type="checkbox" id="opt3" class="" name="filter_opt"> 
+                                            <label for="opt3">
+                                                <span class="circle"></span> New Products
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-checkbox2"><input type="checkbox" id="opt4" class="" name="filter_opt"> 
+                                            <label for="opt4">
+                                                <span class="circle"></span> Best Seller
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-checkbox2"><input type="checkbox" id="opt5" class="" name="filter_opt"> 
+                                            <label for="opt5">
+                                                <span class="circle"></span> Best Rating
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-checkbox2"><input type="checkbox" id="opt6" class="" name="filter_opt"> 
+                                            <label for="opt6">
+                                                <span class="circle"></span> Free Support
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-checkbox2"><input type="checkbox" id="opt7" class="" name="filter_opt"> 
+                                            <label for="opt7">
+                                                <span class="circle"></span> On Sale
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div><!-- end /.sidebar-card -->
-    
-                       {{--  <div class="sidebar-card card--slider">
-                                <a class="card-title" href="#collapse3" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapse3">
-                                    <h4>Filter Products<span class="lnr lnr-chevron-down"></span></h4>
-                                </a>
-                                <div class="collapse in collapsible-content" id="collapse3">
-                                    <div class="card-content">
-                                        <div class="range-slider price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 6%; width: 54%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 6%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 60%;"></span></div>
+                    </aside><!-- end aside -->
 
-                                        <div class="price-ranges">
-                                            <span class="from rounded">$30</span>
-                                            <span class="to rounded">$300</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}<!-- end /.sidebar-card -->
-                        </aside><!-- end aside -->
                 </div><!-- end /.col-md-3 -->
 
                 <!-- start col-md-9 -->
                 <div class="col-md-9">
-                    <div class="row">
-                        @if ($products->count() > 0 )
-                            @foreach ($products as $product)
-                            
+                    @if( isset( $products ) && $products->count() > 0 )
+                        <div class="row">
+                            @foreach( $products as $product )
                                 <div class="col-md-4 col-sm-4">
                                     <!-- start .single-product -->
                                     <div class="product product--card product--card-small">
 
                                         <div class="product__thumbnail">
-                                            @if (file_exists($product->img_path.'/'.$product->img))
-                                                <img class="auth-img" src="{{ asset('storage/product/'.$product->img) }}" alt="author image">
+                                            @if( file_exists( $product->img_path . '/' . $product->img ) )
+                                                <img class="auth-img" src="{{ asset( 'storage/product/' . $product->img ) }}" alt="author image">
                                             @else
                                                 <img src="images/p1.jpg" alt="Product Image">
                                             @endif
                                             
                                             <div class="prod_btn">
                                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                                <a href="{{ route('profile.show', [$product->user->code]) }}" class="transparent btn--sm btn--round">Contact</a>
+                                                <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round">Contact</a>
                                             </div><!-- end /.prod_btn -->
                                         </div><!-- end /.product__thumbnail -->
 
@@ -99,10 +129,10 @@
                                             <a href="#" class="product_title"><h4>{{ $product->name }}</h4></a>
                                             <ul class="titlebtm">
                                                 <li>
-                                                    @if (file_exists($product->user->detail->profile_path.'/'.$product->user->detail->profile_img))
-                                                        <img class="auth-img" src="{{ asset('storage/profile_img/'.$product->user->detail->profile_img) }}" alt="author image">
+                                                    @if( $product->user->detail->profile_img && file_exists( $product->user->detail->profile_path . '/' . $product->user->detail->profile_img ) )
+                                                        <img class="auth-img" src="{{ asset( 'storage/profile_img/' . $product->user->detail->profile_img ) }}" alt="author image">
                                                     @else
-                                                        <img class="auth-img" src="images/auth.jpg" alt="author image">
+                                                        <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
                                                     @endif
                                                     <p><a href="{{ route('profile.show', [$product->user->code]) }}">{{ $product->user->detail->company_name }}</a></p>
                                                 </li>
@@ -120,47 +150,45 @@
 
                                         <div class="product-purchase text-center">
                                             <button data-product-id="{{ $product->id }}" data-shortlisted="{{ 0 }}"
-                                                 class="my-btn btn--round tip shortlist" title="Click to shortlist this product">
+                                                 class="my-btn btn--round tip add-shortlist" title="Click to shortlist this product">
                                                 <span class="fa fa-heart-o"></span>
                                             </button>
-                                            {{-- <button class="btn--icon my-btn btn--round">
-                                                <span class="fa fa-heart"></span> 
-                                            </button> --}}
 
                                             <button class="btn--icon my-btn btn--round">
                                                 <span class="lnr lnr-envelope"></span> Contact
+                                            </button>
+
+                                            <button data-product-id="{{ $product->id }}" 
+                                                class="btn--icon my-btn btn--round tip add-compare" title="Click to add this product to comparison list">
+                                                <span class="fa fa-plus"></span> 
                                             </button>
                                         </div><!-- end /.product-purchase -->
                                     </div><!-- end /.single-product -->
                                 </div><!-- end /.col-md-4 -->
                             @endforeach
-
-                        
-                    </div>
-                    
+                        </div>
+                     @else
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger text-center">
+                                    No Product Found!
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div><!-- end /.col-md-9 -->
             </div><!-- end /.row -->
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="pagination-area categorised_item_pagination">
-                        <nav class="navigation pagination" role="navigation">
-                            <div class="nav-links">
-                                <a class="prev page-numbers" href="#"><span class="lnr lnr-arrow-left"></span></a>
-                                <a class="page-numbers current" href="#">1</a>
-                                <a class="page-numbers" href="#">2</a>
-                                <a class="page-numbers" href="#">3</a>
-                                <a class="next page-numbers" href="#"><span class="lnr lnr-arrow-right"></span></a>
-                            </div>
-                        </nav>
+                        @if( isset( $products ) && $products->hasPages() )
+                            {{ $products->links( 'vendor.pagination.pak-material' ) }}
+                        @endif
                     </div>
                 </div>
             </div><!-- end /.row -->
-            @else
-            <div class="alert alert-danger text-center">
-                No Product Found!
-            </div>
-            @endif
+        
         </div><!-- end /.container -->
 
     </section>
