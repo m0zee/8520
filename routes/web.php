@@ -104,6 +104,7 @@ Route::group( [ 'middleware' => 'CheckLogin' ], function() {
 		Route::get( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@edit' )->name( 'my-account.product.edit' );
 		Route::put( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@update' )->name( 'my-account.product.update' );
 		Route::post( 'products/create',	'MyAccount\ProductController@store' )->name( 'my-account.product.store' );
+		Route::get( 'products/{cpde}/galary',	'MyAccount\ProductController@galary' )->name( 'my-account.product.galary' );
 
 	});
 
