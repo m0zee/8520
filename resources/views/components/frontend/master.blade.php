@@ -69,6 +69,8 @@
 
 <!-- inject:js -->
 <input type="hidden" id="base_url" value="{{ url('') }}">
+{{ Form::hidden( 'comparisonProduct', session( 'productCount' ), [ 'id' => 'hiddComparisonProductCount' ] ) }}
+
 <script src="{{ url( 'js/vendor/jquery/jquery-1.12.3.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/jquery/uikit.min.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/bootstrap.min.js' ) }}"></script>

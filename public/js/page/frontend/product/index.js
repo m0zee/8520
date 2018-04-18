@@ -1,6 +1,6 @@
    $.product = $.product || {
 	baseUrl: 		undefined,
-	el: 			undefined,
+	// el: 			undefined,
 	productId: 		undefined,
 	isShortlisted:	undefined
 };
@@ -25,9 +25,8 @@ $(function() {
 
 
 $.product.shortlist = function( _el ) {
-	$.product.el 			= _el
-	$.product.productId 	= $.product.el.data( 'product-id' ),
-	$.product.isShortlisted	= $.product.el.data( 'shortlisted' ),
+	$.product.productId 	= _el.data( 'product-id' ),
+	$.product.isShortlisted	= _el.data( 'shortlisted' ),
 	_url 					= $.product.baseUrl + '/buyer/shortlist' + ( ( $.product.isShortlisted ) ? '/' + $.product.productId : '' ),
 	_type					= $.product.isShortlisted ? 'DELETE' : 'POST';
 	
@@ -40,8 +39,8 @@ $.product.shortlist = function( _el ) {
 		},
 		success: function( res ) { 
 			if( res.status === 'success' ) {
-				$.product.el.data( 'shortlisted', ( $.product.isShortlisted ) ? 0 : 1 );
-				$.product.el.children( 'span' ).toggleClass( 'fa-heart-o fa-heart' );
+				_el.data( 'shortlisted', ( $.product.isShortlisted ) ? 0 : 1 );
+				_el.children( 'span' ).toggleClass( 'fa-heart-o fa-heart' );
 
 				$.pakMaterial.notify( 'success', '<strong>' + res.message + '</strong>' );
 
@@ -56,14 +55,13 @@ $.product.shortlist = function( _el ) {
 };
 
 $.product.resetProductObject = function() {
-	$.product.el 			= undefined;
+	// _el 			= undefined;
 	$.product.productId 	= undefined;
 	$.product.isShortlisted	= undefined;
 }
 
 $.product.addToCompareList = function( _el ) {
-	$.product.el 			= _el;
-	$.product.productId 	= $.product.el.data( 'product-id' ),
+	$.product.productId 	= _el.data( 'product-id' ),
 
 	$.ajax({
 		url: 		$.product.baseUrl + '/comparison',
@@ -75,6 +73,8 @@ $.product.addToCompareList = function( _el ) {
 		success: function( res ) { 
 			if( res.status === 'success' ) {
 				$.pakMaterial.notify( 'success', '<strong>' + res.message + '</strong>' );
+
+				_el.trigger( 'product-count-changed', { 'productCount': res.productCount } );
 
 				$.product.resetProductObject();
 			}

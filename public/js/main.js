@@ -1,11 +1,15 @@
 $.pakMaterial = $.pakMaterial || {};
-(function($){
+(function( $ ) {
         // ======> added by AG-devs //
         $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content') }
+            headers: { 'X-CSRF-TOKEN': $( 'meta[name="csrf_token"]' ).attr( 'content' ) }
         });
 
         $( '.tip' ).tooltip();
+
+        $.pakMaterial.hiddComparisonProductCount        = $( '#hiddComparisonProductCount' );
+        $.pakMaterial.comparisonProductCountContainer   = $( '#comparisonProductCountContainer' );
+        $.pakMaterial.notificationArea                  = $.pakMaterial.comparisonProductCountContainer.closest( '.author__notification_area' )
 
         $.pakMaterial.notify = function( type, message ) {
             $.notify({
@@ -36,9 +40,38 @@ $.pakMaterial = $.pakMaterial || {};
                                 '</div>' +
                                 '<a href="{3}" target="{4}" data-notify="url"></a>' +
                             '</div>' 
-            }
-        );
-    };
+            });
+        };
+
+        $( 'body' ).on( 'product-count-changed', function( event, data ) {
+            $.pakMaterial.hiddComparisonProductCount.val( data.productCount );
+            $.pakMaterial.updateComparisonProductCount();
+        });
+
+        $.pakMaterial.updateComparisonProductCount = function() {
+            // if( data !== undefined ) {
+            //     if( _count == 0 || _count == NaN ) {
+            //         $.pakMaterial.notificationArea.css( 'visibility', 'hidden' );
+            //     }
+            //     else {
+            //         $.pakMaterial.notificationArea.removeAttr( 'style' );
+            //         $.pakMaterial.comparisonProductCountContainer.html( _count );
+            //     }
+            // }
+            // else {
+                var _count = parseInt( $.pakMaterial.hiddComparisonProductCount.val() );
+
+                if( _count == 0 || _count == NaN ) {
+                    $.pakMaterial.notificationArea.css( 'visibility', 'hidden' );
+                }
+                else {
+                    $.pakMaterial.notificationArea.removeAttr( 'style' );
+                    $.pakMaterial.comparisonProductCountContainer.html( _count );
+                }
+            // }
+        };
+
+        $.pakMaterial.updateComparisonProductCount();
         // added by AG-devs <===== // 
 
         "use strict";

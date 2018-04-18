@@ -95,12 +95,7 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 
 
 Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
-
-	Route::resource( 'profile', 'ProfileController', [
-		'except' 		=> [ 'index', 'destroy' ],
-		'parameters'	=> [ 'profile' => 'user' ]
-	]);
-
+	
 	Route::group( [ 'middleware' => [ 'IsProfileCreated' ] ], function() {
 		
 		Route::group( [ 'prefix' => 'my-account' ], function() {
@@ -141,7 +136,10 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 });
 
 
-
+Route::resource( 'profile', 'ProfileController', [
+	'except' 		=> [ 'index', 'destroy' ],
+	'parameters'	=> [ 'profile' => 'user' ]
+]);
 
 Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
 	Route::resource( 'reviews', 'ReviewsController', [ 

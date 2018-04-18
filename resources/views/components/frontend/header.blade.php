@@ -16,244 +16,75 @@
                 <div class="col-md-8 col-md-offset-1 col-xs-5 col-sm-9 v_middle">
                     <!-- start .author-area -->
                     <div class="author-area">
-                        
+                        <!--start .author__notification_area -->
+                         @if( Auth::user() )
+                            <!--start .author-author__info-->
+                            <div class="author-author__info inline has_dropdown">
+                                <div class="author__avatar">
+                                    <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
+                                </div>
+                                <div class="autor__info">
+                                    <p class="name">{{ Auth::user()->name }}</p>
+                                    <p class="ammount">{{ Auth::user()->user_type->name }}</p>
+                                </div>
 
-                        <div class="author__notification_area" style=" visibility: hidden;">
-                            <ul>
-                                <li class="has_dropdown">
-                                    <div class="icon_wrap">
-                                        <span class="lnr lnr-alarm"></span> <span class="notification_count noti">25</span>
-                                    </div>
-
-                                    <div class="dropdown notification--dropdown">
-
-                                        <div class="dropdown_module_header">
-                                            <h4>My Notifications</h4>
-                                            <a href="notification.html">View All</a>
-                                        </div>
-
-                                        <div class="notifications_module">
-                                            <div class="notification">
-                                                <div class="notification__info">
-                                                    <div class="info_avatar">
-                                                        <img src="{{ url( 'images/notification_head.png' ) }}" alt="">
-                                                    </div>
-                                                    <div class="info">
-                                                        <p><span>Anderson</span> added to Favourite <a href="#">Mccarther Coffee Shop</a></p>
-                                                        <p class="time">Just now</p>
-                                                    </div>
-                                                </div><!-- end /.notifications -->
-
-                                                <div class="notification__icons ">
-                                                    <span class="lnr lnr-heart loved noti_icon"></span>
-                                                </div><!-- end /.notifications -->
-                                            </div><!-- end /.notifications -->
-
-                                            <div class="notification">
-                                                <div class="notification__info">
-                                                    <div class="info_avatar">
-                                                        <img src="{{ url( 'images/notification_head2.png' ) }}" alt="">
-                                                    </div>
-                                                    <div class="info">
-                                                        <p><span>Michael</span> commented on <a href="#">MartPlace Extension Bundle</a></p>
-                                                        <p class="time">Just now</p>
-                                                    </div>
-                                                </div><!-- end /.notifications -->
-
-                                                <div class="notification__icons ">
-                                                    <span class="lnr lnr-bubble commented noti_icon"></span>
-                                                </div><!-- end /.notifications -->
-                                            </div><!-- end /.notifications -->
-
-                                            <div class="notification">
-                                                <div class="notification__info">
-                                                    <div class="info_avatar">
-                                                        <img src="{{ url( 'images/notification_head3.png' ) }}" alt="">
-                                                    </div>
-                                                    <div class="info">
-                                                        <p><span>Khamoka </span>purchased <a href="#">  Visibility Manager Subscriptions</a></p>
-                                                        <p class="time">Just now</p>
-                                                    </div>
-                                                </div><!-- end /.notifications -->
-
-                                                <div class="notification__icons ">
-                                                    <span class="lnr lnr-cart purchased noti_icon"></span>
-                                                </div><!-- end /.notifications -->
-                                            </div><!-- end /.notifications -->
-
-                                            <div class="notification">
-                                                <div class="notification__info">
-                                                    <div class="info_avatar">
-                                                        <img src="{{ url( 'images/notification_head4.png' ) }}" alt="">
-                                                    </div>
-                                                    <div class="info">
-                                                        <p><span>Anderson</span> added to Favourite <a href="#">Mccarther Coffee Shop</a></p>
-                                                        <p class="time">Just now</p>
-                                                    </div>
-                                                </div><!-- end /.notifications -->
-
-                                                <div class="notification__icons ">
-                                                    <span class="lnr lnr-star reviewed noti_icon"></span>
-                                                </div><!-- end /.notifications -->
-                                            </div><!-- end /.notifications -->
-                                        </div><!-- end /.dropdown -->
-                                    </div>
-                                </li>
-
-                                <li class="has_dropdown">
-                                    <div class="icon_wrap">
-                                        <span class="lnr lnr-envelope"></span> <span class="notification_count msg">6</span>
-                                    </div>
-
-                                    <div class="dropdown messaging--dropdown">
-                                        <div class="dropdown_module_header">
-                                            <h4>My Messages</h4>
-                                            <a href="message.html">View All</a>
-                                        </div>
-
-                                        <div class="messages">
-                                            <a href="message.html" class="message recent">
-                                                <div class="message__actions_avatar">
-                                                    <div class="avatar">
-                                                        <img src="{{ url( 'images/notification_head4.png' ) }}" alt="">
-                                                    </div>
-                                                </div><!-- end /.actions -->
-
-                                                <div class="message_data">
-                                                    <div class="name_time">
-                                                        <div class="name">
-                                                            <p>NukeThemes</p>
-                                                            <span class="lnr lnr-envelope"></span>
-                                                        </div>
-
-                                                        <span class="time">Just now</span>
-                                                        <p>Hello John Smith! Nunc placerat mi ...</p>
-                                                    </div>
-                                                </div><!-- end /.message_data -->
-                                            </a><!-- end /.message -->
-
-                                            <a href="message.html" class="message recent">
-                                                <div class="message__actions_avatar">
-                                                    <div class="avatar">
-                                                        <img src="{{ url( 'images/notification_head5.png' ) }}" alt="">
-                                                    </div>
-                                                </div><!-- end /.actions -->
-
-                                                <div class="message_data">
-                                                    <div class="name_time">
-                                                        <div class="name">
-                                                            <p>Crazy Coder</p>
-                                                            <span class="lnr lnr-envelope"></span>
-                                                        </div>
-
-                                                        <span class="time">Just now</span>
-                                                        <p>Hi! Nunc placerat mi id nisi interum ...</p>
-                                                    </div>
-                                                </div><!-- end /.message_data -->
-                                            </a><!-- end /.message -->
-
-                                            <a href="message.html" class="message">
-                                                <div class="message__actions_avatar">
-                                                    <div class="avatar">
-                                                        <img src="{{ url( 'images/notification_head6.png' ) }}" alt="">
-                                                    </div>
-                                                </div><!-- end /.actions -->
-
-                                                <div class="message_data">
-                                                    <div class="name_time">
-                                                        <div class="name">
-                                                            <p>Hybrid Insane</p>
-                                                        </div>
-
-                                                        <span class="time">Just now</span>
-                                                        <p>Hi! Nunc placerat mi id nisi interum ...</p>
-                                                    </div>
-                                                </div><!-- end /.message_data -->
-                                            </a><!-- end /.message -->
-
-                                            <a href="message.html" class="message">
-                                                <div class="message__actions_avatar">
-                                                    <div class="avatar">
-                                                        <img src="{{ url( 'images/notification_head3.png' ) }}" alt="">
-                                                    </div>
-                                                </div><!-- end /.actions -->
-
-                                                <div class="message_data">
-                                                    <div class="name_time">
-                                                        <div class="name">
-                                                            <p>ThemeXylum</p>
-                                                        </div>
-
-                                                        <span class="time">Just now</span>
-                                                        <p>Hi! Nunc placerat mi id nisi interum ...</p>
-                                                    </div>
-                                                </div><!-- end /.message_data -->
-                                            </a><!-- end /.message -->
-
-                                            <a href="message.html" class="message">
-                                                <div class="message__actions_avatar">
-                                                    <div class="avatar">
-                                                        <img src="{{ url( 'images/notification_head4.png' ) }}" alt="">
-                                                    </div>
-                                                </div><!-- end /.actions -->
-
-                                                <div class="message_data">
-                                                    <div class="name_time">
-                                                        <div class="name">
-                                                            <p>NukeThemes</p>
-                                                            <span class="lnr lnr-envelope"></span>
-                                                        </div>
-
-                                                        <span class="time">Just now</span>
-                                                        <p>Hello John Smith! Nunc placerat mi ...</p>
-                                                    </div>
-                                                </div><!-- end /.message_data -->
-                                            </a><!-- end /.message -->
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                            </ul>
-                        </div><!--start .author__notification_area -->
-                         
-                         @if (Auth::user())
-                        <!--start .author-author__info-->
-                        <div class="author-author__info inline has_dropdown">
-                            <div class="author__avatar">
-                                <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
-
+                                <div class="dropdown dropdown--author">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
+                                                <span class="lnr lnr-user"></span> Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url('dashboard')}}">
+                                                <span class="lnr lnr-home"></span> Dashboard
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="dashboard-setting.html">
+                                                <span class="lnr lnr-cog"></span> Setting
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route( 'my-account.product', [ Auth::user()->code ] ) }}">
+                                                <span class="lnr lnr-book"></span> Products
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="lnr lnr-exit"></span> Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="autor__info">
-                                <p class="name">
-                                    {{ Auth::user()->name }}
-                                </p>
-                                <p class="ammount">{{ Auth::user()->user_type->name }}</p>
-                            </div>
+                            <!--end /.author-author__info-->
 
-                            <div class="dropdown dropdown--author">
-                                <ul>
-                                    <li><a href="{{route('profile.edit', [Auth::user()->code])}}"><span class="lnr lnr-user"></span>Profile</a></li>
-                                    <li><a href="{{url('dashboard')}}"><span class="lnr lnr-home"></span> Dashboard</a></li>
-                                    <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
-                                    <li><a href="{{route('my-account.product',[Auth::user()->code])}}"><span class="lnr lnr-book"></span>Products</a>
-                                    </li>
-                                    <li><a href="#"><span class="lnr lnr-exit"></span>Logout</a></li>
-                                </ul>
-                            </div>
-                        </div><!--end /.author-author__info-->
-                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">
-                        <span class="lnr lnr-home"></span>
-                        Dashboard</a>
-                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="author-area__seller-btn inline"><span class="lnr lnr-exit"></span> logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
+                            <a href="{{ route( 'register' ) }}" class="author-area__seller-btn inline">
+                                <span class="lnr lnr-home"></span> Dashboard
+                            </a>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();" class="author-area__seller-btn inline">
+                                <span class="lnr lnr-exit"></span> logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         @else
-                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">Become a Vendor / Buyer</a>
-                        <a href="{{ url('login') }}" class="author-area__seller-btn inline">Login</a>
-
-                        
+                            <a href="{{ route( 'register' ) }}" class="author-area__seller-btn inline">Become a Vendor / Buyer</a>
+                            <a href="{{ url( 'login' ) }}" class="author-area__seller-btn inline">Login</a>
                         @endif
+
+                        <div class="author__notification_area">
+                            <ul>
+                                <li>
+                                    <div class="icon_wrap">
+                                        <a href="{{ route( 'comparison.index' )}}">
+                                            <span class="fa fa-shopping-basket"></span> <span class="notification_count msg" id="comparisonProductCountContainer"></span>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div><!-- end .author-area -->
                     
                     <!-- author area restructured for mobile -->

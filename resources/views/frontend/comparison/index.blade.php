@@ -19,8 +19,8 @@
                                     <h3>Product Comparison</h3>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table withdraw__table">
-                                        <thead>
+                                    <table class="table withdraw__table table-bordered">
+                                        {{-- <thead>
                                         <tr>
                                             <th>Image</th>
                                             <th>Product</th>
@@ -29,24 +29,62 @@
                                             <th>Price</th>
                                             <th>Remove</th>
                                         </tr>
-                                        </thead>
+                                        </thead> --}}
 
                                         <tbody>
-                                        	@if( isset( $list ) && count( $list ) > 0 )
-	                                        	@foreach( $list as $item )
-			                                        <tr>
-			                                            <td>
+                                        	@if( isset( $list ) && is_array( $list ) && count( $list ) > 0 )
+                                        		<tr>
+                                        			<th>Image</th>
+                                        			@foreach( $list as $item )
+			                                            <td class="text-center">
 			                                            	<img src="{{ asset( 'storage/product/' . $item->img ) }}" alt="" width="200">
 			                                            </td>
-			                                            <td>{{ $item->name }}</td>
-			                                            <td class="bold">
-			                                            	<a href="{{ url( 'profile/' . $item->user->code ) }}">
+		                                        	@endforeach
+                                        		</tr>
+                                        		<tr>
+                                        			<th>Product</th>
+                                        			@foreach( $list as $item )
+			                                            <td class="text-center">{{ $item->name }}</td>
+		                                        	@endforeach
+                                        		</tr>
+                                        		<tr>
+                                        			<th>Vendor</th>
+                                        			@foreach( $list as $item )
+			                                            <td class="bold text-center">
+			                                            	<a href="{{ url( 'profile/' . $item->user->code ) }}" class="tip" title="Click to see the profile">
 			                                            		{{ $item->user->name }}
 			                                            	</a>
 			                                            </td>
-			                                            <td>{{ $item->brand }}</td>
-			                                            <td>{{ $item->price }}</td>
-			                                            <td>
+		                                        	@endforeach
+                                        		</tr>
+                                        		<tr>
+                                        			<th>Brand</th>
+                                        			@foreach( $list as $item )
+			                                            <td class="text-center">{{ $item->brand_name }}</td>
+		                                        	@endforeach
+                                        		</tr>
+                                        		<tr>
+                                        			<th>Country</th>
+                                        			@foreach( $list as $item )
+			                                            <td class="text-center">{{ $item->country->name }}</td>
+		                                        	@endforeach
+                                        		</tr>
+                                        		<tr>
+                                        			<th>Max Supply</th>
+                                        			@foreach( $list as $item )
+			                                            <td class="text-center">{{ $item->max_supply . ' ' . $item->unit->name }}</td>
+		                                        	@endforeach
+                                        		</tr>
+                                        		<tr>
+                                        			<th>Price</th>
+                                        			@foreach( $list as $item )
+			                                            <td class="text-center">{{ $item->currency->name . ' ' . number_format( $item->price ) }}</td>
+		                                        	@endforeach
+                                        		</tr>
+                                        		<tr>
+                                        			<th>Remove</th>
+                                        			@foreach( $list as $item )
+			                                            <td class="text-center">
 			                                            	{{ Form::open( [ 'route' => [ 'comparison.destroy', $item->id ], 'method' => 'DELETE' ] ) }}
 					                                            <button type="submit" 
 					                                            	class="btn btn-sm btn--round btn-danger tip" title="Click to remove this product from shortlist">
@@ -54,16 +92,18 @@
 					                                            </button>
 				                                            {{ Form::close() }}
 			                                            </td>
-			                                        </tr>
-		                                        @endforeach
+		                                        	@endforeach
+                                        		</tr>
+
 		                                    @else
 		                                    	<tr>
-		                                    		<td colspan="4">
+		                                    		<td>
 		                                    			<div class="alert alert-danger text-center">Comparison list is empty. Please add product to compare</div>
 		                                    		</td>
 		                                    	</tr>
 		                                    @endif
-                                        <tr>
+
+                                        {{-- <tr>
                                             <td>20 May 2017</td>
                                             <td>Payoneer</td>
                                             <td class="bold">$1300.50</td>
@@ -95,7 +135,7 @@
                                             <td>Local Bank (USD) - Account ending in 5790</td>
                                             <td class="bold">$2380</td>
                                             <td class="paid"><span>Paid</span></td>
-                                        </tr>
+                                        </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>

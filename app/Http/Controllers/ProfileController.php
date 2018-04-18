@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware( 'IsProfileCreated', [ 'except' => ['create', 'store' ] ] );
+        $this->middleware( 'IsProfileCreated', [ 'only' => [ 'update', 'edit' ] ] );
     }
 
 
@@ -116,11 +116,6 @@ class ProfileController extends Controller
         $country    = Country::pluck( 'name', 'id' );
         $user       = User::with( 'detail' )->where( 'code', $code )->first();
         
-        // if( ! $user->detai )
-        // {
-        //     return redirect( route( 'profile.create' ) );
-        // }
-        
         return view( 'frontend.profile.edit', compact( 'country', 'user' ) );
     }
 
@@ -208,14 +203,14 @@ class ProfileController extends Controller
 
     public function show( $code )
     {
-        $user = User::with( 'detail' )->where( 'code', $code )->first();
+        $this->data['user'] = User::with( 'detail' )->where( 'code', $code )->first();
         
-        if( ! $user )
-        {
-            return redirect( route( 'profile.create' ) )->with( 'error', 'User not found!' );
-        }
+        // if( ! $user )
+        // {
+        //     return redirect( route( 'profile.create' ) )->with( 'error', 'User not found!' );
+        // }
 
-        $this->data['user'] = $user;
+        // $this->data['user'] = $user;
 
         return view( 'frontend.profile.show', $this->data );
     }

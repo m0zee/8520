@@ -43,25 +43,30 @@ class ComparisonController extends Controller
      */
     public function store( Request $request )
     {
+        $count = session( 'productCount' );
+        // return $count;
         if( session()->exists( 'comparisonList' ) )
         {
-            $list = session( 'comparisonList' );
+            $list   = session( 'comparisonList' );
+            $count  = count( $list );
 
             if( ! array_key_exists( $request->product_id, $list ) )
             {
-                $list[ $request->product_id ] = Product::with( 'user' )->where( 'id', $request->product_id )->first();
+                $list[ $request->product_id ] = Product::with( 'user', 'currency', 'country', 'unit' )->where( 'id', $request->product_id )->first();
 
-                session( [ 'comparisonList' => $list ] );
+                $count = count( $list );
+
+                session( [ 'comparisonList' => $list, 'productCount' => $count ] );
             }
         }
         else
         {
-            $product = Product::with( 'user' )->where( 'id', $request->product_id )->first();
-
-            session( [ 'comparisonList' => [ $request->product_id => $product ] ] );
+            $list[ $request->product_id ] = Product::with( 'user', 'currency', 'country', 'unit' )->where( 'id', $request->product_id )->first();
+            
+            session( [ 'comparisonList' => $list, 'productCount' => $count = count( $list ) ] );
         }
 
-        return response( [ 'status' => 'success', 'message' => 'Product has been added to comparison list.' ], 200 );
+        return response( [ 'status' => 'success', 'message' => 'Product has been added to comparison list.', 'productCount' => $count ], 200 );
     }
 
     /**
@@ -108,7 +113,13 @@ class ComparisonController extends Controller
     {
         if( session()->has( 'comparisonList' ) )
         {
-            session()->pull( 'comparisonList.' . $id );
+            $list = session( 'comparisonList' );
+            if( array_key_exists( $id, $list ) )
+            {
+                unset( $list[$id] );
+                
+                session( [ 'comparisonList' => $list, 'productCount' => $count = count( $list ) ] );
+            }
         }
 
         if( request()->ajax() )

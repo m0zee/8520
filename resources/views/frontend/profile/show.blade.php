@@ -31,7 +31,10 @@
     <!--================================
         START AUTHOR AREA
     =================================-->
+    @if( Auth::check() )
         @include( 'components.frontend.vendor_menu' )
+    @endif
+
     <section class="author-profile-area">
         <div class="container">
             <div class="row">
@@ -40,7 +43,11 @@
                         <div class="author-card sidebar-card">
                             <div class="author-infos">
                                 <div class="author_avatar">
-                                    <img src="{{ asset('storage/profile_img/'.$user->detail->profile_img) }}" alt="Presenting the broken author avatar :D">
+                                    @if( $user->detail->profile_img )
+                                        <img src="{{ asset( 'storage/profile_img/' . $user->detail->profile_img ) }}" alt="">
+                                    @else
+                                        <div class="alert alert-danger text-center">No imge found</div>
+                                    @endif
                                 </div>
 
                                 <div class="author">
@@ -137,7 +144,11 @@
 
                         <div class="col-md-12 col-sm-12">
                             <div class="author_module">
-                                <img src="{{asset('storage/cover_img/'.$user->detail->cover_img)}}" alt="author image">
+                                @if( $user->detail->cover_img )
+                                    <img src="{{ asset( 'storage/cover_img/' . $user->detail->cover_img ) }}" alt="author image">
+                                @else
+                                    <div class="alert alert-danger text-center">No image found!</div>
+                                @endif
                             </div>
 
                             <div class="author_module about_author">
