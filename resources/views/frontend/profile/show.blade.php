@@ -45,9 +45,9 @@
 
                                 <div class="author">
                                     <h4>{{ $user->detail->company_name }}</h4>
-                                    <p>Signed Up: 08 April 2016</p>
+                                    
                                 </div><!-- end /.author -->
-
+                                <span class="{{ ( $vendor->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $vendor->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
                                 <div class="social social--color--filled">
                                     <ul>
                                         <li><a href="//{{ $user->detail->facebook }}" target="_blank"><span class="fa fa-facebook"></span></a></li>
@@ -58,7 +58,7 @@
                                 </div><!-- end /.social -->
 
                                 <div class="author-btn">
-                                    <a href="#" class="btn btn--md btn--round">Follow</a>
+                                    <a href="#" class="btn btn--md btn--round">Contact</a>
                                 </div><!-- end /.author-btn -->
                             </div><!-- end /.author-infos -->
 
@@ -68,21 +68,20 @@
                         <div class="sidebar-card author-menu">
                             <ul>
                                 <li><a href="#" class="active">Profile</a></li>
-                                <li><a href="author-items.html">Author Items</a></li>
+                                
                                 <li><a href="{{ route( 'vendors.reviews.index', [ 'vendor_code' => $user->code ] ) }}">Customer Reviews</a></li>
-                                <li><a href="author-followers.html">Followers (67)</a></li>
-                                <li><a href="author-following.html">Following (39)</a></li>
+                                
                             </ul>
                         </div><!-- end /.author-menu -->
 
-                        <div class="sidebar-card freelance-status">
+                        {{-- <div class="sidebar-card freelance-status">
                             <div class="custom-radio">
                                 <input type="radio" id="opt1" class="" name="filter_opt" checked>
-                                <label for="opt1"><span class="circle"></span>Available for Freelance work</label>
+                                <label for="opt2"><span class="circle"></span>Email</label>
                             </div>
-                        </div><!-- end /.author-card -->
+                        </div> --}}<!-- end /.author-card -->
 
-                        <div class="sidebar-card message-card">
+                        {{-- <div class="sidebar-card message-card">
                             <div class="card-title">
                                 <h4>Product Information</h4>
                             </div>
@@ -99,7 +98,7 @@
                                 </form>
                                <p> Please <a href="#">sign in</a> to contact this author.</p>
                             </div><!-- end /.message-form -->
-                        </div><!-- end /.freelance-status -->
+                        </div> --}}<!-- end /.freelance-status -->
                     </aside>
                 </div><!-- end /.sidebar -->
 

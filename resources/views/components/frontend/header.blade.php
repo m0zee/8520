@@ -232,12 +232,32 @@
 
                             <div class="dropdown dropdown--author">
                                 <ul>
-                                    <li><a href="{{route('profile.edit', [Auth::user()->code])}}"><span class="lnr lnr-user"></span>Profile</a></li>
-                                    <li><a href="{{url('dashboard')}}"><span class="lnr lnr-home"></span> Dashboard</a></li>
-                                    <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
-                                    <li><a href="{{route('my-account.product',[Auth::user()->code])}}"><span class="lnr lnr-book"></span>Products</a>
+                                    
+                                    <li>
+                                        <a href="{{url('dashboard')}}">
+                                            <span class="lnr lnr-home"></span> Dashboard
+                                        </a>
                                     </li>
-                                    <li><a href="#"><span class="lnr lnr-exit"></span>Logout</a></li>
+                                    <li>
+                                        <a href="{{route('profile.edit',[Auth::user()->code])}}">
+                                            <span class="lnr lnr-user"></span>Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="dashboard-setting.html">
+                                            <span class="lnr lnr-cog"></span> Message
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('my-account.product',[Auth::user()->code])}}">
+                                            <span class="lnr lnr-book"></span>Products
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <span class="lnr lnr-exit"></span>Logout
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div><!--end /.author-author__info-->

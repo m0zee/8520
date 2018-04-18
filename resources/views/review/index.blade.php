@@ -69,8 +69,12 @@
 
                                 <div class="author">
                                     <h4>{{ $vendor->detail->company_name }}</h4>
-                                    <p>Signed Up: 08 April 2016</p>
                                 </div><!-- end /.author -->
+                                
+                            <span class="{{ ( $vendor->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $vendor->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
+                                         
+                            </span> {{ $vendor->email }}
+                                
 
                                 <div class="social social--color--filled">
                                     <ul>
@@ -98,8 +102,8 @@
 
                         <div class="sidebar-card freelance-status">
                             <div class="custom-radio">
-                                <input type="radio" id="opt1" class="" name="filter_opt" checked>
-                                <label for="opt1"><span class="circle"></span>Available for Freelance work</label>
+                                <input type="radio" id="opt1" class="" name="filter_opt" {{ ($vendor->verified == 1) ? 'checked' : '' }} >
+                                <label for="opt1"><span class="circle"></span>{{ $vendor->email }}</label>
                             </div>
                         </div><!-- end /.author-card -->
 
