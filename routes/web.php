@@ -20,6 +20,14 @@ Route::get( '/contact', function() {
 })->name( 'contact' );
 
 
+Route::get('/buyer-requiremeny', 'BuyerRequirementController@index')->name('requirement');
+Route::get('/buyer-requiremeny/{code}/show', 'BuyerRequirementController@show')->name('requirement.show');
+
+Route::get( 'categories/{category_slug}/requirement', 'BuyerRequirementController@get_by_category' )->name( 'categories.requirement' );
+Route::get( 'categories/{category_slug}/sub-categories/{sub_category_slug}/requirement', 'BuyerRequirementController@get_by_sub_category' )->name( 'categories.sub-categories.requirement' );
+
+
+
 Route::get( 'products', 			'ProductController@index' )->name( 'products' );
 // Route::put( 'products/shortlist',	'ProductController@shortlist' )->name( 'products.shortlist' );
 // Route::put( 'products/unshortlist',	'ProductController@unshortlist' )->name( 'products.unshortlist' );
@@ -90,7 +98,8 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	Route::put( 'admin/products/{id}/status/{status}', 'Backend\ProductController@status' )->name( 'admin.products.status' );
 
 	Route::get('admin/requirements', 'Backend\RequirementController@index')->name('admin.requirements.index');
-	Route::put('admin/requirements/{id}/status/{status}', 'Backend\RequirementController@status')->name('admin.requirements.status');
+	Route::put('admin/requirements/{id}/status', 'Backend\RequirementController@status')->name('admin.requirements.status');
+	Route::get('admin/requirements/{id}/show', 'Backend\RequirementController@show')->name('admin.requirements.show');
 });
 
 

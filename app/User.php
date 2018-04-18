@@ -56,4 +56,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany( 'App\Product' );
     }
+
+
+    public function buyer_requirement()
+    {
+        return $this->hasMany('App\BuyerRequirement');
+    }
 }

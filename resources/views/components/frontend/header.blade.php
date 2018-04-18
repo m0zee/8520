@@ -452,7 +452,7 @@
                                     </div>
                                 </li> --}}
                                 <li class="has_megamenu">
-                                    <a href="#">Buy Requirements</a>
+                                    <a href="{{ route('requirement') }}">Buy Requirements</a>
                                     {{-- <div class="dropdown_megamenu">
                                         <div class="megamnu_module">
                                             <div class="menu_items">
