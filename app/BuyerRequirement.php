@@ -10,6 +10,13 @@ class BuyerRequirement extends Model
         'id'
     ];
 
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+
     public function status()
     {
     	return $this->belongsTo('App\Status');
@@ -18,5 +25,16 @@ class BuyerRequirement extends Model
     public function unit()
     {
     	return $this->belongsTo('App\Unit');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
+
+    public function sub_category()
+    {
+        return $this->belongsTo('App\SubCategory');
     }
 }

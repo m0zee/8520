@@ -21,4 +21,10 @@ class Category extends Model
     {
     	return $this->hasMany('App\Product');
     }
+
+
+    public function buyer_requirement()
+    {
+        return $this->hasMany('App\BuyerRequirement');
+    }
 }
