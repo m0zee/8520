@@ -90,7 +90,8 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	Route::put( 'admin/products/{id}/status/{status}', 'Backend\ProductController@status' )->name( 'admin.products.status' );
 
 	Route::get('admin/requirements', 'Backend\RequirementController@index')->name('admin.requirements.index');
-	Route::put('admin/requirements/{id}/status/{status}', 'Backend\RequirementController@status')->name('admin.requirements.status');
+	Route::put('admin/requirements/{id}/status', 'Backend\RequirementController@status')->name('admin.requirements.status');
+	Route::get('admin/requirements/{id}/show', 'Backend\RequirementController@show')->name('admin.requirements.show');
 });
 
 

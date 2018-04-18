@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\BuyerRequirement;
+use App\Unit;
+use App\category;
 class RequirementController extends Controller
 {
     /**
@@ -47,7 +49,10 @@ class RequirementController extends Controller
      */
     public function show($id)
     {
-        //
+        $requirement = BuyerRequirement::find($id);
+        $units = Unit::pluck('name', 'id');
+        $category = Category::pluck('name', 'id');
+        return view('backend.requirement.show', compact('requirement', 'units', 'category') );
     }
 
     /**
@@ -85,18 +90,38 @@ class RequirementController extends Controller
     }
 
 
-    public function status($id, $status)
+    public function status(Request $request, $id)
     {
-        if ($status == 'approve') 
+        $this->validate($request,
+        [
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+            'name' => 'required',
+            'unit_id' => 'required',
+            'quantity' => 'required',
+            'description' => 'required'
+        ]);
+
+        if ($request->status == 'Approve') 
         {
             $status = '2';
         }
-        if ($status == 'reject') 
+        if ($request->status == 'Reject') 
         {
-            $status = '2';
+            $status = '3';
         }
 
-        BuyerRequirement::where('id', $id)->update([ 'status_id' => $status ]);
-        return back()->with('success', 'Status successfully updated');
+        $options = [
+            'name' => $request->name,
+            'slug' => $this->slugify($request->name),
+            'unit_id' => $request->unit_id,
+            'quantity' => $request->quantity,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'sub_category_id' => $request->sub_category_id,
+            'status_id' => $status 
+        ];
+        BuyerRequirement::where('id', $id)->update($options);
+        return redirect(route('admin.requirements.index'))->with('success', 'Status successfully updated');
     }
 }
