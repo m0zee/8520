@@ -106,7 +106,7 @@
                 <!-- start col-md-9 -->
                 <div class="col-md-9">
                     @if( isset( $products ) && $products->count() > 0 )
-                        <div class="row">
+                        <div class="row" id="product-container">
                             @foreach( $products as $product )
                                 <div class="col-md-4 col-sm-4">
                                     <!-- start .single-product -->
@@ -121,7 +121,7 @@
                                             
                                             <div class="prod_btn">
                                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                                <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round">Contact</a>
+                                                <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round btn-contact">Contact</a>
                                             </div><!-- end /.prod_btn -->
                                         </div><!-- end /.product__thumbnail -->
 
@@ -138,8 +138,14 @@
                                                 </li>
                                                 <br>
                                                 <li class="">
-                                                    <a href="{{ route('categories.products', [$product->sub_category->category->slug]) }}">{{ $product->sub_category->category->name }}</a>
-                                                    <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->sub_category->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a>
+                                                    <a href="{{ route('categories.products', [$product->sub_category->category->slug]) }}">
+                                                        {{ $product->sub_category->category->name }}
+                                                    </a>
+                                                    
+                                                    <span class="lnr lnr-chevron-right"></span>
+                                                    
+                                                    <a href="{{ route('categories.sub-categories.products', [$product->sub_category->category->slug, $product->sub_category->slug]) }}">    {{ $product->sub_category->name }}
+                                                    </a>
                                                 </li>
 
                                                 <li>
@@ -154,7 +160,7 @@
                                                 <span class="fa fa-heart-o"></span>
                                             </button>
 
-                                            <button class="btn--icon my-btn btn--round">
+                                            <button class="btn--icon my-btn btn--round btn-contact" data-product-id="{{ $product->id }}">
                                                 <span class="lnr lnr-envelope"></span> Contact
                                             </button>
 
@@ -219,6 +225,237 @@
     <!--================================
         END CALL TO ACTION AREA
     =================================-->
+
+    <!-- Modal -->
+    @if( Auth::check() )
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                        <h3 class="modal-title">Rating this Item</h3>
+                        
+                        {{-- <h4>Product Enquiry Extension</h4><p>by <a href="author.html">AazzTech</a></p> --}}
+                    </div><!-- end /.modal-header -->
+
+                    <div class="modal-body">
+                        <form action="#">
+                            <ul>
+                                <li>
+                                    <p>Your Rating</p>
+                                    <div class="right_content btn btn--round btn--white btn--md">
+                                        <select name="rating" class="give_rating">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <p>Rating Causes</p>
+                                    <div class="right_content">
+                                        <div class="select-wrap">
+                                            <select name="review_reason" id="rev">
+                                                <option value="design">Design Quality</option>
+                                                <option value="customization">Customization</option>
+                                                <option value="support">Support</option>
+                                                <option value="performance">Performance</option>
+                                                <option value="documentation">Well Documented</option>
+                                            </select>
+
+                                            <span class="lnr lnr-chevron-down"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="rating_field">
+                                <label for="rating_field">Comments</label>
+                                <textarea name="rating_field" id="rating_field" class="text_field" placeholder="Please enter your rating reason to help the author"></textarea>
+                                <p class="notice">Your review will be ​publicly visible​ and the author may reply to your comments. </p>
+                            </div>
+                            <button type="submit" class="btn btn--round btn--default">Submit Rating</button>
+                            <button class="btn btn--round modal_close" data-dismiss="modal">Close</button>
+                        </form><!-- end /.form -->
+                    </div><!-- end /.modal-body -->
+                </div>
+            </div>
+        </div>
+    @else
+        <div class="modal fade not_loggedind_modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="not_loggedind_modal">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                        <h4>Send Enquiry</h4>
+                    </div><!-- end /.modal-header -->
+
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="information_module">
+                                    <div class="information__set toggle_module collapse in" id="collapse2">
+                                        <div class="information_wrapper form--fields">
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'email', 'Email Address' ) }}
+                                                        {{
+                                                            Form::text( 'email', null, [ 
+                                                                'placeholder'   => 'Please enter your email address', 
+                                                                'id'            => 'email',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row loginFields hidden">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        {{ Form::label( 'password', 'Password' ) }}
+                                                        {{
+                                                            Form::password( 'password', [ 
+                                                                'placeholder'   => 'Please enter password', 
+                                                                'id'            => 'password',
+                                                                'class'         => 'text_field',
+                                                                'disabled'      => true
+                                                            ])
+                                                        }}
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row registerFields hidden">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        {{ Form::label( 'name', 'Name' ) }}
+                                                        {{
+                                                            Form::text( 'name', '', [ 
+                                                                'placeholder'   => 'Please enter name', 
+                                                                'id'            => 'name',
+                                                                'class'         => 'text_field',
+                                                                'disabled'      => true
+                                                            ])
+                                                        }}
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="#">&nbsp;</label>
+                                                        <br>
+                                                        <label class="radio-inline" >
+                                                            <input type="radio" id="buyer" value="1" checked name="user_type_id"> Buyer
+                                                        </label>
+                                                        
+                                                        <label class="radio-inline">
+                                                            <input type="radio" id="vendor" value="2" name="user_type_id"> Vendor
+                                                        </label>
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row registerFields hidden">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        {{ Form::label( 'password', 'Password' ) }}
+                                                        {{
+                                                            Form::password( 'password', [ 
+                                                                'placeholder'   => 'Please enter password', 
+                                                                'id'            => 'password',
+                                                                'class'         => 'text_field',
+                                                                'disabled'      => true
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        {{ Form::label( 'conpassword', 'Confirm Password' ) }}
+                                                        {{
+                                                            Form::password( 'conpassword', [ 
+                                                                'placeholder'   => 'Please enter password again', 
+                                                                'id'            => 'conpassword',
+                                                                'class'         => 'text_field',
+                                                                'disabled'      => true
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        {{ Form::label( 'quantity', 'Quantity' ) }}
+                                                        {{
+                                                            Form::text( 'quantity', '', [ 
+                                                                'placeholder'   => 'Please enter quantity', 
+                                                                'id'            => 'quantity',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        {{ Form::label( 'unit', 'Unit' ) }}
+                                                        <div class="text_field" id="unit" style="padding: 0 20px;">asdfasd</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                {{ Form::label( 'message', 'Enquiry' ) }}
+                                                {{
+                                                    Form::textarea( 'message', '', [ 
+                                                        'placeholder'   => 'Please enter enquiry', 
+                                                        'id'            => 'message',
+                                                        'class'         => 'text_field',
+                                                        'rows'          => 3,
+                                                        'style'         => 'resize: none;'
+                                                    ])
+                                                }}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" id="isUserLoggedin" value="0">
+                            <input type="hidden" id="isUserExists" value="0">
+
+                            <div class="col-md-12">
+                                <div class="dashboard_setting_btn">
+                                    <button type="submit" class="btn btn--round btn--md">Save Change</button>
+                                </div>
+                            </div><!-- end /.col-md-12 -->
+                        </div>
+
+                    </div><!-- end /.modal-body -->
+                </div>
+            </div>
+        </div>
+    @endif
 
 @endsection
 

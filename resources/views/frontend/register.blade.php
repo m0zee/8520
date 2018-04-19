@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="breadcrumb">
                     <ul>
-                        <li><a href="{{ url('') }}">Home</a></li>
+                        <li><a href="{{ url( '/' ) }}">Home</a></li>
                         <li class="active"><a href="#">Signup</a></li>
                     </ul>
                 </div>
@@ -47,13 +47,13 @@
 
                         <div class="login--form">
 
-                            <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+                            <div class="form-group {{ $errors->has( 'name' ) ? 'has-error' : '' }}">
                                 <label for="urname">Your Name</label>
-                                <input id="urname" type="text" class="text_field" name="name" value="{{ old('name') }}" placeholder="Enter your Name">
+                                <input id="urname" type="text" class="text_field" name="name" value="{{ old( 'name' ) }}" placeholder="Enter your Name">
 
-                                 @if ($errors->has('name'))
+                                 @if( $errors->has( 'name' ) )
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first( 'name' ) }}</strong>
                                     </span>
                                 @endif
                             </div>

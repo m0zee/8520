@@ -33,27 +33,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     //
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -64,60 +43,39 @@ class ProductController extends Controller
         return '<h1><center>Implement the functionality</center></h1>';
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit($id)
-    // {
-    //     //
-    // }
+    public function get( $id )
+    {
+        $product = Product::with( 'unit' )->find( $id );
+        
+        $return = [
+            'id'    => $product->id,
+            'code'  => $product->code,
+            'name'  => $product->name,
+            'unit'  => $product->unit->name,
+        ];
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function destroy($id)
-    // {
-    //     //
-    // }
+        return response( [ 'status' => 'success', 'product' => $return ], 200 );
+    }
 
 
     public function get_by_category($category_slug)
     {
-        $categories = Category::with('sub_category')->where('slug', $category_slug)->first();
-        $products = DB::table('products as p')
-                    ->select(
-                        'p.*', 
-                        'sc.name as sub_category_name', 'sc.slug as sub_category_slug', 
-                        'c.name as category_name', 'c.slug as category_slug', 
-                        'vd.company_name', 'vd.profile_path', 'vd.profile_img', 
-                        'cur.name as currency',
-                        'u.code as user_code'
-                    )
-                    ->join('sub_categories AS sc', 'sc.id', '=', 'p.sub_category_id')
-                    ->join( 'categories as c', 'c.id', '=', 'sc.category_id' )
-                    ->join( 'users as u', 'u.id', '=', 'p.user_id' )
-                    ->join( 'vendor_details as vd', 'vd.user_id', '=', 'u.id' )
-                    ->join( 'currencies as cur', 'cur.id', '=', 'p.currency_id' )
-                    ->where('c.slug', $category_slug)
-                    ->get();
+        $categories = Category::with( 'sub_category' )->where( 'slug', $category_slug )->first();
+        $products = DB::table('products as p')->select(
+            'p.*', 
+            'sc.name as sub_category_name', 'sc.slug as sub_category_slug', 
+            'c.name as category_name', 'c.slug as category_slug', 
+            'vd.company_name', 'vd.profile_path', 'vd.profile_img', 
+            'cur.name as currency',
+            'u.code as user_code'
+        )
+        ->join('sub_categories AS sc',  'sc.id',        '=', 'p.sub_category_id' )
+        ->join( 'categories as c',      'c.id',         '=', 'sc.category_id' )
+        ->join( 'users as u',           'u.id',         '=', 'p.user_id' )
+        ->join( 'vendor_details as vd', 'vd.user_id',   '=', 'u.id' )
+        ->join( 'currencies as cur',    'cur.id',       '=', 'p.currency_id' )
+        ->where( 'c.slug', $category_slug )
+        ->get();
 
         return view( 'frontend.product.category_wise_products', compact( 'categories', 'products' ) )->with( 'blue_menu', true );
     }
@@ -125,8 +83,8 @@ class ProductController extends Controller
 
     public function get_by_sub_category($category_slug, $sub_category_slug)
     {
-        $sub_category_products = SubCategory::where('slug', $sub_category_slug )->with('product.user.detail', 'product.currency')->first();
+        $sub_category_products = SubCategory::where( 'slug', $sub_category_slug )->with( 'product.user.detail', 'product.currency' )->first();
         // return $sub_category_products;
-        return view('frontend.product.sub_category_wise_products', compact('sub_category_products'))->with( 'blue_menu', true );
+        return view( 'frontend.product.sub_category_wise_products', compact( 'sub_category_products' ) )->with( 'blue_menu', true );
     }
 }

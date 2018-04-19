@@ -6,9 +6,15 @@
 };
 
 $(function() {
-	$.product.baseUrl 			= $( '#base_url' ).val();
-	$.product.btnAddToShortlist	= $( '.add-shortlist' );
-	$.product.btnAddToCompare	= $( '.add-compare' );
+	$.product.baseUrl 				= $( '#base_url' ).val();
+	$.product.btnAddToShortlist		= $( '.add-shortlist' );
+	$.product.btnAddToCompare		= $( '.add-compare' );
+	$.product.productContainer		= $( '#product-container' );
+	$.product.modal					= $( '#myModal' );
+	$.product.modal.loginFields		= $.product.modal.find( '.loginFields' );
+	$.product.modal.registerFields 	= $.product.modal.find( '.registerFields' );
+	$.product.isUserLoggedin		= $( '#isUserLoggedin' );
+	$.product.isUserExists			= $( '#isUserExists' );
 
 	// EVENT BINDINGS
 	$.product.btnAddToShortlist.on( 'click', function( e ) {
@@ -17,6 +23,14 @@ $(function() {
 
 	$.product.btnAddToCompare.on( 'click', function( e ) {
 		$.product.addToCompareList( $( this ) );
+	});
+
+	$.product.productContainer.on( 'click', '.btn-contact', function() {
+		$.product.get( $( this ) );
+	});
+
+	$( '#email' ).on( 'blur', function() {
+		$.product.checkUser( $( this ) );
 	});
 });
 
@@ -58,7 +72,7 @@ $.product.resetProductObject = function() {
 	// _el 			= undefined;
 	$.product.productId 	= undefined;
 	$.product.isShortlisted	= undefined;
-}
+};
 
 $.product.addToCompareList = function( _el ) {
 	$.product.productId 	= _el.data( 'product-id' ),
@@ -86,4 +100,57 @@ $.product.addToCompareList = function( _el ) {
 	});
 
 	$.product.resetProductObject();
-}
+};
+
+$.product.get = function( _el ) {
+	$.product.productId 	= _el.data( 'product-id' );
+
+	$.ajax({
+		url: 		$.product.baseUrl + '/products/' + $.product.productId + '/get',
+		type: 		'GET',
+		dataType: 	'JSON',
+		success: function( res ) { 
+			if( res.status === 'success' ) {
+				var _product = res.product;
+				$.product.modal.find( '#unit' ).html( _product.unit );
+				$.product.modal.find( '#message' ).val( 'Hi! I would like to know about your product ' + _product.name );
+
+				$.product.modal.modal( 'show' );
+			}
+		},
+		error: function( err ) {
+			console.log( err );
+		}
+	});
+};
+
+$.product.checkUser = function( _el ) {
+	var _email = _el.val();
+
+	if( _email != '' ) {
+		$.ajax({
+			url: 		$.product.baseUrl + '/users/' + _email + '/get',
+			type: 		'GET',
+			dataType: 	'JSON',
+			success: function( res ) { 
+				if( res.status === 'success' ) {
+					$.product.isUserExists.val( '1' );
+					$.product.modal.loginFields.removeClass( 'hidden' );
+					if( $.product.modal.registerFields.is( ':visible' ) ) {
+						$.product.modal.registerFields.addClass( 'hidden' );
+					}
+				}
+				else if( res.status === 'fail' ) {
+					$.product.isUserExists.val( '0' );
+					$.product.modal.registerFields.removeClass( 'hidden' );
+					if( $.product.modal.loginFields.is( ':visible' ) ) {
+						$.product.modal.loginFields.addClass( 'hidden' );
+					}
+				}
+			},
+			error: function( err ) {
+				console.log( err );
+			}
+		});
+	}
+};

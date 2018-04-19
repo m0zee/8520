@@ -11,30 +11,47 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get( '/recover-password', function () {
+Route::get( 'recover-password', function () {
     return view( 'frontend.recover_password' );
 });
 
-Route::get( '/contact', function() {
+Route::get( 'contact', function() {
 	return view( 'frontend.contact' )->with( 'blue_menu', true );
 })->name( 'contact' );
 
 
-Route::get('/buyer-requiremeny', 'BuyerRequirementController@index')->name('requirement');
-Route::get('/buyer-requiremeny/{code}/show', 'BuyerRequirementController@show')->name('requirement.show');
+Route::get( 'buyer-requirement', 				'BuyerRequirementController@index' )->name( 'requirement' );
+Route::get( 'buyer-requirement/{code}/show',	'BuyerRequirementController@show' )->name( 'requirement.show' );
 
 Route::get( 'categories/{category_slug}/requirement', 'BuyerRequirementController@get_by_category' )->name( 'categories.requirement' );
 Route::get( 'categories/{category_slug}/sub-categories/{sub_category_slug}/requirement', 'BuyerRequirementController@get_by_sub_category' )->name( 'categories.sub-categories.requirement' );
 
 
 
-Route::get( 'products', 			'ProductController@index' )->name( 'products' );
-// Route::put( 'products/shortlist',	'ProductController@shortlist' )->name( 'products.shortlist' );
-// Route::put( 'products/unshortlist',	'ProductController@unshortlist' )->name( 'products.unshortlist' );
+Route::get( 'products', 'ProductController@index' )->name( 'products' );
+Route::get( 'products/{id}/get', 'ProductController@get' )->name( 'products.get' );
+
 Route::get( 'categories/{category_slug}/products', 'ProductController@get_by_category' )->name( 'categories.products' );
 Route::get( 'categories/{category_slug}/sub-categories/{sub_category_slug}/products', 'ProductController@get_by_sub_category' )->name( 'categories.sub-categories.products' );
 Route::get( 'categories/{category_slug}/sub-categories/{sub_category_slug}/products/{code}/{slug}', 'ProductController@show' )->name( 'products.show' );
 
+Route::resource( 'comparison', 'ComparisonController', [ 'only' => [ 'index', 'store', 'destroy' ] ] );
+
+Route::get( 'users/{email}/get', function( $email ) {
+	$user = \App\User::where( 'email', $email )->first();
+
+	$response = [];
+	if( $user )
+	{
+		$response = [ 'status' => 'success', 'user' => $user ];
+	}
+	else
+	{
+		$response = [ 'status' => 'fail' ];	
+	}
+
+	return response( $response, 200 );
+});
 
 Auth::routes();
 
@@ -44,12 +61,12 @@ Route::get( 'admin/login', function() {
 
 Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	
-	Route::get( '/admin/dashboard', 'Backend\DashboardController@index')->name('admin.dashboard');
+	Route::get( 'admin/dashboard', 'Backend\DashboardController@index' )->name( 'admin.dashboard' );
 	
-	Route::get('/admin/users/{type}', 				'Backend\UserController@index')->name('admin.userlist');
-	Route::put('/admin/users/{user_id}/approve/', 	'Backend\UserController@approve')->name('admin.user.approve');
-	Route::put('/admin/users/{user_id}/status/', 	'Backend\UserController@statusUpdate')->name('admin.user.status');
-	// Route::get('/admin/user/vendors', 'Backend\VendorController@index')->name('admin.buyer');
+	Route::get( 'admin/users/{type}', 				'Backend\UserController@index' )->name( 'admin.userlist' );
+	Route::put( 'admin/users/{user_id}/approve', 	'Backend\UserController@approve' )->name( 'admin.user.approve' );
+	Route::put( 'admin/users/{user_id}/status', 	'Backend\UserController@statusUpdate' )->name( 'admin.user.status' );
+
 	Route::resource( 'admin/categories', 'Backend\CategoryController', [
 		'names' => [
 	        'index'		=> 'admin.categories.index',
@@ -95,11 +112,12 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	        'edit' 		=> 'admin.products.edit',
 	    ]
 	]);
+
 	Route::put( 'admin/products/{id}/status/{status}', 'Backend\ProductController@status' )->name( 'admin.products.status' );
 
-	Route::get('admin/requirements', 'Backend\RequirementController@index')->name('admin.requirements.index');
-	Route::put('admin/requirements/{id}/status', 'Backend\RequirementController@status')->name('admin.requirements.status');
-	Route::get('admin/requirements/{id}/show', 'Backend\RequirementController@show')->name('admin.requirements.show');
+	Route::get( 'admin/requirements', 				'Backend\RequirementController@index')->name( 'admin.requirements.index' );
+	Route::put( 'admin/requirements/{id}/status',	'Backend\RequirementController@status')->name( 'admin.requirements.status' );
+	Route::get( 'admin/requirements/{id}/show', 	'Backend\RequirementController@show')->name( 'admin.requirements.show' );
 });
 
 
@@ -159,8 +177,6 @@ Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
 		] 
 	]);
 });
-
-Route::resource( 'comparison', 'ComparisonController', [ 'only' => [ 'index', 'store', 'destroy' ] ]);
 
 
 Route::get( '/', 					'HomeController@index' )->name( 'home' );
