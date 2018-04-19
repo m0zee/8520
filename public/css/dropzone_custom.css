@@ -1,0 +1,8 @@
+.dropzone
+{
+	min-height: 250px;
+}
+.dropzone:hover
+{
+	/*border: 2px dashed red;*/
+}
