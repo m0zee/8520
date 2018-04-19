@@ -49,26 +49,15 @@ $.pakMaterial = $.pakMaterial || {};
         });
 
         $.pakMaterial.updateComparisonProductCount = function() {
-            // if( data !== undefined ) {
-            //     if( _count == 0 || _count == NaN ) {
-            //         $.pakMaterial.notificationArea.css( 'visibility', 'hidden' );
-            //     }
-            //     else {
-            //         $.pakMaterial.notificationArea.removeAttr( 'style' );
-            //         $.pakMaterial.comparisonProductCountContainer.html( _count );
-            //     }
-            // }
-            // else {
-                var _count = parseInt( $.pakMaterial.hiddComparisonProductCount.val() );
+            var _count = parseInt( $.pakMaterial.hiddComparisonProductCount.val() );
 
-                if( _count == 0 || _count == NaN ) {
-                    $.pakMaterial.notificationArea.css( 'visibility', 'hidden' );
-                }
-                else {
-                    $.pakMaterial.notificationArea.removeAttr( 'style' );
-                    $.pakMaterial.comparisonProductCountContainer.html( _count );
-                }
-            // }
+            if( ! _count || _count === 0 ) {
+                $.pakMaterial.notificationArea.css( 'visibility', 'hidden' );
+            }
+            else {
+                $.pakMaterial.notificationArea.removeAttr( 'style' );
+                $.pakMaterial.comparisonProductCountContainer.html( _count );
+            }
         };
 
         $.pakMaterial.updateComparisonProductCount();

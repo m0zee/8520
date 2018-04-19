@@ -76,7 +76,7 @@
 	                                                <th>Description</th>
 	                                                <th>Status</th>
 	                                                <th class="col-md-2">Date</th>
-	                                                <th class="col-md-2">Action</th>
+	                                                <th>View</th>
 	                                            </tr>
 	                                        </thead>
 
@@ -101,7 +101,8 @@
 	                                                        	<small>{{ $req->created_at->format( 'd-m-Y h:i:s' ) }}</small>
 	                                                        </td>
 	                                                        <td>
-	                                                        	<form action="{{ route('admin.requirements.status', [$req->id, 'approve']) }}" method="POST">
+	                                                        	<a href="{{ route('admin.requirements.show', [$req->id]) }}" class="btn btn--round btn-primary btn-sm">View</a>
+	                                                        	{{-- <form action="{{ route('admin.requirements.status', [$req->id, 'approve']) }}" method="POST">
 	                                                        		<input type="hidden" name="_method" value="PUT">
 	                                                        		{{ csrf_field() }}
 	                                                        		<button type="submit" class="btn btn--round btn-sm btn-success">Approve</button>
@@ -111,7 +112,7 @@
 	                                                        		<input type="hidden" name="_method" value="PUT">
 	                                                        		{{ csrf_field() }}
 	                                                        		<button type="submit" class="btn btn--round btn-sm btn-danger">Reject</button>
-	                                                        	</form>
+	                                                        	</form> --}}
 	                                                        </td>
 	                                                    </tr>
 	                                                @endforeach
@@ -122,7 +123,7 @@
 	                                                
 	                                            @else
 	                                                <tr>
-	                                                    <td colspan="5">
+	                                                    <td colspan="7">
 	                                                        <div class="alert alert-danger text-center">
 	                                                            <strong>No review found!</strong>
 	                                                        </div>

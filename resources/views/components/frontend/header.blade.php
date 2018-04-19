@@ -84,7 +84,70 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+{{-- <<<<<<< HEAD --}}
+                        {{-- </div> --}}
+{{-- ======= --}}
+                        </div><!--start .author__notification_area -->
+                         
+                        {{--  @if (Auth::user())
+                        <!--start .author-author__info-->
+                        <div class="author-author__info inline has_dropdown">
+                            <div class="author__avatar">
+                                <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
+
+                            </div>
+                            <div class="autor__info">
+                                <p class="name">
+                                    {{ Auth::user()->name }}
+                                </p>
+                                <p class="ammount">{{ Auth::user()->user_type->name }}</p>
+                            </div>
+
+                            <div class="dropdown dropdown--author">
+                                <ul>
+                                    
+                                    <li>
+                                        <a href="{{url('dashboard')}}">
+                                            <span class="lnr lnr-home"></span> Dashboard
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('profile.edit',[Auth::user()->code])}}">
+                                            <span class="lnr lnr-user"></span>Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="dashboard-setting.html">
+                                            <span class="lnr lnr-cog"></span> Message
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('my-account.product',[Auth::user()->code])}}">
+                                            <span class="lnr lnr-book"></span>Products
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <span class="lnr lnr-exit"></span>Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!--end /.author-author__info-->
+                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">
+                        <span class="lnr lnr-home"></span>
+                        Dashboard</a>
+                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="author-area__seller-btn inline"><span class="lnr lnr-exit"></span> logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                        @else
+                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">Become a Vendor / Buyer</a>
+                        <a href="{{ url('login') }}" class="author-area__seller-btn inline">Login</a>
+
+                        
+                        @endif --}}
+{{-- >>>>>>> a7ac0bc67aa13dc48a834deaf12adaf65ff130bf --}}
                     </div><!-- end .author-area -->
                     
                     <!-- author area restructured for mobile -->
@@ -263,7 +326,7 @@
                                     </div>
                                 </li> --}}
                                 <li class="has_megamenu">
-                                    <a href="#">Buy Requirements</a>
+                                    <a href="{{ route('requirement') }}">Buy Requirements</a>
                                     {{-- <div class="dropdown_megamenu">
                                         <div class="megamnu_module">
                                             <div class="menu_items">

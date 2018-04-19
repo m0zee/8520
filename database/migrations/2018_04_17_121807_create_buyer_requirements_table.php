@@ -20,6 +20,8 @@ class CreateBuyerRequirementsTable extends Migration
             $table->string('slug');
             $table->string('code');
             $table->integer('unit_id');
+            $table->integer('category_id')->nullable();
+            $table->integer('sub_category_id')->nullable();
             $table->integer('quantity');
             $table->text('description');
             $table->integer('status_id');

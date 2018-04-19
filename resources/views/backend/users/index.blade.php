@@ -66,7 +66,19 @@
                                                     <tr>
                                                         <td>{{ $user->name }}</td>
                                                         <td>{{ $user->email }}</td>
-                                                        <td>{{ ($user->verified == 1) ? 'Verified' : 'Pending' }}</td>
+                                                        <td>
+                                                        <span 
+                                                            class="{{ ( $user->verified == 1 ) ? 
+                                                                'fa fa-check-circle fa-lg tip' : 
+                                                                'fa fa-exclamation-triangle fa-lg tip'}}" 
+                                                            style="{{ ( $user->verified == 1 ) ? 
+                                                                'color:lightgreen;' : 
+                                                                'color: orange;' }}" 
+                                                            title="{{ ( $user->verified == 1 ) ? 
+                                                                'Verified' : 
+                                                                'Pending' }}">
+                                                        
+                                                        </td>
 
                                                         <form action="{{route('admin.user.status', [ 'user_id' => $user->id ] ) }}" method="POST">
                                                             <input name="_method" type="hidden" value="PUT">

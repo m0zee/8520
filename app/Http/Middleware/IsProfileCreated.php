@@ -20,7 +20,7 @@ class IsProfileCreated
         
         if( ! $user->detail )
         {
-            return redirect( route( 'profile.create' ) );
+            return redirect( route( 'profile.create' ) )->with( 'error','Please complete your profile first.' );
         }
         
         return $next($request);

@@ -53,7 +53,7 @@
                                     <div class="information_wrapper form--fields">
                                         <div class="form-group {{ ($errors->first('name') ) ? 'has-error' : '' }}">
                                             <label for="name">Name</label>
-                                            <input type="text" name="name" id="name" class="text_field" placeholder="Category Name" value="{{ (old('name')) ? old('name') : $sub_category->name }}">
+                                            <input type="text" name="name" id="name" class="text_field" placeholder="Category Name" value="{{ old('name', $sub_category->name ) }}">
                                             @if ($errors->first('name'))
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('name') }}</strong>
