@@ -54,7 +54,12 @@
                                     <h4>{{ $user->detail->company_name }}</h4>
                                     
                                 </div><!-- end /.author -->
-                                <span class="{{ ( $user->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $user->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
+
+                                {{-- <span class="{{ ( $user->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $user->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
+                                </span> {{ $user->email }}
+ --}}
+
+
                                 <div class="social social--color--filled">
                                     <ul>
                                         <li><a href="//{{ $user->detail->facebook }}" target="_blank"><span class="fa fa-facebook"></span></a></li>
@@ -64,9 +69,9 @@
                                     </ul>
                                 </div><!-- end /.social -->
 
-                                <div class="author-btn">
+                               {{--  <div class="author-btn">
                                     <a href="#" class="btn btn--md btn--round">Contact</a>
-                                </div><!-- end /.author-btn -->
+                                </div> --}}<!-- end /.author-btn -->
                             </div><!-- end /.author-infos -->
 
 
@@ -74,7 +79,7 @@
 
                         <div class="sidebar-card author-menu">
                             <ul>
-                                <li><a href="#" class="active">Profile</a></li>
+                                <li><a href="{{ route( 'profile.show', [ $user->code ] )}}" class="active">Profile</a></li>
                                 
                                 <li><a href="{{ route( 'vendors.reviews.index', [ 'vendor_code' => $user->code ] ) }}">Customer Reviews</a></li>
                                 
@@ -88,46 +93,46 @@
                             </div>
                         </div> --}}<!-- end /.author-card -->
 
-                        {{-- <div class="sidebar-card message-card">
+                        <div class="sidebar-card message-card">
                             <div class="card-title">
-                                <h4>Product Information</h4>
+                                <h4>Contact Information</h4>
                             </div>
+                            
+                            <div class="message-form mycontact-info">
+        
+                               
+                             <p><span class="lnr lnr-envelope "></span> {{$user->email}} </p>
+                             
+                            <p><span class="lnr lnr-phone"></span> {{$user->detail->phone_number}}</p>
 
-                            <div class="message-form">
-                                <form action="#">
-                                    <div class="form-group">
-                                        <textarea name="message" class="text_field" id="author-message" placeholder="Your message..."></textarea>
-                                    </div>
+                            <p><span class="lnr lnr-smartphone"></span> {{$user->detail->mobile_number}}</p>
 
-                                    <div class="msg_submit">
-                                        <button type="submit" class="btn btn--md btn--round">send message</button>
-                                    </div>
-                                </form>
-                               <p> Please <a href="#">sign in</a> to contact this author.</p>
+                            <p><span class="lnr lnr-map-marker"></span> {{$user->detail->address}}</p>
+
                             </div><!-- end /.message-form -->
-                        </div> --}}<!-- end /.freelance-status -->
+                        </div><!-- end /.freelance-status -->
                     </aside>
                 </div><!-- end /.sidebar -->
 
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-6">
                            <div class="author-info mcolorbg4">
-                               <p>Total Items</p>
+                               <p>Total Products</p>
                                <h3>4,369</h3>
                            </div>
                         </div><!-- end /.col-md-4 -->
 
-                        <div class="col-md-4 col-sm-4">
+                        {{-- <div class="col-md-6 col-sm-6">
                             <div class="author-info pcolorbg">
                                 <p>Total sales</p>
                                 <h3>36,957</h3>
                             </div>
-                        </div><!-- end /.col-md-4 -->
+                        </div> --}}<!-- end /.col-md-4 -->
 
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-6">
                             <div class="author-info scolorbg">
-                                <p>Total Items</p>
+                                <p>Total Rating</p>
                                 <div class="rating product--rating">
                                     <ul>
                                         <li><span class="fa fa-star"></span></li>

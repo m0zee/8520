@@ -69,3 +69,19 @@ button.my-btn:hover, .my-btn:hover
 .product--card .product-desc{
     height: 200px;
 }
+
+.sidebar_author .message-card .mycontact-info p{
+    text-align: left;
+}
+
+.sidebar_author .message-card .mycontact-info p span{
+    color:#0674ec;
+}
+
+.product--card .product-desc {
+    height: auto;
+}
+
+.iconcolor{
+    color:#0674ec;
+}

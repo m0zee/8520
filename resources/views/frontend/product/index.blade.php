@@ -138,13 +138,18 @@
                                                 </li>
                                                 <br>
                                                 <li class="">
+                                                <span class="fa fa-folder iconcolor"></span>
                                                     <a href="{{ route('categories.products', [$product->sub_category->category->slug]) }}">{{ $product->sub_category->category->name }}</a>
-                                                    <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->sub_category->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a>
+                                                    {{-- <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->sub_category->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a> --}}
                                                 </li>
 
                                                 <li>
-                                                    <strong>Price : </strong>{{ $product->currency->name }} {{ $product->price }}</a>
+                                                   <span class="fa fa-money iconcolor"></span><strong> {{ $product->price }} {{ $product->currency->name }}</strong>
                                                 </li>
+
+                                                {{-- <li>
+                                                   <span class="fa fa-barcode iconcolor"></span> </strong>{{ strtoupper($product->code) }}</strong>
+                                                </li> --}}
                                             </ul>
                                         </div><!-- end /.product-desc -->
 
