@@ -63,17 +63,23 @@
                     <aside class="sidebar sidebar_author">
                         <div class="author-card sidebar-card">
                             <div class="author-infos">
-                                <div class="author_avatar">
-                                    <img src="{{ url( 'images/author-avatar.jpg' ) }}" alt="Presenting the broken author avatar :D">
+                                 <div class="author_avatar">
+                                    @if( $vendor->detail->profile_img )
+                                        <img src="{{ asset( 'storage/profile_img/' . $vendor->detail->profile_img ) }}" alt="">
+                                    @else
+                                        <div class="alert alert-danger text-center">No imge found</div>
+                                    @endif
                                 </div>
 
                                 <div class="author">
                                     <h4>{{ $vendor->detail->company_name }}</h4>
                                 </div><!-- end /.author -->
                                 
-                            <span class="{{ ( $vendor->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $vendor->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
-                                         
-                            </span> {{ $vendor->email }}
+                                    {{-- <span class="{{ ( $vendor->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $vendor->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
+                                                 
+                                    </span> {{ $vendor->email }}
+
+                                    <span>{{ $vendor->email }}</span> --}}
                                 
 
                                 <div class="social social--color--filled">
@@ -84,9 +90,9 @@
                                     </ul>
                                 </div><!-- end /.social -->
 
-                                <div class="author-btn">
-                                    <a href="#" class="btn btn--md btn--round">Follow</a>
-                                </div>
+                               {{--  <div class="author-btn">
+                                    <a href="#" class="btn btn--md btn--round">Contact</a>
+                                </div> --}}
                             </div><!-- end /.author-infos -->
                         </div><!-- end /.author-card -->
 
@@ -99,30 +105,22 @@
                                 <li><a href="author-following.html">Following (39)</a></li> --}}
                             </ul>
                         </div><!-- end /.author-menu -->
-
-                        <div class="sidebar-card freelance-status">
-                            <div class="custom-radio">
-                                <input type="radio" id="opt1" class="" name="filter_opt" {{ ($vendor->verified == 1) ? 'checked' : '' }} >
-                                <label for="opt1"><span class="circle"></span>{{ $vendor->email }}</label>
-                            </div>
-                        </div><!-- end /.author-card -->
-
                         <div class="sidebar-card message-card">
                             <div class="card-title">
-                                <h4>Product Information</h4>
+                                <h4>Contact Information</h4>
                             </div>
+                            
+                            <div class="message-form mycontact-info">
+        
+                               
+                             <p><span class="lnr lnr-envelope "></span> {{$vendor->email}}</p>
+                             
+                            <p><span class="lnr lnr-phone"></span> {{$vendor->detail->phone_number}}</p>
 
-                            <div class="message-form">
-                                <form action="#">
-                                    <div class="form-group">
-                                        <textarea name="message" class="text_field" id="author-message" placeholder="Your message..."></textarea>
-                                    </div>
+                            <p><span class="lnr lnr-smartphone"></span> {{$vendor->detail->mobile_number}}</p>
 
-                                    <div class="msg_submit">
-                                        <button type="submit" class="btn btn--md btn--round">send message</button>
-                                    </div>
-                                </form>
-                               <p> Please <a href="#">sign in</a> to contact this author.</p>
+                            <p><span class="lnr lnr-map-marker"></span> {{$vendor->detail->address}}</p>
+
                             </div><!-- end /.message-form -->
                         </div><!-- end /.freelance-status -->
                     </aside>
@@ -130,23 +128,17 @@
 
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-6">
                             <div class="author-info mcolorbg4">
-                                <p>Total Items</p>
+                                <p>Total Products</p>
                                 <h3>4,369</h3>
                             </div>
                         </div><!-- end /.col-md-4 -->
 
-                        <div class="col-md-4 col-sm-4">
-                            <div class="author-info pcolorbg">
-                                <p>Total sales</p>
-                                <h3>36,957</h3>
-                            </div>
-                        </div><!-- end /.col-md-4 -->
 
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-6">
                             <div class="author-info scolorbg">
-                                <p>Total Items</p>
+                                <p>Total Rating</p>
                                 <div class="rating">
                                     <ul>
                                         <li><span class="fa fa-star"></span></li>
