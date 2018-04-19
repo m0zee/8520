@@ -26,16 +26,6 @@ class ComparisonController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     //
-    // }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -52,7 +42,7 @@ class ComparisonController extends Controller
 
             if( ! array_key_exists( $request->product_id, $list ) )
             {
-                $list[ $request->product_id ] = Product::with( 'user', 'currency', 'country', 'unit' )->where( 'id', $request->product_id )->first();
+                $list[ $request->product_id ] = Product::with( 'user', 'currency', 'country', 'unit', 'sub_category', 'category' )->where( 'id', $request->product_id )->first();
 
                 $count = count( $list );
 
@@ -61,47 +51,13 @@ class ComparisonController extends Controller
         }
         else
         {
-            $list[ $request->product_id ] = Product::with( 'user', 'currency', 'country', 'unit' )->where( 'id', $request->product_id )->first();
+            $list[ $request->product_id ] = Product::with( 'user', 'currency', 'country', 'unit', 'sub_category', 'category' )->where( 'id', $request->product_id )->first();
             
             session( [ 'comparisonList' => $list, 'productCount' => $count = count( $list ) ] );
         }
 
         return response( [ 'status' => 'success', 'message' => 'Product has been added to comparison list.', 'productCount' => $count ], 200 );
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function show($id)
-    // {
-    //     //
-    // }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit($id)
-    // {
-    //     //
-    // }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
 
     /**
      * Remove the specified resource from storage.

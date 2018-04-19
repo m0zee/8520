@@ -20,17 +20,6 @@
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table withdraw__table table-bordered">
-                                        {{-- <thead>
-                                        <tr>
-                                            <th>Image</th>
-                                            <th>Product</th>
-                                            <th>Vendor</th>
-                                            <th>Brand</th>
-                                            <th>Price</th>
-                                            <th>Remove</th>
-                                        </tr>
-                                        </thead> --}}
-
                                         <tbody>
                                         	@if( isset( $list ) && is_array( $list ) && count( $list ) > 0 )
                                         		<tr>
@@ -44,7 +33,13 @@
                                         		<tr>
                                         			<th>Product</th>
                                         			@foreach( $list as $item )
-			                                            <td class="text-center">{{ $item->name }}</td>
+			                                            <td class="text-center">
+                                                            <a
+                                                                href="{{ route( 'products.show', [ $item->category->slug, $item->sub_category->slug, $item->code, $item->slug ] ) }}"
+                                                                class="tip" title="Click to see the detail">
+                                                                {{ $item->name }}
+                                                            </a>
+                                                        </td>
 		                                        	@endforeach
                                         		</tr>
                                         		<tr>
@@ -94,7 +89,6 @@
 			                                            </td>
 		                                        	@endforeach
                                         		</tr>
-
 		                                    @else
 		                                    	<tr>
 		                                    		<td>
@@ -102,40 +96,6 @@
 		                                    		</td>
 		                                    	</tr>
 		                                    @endif
-
-                                        {{-- <tr>
-                                            <td>20 May 2017</td>
-                                            <td>Payoneer</td>
-                                            <td class="bold">$1300.50</td>
-                                            <td class="paid"><span>Paid</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>16 Dec 2016</td>
-                                            <td>Local Bank (USD) - Account ending in 5790</td>
-                                            <td class="bold">$2380</td>
-                                            <td class="paid"><span>Paid</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>09 Jul 2017</td>
-                                            <td>Payoneer</td>
-                                            <td class="bold">$568.50</td>
-                                            <td class="pending"><span>Pending</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>20 May 2017</td>
-                                            <td>Payoneer</td>
-                                            <td class="bold">$1300.50</td>
-                                            <td class="paid"><span>Paid</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>16 Dec 2016</td>
-                                            <td>Local Bank (USD) - Account ending in 5790</td>
-                                            <td class="bold">$2380</td>
-                                            <td class="paid"><span>Paid</span></td>
-                                        </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
