@@ -54,7 +54,7 @@
                                     <h4>{{ $user->detail->company_name }}</h4>
                                     
                                 </div><!-- end /.author -->
-                                <span class="{{ ( $vendor->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $vendor->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
+                                <span class="{{ ( $user->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $user->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
                                 <div class="social social--color--filled">
                                     <ul>
                                         <li><a href="//{{ $user->detail->facebook }}" target="_blank"><span class="fa fa-facebook"></span></a></li>

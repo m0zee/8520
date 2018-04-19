@@ -92,7 +92,7 @@
 
                         <div class="sidebar-card author-menu">
                             <ul>
-                                <li><a href="author.html">Profile</a></li>
+                                <li><a href="{{ route( 'profile.show', [ $vendor->code ] )}}">Profile</a></li>
                                 {{-- <li><a href="author-items.html">Author Items</a></li> --}}
                                 <li><a class="active" href="{{ route( 'vendors.reviews.index', $vendor->code ) }}">Customer Reviews</a></li>
                                 {{-- <li><a href="author-followers.html">Followers (67)</a></li>
