@@ -96,7 +96,7 @@
                                         <span class="lnr lnr-cog setting-icon"></span>
                                     </a>
 
-                                    <a href="{{ route('my-account.product.galary', [$product->code] ) }}" >
+                                    <a href="{{ route('my-account.product.gallery', [$product->code] ) }}" >
                                         <span class="lnr lnr-upload setting-icon"></span>
                                     </a>
 

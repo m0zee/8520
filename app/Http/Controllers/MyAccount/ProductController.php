@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Product;
+use App\ProductGallery;
 use App\Category;
 use App\Country;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductController extends Controller
 {
@@ -240,9 +242,117 @@ class ProductController extends Controller
     }
 
 
-    public function galary($code)
+    public function gallery($code)
     {
-        return 'asdf';
+        $product = Product::where('code', $code)->first();
+        $gallery = ProductGallery::where('product_id', $product->id)->get(); 
+        return view('frontend.profile.product.gallery', compact('gallery') );
+    }
+
+
+    public function add_gallery(Request $request, $code)
+    {
+        $file = $request->file;
+        $filename    = $file->getClientOriginalName();
+        $img_name = time().'.'. \File::extension($filename);
+        $path = public_path('storage/product/gallery');
+
+        $image_resize = Image::make($file->getRealPath());              
+        $image_resize->resize(750, 430);
+        $image_resize->save($path.'/'.$img_name);
+
+        $image_resize = Image::make($file->getRealPath());              
+        $image_resize->resize(80, 80);
+        $image_resize->save($path.'/80x80_'.$img_name);
+
+
+        $image_resize = Image::make($file->getRealPath());              
+        $image_resize->resize(361, 230);
+        $image_resize->save($path.'/361x230_'.$img_name);
+
+        $value = $path.'/'.$img_name;
+        $img = Image::make($value);
+        $img->insert(public_path('images/watermark/1.png'), 'center');
+        $img->save($value);
+
+        $value = $path.'/80x80_'.$img_name;
+        $img = Image::make($value);
+        $img->insert(public_path('images/watermark/1.png'), 'center');
+        $img->save($value);
+
+
+        $value = $path.'/361x230_'.$img_name;
+        $img = Image::make($value);
+        $img->insert(public_path('images/watermark/1.png'), 'center');
+        $img->save($value);
+
+        $product = Product::where('code', $code)->first();
+
+        $options = [ 
+            'product_id' => $product->id,
+            'img' => $img_name,
+            'path' => $path, 
+        ];
+
+        $img_id = $this->add_additional_image_info( $options, $product->id );
+
+        
+
+        if( $img_id > 0 )
+        {
+            $img_uploaded_info = [
+                'id'            => $img_id,
+                'img_path'      => asset('storage/product/gallery/361x230_'.$img_name),
+                'product_id'    => $product->id
+            ];
+
+            echo json_encode( [ 'success' => 'ture', 'img_data' => $img_uploaded_info ] );
+        }
+        else if ( $img_id == "limit exceeds" )
+        {
+            $this->remove_additional_image( $options );
+            echo json_encode( [ 'err' => 'Image limit exceeded. You can add maximum 4 images.<br /> Please delete images from the Saved Images panel to save new one.' ] );
+        }
+        else
+        {
+            echo json_encode( [ 'err' => 'Could not save the image. Please try again' ] );
+        }
+
+    }
+
+    private function add_additional_image_info( $upload_info, $product_id )
+    {
+        $images = ProductGallery::where('product_id', $product_id)->get();
+        if ( $images->count() >= '4' ) 
+        {
+            return 'limit exceeds';
+        }
+
+        $img_id = ProductGallery::create( $upload_info );
+        return $img_id->id;
+    }
+
+
+    public function remove_additional_image( $img_data )
+    {
+        $img_path   = $img_data['path'].'/'.$img_data['img'];
+        $thumb_path = $img_data['path'].'/80x80_'.$img_data['img'];
+        $product_img = $img_data['path'].'/361x230_'.$img_data['img'];
+
+        if( file_exists( $img_path ) && is_file( $img_path ) )
+        {
+            unlink( $img_path );
+        }
+
+        if( file_exists( $thumb_path ) && is_file( $thumb_path ) )
+        {
+            unlink( $thumb_path );
+        }
+
+        if( file_exists( $product_img ) && is_file( $product_img ) )
+        {
+            unlink( $product_img );
+        }
     }
 
 
