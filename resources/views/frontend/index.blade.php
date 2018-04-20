@@ -143,7 +143,7 @@
                                         </div><!-- end /.product__thumbnail -->
 
                                         <div class="product-desc">
-                                            <a href="#" class="product_title"><h4>{{ $product->name }}</h4></a>
+                                           <a href="#" class="product_title"><h4>{{ (strlen($product->name) > 28) ? substr($product->name,0,28).'...' :$product->name  }}</h4></a>
                                             <ul class="titlebtm">
                                                 <li>
                                                     @if( $product->user->detail->profile_img && file_exists( $product->user->detail->profile_path . '/' . $product->user->detail->profile_img ) )

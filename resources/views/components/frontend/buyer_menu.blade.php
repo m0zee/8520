@@ -15,7 +15,7 @@
                     
                     <li class="{{ ( $active == 'reviews' ) ? 'active' : '' }}">
                         <a href="{{ route( 'buyer.reviews' ) }}">
-                            <span class="lnr lnr-cog"></span> Reviews
+                            <span class="lnr lnr-list"></span> Reviews
                         </a>
                     </li>
                     <li class="{{ ( $active == 'shortlist' ) ? 'active' : '' }}">
@@ -24,13 +24,13 @@
                         </a>
                     </li>
                      <li class="{{ ( $active == 'messages') ? 'active' : ''  }}">
-                        <a href="dashboard-withdrawal.html">
+                        <a href="#">
                             <span class="lnr lnr-envelope"></span> Messages
                         </a>
                     </li>
                     <li class="{{ ( $active == 'requirement') ? 'active' : ''  }}">
                         <a href="{{ route('buyer.requirements') }}">
-                            <span class="lnr lnr-briefcase"></span> Requirement
+                            <span class="lnr lnr-briefcase"></span> Buying Requirement
                         </a>
                     </li>
 
