@@ -308,132 +308,134 @@
                                     <div class="information__set toggle_module collapse in" id="collapse2">
                                         <div class="information_wrapper form--fields">
 
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group has-error">
-                                                        {{ Form::label( 'email', 'Email Address' ) }}
-                                                        {{
-                                                            Form::text( 'email', null, [ 
-                                                                'placeholder'   => 'Please enter your email address', 
-                                                                'id'            => 'email',
-                                                                'class'         => 'text_field'
-                                                            ])
-                                                        }}
-                                                        <span class="help-block"></span>
+                                            <form id="myForm">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group has-error">
+                                                            {{ Form::label( 'email', 'Email Address' ) }}
+                                                            {{
+                                                                Form::text( 'email', null, [ 
+                                                                    'placeholder'   => 'Please enter your email address', 
+                                                                    'id'            => 'email',
+                                                                    'class'         => 'text_field'
+                                                                ])
+                                                            }}
+                                                            <span class="help-block"></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="row loginFields hidden">
-                                                <div class="col-md-12">
-                                                    <div class="form-group has-error">
-                                                        {{ Form::label( 'password', 'Password' ) }}
-                                                        {{
-                                                            Form::password( 'password', [ 
-                                                                'placeholder'   => 'Please enter password', 
-                                                                'id'            => 'password',
-                                                                'class'         => 'text_field'
-                                                            ])
-                                                        }}
-                                                        <span class="help-block"></span>
+                                                
+                                                <div class="row loginFields hidden">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group has-error">
+                                                            {{ Form::label( 'password', 'Password' ) }}
+                                                            {{
+                                                                Form::password( 'login-password', [ 
+                                                                    'placeholder'   => 'Please enter password', 
+                                                                    'id'            => 'login-password',
+                                                                    'class'         => 'text_field'
+                                                                ])
+                                                            }}
+                                                            <span class="help-block"></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="row registerFields hidden">
-                                                <div class="col-md-6">
-                                                    <div class="form-group has-error">
-                                                        {{ Form::label( 'name', 'Name' ) }}
-                                                        {{
-                                                            Form::text( 'name', '', [ 
-                                                                'placeholder'   => 'Please enter name', 
-                                                                'id'            => 'name',
-                                                                'class'         => 'text_field'
-                                                            ])
-                                                        }}
-                                                        <span class="help-block"></span>
+                                                
+                                                <div class="row registerFields hidden">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-error">
+                                                            {{ Form::label( 'name', 'Name' ) }}
+                                                            {{
+                                                                Form::text( 'name', '', [ 
+                                                                    'placeholder'   => 'Please enter name', 
+                                                                    'id'            => 'name',
+                                                                    'class'         => 'text_field'
+                                                                ])
+                                                            }}
+                                                            <span class="help-block"></span>
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="#">&nbsp;</label>
+                                                            <br>
+                                                            <label class="radio-inline" >
+                                                                <input type="radio" id="buyer" value="1" checked name="user_type_id"> Buyer
+                                                            </label>
+                                                            
+                                                            <label class="radio-inline">
+                                                                <input type="radio" id="vendor" value="2" name="user_type_id"> Vendor
+                                                            </label>
+                                                            <span class="help-block"></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group has-error">
-                                                        <label for="#">&nbsp;</label>
-                                                        <br>
-                                                        <label class="radio-inline" >
-                                                            <input type="radio" id="buyer" value="1" checked name="user_type_id"> Buyer
-                                                        </label>
-                                                        
-                                                        <label class="radio-inline">
-                                                            <input type="radio" id="vendor" value="2" name="user_type_id"> Vendor
-                                                        </label>
-                                                        <span class="help-block"></span>
+                                                
+                                                <div class="row registerFields hidden">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-error">
+                                                            {{ Form::label( 'password', 'Password' ) }}
+                                                            {{
+                                                                Form::password( 'register-password', [ 
+                                                                    'placeholder'   => 'Please enter password', 
+                                                                    'id'            => 'register-password',
+                                                                    'class'         => 'text_field'
+                                                                ])
+                                                            }}
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-error">
+                                                            {{ Form::label( 'conpassword', 'Confirm Password' ) }}
+                                                            {{
+                                                                Form::password( 'conpassword', [ 
+                                                                    'placeholder'   => 'Please enter password again', 
+                                                                    'id'            => 'conpassword',
+                                                                    'class'         => 'text_field'
+                                                                ])
+                                                            }}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="row registerFields hidden">
-                                                <div class="col-md-6">
-                                                    <div class="form-group has-error">
-                                                        {{ Form::label( 'password', 'Password' ) }}
-                                                        {{
-                                                            Form::password( 'password', [ 
-                                                                'placeholder'   => 'Please enter password', 
-                                                                'id'            => 'password',
-                                                                'class'         => 'text_field'
-                                                            ])
-                                                        }}
+                                                
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-error">
+                                                            {{ Form::label( 'quantity', 'Quantity' ) }}
+                                                            {{
+                                                                Form::text( 'quantity', '', [ 
+                                                                    'placeholder'   => 'Please enter quantity', 
+                                                                    'id'            => 'quantity',
+                                                                    'class'         => 'text_field'
+                                                                ])
+                                                            }}
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="col-md-6">
+                                                        <div class="form-group has-error">
+                                                            {{ Form::label( 'unit', 'Unit' ) }}
+                                                            <div class="text_field" id="unit" style="padding: 0 20px;">asdfasd</div>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group has-error">
-                                                        {{ Form::label( 'conpassword', 'Confirm Password' ) }}
-                                                        {{
-                                                            Form::password( 'conpassword', [ 
-                                                                'placeholder'   => 'Please enter password again', 
-                                                                'id'            => 'conpassword',
-                                                                'class'         => 'text_field'
-                                                            ])
-                                                        }}
-                                                    </div>
+                                                
+                                                <div class="form-group has-error">
+                                                    {{ Form::label( 'message', 'Enquiry' ) }}
+                                                    {{
+                                                        Form::textarea( 'message', '', [ 
+                                                            'placeholder'   => 'Please enter enquiry', 
+                                                            'id'            => 'message',
+                                                            'class'         => 'text_field',
+                                                            'rows'          => 3,
+                                                            'style'         => 'resize: none;'
+                                                        ])
+                                                    }}
+                                                    <span class="help-block"></span>
                                                 </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group has-error">
-                                                        {{ Form::label( 'quantity', 'Quantity' ) }}
-                                                        {{
-                                                            Form::text( 'quantity', '', [ 
-                                                                'placeholder'   => 'Please enter quantity', 
-                                                                'id'            => 'quantity',
-                                                                'class'         => 'text_field'
-                                                            ])
-                                                        }}
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group has-error">
-                                                        {{ Form::label( 'unit', 'Unit' ) }}
-                                                        <div class="text_field" id="unit" style="padding: 0 20px;">asdfasd</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group has-error">
-                                                {{ Form::label( 'message', 'Enquiry' ) }}
-                                                {{
-                                                    Form::textarea( 'message', '', [ 
-                                                        'placeholder'   => 'Please enter enquiry', 
-                                                        'id'            => 'message',
-                                                        'class'         => 'text_field',
-                                                        'rows'          => 3,
-                                                        'style'         => 'resize: none;'
-                                                    ])
-                                                }}
-                                                <span class="help-block"></span>
-                                            </div>
+                                            </form>
 
                                         </div>
                                     </div>
@@ -441,8 +443,8 @@
 
                             </div>
 
-                            <input type="hidden" id="isUserLoggedin" value="0">
                             <input type="hidden" id="isUserExists" value="0">
+                            <input type="hidden" id="isUserLoggedin" value="0">
 
                             <div class="col-md-12">
                                 <div class="dashboard_setting_btn">
@@ -460,5 +462,7 @@
 @endsection
 
 @section( 'js' )
-<script src="{{ url( 'js/page/frontend/product/index.js' ) }}"></script>
+<script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
+<script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
+<script src="{{ asset( 'js/page/frontend/product/index.js' ) }}"></script>
 @stop

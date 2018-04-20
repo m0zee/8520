@@ -42,7 +42,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware( 'guest' );
     }
 
 
@@ -66,7 +66,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('frontend.register');
+        return view( 'frontend.register' );
     }
 
     /**

@@ -161,6 +161,8 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 			] 
 		]);
 	});
+
+	Route::resource( 'messages', 'MessagesController' );
 });
 
 

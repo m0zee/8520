@@ -41,8 +41,7 @@
                     <div class="cardify signup_form">
                         <div class="login--header">
                             <h3>Create Your Account</h3>
-                            <p>Please fill the following fields with appropriate information
-                                to register a new MartPlace account.</p>
+                            <p>Please fill the following fields with appropriate information to register a new MartPlace account.</p>
                         </div><!-- end .login_header -->
 
                         <div class="login--form">
@@ -58,25 +57,25 @@
                                 @endif
                             </div>
 
-                            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                            <div class="form-group {{ $errors->has( 'email' ) ? 'has-error' : '' }}">
                                 <label for="email_ad">Email Address</label>
-                                <input id="email_ad" type="text" name="email" value="{{ old('email') }}" class="text_field" placeholder="Enter your email address">
+                                <input id="email_ad" type="text" name="email" value="{{ old( 'email' ) }}" class="text_field" placeholder="Enter your email address">
 
-                                @if ($errors->has('email'))
+                                @if( $errors->has( 'email' ) )
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first( 'email' ) }}</strong>
                                     </span>
                                 @endif
 
                             </div>
 
-                            <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                            <div class="form-group {{ $errors->has( 'password' ) ? 'has-error' : '' }}">
                                 <label for="password">Password</label>
                                 <input id="password" type="password" name="password" class="text_field" placeholder="Enter your password...">
 
-                                @if ($errors->has('password'))
+                                @if( $errors->has( 'password' ) )
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first( 'password' ) }}</strong>
                                     </span>
                                 @endif
                                 
@@ -89,7 +88,7 @@
 
                             <div class="form-group">
                                 <label class="radio-inline" >
-                                    <input type="radio" id="buyer" value="1" checked name="user_type_id" >Buyer
+                                    <input type="radio" id="buyer" value="1" checked name="user_type_id">Buyer
                                 </label>
                                 
                                 <label class="radio-inline">

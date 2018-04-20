@@ -48,6 +48,11 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        if( $request->ajax() )
+        {
+            return response( [ 'status' => 'success', 'message' => 'Logged in successfully' ], 200 );
+        }
+
         switch( $user->user_type_id )
         {
             case '3':
