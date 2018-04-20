@@ -208,7 +208,36 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $img_data = ProductGallery::find($id);
+        $img_path   = $img_data->path.'/'.$img_data->img;
+        $thumb_path = $img_data->path.'/80x80_'.$img_data->img;
+        $product_img = $img_data->path.'/361x230_'.$img_data->img;
+
+        $affected = ProductGallery::find($id)->delete();
+        if ( $affected > 0 ) 
+        {
+            if( file_exists( $img_path ) && is_file( $img_path ) )
+            {
+                unlink( $img_path );
+            }
+
+            if( file_exists( $thumb_path ) && is_file( $thumb_path ) )
+            {
+                unlink( $thumb_path );
+            }
+
+            if( file_exists( $product_img ) && is_file( $product_img ) )
+            {
+                unlink( $product_img );
+            }
+
+            echo json_encode( [ 'success' => 'Image has been deleted.' ] ); die;
+        }
+        else
+        {
+            echo json_encode( [ 'err' => 'Image could not be deleted. Please try again.' ] ); die;
+        }
+        
     }
 
 
@@ -252,6 +281,14 @@ class ProductController extends Controller
 
     public function add_gallery(Request $request, $code)
     {
+        $product = Product::where('code', $code)->first();
+        
+        // if ( $images->count() >= '4' ) 
+        // {
+        //     echo json_encode( [ 'err' => 'Image limit exceeded. You can add maximum 4 images.<br /> Please delete images from the Saved Images panel to save new one.' ] );
+        //     die();
+        // }
+
         $file = $request->file;
         $filename    = $file->getClientOriginalName();
         $img_name = time().'.'. \File::extension($filename);
@@ -286,8 +323,6 @@ class ProductController extends Controller
         $img->insert(public_path('images/watermark/1.png'), 'center');
         $img->save($value);
 
-        $product = Product::where('code', $code)->first();
-
         $options = [ 
             'product_id' => $product->id,
             'img' => $img_name,
@@ -303,6 +338,7 @@ class ProductController extends Controller
             $img_uploaded_info = [
                 'id'            => $img_id,
                 'img_path'      => asset('storage/product/gallery/361x230_'.$img_name),
+                'delete_url'    => route('my-account.product.gallery.destroy', [$img_id]),
                 'product_id'    => $product->id
             ];
 
@@ -312,6 +348,7 @@ class ProductController extends Controller
         {
             $this->remove_additional_image( $options );
             echo json_encode( [ 'err' => 'Image limit exceeded. You can add maximum 4 images.<br /> Please delete images from the Saved Images panel to save new one.' ] );
+            die();
         }
         else
         {
@@ -322,11 +359,10 @@ class ProductController extends Controller
 
     private function add_additional_image_info( $upload_info, $product_id )
     {
-        $images = ProductGallery::where('product_id', $product_id)->get();
-        if ( $images->count() >= '4' ) 
-        {
+
+        $images = ProductGallery::where('product_id', $product->id)->get();
+        if($images >= 4)
             return 'limit exceeds';
-        }
 
         $img_id = ProductGallery::create( $upload_info );
         return $img_id->id;

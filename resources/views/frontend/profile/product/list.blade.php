@@ -85,9 +85,9 @@
                             <div class="product__thumbnail">
 
                             @if (file_exists( $product->img_path.'/'.$product->img ))
-                                <img src="{{ asset('storage/product/'.$product->img) }}" alt="Product Image" width="360px" height="229px">
+                                <img src="{{ asset('storage/product/'.$product->img) }}" alt="Product Image">
                             @else
-                                <img src="{{ asset('images/p1.jpg') }}" alt="Product Image" width="360px" height="229px">
+                                <img src="{{ asset('images/p1.jpg') }}" alt="Product Image">
 
                             @endif
 
