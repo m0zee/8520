@@ -11,10 +11,13 @@ $(function() {
 	$.product.btnAddToCompare		= $( '.add-compare' );
 	$.product.productContainer		= $( '#product-container' );
 	$.product.modal					= $( '#myModal' );
+	$.product.modal.inputEmail		= $.product.modal.find( '#email' );
 	$.product.modal.loginFields		= $.product.modal.find( '.loginFields' );
 	$.product.modal.registerFields 	= $.product.modal.find( '.registerFields' );
-	$.product.isUserLoggedin		= $( '#isUserLoggedin' );
+	$.product.modal.errors 			= 0;
+	$.product.modal.btnSend			= $.product.modal.find( '#btn-send' );
 	$.product.isUserExists			= $( '#isUserExists' );
+	$.product.isUserLoggedin		= $( '#isUserLoggedin' );
 
 	// EVENT BINDINGS
 	$.product.btnAddToShortlist.on( 'click', function( e ) {
@@ -29,8 +32,32 @@ $(function() {
 		$.product.get( $( this ) );
 	});
 
-	$( '#email' ).on( 'blur', function() {
-		$.product.checkUser( $( this ) );
+	$.product.modal.inputEmail.on( 'blur', function() {
+		var $this = $( this ),
+			_val  = $this.val();
+		
+		$.product.resetErrors();
+
+		if( $.pakMaterial.validateEmail( _val ) ) {
+			$.product.checkUser( $this );			
+		}
+		else {
+			$.product.showError( $this.attr( 'id' ), 'Please enter valid email address' );
+		}
+	});
+
+	$.product.modal.btnSend.on( 'click', function( e ) {
+
+		if( $.product.modal.errors > 0 ) return false;
+
+		var _loginOrRegister = parseInt( $.product.isUserExists.val() );
+
+		if( _loginOrRegister ) {
+			alert( 'login' );
+		}
+		else {
+			alert( 'register' );
+		}
 	});
 });
 
@@ -153,4 +180,14 @@ $.product.checkUser = function( _el ) {
 			}
 		});
 	}
+};
+
+$.product.showError = function( inputId, error ) {
+	$.product.modal.find( '#' + inputId ).siblings( '.help-block' ).text( error );
+	$.product.modal.errors ++;
+};
+
+$.product.resetErrors = function() {
+	$.product.modal.find( '.help-block' ).text( '' );
+	$.product.modal.errors = 0;
 };

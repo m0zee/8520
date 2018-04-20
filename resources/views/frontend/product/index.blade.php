@@ -324,14 +324,13 @@
 
                                             <div class="row loginFields hidden">
                                                 <div class="col-md-12">
-                                                    <div class="form-group">
+                                                    <div class="form-group has-error">
                                                         {{ Form::label( 'password', 'Password' ) }}
                                                         {{
                                                             Form::password( 'password', [ 
                                                                 'placeholder'   => 'Please enter password', 
                                                                 'id'            => 'password',
-                                                                'class'         => 'text_field',
-                                                                'disabled'      => true
+                                                                'class'         => 'text_field'
                                                             ])
                                                         }}
                                                         <span class="help-block"></span>
@@ -341,14 +340,13 @@
 
                                             <div class="row registerFields hidden">
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group has-error">
                                                         {{ Form::label( 'name', 'Name' ) }}
                                                         {{
                                                             Form::text( 'name', '', [ 
                                                                 'placeholder'   => 'Please enter name', 
                                                                 'id'            => 'name',
-                                                                'class'         => 'text_field',
-                                                                'disabled'      => true
+                                                                'class'         => 'text_field'
                                                             ])
                                                         }}
                                                         <span class="help-block"></span>
@@ -356,7 +354,7 @@
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group has-error">
                                                         <label for="#">&nbsp;</label>
                                                         <br>
                                                         <label class="radio-inline" >
@@ -373,28 +371,26 @@
 
                                             <div class="row registerFields hidden">
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group has-error">
                                                         {{ Form::label( 'password', 'Password' ) }}
                                                         {{
                                                             Form::password( 'password', [ 
                                                                 'placeholder'   => 'Please enter password', 
                                                                 'id'            => 'password',
-                                                                'class'         => 'text_field',
-                                                                'disabled'      => true
+                                                                'class'         => 'text_field'
                                                             ])
                                                         }}
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group has-error">
                                                         {{ Form::label( 'conpassword', 'Confirm Password' ) }}
                                                         {{
                                                             Form::password( 'conpassword', [ 
                                                                 'placeholder'   => 'Please enter password again', 
                                                                 'id'            => 'conpassword',
-                                                                'class'         => 'text_field',
-                                                                'disabled'      => true
+                                                                'class'         => 'text_field'
                                                             ])
                                                         }}
                                                     </div>
@@ -403,7 +399,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group has-error">
                                                         {{ Form::label( 'quantity', 'Quantity' ) }}
                                                         {{
                                                             Form::text( 'quantity', '', [ 
@@ -416,14 +412,14 @@
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group has-error">
                                                         {{ Form::label( 'unit', 'Unit' ) }}
                                                         <div class="text_field" id="unit" style="padding: 0 20px;">asdfasd</div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group has-error">
                                                 {{ Form::label( 'message', 'Enquiry' ) }}
                                                 {{
                                                     Form::textarea( 'message', '', [ 
@@ -434,6 +430,7 @@
                                                         'style'         => 'resize: none;'
                                                     ])
                                                 }}
+                                                <span class="help-block"></span>
                                             </div>
 
                                         </div>
@@ -447,7 +444,7 @@
 
                             <div class="col-md-12">
                                 <div class="dashboard_setting_btn">
-                                    <button type="submit" class="btn btn--round btn--md">Save Change</button>
+                                    <button type="button" id="btn-send" class="btn btn--round btn--md">Send</button>
                                 </div>
                             </div><!-- end /.col-md-12 -->
                         </div>
