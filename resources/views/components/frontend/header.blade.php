@@ -112,7 +112,7 @@
                          @if( Auth::user()->user_type_id == 2 ) {{-- Vender --}}
                             <div class="author-author__info inline has_dropdown">
                                 <div class="author__avatar">
-                                    <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
+                                    <img src="{{ asset('storage/profile_img/'.Auth::user()->detail->profile_img) }}" alt="user avatar">
                                 </div>
                                 <div class="autor__info">
                                     <p class="name">{{ Auth::user()->name }}</p>
@@ -122,18 +122,26 @@
                                 <div class="dropdown dropdown--author">
                                     <ul>
                                         <li>
-                                            <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
-                                                <span class="lnr lnr-user"></span> Profile
-                                            </a>
-                                        </li>
-                                        <li>
                                             <a href="{{ url( 'dashboard' ) }}">
                                                 <span class="lnr lnr-home"></span> Dashboard
                                             </a>
                                         </li>
+
                                         <li>
-                                            <a href="{{ route( 'my-account.product', [ Auth::user()->code ] ) }}">
-                                                <span class="lnr lnr-book"></span> Products
+                                            <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
+                                                <span class="lnr lnr-user"></span> Profile
+                                            </a>
+                                        </li>
+                                       
+                                        <li>
+                                             <a href="{{ route('my-account.product') }}">
+                                                <span class="lnr lnr-cart"></span>Product
+                                            </a>
+                                        </li>
+                                        <li class="{{ (isset( $active ) && $active == 'messages') ? 'active' : ''  }}">
+                                            <a href="#">
+                                                <span class="lnr lnr-envelope"></span>Messages
+
                                             </a>
                                         </li>
                                         <li>
