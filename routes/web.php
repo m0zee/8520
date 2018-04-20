@@ -134,6 +134,7 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 			Route::put( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@update' )->name( 'my-account.product.update' );
 			Route::post( 'products/create',	'MyAccount\ProductController@store' )->name( 'my-account.product.store' );
 			Route::get( 'products/{code}/gallery',	'MyAccount\ProductController@gallery' )->name( 'my-account.product.gallery' );
+			Route::post( 'products/{id}/gallery/destroy',	'MyAccount\ProductController@destroy' )->name( 'my-account.product.gallery.destroy' );
 			Route::post( 'products/{code}/gallery',	'MyAccount\ProductController@add_gallery' )->name( 'my-account.product.add_gallery' );
 		});
 	});

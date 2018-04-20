@@ -11,17 +11,17 @@
                     </li>
                     <li class="{{ (isset( $active ) && $active == 'vendorProfile') ? 'active' : ''  }}">
                         <a href="{{route('profile.edit' , [Auth::user()->code])}}">
-                            <span class="lnr lnr-cart"></span>Company Profile
+                            <span class="lnr lnr-user"></span>Profile
                         </a>
                     </li>
                     <li class="{{ (isset( $active ) && $active == 'product') ? 'active' : ''  }}" >
                         <a href="{{ route('my-account.product') }}">
-                            <span class="lnr lnr-cog"></span>Product
+                            <span class="lnr lnr-cart"></span>Product
                         </a>
                     </li>
                     <li class="{{ (isset( $active ) && $active == 'messages') ? 'active' : ''  }}">
-                        <a href="dashboard-purchase.html">
-                            <span class="lnr lnr-cart"></span>Messages
+                        <a href="#">
+                            <span class="lnr lnr-envelope"></span>Messages
 
                         </a>
                     </li>

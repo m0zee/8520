@@ -155,28 +155,28 @@
                                 <div class="modules__content">
                                     <div class="form-group">
                                         <div class="upload_wrapper">
-                                            <p>Product Image <span>(JPEG or PNG 100x100px)</span></p>
+                                            <p>Product Image <span>(JPEG or PNG 750x430px)</span></p>
 
                                             <div class="custom_upload">
                                                 <label for="thumbnail">
-                                                    <input type="file" name="__files[]" id="thumbnail" class="files">
+                                                    <input type="file" name="__files[]" id="thumbnail" class="files file-upload">
                                                     <span class="btn btn--round btn--sm">Choose File</span>
                                                 </label>
                                             </div><!-- end /.custom_upload -->
 
                                             <div class="progress_wrapper">
                                                 <div class="labels clearfix">
-                                                    <p>Thumbnail.jpg</p>
+                                                    <p class="selected_img_name">No file selected</p>
                                                     <span data-width="89" id="progress-status">0%</span>
                                                 </div>
-                                                <div class="progress" id="progress-wrp">
+                                                <div class="progress hidden" id="progress-wrp">
                                                     <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                                                         <span class="sr-only status">70% Complete</span>
                                                     </div>
                                                 </div>
                                             </div><!-- end /.progress_wrapper -->
 
-                                            <span class="lnr upload_cross lnr-cross"></span>
+                                            {{-- <span class="lnr upload_cross lnr-cross"></span> --}}
                                         </div><!-- end /.upload_wrapper -->
                                         <div id="output"><!-- error or success results --></div>
                                     </div><!-- end /.form-group -->
@@ -269,6 +269,13 @@
 
 <script src="{{ asset('js/page/get_sub_category_by_category.js') }}"></script>
 <script>
+
+    $('.file-upload').on('change', function() {
+            var file_name = $(this).val().split('\\').pop();
+            file_name = ( file_name != '' ) ? file_name : 'No file selected' ;
+            $('.selected_img_name').text(file_name);
+        });
+
     // $(document).ready(function() {
     //     var base_url = $('#base_url').val();
     //     $('#category').on('change', function() {
@@ -330,6 +337,7 @@
             var total_files_size = 0;
             
             //reset progressbar
+            $(progress_bar_id).removeClass('hidden');
             $(progress_bar_id +" .progress-bar").css("width", "0%");
             $("#progress-status").text("0%");
             
@@ -339,12 +347,12 @@
                 var total_selected_files = this.elements['__files[]'].files.length; //number of files
                 
                 //check if file is available
-                if( total_selected_files <= 0 ){
-                    error.push( "You have not selected image. Please select image."); //push error text
-                    proceed = false; //set proceed flag to false
-                }
+                // if( total_selected_files <= 0 ){
+                //     error.push( "You have not selected image. Please select image."); //push error text
+                //     proceed = false; //set proceed flag to false
+                // }
                 //limit number of files allowed
-                else if(total_selected_files > total_files_allowed){
+                 if(total_selected_files > total_files_allowed){
                     error.push( "You have selected "+total_selected_files+" file(s), " + total_files_allowed +" is maximum!"); //push error text
                     proceed = false; //set proceed flag to false
                 }
@@ -395,6 +403,7 @@
                                         percent = Math.ceil(position / total * 100);
                                     }
                                     //update progressbar
+                                    
                                     $(progress_bar_id +" .progress-bar").css("width", + percent +"%");
                                     $("#progress-status").text(percent +"%");
                                 }, true);

@@ -86,7 +86,7 @@
                                             {{-- <img src="{{ asset('storage/product/gallery/'.$img->img) }}" alt=""> --}}
 
                                                <div class="col-md-6">
-                                                    <a href="#"
+                                                    <a href="{{ route('my-account.product.gallery.destroy', [$img->id]) }}"
                                                                class="btn btn-xs btn-danger rounded tip delete-image del-btn-pos-right"
                                                                role="button" data-placement="bottom" title="Click to delete this image.">
                                                                    <span class="fa fa-trash"></span>
@@ -125,7 +125,9 @@
 $(function () {
     $.uploadedImage         = {};
     $.uploadedImage.count   = 0;
+    // $._queued = null
     // $.uploadedImage.files = [];
+     
 
     var defaultMsgText =    '<h1>Drop file here to upload</h1> or ';
     var defaultMsgTmpl =    defaultMsgText +
@@ -140,14 +142,19 @@ $(function () {
             }),
             this.on( 'complete', function( file ) {
                 if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                    var _this = this;
+                    var _queued = this;
                     // Remove all files
-                    _this.removeAllFiles();
+                    _queued.removeAllFiles();
+                    
                     if( $.uploadedImage.count > 0) {
                         showMessage( 'success', $.uploadedImage.count + ' image(s) uploaded successfully' );
                         $.uploadedImage.count = 0;
+
                     }
                 }
+            })
+            this.on('error', function(file, response) {
+                showMessage( 'danger', response, 5000 );
             });
         },
         dictDefaultMessage: defaultMsgTmpl,
@@ -178,7 +185,7 @@ $(function () {
         }
     };
 
-    $('.panel-body').on( 'click', '.delete-image', deleteImage );
+    $('.card_content').on( 'click', '.delete-image', deleteImage );
 });
 
 
@@ -228,11 +235,10 @@ showInImageContainer = function ( data ) {
         //             '</div>';
 
         template =  '<div class="col-md-6">' +
-                        
-                            '<a href="' + base_url + 'mem/product/deleteAdditionalImage/' + data.id + '/product/' + data.product_id + '" class="btn btn-xs btn-danger rounded tip delete-image del-btn-pos-right" role="button" data-placement="bottom" title="Click to delete this image.">' +
-                                '<span class="glyphicon glyphicon-trash"></span>' +
+                            '<a href="'+ data.delete_url + '" class="btn btn-xs btn-danger rounded tip delete-image del-btn-pos-right" role="button" data-placement="bottom" title="Click to delete this image.">' +
+                                '<span class="fa fa-trash"></span>' +
                             '</a>' +
-                            '<img class="img-responsive" src="' + data.img_path + '" alt="Product Image" style="height: 100px;">' +
+                            '<img class="img-responsive" src="' + data.img_path + '" alt="Product Image">' +
                         
                     '</div>';
 
@@ -249,7 +255,7 @@ deleteImage = function ( e ) {
     e.preventDefault();
     var $this               = $( this );
     var url                 = $this.attr( 'href' );
-    var parent              = $this.closest( '.thumbnail' );
+    var parent              = $this.closest( '.col-md-6' );
     var img_container       = $( "#saved_images_container" );
 
     var no_image_template   =   '<div id="no-images" class="col-md-12" style="display: none;"> ' +
@@ -264,8 +270,10 @@ deleteImage = function ( e ) {
         type: "POST",
         dataType: "JSON",
         beforeSend: function () {
-
             // IMPLEMENT LOADING IMAGE
+            parent.slideUp( 300, function () {
+                parent.remove();
+            });
 
         },
         success:function( res ) {
@@ -274,13 +282,11 @@ deleteImage = function ( e ) {
 
                 showMessage( 'success', res.success );
 
-                parent.slideUp( 300, function () {
-                    parent.remove();
-
-                    if( img_container.children().length == 0 ) {
-                        $( no_image_template ).appendTo( img_container ).slideDown();
+                if( img_container.children().length == 1 ) {
+                        $( no_image_template ).insertBefore( '.clearboth' ).slideDown();
                     }
-                });
+
+                
             }
             else if ( res.hasOwnProperty( 'err' ) ) {
                 showMessage( 'danger', res.err );
