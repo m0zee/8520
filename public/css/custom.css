@@ -79,7 +79,7 @@ button.my-btn:hover, .my-btn:hover
 }
 
 .product--card .product-desc {
-    height: auto;
+    height: 160px;
 }
 
 .iconcolor{

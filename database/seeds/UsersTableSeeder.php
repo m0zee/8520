@@ -44,6 +44,14 @@ class UsersTableSeeder extends Seeder
             'code' => $this->get_code('12'),
             'password' => bcrypt('123123'),
         ]);
+         DB::table('users')->insert([
+            'name' => 'Buyer',
+            'email' => 'buyer@pakmaterial.com',
+            'user_type_id' => '1',
+            'status' => '1',
+            'code' => $this->get_code('13'),
+            'password' => bcrypt('123123'),
+        ]);
     }
 
 
