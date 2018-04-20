@@ -166,14 +166,14 @@
                                                     <p class="selected_img_name">No file selected</p>
                                                     <span data-width="89" id="progress-status">0%</span>
                                                 </div>
-                                                <div class="progress" id="progress-wrp">
+                                                <div class="progress hidden" id="progress-wrp">
                                                     <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                                                         <span class="sr-only status">70% Complete</span>
                                                     </div>
                                                 </div>
                                             </div><!-- end /.progress_wrapper -->
 
-                                            <span class="lnr upload_cross lnr-cross"></span>
+                                            {{-- <span class="lnr upload_cross lnr-cross"></span> --}}
                                         </div><!-- end /.upload_wrapper -->
                                         <div id="output"><!-- error or success results --></div>
                                     </div><!-- end /.form-group -->
@@ -319,6 +319,7 @@
             var total_files_size = 0;
             
             //reset progressbar
+            $(progress_bar_id).removeClass('hidden');
             $(progress_bar_id +" .progress-bar").css("width", "0%");
             $("#progress-status").text("0%");
             
