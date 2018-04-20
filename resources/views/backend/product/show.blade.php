@@ -46,14 +46,36 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="item-preview">
-                        <div class="item__preview-slider">
-                            <div class="prev-slide"><img src="{{ asset('storage/product/'.$product->img) }}" alt="1 Keep calm this isn't the end of the world, the preview is just missing."></div>
+                        <div class="item__preview-slider" style="width:99.9%">
+                            {{-- <div class="prev-slide"><img src="images/p1.jpg" alt="Keep calm this isn't the end of the world, the preview is just missing."></div> --}}
+                            <div class="prev-slide"><img id="img_01" src="{{ asset('storage/product/'.$product->img) }}"  data-zoom-image="{{ asset('storage/product/'.$product->img) }}" alt="1 Keep calm this isn't the end of the world, the preview is just missing."></div>
+                            @if ($product->gallery->count() > 0)
+                                @foreach ($product->gallery as $gallery)
+                                    <div class="prev-slide"><img src="{{ asset('storage/product/gallery/'.$gallery->img) }}" width="99%" alt="1 Keep calm this isn't the end of the world, the preview is just missing."></div>
+                                @endforeach
+                            @endif
+
                         </div><!-- end /.item--preview-slider -->
 
                         <div class="item__preview-thumb">
                             <div class="prev-thumb">
-                                <div class="thumb-slider">
-                                    <div class="item-thumb"><img src="{{ asset('storage/product/'.$product->img) }}" alt="This is the thumbnail of the item"></div>
+                                <div class="thumb-slider" id="thumb-slider">
+
+                                    <a class="item-thumb" data-image="{{ asset('storage/product/'.$product->img) }}" data-zoom-image="{{ asset('storage/product/'.$product->img) }}">
+                                        <img src="{{ asset('storage/product/80x80_'.$product->img) }}" alt="This is the thumbnail of the item">
+                                    </a>
+                                    @foreach ($product->gallery as $gallery)
+                                    <a class="item-thumb" data-image="{{ asset('storage/product/gallery/'.$gallery->img) }}" data-zoom-image="{{ asset('storage/product/gallery/'.$gallery->img) }}">
+                                        <img src="{{ asset('storage/product/gallery/80x80_'.$gallery->img) }}" alt="This is the thumbnail of the item">
+                                    </a>
+
+                                    @endforeach
+
+                                   {{--  <div class="item-thumb"><img src="{{ asset('storage/product/80x80_'.$product->img) }}" alt="This is the thumbnail of the item"></div>
+                                    @foreach ($product->gallery as $gallery)
+                                    <div class="item-thumb"><img src="{{ asset('storage/product/gallery/80x80_'.$gallery->img) }}" alt="This is the thumbnail of the item"></div>
+
+                                    @endforeach --}}
                                     {{-- <div class="item-thumb"><img src="images/thumb2.jpg" alt="This is the thumbnail of the item"></div>
                                     <div class="item-thumb"><img src="images/thumb3.jpg" alt="This is the thumbnail of the item"></div>
                                     <div class="item-thumb"><img src="images/thumb4.jpg" alt="This is the thumbnail of the item"></div>
@@ -65,10 +87,10 @@
                                     <div class="item-thumb"><img src="images/thumb5.jpg" alt="This is the thumbnail of the item"></div> --}}
                                 </div><!-- end /.thumb-slider -->
 
-                                <div class="prev-nav thumb-nav">
+                                {{-- <div class="prev-nav thumb-nav">
                                     <span class="lnr nav-left lnr-arrow-left"></span>
                                     <span class="lnr nav-right lnr-arrow-right"></span>
-                                </div><!-- end /.prev-nav -->
+                                </div> --}}<!-- end /.prev-nav -->
                             </div>
 
                             <div class="item-action">
@@ -81,6 +103,8 @@
 
 
                     </div><!-- end /.item-preview-->
+
+                    
 
                     <div class="item-info">
                         <div class="item-navigation">
@@ -100,6 +124,8 @@
                         </div><!-- end /.tab-content -->
                     </div><!-- end /.item-info -->
                 </div><!-- end /.col-md-8 -->
+
+
 
                 <div class="col-md-4">
                     <aside class="sidebar sidebar--single-product">
@@ -343,4 +369,29 @@
        
     @endif
 
+@endsection
+
+@section('js')
+
+<script src="{{ asset('js/vendor/jquery.elevatezoom.min.js') }}"></script>
+<script>
+    $("#img_01").elevateZoom({
+        gallery:'thumb-slider',
+        cursor: 'pointer',
+        galleryActiveClass: 'active',
+        imageCrossfade: true,
+        scrollZoom : true,
+        // zoomWindowPosition
+        zoomType: 'window',
+        zoomWindowWidth: 400, 
+zoomWindowHeight:    400 ,
+zoomWindowOffetx :   0 ,  
+zoomWindowOffety :   0 , 
+zoomWindowPosition  :1,
+        
+        responsive:true,
+        loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}); 
+    
+    // {gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}
+</script>
 @endsection

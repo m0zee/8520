@@ -69,9 +69,17 @@ class ProductController extends Controller
         }
 
         $files = $request->__files[0];
+        $filename    = $files->getClientOriginalName();
+        $imageName = time().'.'. \File::extension($filename);
         $path = public_path('storage/product');
-        $imageName = time().'.'.$files->getClientOriginalName();
-        $files->move( $path, $imageName );
+
+        $this->resize_img_and_watermark($files, $imageName, $path);
+
+
+        // $files = $request->__files[0];
+        // $path = public_path('storage/product');
+        // $imageName = time().'.'.$files->getClientOriginalName();
+        // $files->move( $path, $imageName );
         
         $lastProduct = Product::orderBy( 'id', 'DESC' )->first();
         $code = ( $lastProduct ) ? $this->generate_code( $lastProduct->code ) : 'pr-0001';
@@ -139,7 +147,7 @@ class ProductController extends Controller
         $product  = Product::where('code', $product_code)->first();
         $validator = Validator::make(
             $request->all(), [
-            '__files.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            '__files.*' => 'mimes:jpeg,jpg,png|max:2000',
             'category_id' => 'required',
             'sub_category_id' => 'required',
             'brand_name' => 'required',
@@ -159,11 +167,20 @@ class ProductController extends Controller
         $new_imageName = NULL ;
 
         $files = $request->__files[0];
-        if ($files->getClientOriginalName() != NULL) 
+        // return $files;
+        if ($files != '') 
         {
-            $path = public_path('storage/product');
-            $new_imageName = time().'.'.$files->getClientOriginalName();
-            $files->move( $path, $new_imageName );
+
+            // $file = $request->file;
+        $filename    = $files->getClientOriginalName();
+        $new_imageName = time().'.'. \File::extension($filename);
+        $path = public_path('storage/product');
+
+        $this->resize_img_and_watermark($files, $new_imageName, $path);
+
+            // $path = public_path('storage/product');
+            // $new_imageName = time().'.'.$files->getClientOriginalName();
+            // $files->move( $path, $new_imageName );
         }
         else
         {
@@ -196,6 +213,8 @@ class ProductController extends Controller
         if ( $new_imageName != NULL ) 
         {
             unlink($path.'/'.$product->img);
+            unlink($path.'/80x80_'.$product->img);
+            unlink($path.'/361x230_'.$product->img);
         }
         return json_encode(['success' => true]);
     }
@@ -208,7 +227,36 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $img_data = ProductGallery::find($id);
+        $img_path   = $img_data->path.'/'.$img_data->img;
+        $thumb_path = $img_data->path.'/80x80_'.$img_data->img;
+        $product_img = $img_data->path.'/361x230_'.$img_data->img;
+
+        $affected = ProductGallery::find($id)->delete();
+        if ( $affected > 0 ) 
+        {
+            if( file_exists( $img_path ) && is_file( $img_path ) )
+            {
+                unlink( $img_path );
+            }
+
+            if( file_exists( $thumb_path ) && is_file( $thumb_path ) )
+            {
+                unlink( $thumb_path );
+            }
+
+            if( file_exists( $product_img ) && is_file( $product_img ) )
+            {
+                unlink( $product_img );
+            }
+
+            echo json_encode( [ 'success' => 'Image has been deleted.' ] ); die;
+        }
+        else
+        {
+            echo json_encode( [ 'err' => 'Image could not be deleted. Please try again.' ] ); die;
+        }
+        
     }
 
 
@@ -252,11 +300,96 @@ class ProductController extends Controller
 
     public function add_gallery(Request $request, $code)
     {
+
+        $validator = Validator::make($request->all(), [
+            'file' => 'mimes:jpeg,jpg,png|max:2000',
+        ]);
+
+        if ($validator->fails()) 
+        {
+            echo json_encode( [ 'err' => $validator->errors()->first('file') ] );
+            die();
+        }
         $file = $request->file;
         $filename    = $file->getClientOriginalName();
         $img_name = time().'.'. \File::extension($filename);
         $path = public_path('storage/product/gallery');
 
+        $this->resize_img_and_watermark($file, $img_name, $path);
+
+        $product = Product::where('code', $code)->first();
+
+        $options = [ 
+            'product_id' => $product->id,
+            'img' => $img_name,
+            'path' => $path, 
+        ];
+
+
+        $img_id = $this->add_additional_image_info( $options, $product->id );
+
+        
+
+        if( $img_id > 0 )
+        {
+            $img_uploaded_info = [
+                'id'            => $img_id,
+                'img_path'      => asset('storage/product/gallery/361x230_'.$img_name),
+                'delete_url'    => route('my-account.product.gallery.destroy', [$img_id]),
+                'product_id'    => $product->id
+            ];
+
+            echo json_encode( [ 'success' => 'ture', 'img_data' => $img_uploaded_info ] );
+        }
+        else if ( $img_id == "limit exceeds" )
+        {
+            $this->remove_additional_image( $options );
+            echo json_encode( [ 'err' => 'Image limit exceeded. You can add maximum 4 images.<br /> Please delete images from the Saved Images panel to save new one.' ] );
+            die();
+        }
+        else
+        {
+            echo json_encode( [ 'err' => 'Could not save the image. Please try again' ] );
+        }
+
+    }
+
+    private function add_additional_image_info( $upload_info, $product_id )
+    {
+        $images = ProductGallery::where('product_id', $product_id)->get();
+        if($images->count() >= 4)
+            return 'limit exceeds';
+
+        $img_id = ProductGallery::create( $upload_info );
+        return $img_id->id;
+    }
+
+
+    public function remove_additional_image( $img_data )
+    {
+        $img_path   = $img_data['path'].'/'.$img_data['img'];
+        $thumb_path = $img_data['path'].'/80x80_'.$img_data['img'];
+        $product_img = $img_data['path'].'/361x230_'.$img_data['img'];
+
+        if( file_exists( $img_path ) && is_file( $img_path ) )
+        {
+            unlink( $img_path );
+        }
+
+        if( file_exists( $thumb_path ) && is_file( $thumb_path ) )
+        {
+            unlink( $thumb_path );
+        }
+
+        if( file_exists( $product_img ) && is_file( $product_img ) )
+        {
+            unlink( $product_img );
+        }
+    }
+
+
+    public function resize_img_and_watermark($file, $img_name, $path)
+    {
         $image_resize = Image::make($file->getRealPath());              
         $image_resize->resize(750, 430);
         $image_resize->save($path.'/'.$img_name);
@@ -285,74 +418,6 @@ class ProductController extends Controller
         $img = Image::make($value);
         $img->insert(public_path('images/watermark/1.png'), 'center');
         $img->save($value);
-
-        $product = Product::where('code', $code)->first();
-
-        $options = [ 
-            'product_id' => $product->id,
-            'img' => $img_name,
-            'path' => $path, 
-        ];
-
-        $img_id = $this->add_additional_image_info( $options, $product->id );
-
-        
-
-        if( $img_id > 0 )
-        {
-            $img_uploaded_info = [
-                'id'            => $img_id,
-                'img_path'      => asset('storage/product/gallery/361x230_'.$img_name),
-                'product_id'    => $product->id
-            ];
-
-            echo json_encode( [ 'success' => 'ture', 'img_data' => $img_uploaded_info ] );
-        }
-        else if ( $img_id == "limit exceeds" )
-        {
-            $this->remove_additional_image( $options );
-            echo json_encode( [ 'err' => 'Image limit exceeded. You can add maximum 4 images.<br /> Please delete images from the Saved Images panel to save new one.' ] );
-        }
-        else
-        {
-            echo json_encode( [ 'err' => 'Could not save the image. Please try again' ] );
-        }
-
-    }
-
-    private function add_additional_image_info( $upload_info, $product_id )
-    {
-        $images = ProductGallery::where('product_id', $product_id)->get();
-        if ( $images->count() >= '4' ) 
-        {
-            return 'limit exceeds';
-        }
-
-        $img_id = ProductGallery::create( $upload_info );
-        return $img_id->id;
-    }
-
-
-    public function remove_additional_image( $img_data )
-    {
-        $img_path   = $img_data['path'].'/'.$img_data['img'];
-        $thumb_path = $img_data['path'].'/80x80_'.$img_data['img'];
-        $product_img = $img_data['path'].'/361x230_'.$img_data['img'];
-
-        if( file_exists( $img_path ) && is_file( $img_path ) )
-        {
-            unlink( $img_path );
-        }
-
-        if( file_exists( $thumb_path ) && is_file( $thumb_path ) )
-        {
-            unlink( $thumb_path );
-        }
-
-        if( file_exists( $product_img ) && is_file( $product_img ) )
-        {
-            unlink( $product_img );
-        }
     }
 
 

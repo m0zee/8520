@@ -401,13 +401,32 @@ $.pakMaterial = $.pakMaterial || {};
             slidesToShow: 5,
             slidesToScroll: 1,
             arrows: false,
-            focusOnSelect: false,
+            // centerMode:true,
+            focusOnSelect: true,
+            draggable:true,
             asNavFor: '.item__preview-slider',
-            responsive:[
+            prevArrow:'.thumb-nav .lnr-arrow-left',
+            nextArrow:'.thumb-nav .lnr-arrow-right',
+            responsive: [
                 {
-                    breakpoint: 479,
+                    breakpoint: 720,
                     settings: {
-                        slidesToShow: 3
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 350,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
                     }
                 }
             ]
