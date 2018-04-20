@@ -1,7 +1,7 @@
-@extends('components.backend.master')
-@php
-    $active = 'products';
-@endphp
+@extends('components.frontend.master')
+
+@section('title', 'Home')
+@section('content')
 
 @section('title', 'Products')
 @section('content')
@@ -14,9 +14,11 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                            <li><a href="{{ route('admin.products.index') }}">Products</a></li>
-                            <li class="active"><a href="#">Show</a></li>
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="{{ route('products') }}">Products</a></li>
+                            <li><a href="{{ route('categories.products', [$product->category->slug]) }}">{{$product->category->name}}</a></li>
+                            <li><a href="{{ route('categories.sub-categories.products', [$product->category->slug, $product->sub_category->slug]) }}">{{$product->sub_category->name}}</a></li>
+                            <li class="active"><a href="#">{{ strtoupper($product->name) }}</a></li>
                         </ul>
                     </div>
                     <h1 class="page-title">{{ $product->count() > 0 ? $product->name : 'Product Not Available' }}</h1>
@@ -25,12 +27,11 @@
         </div><!-- end /.container -->
     </section>
     
-        @include('components.backend.menu')
     <!--================================
         END BREADCRUMB AREA
     =================================-->
     
-    @if ($product->count() > 0)
+    @if ($product != NULL && $product->count() > 0)
         
     
     <!--============================================
@@ -93,12 +94,12 @@
                                 </div> --}}<!-- end /.prev-nav -->
                             </div>
 
-                            <div class="item-action">
+                            {{-- <div class="item-action">
                                 <div class="action-btns">
                                     <a href="#" class="btn btn--round btn--lg">Live Preview</a>
                                     <a href="#" class="btn btn--round btn--lg btn--icon"><span class="lnr lnr-heart"></span>Add To Favorites</a>
                                 </div>
-                            </div><!-- end /.item__action -->
+                            </div> --}}<!-- end /.item__action -->
                         </div><!-- end /.item__preview-thumb-->
 
 

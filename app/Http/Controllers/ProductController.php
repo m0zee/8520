@@ -38,9 +38,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($category, $sub_category, $code, $slug)
     {
-        return '<h1><center>Implement the functionality</center></h1>';
+        // return '<h1><center>Implement the functionality</center></h1>';
+        $product = Product::where('code', $code)->with('category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery')->first();
+        return view('frontend.product.show', compact('product'));
     }
 
     public function get( $id )
@@ -75,6 +77,7 @@ class ProductController extends Controller
         ->join( 'vendor_details as vd', 'vd.user_id',   '=', 'u.id' )
         ->join( 'currencies as cur',    'cur.id',       '=', 'p.currency_id' )
         ->where( 'c.slug', $category_slug )
+        ->where('p.status_id', 2)
         ->get();
 
         return view( 'frontend.product.category_wise_products', compact( 'categories', 'products' ) )->with( 'blue_menu', true );

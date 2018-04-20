@@ -114,19 +114,19 @@
 
                                         <div class="product__thumbnail">
                                             @if( file_exists( $product->img_path . '/' . $product->img ) )
-                                                <img class="auth-img" src="{{ asset( 'storage/product/' . $product->img ) }}" alt="author image">
+                                                <img class="auth-img" src="{{ asset( 'storage/product/361x230_' . $product->img ) }}" alt="author image">
                                             @else
                                                 <img src="images/p1.jpg" alt="Product Image">
                                             @endif
                                             
                                             <div class="prod_btn">
-                                                <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
+                                                <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="transparent btn--sm btn--round">More Info</a>
                                                 <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round btn-contact">Contact</a>
                                             </div><!-- end /.prod_btn -->
                                         </div><!-- end /.product__thumbnail -->
 
                                         <div class="product-desc">
-                                            <a href="#" class="product_title"><h4>{{ (strlen($product->name) > 23) ? substr($product->name,0,23).'...' :$product->name  }}</h4></a>
+                                            <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ (strlen($product->name) > 23) ? substr($product->name,0,23).'...' :$product->name  }}</h4></a>
 
                                             
                                             <ul class="titlebtm">

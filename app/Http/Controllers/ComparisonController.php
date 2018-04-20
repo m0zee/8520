@@ -22,7 +22,7 @@ class ComparisonController extends Controller
 
         // return $this->data['list'];
 
-        return view( 'frontend.comparison.index', $this->data );
+        return view( 'frontend.comparison.index', $this->data )->with( 'blue_menu', true );
     }
 
     /**
