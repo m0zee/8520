@@ -54,4 +54,10 @@ class Product extends Model
     {
         return $this->belongsTo( 'App\Country' );
     }
+
+
+    public function gallery()
+    {
+        return $this->hasMany('App\ProductGallery');
+    }
 }

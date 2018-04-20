@@ -125,7 +125,9 @@
 $(function () {
     $.uploadedImage         = {};
     $.uploadedImage.count   = 0;
+    // $._queued = null
     // $.uploadedImage.files = [];
+     
 
     var defaultMsgText =    '<h1>Drop file here to upload</h1> or ';
     var defaultMsgTmpl =    defaultMsgText +
@@ -140,14 +142,19 @@ $(function () {
             }),
             this.on( 'complete', function( file ) {
                 if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                    var _this = this;
+                    var _queued = this;
                     // Remove all files
-                    _this.removeAllFiles();
+                    _queued.removeAllFiles();
+                    
                     if( $.uploadedImage.count > 0) {
                         showMessage( 'success', $.uploadedImage.count + ' image(s) uploaded successfully' );
                         $.uploadedImage.count = 0;
+
                     }
                 }
+            })
+            this.on('error', function(file, response) {
+                showMessage( 'danger', response, 5000 );
             });
         },
         dictDefaultMessage: defaultMsgTmpl,
@@ -263,13 +270,10 @@ deleteImage = function ( e ) {
         type: "POST",
         dataType: "JSON",
         beforeSend: function () {
-
             // IMPLEMENT LOADING IMAGE
             parent.slideUp( 300, function () {
-                    parent.remove();
-
-                    
-                });
+                parent.remove();
+            });
 
         },
         success:function( res ) {

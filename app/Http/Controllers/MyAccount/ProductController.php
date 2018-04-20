@@ -69,9 +69,17 @@ class ProductController extends Controller
         }
 
         $files = $request->__files[0];
+        $filename    = $files->getClientOriginalName();
+        $imageName = time().'.'. \File::extension($filename);
         $path = public_path('storage/product');
-        $imageName = time().'.'.$files->getClientOriginalName();
-        $files->move( $path, $imageName );
+
+        $this->resize_img_and_watermark($files, $imageName, $path);
+
+
+        // $files = $request->__files[0];
+        // $path = public_path('storage/product');
+        // $imageName = time().'.'.$files->getClientOriginalName();
+        // $files->move( $path, $imageName );
         
         $lastProduct = Product::orderBy( 'id', 'DESC' )->first();
         $code = ( $lastProduct ) ? $this->generate_code( $lastProduct->code ) : 'pr-0001';
@@ -139,7 +147,7 @@ class ProductController extends Controller
         $product  = Product::where('code', $product_code)->first();
         $validator = Validator::make(
             $request->all(), [
-            '__files.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            '__files.*' => 'mimes:jpeg,jpg,png|max:2000',
             'category_id' => 'required',
             'sub_category_id' => 'required',
             'brand_name' => 'required',
@@ -159,11 +167,20 @@ class ProductController extends Controller
         $new_imageName = NULL ;
 
         $files = $request->__files[0];
-        if ($files->getClientOriginalName() != NULL) 
+        // return $files;
+        if ($files != '') 
         {
-            $path = public_path('storage/product');
-            $new_imageName = time().'.'.$files->getClientOriginalName();
-            $files->move( $path, $new_imageName );
+
+            // $file = $request->file;
+        $filename    = $files->getClientOriginalName();
+        $new_imageName = time().'.'. \File::extension($filename);
+        $path = public_path('storage/product');
+
+        $this->resize_img_and_watermark($files, $new_imageName, $path);
+
+            // $path = public_path('storage/product');
+            // $new_imageName = time().'.'.$files->getClientOriginalName();
+            // $files->move( $path, $new_imageName );
         }
         else
         {
@@ -196,6 +213,8 @@ class ProductController extends Controller
         if ( $new_imageName != NULL ) 
         {
             unlink($path.'/'.$product->img);
+            unlink($path.'/80x80_'.$product->img);
+            unlink($path.'/361x230_'.$product->img);
         }
         return json_encode(['success' => true]);
     }
@@ -281,53 +300,31 @@ class ProductController extends Controller
 
     public function add_gallery(Request $request, $code)
     {
-        $product = Product::where('code', $code)->first();
-        
-        // if ( $images->count() >= '4' ) 
-        // {
-        //     echo json_encode( [ 'err' => 'Image limit exceeded. You can add maximum 4 images.<br /> Please delete images from the Saved Images panel to save new one.' ] );
-        //     die();
-        // }
 
+        $validator = Validator::make($request->all(), [
+            'file' => 'mimes:jpeg,jpg,png|max:2000',
+        ]);
+
+        if ($validator->fails()) 
+        {
+            echo json_encode( [ 'err' => $validator->errors()->first('file') ] );
+            die();
+        }
         $file = $request->file;
         $filename    = $file->getClientOriginalName();
         $img_name = time().'.'. \File::extension($filename);
         $path = public_path('storage/product/gallery');
 
-        $image_resize = Image::make($file->getRealPath());              
-        $image_resize->resize(750, 430);
-        $image_resize->save($path.'/'.$img_name);
+        $this->resize_img_and_watermark($file, $img_name, $path);
 
-        $image_resize = Image::make($file->getRealPath());              
-        $image_resize->resize(80, 80);
-        $image_resize->save($path.'/80x80_'.$img_name);
-
-
-        $image_resize = Image::make($file->getRealPath());              
-        $image_resize->resize(361, 230);
-        $image_resize->save($path.'/361x230_'.$img_name);
-
-        $value = $path.'/'.$img_name;
-        $img = Image::make($value);
-        $img->insert(public_path('images/watermark/1.png'), 'center');
-        $img->save($value);
-
-        $value = $path.'/80x80_'.$img_name;
-        $img = Image::make($value);
-        $img->insert(public_path('images/watermark/1.png'), 'center');
-        $img->save($value);
-
-
-        $value = $path.'/361x230_'.$img_name;
-        $img = Image::make($value);
-        $img->insert(public_path('images/watermark/1.png'), 'center');
-        $img->save($value);
+        $product = Product::where('code', $code)->first();
 
         $options = [ 
             'product_id' => $product->id,
             'img' => $img_name,
             'path' => $path, 
         ];
+
 
         $img_id = $this->add_additional_image_info( $options, $product->id );
 
@@ -359,9 +356,8 @@ class ProductController extends Controller
 
     private function add_additional_image_info( $upload_info, $product_id )
     {
-
-        $images = ProductGallery::where('product_id', $product->id)->get();
-        if($images >= 4)
+        $images = ProductGallery::where('product_id', $product_id)->get();
+        if($images->count() >= 4)
             return 'limit exceeds';
 
         $img_id = ProductGallery::create( $upload_info );
@@ -389,6 +385,39 @@ class ProductController extends Controller
         {
             unlink( $product_img );
         }
+    }
+
+
+    public function resize_img_and_watermark($file, $img_name, $path)
+    {
+        $image_resize = Image::make($file->getRealPath());              
+        $image_resize->resize(750, 430);
+        $image_resize->save($path.'/'.$img_name);
+
+        $image_resize = Image::make($file->getRealPath());              
+        $image_resize->resize(80, 80);
+        $image_resize->save($path.'/80x80_'.$img_name);
+
+
+        $image_resize = Image::make($file->getRealPath());              
+        $image_resize->resize(361, 230);
+        $image_resize->save($path.'/361x230_'.$img_name);
+
+        $value = $path.'/'.$img_name;
+        $img = Image::make($value);
+        $img->insert(public_path('images/watermark/1.png'), 'center');
+        $img->save($value);
+
+        $value = $path.'/80x80_'.$img_name;
+        $img = Image::make($value);
+        $img->insert(public_path('images/watermark/1.png'), 'center');
+        $img->save($value);
+
+
+        $value = $path.'/361x230_'.$img_name;
+        $img = Image::make($value);
+        $img->insert(public_path('images/watermark/1.png'), 'center');
+        $img->save($value);
     }
 
 

@@ -152,18 +152,18 @@
                                 <div class="modules__content">
                                     <div class="form-group">
                                         <div class="upload_wrapper">
-                                            <p>Product Image <span>(JPEG or PNG 100x100px)</span></p>
+                                            <p>Product Image <span>(JPEG or PNG 750x430px)</span></p>
 
                                             <div class="custom_upload">
                                                 <label for="thumbnail">
-                                                    <input type="file" name="__files[]" id="thumbnail" class="files">
+                                                    <input type="file" name="__files[]" id="thumbnail" class="files file-upload">
                                                     <span class="btn btn--round btn--sm">Choose File</span>
                                                 </label>
                                             </div><!-- end /.custom_upload -->
 
                                             <div class="progress_wrapper">
                                                 <div class="labels clearfix">
-                                                    <p>Thumbnail.jpg</p>
+                                                    <p class="selected_img_name">No file selected</p>
                                                     <span data-width="89" id="progress-status">0%</span>
                                                 </div>
                                                 <div class="progress" id="progress-wrp">
@@ -269,6 +269,12 @@
         $('#category').on('change', function() {
             $this = $(this);
             get_sub_category($this);
+        });
+
+        $('.file-upload').on('change', function() {
+            var file_name = $(this).val().split('\\').pop();
+            file_name = ( file_name != '' ) ? file_name : 'No file selected' ;
+            $('.selected_img_name').text(file_name);
         });
 
         function get_sub_category($this) {
