@@ -25,6 +25,10 @@ class ReviewsTableSeeder extends Seeder
 	           'status_id'		=> $faker->numberBetween($min = 1, $max = 3),
 	           'user_id' 		=> $user_id,
 	           'vendor_code'	=> $this->get_code($user_id),
+
+               'created_at'    => date( 'Y-m-d H:i:s' ),
+
+               'updated_at'    => date( 'Y-m-d H:i:s' ),
 	        ]);
     	}
     }

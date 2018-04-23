@@ -16,9 +16,9 @@
                 <div class="col-md-8 col-md-offset-1 col-xs-5 col-sm-9 v_middle">
                     <!-- start .author-area -->
                     <div class="author-area">
-                        <a href="{{ route('register') }}" class="author-area__seller-btn inline">Become a Seller</a>
+                        
 
-                        <div class="author__notification_area">
+                        <div class="author__notification_area" style="visibility:hidden">
                             <ul>
                                 <li class="has_dropdown">
                                     <div class="icon_wrap">
@@ -277,22 +277,25 @@
                                 <p class="name">
                                     {{ Auth::user()->name }}
                                 </p>
-                                <p class="ammount">$20.45</p>
+                                <p class="ammount">Admin</p>
                             </div>
 
                             <div class="dropdown dropdown--author">
                                 <ul>
                                     <li><a href="author.html"><span class="lnr lnr-user"></span>Profile</a></li>
                                     <li><a href="dashboard.html"><span class="lnr lnr-home"></span> Dashboard</a></li>
-                                    <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
+                                    {{-- <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
                                     <li><a href="cart.html"><span class="lnr lnr-cart"></span>Purchases</a></li>
                                     <li><a href="favourites.html"><span class="lnr lnr-heart"></span> Favourite</a></li>
                                     <li><a href="dashboard-add-credit.html"><span class="lnr lnr-dice"></span>Add Credits</a></li>
                                     <li><a href="dashboard-statement.html"><span class="lnr lnr-chart-bars"></span>Sale Statement</a></li>
                                     <li><a href="dashboard-upload.html"><span class="lnr lnr-upload"></span>Upload Item</a></li>
                                     <li><a href="dashboard-manage-item.html"><span class="lnr lnr-book"></span>Manage Item</a></li>
-                                    <li><a href="dashboard-withdrawal.html"><span class="lnr lnr-briefcase"></span>Withdrawals</a></li>
-                                    <li><a href="#"><span class="lnr lnr-exit"></span>Logout</a></li>
+                                    <li><a href="dashboard-withdrawal.html"><span class="lnr lnr-briefcase"></span>Withdrawals</a></li> --}}
+                                    <li> <a href="{{ route( 'logout' ) }}"
+                                             onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
+                                                <span class="lnr lnr-exit"></span> Logout
+                                            </a></li>
                                 </ul>
                             </div>
                         </div><!--end /.author-author__info-->

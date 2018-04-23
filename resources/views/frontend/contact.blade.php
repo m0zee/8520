@@ -16,16 +16,16 @@
                 <div class="col-md-12">
                     <div class="row">
                         <!-- start col-md-12 -->
-                        <div class="col-md-12">
+                        {{-- <div class="col-md-12">
                             <div class="section-title">
                                 <h1>How can We <span class="highlighted">Help?</span></h1>
                                 <p>Laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats. Lid est laborum dolo rumes fugats untras.</p>
                             </div>
-                        </div><!-- end /.col-md-12 -->
+                        </div> --}}<!-- end /.col-md-12 -->
                     </div><!-- end /.row -->
 
                     <div class="row">
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="contact_tile">
                                 <span class="tiles__icon lnr lnr-map-marker"></span>
                                 <h4 class="tiles__title">Office Address</h4>
@@ -53,12 +53,12 @@
                                     <p>support@aazztech.com</p>
                                 </div>
                             </div><!-- end /.contact_tile -->
-                        </div><!-- end /.col-md-4 -->
+                        </div> --}}<!-- end /.col-md-4 -->
 
                         <div class="col-md-12">
                             <div class="contact_form cardify">
                                 <div class="contact_form__title">
-                                    <h3>Leave Your Messages</h3>
+                                    <h3>Contact Us</h3>
                                 </div>
 
                                 <div class="row">
