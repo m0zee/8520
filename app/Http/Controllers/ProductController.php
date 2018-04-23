@@ -50,10 +50,11 @@ class ProductController extends Controller
         $product = Product::with( 'unit' )->find( $id );
         
         $return = [
-            'id'    => $product->id,
-            'code'  => $product->code,
-            'name'  => $product->name,
-            'unit'  => $product->unit->name,
+            'id'        => $product->id,
+            'code'      => $product->code,
+            'name'      => $product->name,
+            'unit'      => $product->unit->name,
+            'user_id'   => $product->user_id,
         ];
 
         return response( [ 'status' => 'success', 'product' => $return ], 200 );
