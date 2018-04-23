@@ -19,17 +19,17 @@ $.pakMaterial = $.pakMaterial || {};
             },
             {
                 type: type,
-                delay: 3000,
-                z_index: 1051,
-                allow_dismiss: true,
-                showProgressbar: false,
+                delay:              3000,
+                z_index:            1051,
+                allow_dismiss:      true,
+                showProgressbar:    false,
                 placement: {
-                    from: 'top',
-                    align: 'center'
+                    from:   'top',
+                    align:  'center'
                 },
                 animate:{
-                    enter: "animated fadeInUp",
-                    exit: "animated fadeOutDown"
+                    enter:  'animated fadeInUp',
+                    exit:   'animated fadeOutDown'
                 },
                 template:   '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0} my-alert-{0}" role="alert">' +
                                 '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +

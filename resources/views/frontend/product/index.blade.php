@@ -224,6 +224,7 @@
                 </div>
             </div>
         </div>
+
     </section>
     <!--================================
         END CALL TO ACTION AREA
@@ -231,59 +232,78 @@
 
     <!-- Modal -->
     @if( Auth::check() )
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+        <div class="modal fade not_loggedind_modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="not_loggedind_modal">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-                        <h3 class="modal-title">Rating this Item</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                         
-                        {{-- <h4>Product Enquiry Extension</h4><p>by <a href="author.html">AazzTech</a></p> --}}
+                        <h4>Send Enquiry</h4>
                     </div><!-- end /.modal-header -->
 
                     <div class="modal-body">
-                        <form action="#">
-                            <ul>
-                                <li>
-                                    <p>Your Rating</p>
-                                    <div class="right_content btn btn--round btn--white btn--md">
-                                        <select name="rating" class="give_rating">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </div>
-                                </li>
 
-                                <li>
-                                    <p>Rating Causes</p>
-                                    <div class="right_content">
-                                        <div class="select-wrap">
-                                            <select name="review_reason" id="rev">
-                                                <option value="design">Design Quality</option>
-                                                <option value="customization">Customization</option>
-                                                <option value="support">Support</option>
-                                                <option value="performance">Performance</option>
-                                                <option value="documentation">Well Documented</option>
-                                            </select>
+                        <div class="row">
+                            {{ Form::open( [ 'url' => '#', 'id' => 'myForm' ] ) }}
+                            <div class="col-md-12">
+                                <div class="information_module">
+                                    <div class="information__set toggle_module collapse in" id="collapse2">
+                                        <div class="information_wrapper form--fields">
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'quantity', 'Quantity' ) }}
+                                                        {{
+                                                            Form::text( 'quantity', '', [ 
+                                                                'placeholder'   => 'Please enter quantity', 
+                                                                'id'            => 'quantity',
+                                                                'class'         => 'text_field number'
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'unit', 'Unit' ) }}
+                                                        <div class="text_field" id="unit" style="padding: 0 20px;">asdfasd</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group has-error">
+                                                {{ Form::label( 'message', 'Enquiry' ) }}
+                                                {{
+                                                    Form::textarea( 'message', '', [ 
+                                                        'placeholder'   => 'Please enter enquiry', 
+                                                        'id'            => 'message',
+                                                        'class'         => 'text_field',
+                                                        'rows'          => 3,
+                                                        'style'         => 'resize: none;'
+                                                    ])
+                                                }}
+                                                <span class="help-block"></span>
+                                            </div>
 
-                                            <span class="lnr lnr-chevron-down"></span>
                                         </div>
                                     </div>
-                                </li>
-                            </ul>
+                                </div>
 
-                            <div class="rating_field">
-                                <label for="rating_field">Comments</label>
-                                <textarea name="rating_field" id="rating_field" class="text_field" placeholder="Please enter your rating reason to help the author"></textarea>
-                                <p class="notice">Your review will be ​publicly visible​ and the author may reply to your comments. </p>
                             </div>
-                            <button type="submit" class="btn btn--round btn--default">Submit Rating</button>
-                            <button class="btn btn--round modal_close" data-dismiss="modal">Close</button>
-                        </form><!-- end /.form -->
+
+                            <input type="hidden" id="isUserLoggedin" value="1">
+
+                            <div class="col-md-12">
+                                <div class="dashboard_setting_btn">
+                                    <button type="submit" id="btn-send" class="btn btn--round btn--md">Send</button>
+                                </div>
+                            </div><!-- end /.col-md-12 -->
+                            {{ Form::close() }}
+                        </div>
+
                     </div><!-- end /.modal-body -->
                 </div>
             </div>
@@ -458,6 +478,14 @@
             </div>
         </div>
     @endif
+
+    <div class="modal fade loading_modal" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loading_modal">
+        <div class="modal-dialog modal-md text-center" role="document" style="vertical-align: middle; height: 100%; vertical-align: middle; position: absolute; top: 30%; right: 30%;">
+            <span class="fa fa-spinner fa-spin" style="font-size: 300px;"></span>
+            <br><br>
+            <h3>LOADING...Please wait!</h3>
+        </div>
+    </div>
 
 @endsection
 

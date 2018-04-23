@@ -1,5 +1,4 @@
 <?php
-use App\Http\Middleware\CheckAdminLogin;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +94,14 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 		'only' => [ 'index' ],
 		'names' => [
 			'index' => 'admin.reviews.index'
+		]
+	]);
+
+	Route::resource( 'admin/messages', 'Backend\MessagesController', [
+		'only' => [ 'index', 'show' ],
+		'names' => [
+			'index' => 'admin.messages.index',
+			'show'	=> 'admin.messages.show'
 		]
 	]);
 

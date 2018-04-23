@@ -25,8 +25,21 @@
                             <span class="lnr lnr-dice"></span> Category
                         </a>
                     </li>
-                    <li class="{{ ($active == 'product') ? 'active' : ''  }}"><a href="{{ route('admin.products.index') }}"><span class="lnr lnr-briefcase"></span>Products</a></li>
-                    <li class="{{ ($active == 'requirement') ? 'active' : ''  }}"><a href="{{ route('admin.requirements.index') }}"><span class="lnr lnr-cart"></span>Requirement</a></li>
+                    <li class="{{ ($active == 'product') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.products.index') }}">
+                            <span class="lnr lnr-briefcase"></span> Products
+                        </a>
+                    </li>
+                    <li class="{{ ($active == 'requirement') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.requirements.index') }}">
+                            <span class="lnr lnr-cart"></span> Requirement
+                        </a>
+                    </li>
+                    <li class="{{ ($active == 'requirement' ) ? 'active' : ''  }}">
+                        <a href="{{ route( 'admin.messages.index' ) }}">
+                            <span class="lnr lnr-cart"></span> Messages
+                        </a>
+                    </li>
                     
                     
                     
