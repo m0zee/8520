@@ -82,13 +82,13 @@
                                     <span>{{ $vendor->email }}</span> --}}
                                 
 
-                                <div class="social social--color--filled">
+                                {{-- <div class="social social--color--filled">
                                     <ul>
                                         <li><a href="#"><span class="fa fa-facebook"></span></a></li>
                                         <li><a href="#"><span class="fa fa-twitter"></span></a></li>
                                         <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
                                     </ul>
-                                </div><!-- end /.social -->
+                                </div> --}}<!-- end /.social -->
 
                                {{--  <div class="author-btn">
                                     <a href="#" class="btn btn--md btn--round">Contact</a>

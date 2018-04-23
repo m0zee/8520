@@ -8,7 +8,7 @@
 =================================-->
 <section class="hero-area bgimage">
     <div class="bg_image_holder">
-        <img src="images/hero_area_bg1.jpg" alt="background-image">
+        <img src="images/slider.jpg" alt="background-image">
     </div>
     <!-- start hero-content -->
     <div class="hero-content content_above">
@@ -147,7 +147,7 @@
                                             <ul class="titlebtm">
                                                 <li>
                                                     @if( $product->user->detail->profile_img && file_exists( $product->user->detail->profile_path . '/' . $product->user->detail->profile_img ) )
-                                                        <img class="auth-img" src="{{ asset( 'storage/profile_img/' . $product->user->detail->profile_img ) }}" alt="author image">
+                                                        <img class="auth-img" src="{{ asset( 'storage/profile_img/30x30_' . $product->user->detail->profile_img ) }}" alt="author image">
                                                     @else
                                                         <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
                                                     @endif
@@ -161,7 +161,7 @@
                                                 </li>
 
                                                 <li>
-                                                   <span class="fa fa-money iconcolor"></span><strong> {{ $product->price }} {{ $product->currency->name }}</strong>
+                                                   <span class="fa fa-money iconcolor"></span><strong> {{ $product->price }} {{ $product->currency->name }} - {{ $product->unit->name }}</strong>
                                                 </li>
 
                                                 {{-- <li>

@@ -285,57 +285,7 @@
                                 </div>
                             </div><!-- end /.information_module -->
 
-                            <div class="information_module">
-                                <a class="toggle_title" href="#collapse5" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapse1">
-                                    <h4>Social Profiles <span class="lnr lnr-chevron-down"></span></h4>
-                                </a>
-
-                                <div class="information__set social_profile toggle_module collapse in " id="collapse5">
-                                    <div class="information_wrapper">
-                                        <div class="social__single">
-                                            <div class="social_icon">
-                                                <span class="fa fa-facebook"></span>
-                                            </div>
-
-                                            <div class="link_field">
-                                                <input type="text" class="text_field" name="facebook" placeholder="ex: www.facebook.com/aazztech">
-                                            </div>
-                                        </div><!-- end /.social__single -->
-
-                                        <div class="social__single">
-                                            <div class="social_icon">
-                                                <span class="fa fa-twitter"></span>
-                                            </div>
-
-                                            <div class="link_field">
-                                                <input type="text" class="text_field" name="twitter" placeholder="ex: www.twitter.com/aazztech">
-                                            </div>
-                                        </div><!-- end /.social__single -->
-
-                                        <div class="social__single">
-                                            <div class="social_icon">
-                                                <span class="fa fa-google-plus"></span>
-                                            </div>
-
-                                            <div class="link_field">
-                                                <input type="text" class="text_field" name="google_plus" placeholder="ex: www.google.com/aazztech">
-                                            </div>
-                                        </div><!-- end /.social__single -->
-
-                                        <div class="social__single">
-                                            <div class="social_icon">
-                                                <span class="fa fa-linkedin"></span>
-                                            </div>
-
-                                            <div class="link_field">
-                                                <input type="text" class="text_field" name="linked_in" placeholder="ex: www.linkedin.com/m0zee">
-                                            </div>
-                                        </div><!-- end /.social__single -->
-
-
-                                    </div><!-- end /.information_wrapper -->
-                                </div><!-- end /.social_profile -->
-                            </div><!-- end /.information_module -->
+                            
 
                         </div>
 

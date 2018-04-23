@@ -97,7 +97,7 @@
                                             <ul class="titlebtm">
                                                 <li>
                                                     @if (file_exists($product->user->detail->profile_path.'/'.$product->user->detail->profile_img))
-                                                        <img class="auth-img" src="{{ asset('storage/profile_img/'.$product->user->detail->profile_img) }}" alt="author image">
+                                                        <img class="auth-img" src="{{ asset('storage/profile_img/30x30_'.$product->user->detail->profile_img) }}" alt="author image">
                                                     @else
                                                         <img class="auth-img" src="images/auth.jpg" alt="author image">
                                                     @endif
@@ -110,7 +110,7 @@
                                                 </li>
 
                                                 <li>
-                                                    <strong>Price : </strong>{{ $product->currency->name }} {{ $product->price }}</a>
+                                                    <strong>Price : </strong>{{ $product->currency->name }} {{ $product->price }} - {{ $product->unit->name }}</a>
                                                 </li>
                                             </ul>
 

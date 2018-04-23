@@ -81,7 +81,7 @@
 
                                         <div class="product__thumbnail">
                                             @if (file_exists($product->img_path.'/'.$product->img))
-                                                <img class="auth-img" src="{{ asset('storage/product/361x230_'.$product->img) }}" alt="author image">
+                                                <img class="auth-img" src="{{ asset('storage/product/361x230_'.$product->img) }}" alt="Product image">
                                             @else
                                                 <img src="{{ asset('images/p1.jpg') }}" alt="Product Image">
                                             @endif
@@ -97,7 +97,7 @@
                                             <ul class="titlebtm">
                                                 <li>
                                                     @if (file_exists($product->profile_path.'/'.$product->profile_img))
-                                                        <img class="auth-img" src="{{ asset('storage/profile_img/'.$product->profile_img) }}" alt="author image">
+                                                        <img class="auth-img" src="{{ asset('storage/profile_img/30x30_'.$product->profile_img) }}" alt="author image">
                                                     @else
                                                         <img class="auth-img" src="{{ asset('images/auth.jpg') }}" alt="author image">
                                                     @endif
@@ -110,7 +110,7 @@
                                                 </li>
 
                                                 <li class="">
-                                                    <strong>Price : </strong>{{ $product->currency }} {{ $product->price }}</a>
+                                                    <strong>Price : </strong>{{ $product->currency }} {{ $product->price }} - {{ $product->unit_name }}</a>
                                                 </li>
                                             </ul>
 

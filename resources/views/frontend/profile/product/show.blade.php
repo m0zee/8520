@@ -163,12 +163,6 @@
                                     <p>Signed Up: {{ $product->user->created_at }}</p>
                                 </div><!-- end /.author -->
 
-                                <div class="social social--color--filled">
-                                    <ul>
-                                        <li><a href="//{{ $product->user->detail->facebook }}" target="_blank"><span class="fa fa-facebook"></span></a></li>
-                                        <li><a href="//{{ $product->user->detail->twitter }}" target="_blank"><span class="fa fa-twitter"></span></a></li>
-                                    </ul>
-                                </div><!-- end /.social -->
 
                                 <div class="author-btn">
                                     <a href="#" class="btn btn--sm btn--round">View Profile</a>

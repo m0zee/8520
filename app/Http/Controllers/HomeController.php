@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $products   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->where('status_id', 2)->paginate( 12 );
-        return view('frontend.index' ,compact( 'products' ) );
+        $products   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->where('status_id', 2)->orderBy('id', 'DESC')->paginate( 12 );
+        return view('frontend.index' ,compact( 'products' ) )->with('blue_menu', true);
     }
 
 

@@ -199,7 +199,19 @@
                                         
 
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="custom_checkbox">
+                                                        <input type="checkbox" value="1" id="cod" name="cod" {{ $user->detail->cod == 1 ? 'checked' : ' ' }}>
+                                                        <label for="cod">
+                                                            <span class="shadow_checkbox"></span>
+                                                            <span class="radio_title">COD</span>
+                                                        </label>
+                                                    </div>
+                                                </div><!-- end /.custom-radio -->
+                                            </div>
+
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
                                                         <input type="checkbox" value="1" id="cash" name="cash" {{ $user->detail->cash == 1 ? 'checked' : ' ' }}>
@@ -210,7 +222,7 @@
                                                     </div>
                                                 </div><!-- end /.custom-radio -->
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
                                                         <input type="checkbox" value="1" id="cheque" name="cheque" {{ $user->detail->cheque == 1 ? 'checked' : ' ' }}>
@@ -221,7 +233,7 @@
                                                     </div>
                                                 </div><!-- end /.custom-radio -->
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
                                                         <input type="checkbox" value="1" id="card" name="card" {{ $user->detail->card == 1 ? 'checked' : ' ' }}>
@@ -258,6 +270,7 @@
                                             <div class="img_info">
                                                 <p class="bold">Profile Image</p>
                                                 <p class="subtitle">JPG, JPEG or PNG 100x100 px</p>
+                                                <p class="subtitle">Max file size 2mb</p>
                                             </div>
 
                                             <label for="dp" class="upload_btn">
@@ -283,7 +296,8 @@
 
 
                                             <div  class="upload_title">
-                                                <p>JPG, JPEG or PNG 750x370 px</p>
+                                                <p class="subtitle">JPG, JPEG or PNG 750x370px.</p>
+                                                <p class="subtitle">Max file size 2mb</p>
                                                 <label for="cover_photo" class="upload_btn">
                                                     <input type="file" id="cover_photo" name="cover_img">
                                                     <span class="btn btn--sm btn--round" aria-hidden="true">Upload Image</span>
@@ -299,57 +313,6 @@
                                 </div>
                             </div><!-- end /.information_module -->
 
-                            <div class="information_module">
-                                <a class="toggle_title" href="#collapse5" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapse1">
-                                    <h4>Social Profiles <span class="lnr lnr-chevron-down"></span></h4>
-                                </a>
-
-                                <div class="information__set social_profile toggle_module collapse in " id="collapse5">
-                                    <div class="information_wrapper">
-                                        <div class="social__single">
-                                            <div class="social_icon">
-                                                <span class="fa fa-facebook"></span>
-                                            </div>
-
-                                            <div class="link_field">
-                                                <input type="text" class="text_field" name="facebook" value="{{ $user->detail->facebook }}" placeholder="ex: www.facebook.com/aazztech">
-                                            </div>
-                                        </div><!-- end /.social__single -->
-
-                                        <div class="social__single">
-                                            <div class="social_icon">
-                                                <span class="fa fa-twitter"></span>
-                                            </div>
-
-                                            <div class="link_field">
-                                                <input type="text" class="text_field" name="twitter" value="{{ $user->detail->twitter }}" placeholder="ex: www.twitter.com/aazztech">
-                                            </div>
-                                        </div><!-- end /.social__single -->
-
-                                        <div class="social__single">
-                                            <div class="social_icon">
-                                                <span class="fa fa-google-plus"></span>
-                                            </div>
-
-                                            <div class="link_field">
-                                                <input type="text" class="text_field" name="google_plus" value="{{ $user->detail->google_plus }}" placeholder="ex: www.google.com/aazztech">
-                                            </div>
-                                        </div><!-- end /.social__single -->
-
-                                        <div class="social__single">
-                                            <div class="social_icon">
-                                                <span class="fa fa-linkedin"></span>
-                                            </div>
-
-                                            <div class="link_field">
-                                                <input type="text" class="text_field" name="linked_in" value="{{ $user->detail->linked_in }}" placeholder="ex: www.linkedin.com/m0zee">
-                                            </div>
-                                        </div><!-- end /.social__single -->
-
-
-                                    </div><!-- end /.information_wrapper -->
-                                </div><!-- end /.social_profile -->
-                            </div><!-- end /.information_module -->
 
                         </div>
 

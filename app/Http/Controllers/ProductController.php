@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function index()
     {
         $categories = Category::get();
-        $products   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->paginate( 12 );
+        $products   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->orderBy('id', 'DESC')->paginate( 12 );
         
         return view( 'frontend.product.index', compact( 'categories', 'products' ) )->with( 'blue_menu', true );
     }
@@ -70,13 +70,15 @@ class ProductController extends Controller
             'c.name as category_name', 'c.slug as category_slug', 
             'vd.company_name', 'vd.profile_path', 'vd.profile_img', 
             'cur.name as currency',
-            'u.code as user_code'
+            'u.code as user_code',
+            'un.name as unit_name'
         )
         ->join('sub_categories AS sc',  'sc.id',        '=', 'p.sub_category_id' )
         ->join( 'categories as c',      'c.id',         '=', 'sc.category_id' )
         ->join( 'users as u',           'u.id',         '=', 'p.user_id' )
         ->join( 'vendor_details as vd', 'vd.user_id',   '=', 'u.id' )
         ->join( 'currencies as cur',    'cur.id',       '=', 'p.currency_id' )
+        ->join( 'units as un',    'un.id',       '=', 'p.unit_id' )
         ->where( 'c.slug', $category_slug )
         ->where('p.status_id', 2)
         ->get();

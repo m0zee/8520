@@ -79,9 +79,13 @@ button.my-btn:hover, .my-btn:hover
 }
 
 .product--card .product-desc {
-    height: 160px;
+    height: 190px;
 }
 
 .iconcolor{
     color:#0674ec;
+}
+
+.hero-area::before{
+    background: none;
 }

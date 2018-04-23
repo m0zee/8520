@@ -7,6 +7,7 @@ use App\Country;
 use App\User;
 use App\VendorDetail;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 class ProfileController extends Controller
@@ -97,11 +98,7 @@ class ProfileController extends Controller
             'cash'          => $request->input( 'cash' ),
             'cheque'        => $request->input( 'cheque' ),
             'card'          => $request->input( 'card' ),
-            'description'   => $request->input( 'description' ),
-            'facebook'      => $request->input( 'facebook' ),
-            'twitter'       => $request->input( 'twitter' ),
-            'google_plus'   => $request->input( 'google_plus' ),
-            'linked_in'     => $request->input( 'linked_in' ),
+            'description'   => $request->input( 'description' )
         ];
 
         $options = array_merge($data, $profile_img, $cover_img);
@@ -126,29 +123,39 @@ class ProfileController extends Controller
         $profile_img    = [];
         $cover_img      = [];
 
+        $this->validate( $request, [
+            'name'          => 'required',
+            'company_name'  => 'required',
+            'country_id'    => 'required',
+            'state_id'      => 'required',
+            'city_id'       => 'required',
+            'address'       => 'required',
+            'mobile_number' => 'required',
+            'cover_img' => 'mimes:jpeg,png,jpg|max:2048',
+            'profile_img' => 'mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $old_imageName = NULL;
         if( $request->hasFile( 'profile_img' ) ) 
         {
-            $this->validate($request, [
-                'profile_img' => 'image|mimes:jpeg,png,jpg|max:2048'
-            ]);
+            $files     = $request->profile_img;
+            $filename  = $files->getClientOriginalName();
+            $imageName = time().'.'. \File::extension($filename);
+            $path      = public_path( 'storage/profile_img' );
 
-            $path       = public_path( 'storage/profile_img' );
-            $imageName  = time() . '.' . $request->profile_img->getClientOriginalName();
-
-            $request->profile_img->move( $path, $imageName );
+            $this->resize_profile_img($files, $imageName, $path);
 
             $profile_img = [
                 'profile_img'   => $imageName,
                 'profile_path'  => $path,
             ];
+
+            $old_imageName  = Auth::user()->detail->profile_img;
+            $old_path       = $path; 
         }
 
         if( $request->hasFile( 'cover_img' ) ) 
         {
-            $this->validate( $request, [
-                'cover_img' => 'image|mimes:jpeg,png,jpg|max:2048'
-            ]);
-
             $path       = public_path( 'storage/cover_img' );
             $imageName  = time() . '.' . $request->cover_img->getClientOriginalName();
             $request->cover_img->move( $path, $imageName );
@@ -159,15 +166,6 @@ class ProfileController extends Controller
             ];
         }
 
-        $this->validate( $request, [
-            'name'          => 'required',
-            'company_name'  => 'required',
-            'country_id'    => 'required',
-            'state_id'      => 'required',
-            'city_id'       => 'required',
-            'address'       => 'required',
-            'mobile_number' => 'required',
-        ]);
 
         $data = [
             'user_id'       => Auth::user()->id,
@@ -181,11 +179,7 @@ class ProfileController extends Controller
             'cash'          => $request->input( 'cash' ),
             'cheque'        => $request->input( 'cheque' ),
             'card'          => $request->input( 'card' ),
-            'description'   => $request->input( 'description' ),
-            'facebook'      => $request->input( 'facebook' ),
-            'twitter'       => $request->input( 'twitter' ),
-            'google_plus'   => $request->input( 'google_plus' ),
-            'linked_in'     => $request->input( 'linked_in' ),
+            'description'   => $request->input( 'description' )
         ];
 
         $options = array_merge( $data, $profile_img, $cover_img );
@@ -193,6 +187,12 @@ class ProfileController extends Controller
         VendorDetail::where( 'user_id', Auth::user()->id )->update( $options );
         
         User::find( Auth::user()->id )->update( [ 'name' => $request->name ] );
+        if ( $old_imageName != NULL ) 
+        {
+            unlink($path.'/'. $old_imageName);
+            unlink($path.'/30x30_'.$old_imageName);
+            unlink($path.'/50x50_'. $old_imageName);
+        }
         
         return redirect( route( 'profile.edit', [ Auth::user()->code ] ) )->with( 'success', 'Profile has been updated successfully' );
     }
@@ -213,5 +213,21 @@ class ProfileController extends Controller
         // $this->data['user'] = $user;
 
         return view( 'frontend.profile.show', $this->data );
+    }
+
+
+    public function resize_profile_img($file, $img_name, $path)
+    {
+        $image_resize = Image::make($file->getRealPath());              
+        $image_resize->resize(30, 30);
+        $image_resize->save($path.'/30x30_'.$img_name);
+
+        $image_resize = Image::make($file->getRealPath());              
+        $image_resize->resize(50, 50);
+        $image_resize->save($path.'/50x50_'.$img_name);
+
+        $image_resize = Image::make($file->getRealPath());              
+        $image_resize->resize(100, 100);
+        $image_resize->save($path.'/'.$img_name);
     }
 }

@@ -59,16 +59,6 @@
                                 </span> {{ $user->email }}
  --}}
 
-
-                                <div class="social social--color--filled">
-                                    <ul>
-                                        <li><a href="//{{ $user->detail->facebook }}" target="_blank"><span class="fa fa-facebook"></span></a></li>
-                                        <li><a href="//{{ $user->detail->twitter }}" target="_blank"><span class="fa fa-twitter"></span></a></li>
-                                        <li><a href="//{{ $user->detail->linked_in }}" target="_blank"><span class="fa fa-linkedin"></span></a></li>
-                                        <li><a href="//{{ $user->detail->google_plus }}" target="_blank"><span class="fa fa-google-plus"></span></a></li>
-                                    </ul>
-                                </div><!-- end /.social -->
-
                                {{--  <div class="author-btn">
                                     <a href="#" class="btn btn--md btn--round">Contact</a>
                                 </div> --}}<!-- end /.author-btn -->
