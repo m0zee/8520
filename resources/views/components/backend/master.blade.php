@@ -10,7 +10,7 @@
     <meta name="keywords" content="marketplace, easy digital download, digital product, digital, html5">
 
 
-    <title>Martplace - @yield('title')</title>
+    <title>PakMaterial - @yield( 'title' )</title>
 
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ url( 'css/animate.css' ) }}">
@@ -39,7 +39,7 @@
 <!-- ================================
     START MENU AREA
 ================================= -->
-@include('components.backend.header')
+@include( 'components.backend.header' )
 <!--================================
     END MENU AREA
 =================================-->
@@ -48,7 +48,7 @@
     START CONTENT AREA
 =================================-->
 
-@yield('content')
+@yield( 'content' )
 
 
 <!--================================
@@ -58,7 +58,7 @@
 <!--================================
     START FOOTER AREA
 =================================-->
-@include('components.backend.footer')
+@include( 'components.backend.footer' )
 <!--================================
     END FOOTER AREA
 =================================-->
@@ -88,7 +88,7 @@
 <!-- endinject -->
 
 <!-- page js -->
-@yield('js')
+@yield( 'js' )
 <!-- endpage js -->
 </body>
 

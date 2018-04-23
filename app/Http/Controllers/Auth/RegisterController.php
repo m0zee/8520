@@ -57,8 +57,12 @@ class RegisterController extends Controller
 
         // // $this->guard()->login($user);
         // dispatch(new SendVerificationEmail($user));
+        if( $request->ajax() )
+        {
+            return response( [ 'status' => 'success', 'message' => 'Registration  successful' ], 200 );
+        }
 
-        return view('verification');
+        return view( 'verification' );
         // return $this->registered($request, $user)
         //                 ?: redirect($this->redirectPath());
     }

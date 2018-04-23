@@ -122,6 +122,8 @@ $(function() {
 	$.product.btnAddToCompare				= $( '.add-compare' );
 	$.product.productContainer				= $( '#product-container' );
 	$.product.modal							= $( '#myModal' );
+
+	$.product.loadingModal					= $( '#loadingModal' );
 	
 	$.product.modal.inputEmail				= $.product.modal.find( '#email' );
 	$.product.modal.inputLoginPassword		= $.product.modal.find( '#loginPassword' );
@@ -170,6 +172,10 @@ $(function() {
 		if( $.product.validator.form() ) {
 			$.product.sendMessage();
 		}
+	});
+
+	$.product.modal.on( 'hidden.bs.modal', function() {
+	    $ ( this ).find( 'form' )[0].reset();
 	});
 });
 
@@ -251,6 +257,12 @@ $.product.get = function( _el ) {
 		url: 		$.product.baseUrl + '/products/' + $.product.productId + '/get',
 		type: 		'GET',
 		dataType: 	'JSON',
+		beforeSend : function( e ) {
+			$.product.loadingModal.modal( 'show', {
+				backdrop: 'static',
+				keyboard: false
+			});
+		},
 		success: function( res ) { 
 			if( res.status === 'success' ) {
 				var _product = res.product;
@@ -259,11 +271,17 @@ $.product.get = function( _el ) {
 				$.product.modal.find( '#unit' ).html( _product.unit );
 				$.product.modal.find( '#message' ).val( 'Hi! I would like to know about your product ' + _product.name );
 
-				$.product.modal.modal( 'show' );
+				$.product.modal.modal( 'show', {
+					backdrop: 'static',
+					keyboard: false
+				});
 			}
 		},
 		error: function( err ) {
 			console.log( err );
+		},
+		complete: function( jqXHR, _data ) {
+			$.product.loadingModal.modal( 'hide' );
 		}
 	});
 };
@@ -292,7 +310,7 @@ $.product.checkUser = function( _el ) {
 				else if( res.status === 'fail' ) {
 					$.product.isUserExists.val( '0' );
 					$.product.modal.registerFields.removeClass( 'hidden' );
-					$.product.modal.inputRegisterPassword.focus();
+					$.product.modal.inputName.focus();
 					if( $.product.modal.loginFields.is( ':visible' ) ) {
 						$.product.modal.loginFields.addClass( 'hidden' );
 					}
@@ -310,62 +328,69 @@ $.product.checkUser = function( _el ) {
 
 
 $.product.sendMessage = function() {
-	var _needToRegister 	= parseInt( $.product.isUserExists.val() === 0 );//,
-		// _url 				= $.product.baseUrl;
-		// _loginPayload 		= {
-		// 	'email':		$.product.modal.inputEmail.val(),
-		// 	'password': 	$.product.modal.inputLoginPassword.val()
-		// },
-		// _registerPayload 	= {
-		// 	'email':					$.product.modal.inputEmail.val(),
-		// 	'password': 				$.product.modal.inputRegisterPassword.val(),
-		// 	'password_confirmation':	$.product.modal.inputConfirmPassword.val(),
-		// 	'password_confirmation':	$.product.modal.inputConfirmPassword.val(),
-		// 	'name': 					$.product.modal.inputName.val(),
-		// 	'user_type_id': 			$.product.modal.radioBuyer.is( ':checked' ) ? $.product.modal.radioBuyer.val() : $.product.modal.radioVendor.val()	
-		// },
-		// _enquiryPayload 	= {
-		// 	'product_id': 	$.product.productId,
-		// 	'qty': 			$.product.modal.inputQuantity.val(),
-		// 	'message': 		$.product.modal.inputMessage.val()
-		// };
-
-	if( _needToRegister ) {
-		$.ajax({
-			url: 		_url + '/register',
-			type: 		'POST',
-			dataType: 	'JSON',
-			data: {
-				'email':					$.product.modal.inputEmail.val(),
-				'password': 				$.product.modal.inputRegisterPassword.val(),
-				'password_confirmation':	$.product.modal.inputConfirmPassword.val(),
-				'password_confirmation':	$.product.modal.inputConfirmPassword.val(),
-				'name': 					$.product.modal.inputName.val(),
-				'user_type_id': 			$.product.modal.radioBuyer.is( ':checked' ) ? $.product.modal.radioBuyer.val() : $.product.modal.radioVendor.val()	
-			},
-			success: function( res ) {
-				// body...
-			},
-			error: function( err ) {
-				// body...
-			}
-		});
+	if( $.product.isUserLoggedin.val() == '1' ) {
+		$.product.send();
 	}
 	else {
-		$.product.login();
+		var _needToRegister 	= parseInt( $.product.isUserExists.val() ) == 0 ;
+
+		if( _needToRegister ) {
+			$.product.register();
+		}
+		else {
+			$.product.login();
+		}
 	}
 };
 
-$.product.login = function() {
+$.product.register = function() {
+	$.ajax({
+		url: 		$.product.baseUrl + '/register',
+		type: 		'POST',
+		dataType: 	'JSON',
+		data: {
+			'email':					$.product.modal.inputEmail.val(),
+			'password': 				$.product.modal.inputRegisterPassword.val(),
+			'password_confirmation':	$.product.modal.inputConfirmPassword.val(),
+			'password_confirmation':	$.product.modal.inputConfirmPassword.val(),
+			'name': 					$.product.modal.inputName.val(),
+			'user_type_id': 			$.product.modal.radioBuyer.is( ':checked' ) ? $.product.modal.radioBuyer.val() : $.product.modal.radioVendor.val()	
+		},
+		beforeSend : function( e ) {
+			$.product.loadingModal.modal( 'show', {
+				backdrop: 'static',
+				keyboard: false
+			});
+		},
+		success: function( res ) {
+			$.product.login( { 'password': $.product.modal.inputRegisterPassword.val() } );
+		},
+		error: function( err ) {
+			console.log( err );
+		},
+		complete: function( jqXHR, _data ) {
+			$.product.loadingModal.modal( 'hide' );
+		}
+	});
+};
+
+$.product.login = function( credentials ) {
 	$.ajax({
 		url: 		$.product.baseUrl + '/login',
 		type: 		'POST',
 		dataType: 	'JSON',
 		data: {
 			'email':	$.product.modal.inputEmail.val(),
-			'password':	$.product.modal.inputLoginPassword.val()
+			'password':	( credentials === undefined ) ? $.product.modal.inputLoginPassword.val() : credentials.password
+		},
+		beforeSend : function( e ) {
+			$.product.loadingModal.modal( 'show', {
+				backdrop: 'static',
+				keyboard: false
+			});
 		},
 		success: function( res ) {
+// 			$.product.isUserLoggedin.val( '1' );
 			$.product.send();
 		},
 		error: function( err ) {
@@ -375,10 +400,10 @@ $.product.login = function() {
 				if( _errors.hasOwnProperty( 'email' ) ) {
 					$.pakMaterial.notify( 'danger', _errors.email );
 				}
-				// $.each( _errors, function( _field, _val ) {
-				// 	$.product.showError( _field, _val[0] );
-				// });
 			}
+		},
+		complete: function( jqXHR, _data ) {
+			$.product.loadingModal.modal( 'hide' );
 		}
 	});
 };
@@ -395,7 +420,18 @@ $.product.send = function() {
 			'user_id': 		$.product.userId
 		},
 		success: function( res ) {
-			console.log( res );
+			if( res.hasOwnProperty( 'status' ) && res.status == 'OK' ) {
+
+				$.product.modal.modal( 'hide' );
+
+				$.pakMaterial.notify( 'success', '<strong>' + res.message + '</strong>' );
+
+				if( $.product.isUserLoggedin.val() != '1' ) {
+					setTimeout( function() {
+						window.location = window.location.href;
+					}, 4000 );
+				}
+			}
 		},
 		error: function( err ) {
 			alert( err );

@@ -266,7 +266,7 @@
                             </ul>
                         </div><!--start .author__notification_area -->
                          
-                         @if (Auth::user())
+                         @if( Auth::user() )
                         <!--start .author-author__info-->
                         <div class="author-author__info inline has_dropdown">
                             <div class="author__avatar">
@@ -292,10 +292,11 @@
                                     <li><a href="dashboard-upload.html"><span class="lnr lnr-upload"></span>Upload Item</a></li>
                                     <li><a href="dashboard-manage-item.html"><span class="lnr lnr-book"></span>Manage Item</a></li>
                                     <li><a href="dashboard-withdrawal.html"><span class="lnr lnr-briefcase"></span>Withdrawals</a></li> --}}
-                                    <li> <a href="{{ route( 'logout' ) }}"
-                                             onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
+                                    <li>
+                                        <a href="{{ route( 'logout' ) }}" onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
                                                 <span class="lnr lnr-exit"></span> Logout
-                                            </a></li>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div><!--end /.author-author__info-->
