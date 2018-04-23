@@ -111,7 +111,7 @@
                             </div><!-- end /.product__thumbnail -->
 
                             <div class="product-desc">
-                                <a href="#" class="product_title"><h4>{{ $product->name }}</h4></a>
+                                <a href="{{ route('my-account.product.show', [$product->code]) }}" class="product_title"><h4>{{ $product->name }}</h4></a>
                                 <ul class="titlebtm">
                                     <li>
                                         <p><b>Ref :</b> {{ $product->code }}</p>

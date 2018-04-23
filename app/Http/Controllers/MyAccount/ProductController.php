@@ -113,9 +113,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($code)
     {
-        //
+        $product = Product::where('code', $code)->with('category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery')->first();
+        return view('frontend.profile.product.show', compact('product'));
     }
 
     /**
