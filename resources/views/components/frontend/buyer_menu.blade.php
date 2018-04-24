@@ -7,11 +7,15 @@
                 <ul class="nav navbar-nav admin-menu">
                     <li class="{{ ( $active == 'dashboard' ) ? 'active' : '' }}">
                         <a href="{{ route( 'buyer.dashboard' ) }}">
-                            <span class="lnr lnr-home"></span>Dashboard
+                            <span class="lnr lnr-home"></span> Dashboard
                         </a>
                     </li>
                     
-                    <li><a href="dashboard-purchase.html"><span class="lnr lnr-cart"></span>Profile</a></li>
+                    <li>
+                        <a href="dashboard-purchase.html">
+                            <span class="lnr lnr-cart"></span> Profile
+                        </a>
+                    </li>
                     
                     <li class="{{ ( $active == 'reviews' ) ? 'active' : '' }}">
                         <a href="{{ route( 'buyer.reviews' ) }}">

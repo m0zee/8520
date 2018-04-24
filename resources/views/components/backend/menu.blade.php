@@ -35,7 +35,7 @@
                             <span class="lnr lnr-cart"></span> Requirement
                         </a>
                     </li>
-                    <li class="{{ ($active == 'requirement' ) ? 'active' : ''  }}">
+                    <li class="{{ ($active == 'message' ) ? 'active' : ''  }}">
                         <a href="{{ route( 'admin.messages.index' ) }}">
                             <span class="lnr lnr-cart"></span> Messages
                         </a>

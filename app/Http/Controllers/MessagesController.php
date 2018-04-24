@@ -16,7 +16,16 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        //
+        $this->data['user_id']          = Auth::user()->id;
+        $this->data['conversations']    = Message::getMessages( $this->data['user_id'] ); 
+
+        // $this->data['conversations'] = Message::where( 'sender_id', $user_id )->orWhere( 'receiver_id', $user_id )->get();
+       
+        // \Illuminate\Support\Facades\DB::enableQueryLog();
+        // $this->data['conversations'] = Message::getMessages( Auth::user()->id );
+        // return \Illuminate\Support\Facades\DB::getQueryLog();
+        // return $this->data;
+        return view( 'frontend.message.index', $this->data );
     }
 
     /**
@@ -35,7 +44,7 @@ class MessagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Request $request )
     {
         $message = [
             'product_id'    => $request->product_id,
@@ -66,9 +75,32 @@ class MessagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id )
     {
-        //
+        $message                    = Message::find( $id );
+        $user_id                    = Auth::user()->id;
+
+        $conversation               = $message::with( 'sender', 'receiver', 'detail.sender.detail', 'detail.receiver.detail' )->where( 'id', $id )->first();
+        $this->data['user_id']      = $user_id;
+        $this->data['conversation'] = $conversation;
+        
+        $this->updateSeen( $conversation, $message, $user_id );
+        // return $this->data['conversation'];
+        return view( 'frontend.message.show', $this->data );
+    }
+
+    private function updateSeen( $conversation, $updatableMessage, $user_id )
+    {
+        $total          = $conversation->detail->count();
+        $lastMessage    = $conversation->detail[ ( $total - 1 ) ];
+        
+        if( $lastMessage->sender->id == $user_id )
+        {
+            $updatableMessage->seen_by_user = 1;
+            $updatableMessage->timestamps    = false;
+
+            $updatableMessage->save();
+        }
     }
 
     /**

@@ -15,9 +15,10 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        return Message::with( 'detail' )->get();
+        $this->data['messages'] = Message::with( 'sender', 'receiver' )
+        ->orderBy( 'seen_by_admin' )->orderBy( 'updated_at', 'DESC' )->paginate( 15 );
         
-        return view( 'backend/message/index' );
+        return view( 'backend.message.index', $this->data );
     }
 
     /**
@@ -47,9 +48,17 @@ class MessagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id )
     {
-        return view( 'backend/message/show' );
+        $message                = Message::find( $id );
+        $message->seen_by_admin = 1;
+        $message->timestamps    = false;
+
+        $message->save();
+
+        $this->data['conversation'] = $message::with( 'detail.sender.detail', 'detail.receiver.detail' )->where( 'id', $id )->first();
+        // return $this->data['conversation'];
+        return view( 'backend.message.show', $this->data );
     }
 
     /**

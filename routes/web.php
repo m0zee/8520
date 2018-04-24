@@ -132,19 +132,21 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 	
 	Route::group( [ 'middleware' => [ 'IsProfileCreated' ] ], function() {
 		
-		Route::group( [ 'prefix' => 'my-account' ], function() {
-			Route::resource( '/', 'MyAccount\DashboardController', [ 'only' => [ 'index' ], 'names' => [ 'index' => 'vendor.dashboard' ] ] );
+		Route::group( [ 'prefix' => 'my-account', 'namespace' => 'MyAccount' ], function() {
+			Route::resource( '/', 			'DashboardController', [ 'only' => [ 'index' ], 'names' => [ 'index' => 'vendor.dashboard' ] ] );
 
-			Route::get( 'products',  		'MyAccount\ProductController@index' )->name( 'my-account.product' );
-			Route::get( 'products/create',  'MyAccount\ProductController@create' )->name( 'my-account.product.create' );
-			Route::get( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@edit' )->name( 'my-account.product.edit' );
-			Route::put( 'products/{prodcut_code}/edit',  'MyAccount\ProductController@update' )->name( 'my-account.product.update' );
-			Route::post( 'products/create',	'MyAccount\ProductController@store' )->name( 'my-account.product.store' );
-			Route::get( 'products/{code}/gallery',	'MyAccount\ProductController@gallery' )->name( 'my-account.product.gallery' );
-			Route::post( 'products/{id}/gallery/destroy',	'MyAccount\ProductController@destroy' )->name( 'my-account.product.gallery.destroy' );
-			Route::get( '{code}/products',	'MyAccount\ProductController@show' )->name( 'my-account.product.show' );
-			Route::post( 'products/{code}/gallery',	'MyAccount\ProductController@add_gallery' )->name( 'my-account.product.add_gallery' );
+			Route::get( 'products',  						'ProductController@index' )->name( 'my-account.product' );
+			Route::get( 'products/create',  				'ProductController@create' )->name( 'my-account.product.create' );
+			Route::get( 'products/{prodcut_code}/edit',  	'ProductController@edit' )->name( 'my-account.product.edit' );
+			Route::put( 'products/{prodcut_code}/edit',  	'ProductController@update' )->name( 'my-account.product.update' );
+			Route::post( 'products/create',					'ProductController@store' )->name( 'my-account.product.store' );
+			Route::get( 'products/{code}/gallery',			'ProductController@gallery' )->name( 'my-account.product.gallery' );
+			Route::post( 'products/{id}/gallery/destroy',	'ProductController@destroy' )->name( 'my-account.product.gallery.destroy' );
+			Route::get( '{code}/products',					'ProductController@show' )->name( 'my-account.product.show' );
+			Route::post( 'products/{code}/gallery',			'ProductController@add_gallery' )->name( 'my-account.product.add_gallery' );
 		});
+
+		Route::resource( 'messages', 'MessagesController' );
 	});
 
 	Route::group( [ 'prefix' => 'buyer', 'middleware' => ['IsBuyer'] ], function() {
@@ -170,8 +172,6 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 			] 
 		]);
 	});
-
-	Route::resource( 'messages', 'MessagesController' );
 });
 
 

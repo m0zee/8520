@@ -3,8 +3,8 @@
     $active = 'requirement';
 @endphp
 
-@section('title', 'Category')
-@section('content')
+@section( 'title', 'Requirements' )
+@section( 'content' )
 <!--================================
         START BREADCRUMB AREA
     =================================-->

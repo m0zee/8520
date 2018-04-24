@@ -14,4 +14,14 @@ class MessageDetail extends Model
 	{
 		return $this->belongsTo( 'App\Message' );
 	}
+
+	public function sender()
+	{
+		return $this->belongsTo( 'App\User' );
+	}
+
+	public function receiver()
+	{
+		return $this->belongsTo( 'App\User' );
+	}
 }

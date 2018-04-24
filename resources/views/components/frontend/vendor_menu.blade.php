@@ -4,25 +4,24 @@
             <div class="col-md-12">
                 <ul class="dashboard_menu">
 
-                    <li class="{{ (isset( $active ) && $active == 'dashboard') ? 'active' : ''  }}">
+                    <li class="{{ ( isset( $active ) && $active == 'dashboard' ) ? 'active' : '' }}">
                         <a href="dashboard.html">
-                            <span class="lnr lnr-home"></span>Dashboard
+                            <span class="lnr lnr-home"></span> Dashboard
                         </a>
                     </li>
-                    <li class="{{ (isset( $active ) && $active == 'vendorProfile') ? 'active' : ''  }}">
+                    <li class="{{ ( isset( $active ) && $active == 'vendorProfile' ) ? 'active' : '' }}">
                         <a href="{{route('profile.edit' , [Auth::user()->code])}}">
-                            <span class="lnr lnr-user"></span>Profile
+                            <span class="lnr lnr-user"></span> Profile
                         </a>
                     </li>
-                    <li class="{{ (isset( $active ) && $active == 'product') ? 'active' : ''  }}" >
+                    <li class="{{ ( isset( $active ) && $active == 'product' ) ? 'active' : '' }}">
                         <a href="{{ route('my-account.product') }}">
-                            <span class="lnr lnr-cart"></span>Product
+                            <span class="lnr lnr-cart"></span> Product
                         </a>
                     </li>
-                    <li class="{{ (isset( $active ) && $active == 'messages') ? 'active' : ''  }}">
-                        <a href="#">
-                            <span class="lnr lnr-envelope"></span>Messages
-
+                    <li class="{{ ( isset( $active ) && $active == 'message' ) ? 'active' : '' }}">
+                        <a href="{{ route( 'messages.index' ) }}">
+                            <span class="lnr lnr-envelope"></span> Messages
                         </a>
                     </li>
                 </ul><!-- end /.dashboard_menu -->

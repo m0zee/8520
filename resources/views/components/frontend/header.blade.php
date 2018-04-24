@@ -8,7 +8,7 @@
                 <!-- start .col-md-3 -->
                 <div class="col-md-3 col-sm-3 col-xs-7 v_middle">
                     <div class="logo">
-                        <a href="{{ route('home') }}"><img src="{{ url( 'images/logo.png' ) }}" alt="logo image"></a>
+                        <a href="{{ route( 'home' ) }}"><img src="{{ url( 'images/logo.png' ) }}" alt="logo image"></a>
                     </div>
                 </div><!-- end /.col-md-3 -->
 
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                         @endif
-                          @if( Auth::user()->user_type_id == 1 ) {{-- Buyer --}}
+                        @if( Auth::user()->user_type_id == 1 ) {{-- Buyer --}}
                             <div class="author-author__info inline has_dropdown">
                                 <div class="author__avatar">
                                     <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
@@ -109,7 +109,7 @@
                                 </div>
                             </div>
                         @endif
-                         @if( Auth::user()->user_type_id == 2 ) {{-- Vender --}}
+                        @if( Auth::user()->user_type_id == 2 ) {{-- Vender --}}
                             <div class="author-author__info inline has_dropdown">
                                 <div class="author__avatar">
                                     <img src="{{ asset('storage/profile_img/50x50_'.Auth::user()->detail->profile_img) }}" alt="user avatar">

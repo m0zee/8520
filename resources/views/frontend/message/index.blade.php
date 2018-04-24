@@ -1,11 +1,13 @@
-@extends( 'components.backend.master' )
+@extends( 'components.frontend.master' )
+
+@section( 'title', 'Messages' )
+
 @php
     $active = 'message';
 @endphp
 
-@section( 'title', 'Messages' )
 @section( 'content' )
-<!--================================
+    <!--================================
         START BREADCRUMB AREA
     =================================-->
     <section class="breadcrumb-area">
@@ -14,7 +16,8 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="{{ route( 'admin.dashboard' ) }}">Dashboard</a></li>
+                            <li><a href="#">Dashboard</a></li>
+                            {{-- <li><a href="dashboard.html">Dashboard</a></li> --}}
                             <li class="active"><a href="#">Conversations</a></li>
                         </ul>
                     </div>
@@ -23,14 +26,13 @@
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    
-    @include( 'components.backend.menu' )
     <!--================================
         END BREADCRUMB AREA
     =================================-->
 
+    @include( 'components.frontend.vendor_menu' )
     <!--================================
-            START SIGNUP AREA
+            START DASHBOARD AREA
     =================================-->
     <section class="section--padding2 bgcolor">
         <div class="container">
@@ -43,47 +45,33 @@
                                     <h3>Conversations</h3>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table withdraw__table">
                                         <thead>
                                         <tr>
                                             <th>From</th>
-                                            <th>To</th>
-                                            <th>Action</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                            @if( isset( $messages ) && $messages != NULL )
-                                                @foreach( $messages as $message )
-                                                    <tr class="text-success">
+                                            @if( isset( $conversations ) && count( $conversations ) > 0 )
+                                                @foreach( $conversations as $conversation )
+                                                    <tr>
+                                                        <td>{{ $conversation->sender_name }}</td>
                                                         <td>
-                                                            <a href="{{ url( 'profile/' . $message->sender->code ) }}">
-                                                                {{ $message->sender->name }}
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{ url( 'profile/' . $message->receiver->code ) }}">
-                                                                {{ $message->receiver->name }}
-                                                            </a>
+                                                            {{ date( 'd-m-Y h:i:s A', strtotime( $conversation->updated_at ) ) }}
                                                         </td>
                                                         <td class="action">
-                                                            @if( ! $message->seen_by_admin )
+                                                            @if( $conversation->seen_by_user == 0 && ( $conversation->last_sender_id != $user_id ) )
                                                                 <span class="fa fa-circle text-danger"></span> 
                                                             @else
                                                              &nbsp;&nbsp;
                                                             @endif
-                                                            <a href="{{ route( 'admin.messages.show', [ $message->id ] ) }}">view</a>
+                                                            <a href="{{ route( 'messages.show', [ $conversation->id ] ) }}">view</a>
                                                         </td>
                                                     </tr>
                                                 @endforeach
-
-                                                @if( $messages->hasPages() )
-                                                    <tr>
-                                                        <td colspan="3" class="text-center">
-                                                            {{ $messages->links( 'vendor.pagination.pak-material' ) }}
-                                                        </td>
-                                                    </tr>
-                                                @endif
                                             @endif
                                         </tbody>
                                     </table>
@@ -96,7 +84,6 @@
         </div><!-- end .container -->
     </section>
     <!--================================
-            END SIGNUP AREA
+            END DASHBOARD AREA
     =================================-->
-
 @endsection
