@@ -11,11 +11,11 @@
                         </a>
                     </li>
                     
-                    <li>
+                  {{--   <li>
                         <a href="dashboard-purchase.html">
                             <span class="lnr lnr-cart"></span> Profile
                         </a>
-                    </li>
+                    </li> --}}
                     
                     <li class="{{ ( $active == 'reviews' ) ? 'active' : '' }}">
                         <a href="{{ route( 'buyer.reviews' ) }}">
