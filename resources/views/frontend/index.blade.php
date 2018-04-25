@@ -8,7 +8,7 @@
 =================================-->
 <section class="hero-area bgimage">
     <div class="bg_image_holder">
-        <img src="images/slider.jpg" alt="background-image">
+        <img src="images/slider.jpg" alt="PakMatrial">
     </div>
     <!-- start hero-content -->
     <div class="hero-content content_above">
