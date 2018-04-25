@@ -51,7 +51,7 @@
                 </div><!-- end /.row -->
 
                 <div class="row">
-                    <div class="col-md-8 col-sm-7">
+                    <div class="col-md-12 col-sm-7">
                         <form action="{{ route('my-account.product.store') }}" method="post" enctype="multipart/form-data" id="product_form">
                             <div class="upload_modules">
                                 <div class="modules__title">
@@ -61,7 +61,7 @@
                                 <div class="modules__content">
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-3">
                                                 <label for="category">Category</label>
                                                 <div class="select-wrap select-wrap2">
                                                     {{ Form::select('category_id', $categories, NULL, ['placeholder' => 'Please Select', 'id' => 'category'] ) }}
@@ -69,7 +69,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-3">
                                                 <label for="category">Sub Category</label>
                                                 <div class="select-wrap select-wrap2">
                                                     <select name="sub_category_id" id="sub_category">
@@ -78,22 +78,22 @@
                                                     <span class="lnr lnr-chevron-down"></span>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-3">
+                                                <label for="brand_name">Brand Name <span>(Max 100char)</span></label>
+                                               <input type="text" id="brand_name" name="brand_name" class="text_field" placeholder="Brand Name">
+                                           </div>
+
+                                            <div class="col-md-3">
+                                               <label for="product_name">Product Name <span>(Max 100char)</span>
+                                               </label>
+                                                 <input type="text" id="product_name" class="text_field" name="name" placeholder="Product Name">
+                                           </div>
+
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                       <div class="row">
-                                           <div class="col-md-6">
-                                                <label for="brand_name">Brand Name <span>(Max 100 characters)</span></label>
-                                               <input type="text" id="brand_name" name="brand_name" class="text_field" placeholder="Enter your brand name here...">
-                                           </div>
-                                           <div class="col-md-6">
-                                               <label for="product_name">Product Name <span>(Max 100 characters)</span></label>
-                                        <input type="text" id="product_name" class="text_field" name="name" placeholder="Enter your product name here...">
-                                           </div>
-                                       </div>
-                                    </div>
-
+                                    
                                     <div class="form-group">
                                         <label for="category">Made in</label>
                                         <div class="select-wrap select-wrap2">
@@ -188,7 +188,7 @@
                         </form>
                     </div><!-- end /.col-md-8 -->
 
-                    <div class="col-md-4 col-sm-5">
+                  {{--   <div class="col-md-4 col-sm-5">
                         <aside class="sidebar upload_sidebar">
                             <div class="sidebar-card">
                                 <div class="card-title">
@@ -251,7 +251,7 @@
                                 </div>
                             </div><!-- end /.sidebar-card -->
                         </aside><!-- end /.sidebar -->
-                    </div><!-- end /.col-md-4 -->
+                    </div> --}}<!-- end /.col-md-4 -->
                 </div><!-- end /.row -->
             </div><!-- end /.container -->
         </div><!-- end /.dashboard_menu_area -->

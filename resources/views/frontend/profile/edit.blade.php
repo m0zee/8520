@@ -161,7 +161,7 @@
 
 
                                         <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
-                                            <label for="address">Address</label>
+                                            <label for="address">Address <sup>*</sup></label>
                                             <input type="text" id="address" class="text_field" name="address" value="{{ old('address') ? old('address') : $user->detail->address }}" placeholder="Write your address">
                                             @if ($errors->has('address'))
                                                 <span class="help-block">
@@ -173,7 +173,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group{{ $errors->has('mobile_number')  ? ' has-error' : ''}}">
-                                                    <label for="mobile_number">Mobile Number</label>
+                                                    <label for="mobile_number">Mobile Number <sup>*</sup></label>
                                                     <input type="text" id="mobile_number" value="{{ old('mobile_number') ? old('mobile_number') : $user->detail->mobile_number }}" name="mobile_number" class="text_field" placeholder="Mobile Number">
 
                                                     @if ($errors->has('mobile_number'))
@@ -185,7 +185,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group{{ $errors->has('phone_number')  ? ' has-error' : ''}}">
-                                                    <label for="phone_number">Phone Number</label>
+                                                    <label for="phone_number">Phone Number <sup>*</sup></label>
                                                     <input type="text" id="phone_number" value="{{ old('phone_number') ? old('phone_number') : $user->detail->phone_number }}" name="phone_number" class="text_field" placeholder="Phone Number">
                                                     @if ($errors->has('phone_number'))
                                                         <span class="help-block">
