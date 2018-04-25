@@ -9,6 +9,14 @@ class Message extends Model
 {
     protected $fillable = [ 'product_id', 'sender_id', 'receiver_id', 'seen_by_user', 'seen_by_admin' ];
 
+    // ===============
+    //    RELATIONS
+    // ===============
+    public function product()
+    {
+        return $this->belongsTo( 'App\Product' );
+    }
+
     public function detail()
     {
     	return $this->hasMany( 'App\MessageDetail' );
@@ -23,7 +31,9 @@ class Message extends Model
     {
     	return $this->hasOne( 'App\User', 'id', 'receiver_id' );
     }
-
+    // ===============
+    //    METHODS
+    // ===============
     public static function getMessages( $user_id )
     {
         // SELECT

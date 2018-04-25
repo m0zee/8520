@@ -43,24 +43,51 @@
                     <div class="chat_area cardify">
 
                         <div class="chat_area--title">
-                            <h3>
-                                Message between 
-                                {{-- <a href="{{ url( 'profile/' . $conversation->detail[0]->sender->code ) }}"> --}}
-                                @if( $conversation->sender->id == $user_id )
-                                    <span class="name">Me</span>
-                                @else
-                                    <span class="name">{{ $conversation->sender->name }}</span>
+                            <div class="row">
+                                @if( $errors->any() )
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger text-center">
+                                            Your reply could not be sent. Please enter your reply
+                                        </div>
+                                    </div>
                                 @endif
-                                {{-- </a> --}}
-                                and 
-                                {{-- <a href="{{ url( 'profile/' . $conversation->detail[0]->receiver->code ) }}"> --}}
-                                @if( $conversation->receiver->id == $user_id )
-                                    <span class="name">Me</span>
-                                @else
-                                    <span class="name">{{ $conversation->detail[0]->receiver->name }}</span>
-                                @endif
-                                {{-- </a> --}}
-                            </h3>
+
+                                <div class="col-md-12">
+                                    <h3>
+                                        Message between 
+                                        <a href="{{ url( 'profile/' . $conversation->detail[0]->sender->code ) }}">
+                                            @if( $conversation->sender->id == $user_id )
+                                                <span class="name">Me</span>
+                                            @else
+                                                <span class="name">{{ $conversation->sender->name }}</span>
+                                            @endif
+                                        </a>
+                                        and 
+                                        <a href="{{ url( 'profile/' . $conversation->detail[0]->receiver->code ) }}">
+                                            @if( $conversation->receiver->id == $user_id )
+                                                <span class="name">Me</span>
+                                            @else
+                                                <span class="name">{{ $conversation->detail[0]->receiver->name }}</span>
+                                            @endif
+                                        </a>
+                                    </h3>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-2 text-center">
+                                    <h3>Product:</h3>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <h3>{{ $conversation->product->name }}</h3>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <h3>Quantity:</h3>
+                                </div>
+                                <div class="col-md-4 text-left">
+                                    <h3>{{ $conversation->detail[0]->quantity . ' ' . $conversation->product->unit->name }}</h3>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="chat_area--conversation">
@@ -94,6 +121,21 @@
 
                                 </div>
                             @endforeach
+                        </div>
+
+                        <div class="message_composer">
+                            {{ Form::open( [ 'route' => [ 'messages.reply', $conversation->id ] ] ) }}
+                                <div class="form-group has-error">
+                                    @if( $errors->has( 'reply' ) )
+                                        <span class="help-block">{{ $errors->first( 'reply' ) }}</span>
+                                    @endif
+                                    {{ Form::textarea( 'reply', null, [ 'placeholder' => 'Please type your reply here....!', 'class' => 'text_field' ] ) }}
+                                </div>
+    
+                                <div class="btns">
+                                    <button class="btn send btn--sm btn--round">Reply</button>
+                                </div>
+                            {{ Form::close() }}
                         </div>
 
                     </div><!-- end /.chat_area -->

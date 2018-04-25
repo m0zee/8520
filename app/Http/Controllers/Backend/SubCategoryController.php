@@ -14,11 +14,12 @@ class SubCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($category_id)
+    public function index( $category_id )
     {
-        $category = Category::find($category_id);
-        $subcategory = SubCategory::where('category_id', $category_id)->get();
-        return view('backend.subcategory.index')->with('subcategories', $subcategory)->with('category', $category);
+        $category       = Category::find( $category_id );
+        $subcategory    = SubCategory::where( 'category_id', $category_id )->get();
+
+        return view( 'backend.subcategory.index' )->with( 'subcategories', $subcategory )->with( 'category', $category );
 
     }
 
@@ -27,11 +28,12 @@ class SubCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($category_id)
+    public function create( $category_id )
     {
         // $category_id = Request::segment(3);
-        $category = Category::find($category_id);
-        return view('backend.subcategory.create')->with('category', $category);
+        $category = Category::find( $category_id );
+
+        return view( 'backend.subcategory.create' )->with( 'category', $category );
     }
 
     /**
@@ -40,24 +42,20 @@ class SubCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $category_id)
+    public function store( Request $request, $category_id )
     {
-        $this->validate($request, 
-            [
-                'name' => 'required|unique:sub_categories'
-            ],
-            [
-                'unique' => 'The :attribute must be unique.',
-            ]
+        $this->validate( $request, 
+            [ 'name'    => 'required|unique:sub_categories' ],
+            [ 'unique'  => 'The :attribute must be unique.' ]
         );
 
-
         SubCategory::create([
-            'name' => $request->input('name') ,
-            'slug' => str_slug( $request->input('name') ) ,
-            'category_id' => $category_id
+            'name'          => $request->name,
+            'slug'          => str_slug( $request->name ),
+            'category_id'   => $category_id
         ]);
-        return redirect(route('admin.subcategories.index', [$category_id]));
+
+        return redirect( route( 'admin.subcategories.index', [ $category_id ] ) );
     }
 
     /**
@@ -77,11 +75,12 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($category_id, $id)
+    public function edit( $category_id, $id )
     {
-        $category = Category::find($category_id);
-        $sub_category = SubCategory::find($id);
-        return view('backend.subcategory.edit')->with('sub_category', $sub_category)->with('category', $category);
+        $category       = Category::find( $category_id );
+        $sub_category   = SubCategory::find( $id );
+
+        return view( 'backend.subcategory.edit' )->with( 'sub_category', $sub_category )->with( 'category', $category );
     }
 
     /**
@@ -91,23 +90,20 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $category_id, $id)
+    public function update( Request $request, $category_id, $id )
     {
 
-        $this->validate($request, 
-            [
-                'name' => 'required|unique:sub_categories,name,'.$id
-            ],
-            [
-                'unique' => 'The :attribute must be unique.',
-            ]
+        $this->validate( $request, 
+            [ 'name'    => 'required|unique:sub_categories,name,' . $id ],
+            [ 'unique'  => 'The :attribute must be unique.' ]
         );
 
-        SubCategory::where('id', $id)->update([
-            'name' => $request->input('name'),
-            'slug' => str_slug( $request->input('name') ),
+        SubCategory::where( 'id', $id )->update([
+            'name' => $request->name,
+            'slug' => str_slug( $request->name ),
         ]);
-        return redirect( route('admin.subcategories.index', [$category_id] ) );
+
+        return redirect( route( 'admin.subcategories.index', [ $category_id ] ) );
     }
 
     /**
@@ -116,9 +112,10 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($category_id, $id)
+    public function destroy( $category_id, $id )
     {
-        SubCategory::destroy($id);
-        return redirect(route('admin.subcategories.index', [$category_id]));
+        SubCategory::destroy( $id );
+
+        return redirect( route( 'admin.subcategories.index', [ $category_id ] ) );
     }
 }

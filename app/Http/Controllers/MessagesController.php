@@ -80,7 +80,7 @@ class MessagesController extends Controller
         $message                    = Message::find( $id );
         $user_id                    = Auth::user()->id;
 
-        $conversation               = $message::with( 'sender', 'receiver', 'detail.sender.detail', 'detail.receiver.detail' )->where( 'id', $id )->first();
+        $conversation               = $message::with( 'product.unit', 'sender', 'receiver', 'detail.sender.detail', 'detail.receiver.detail' )->where( 'id', $id )->first();
         $this->data['user_id']      = $user_id;
         $this->data['conversation'] = $conversation;
         
@@ -109,9 +109,15 @@ class MessagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function reply( Request $request, $id )
     {
-        //
+        $this->validate( $request, 
+            [ 'reply'           => 'required' ],
+            [ 'reply.required'  => 'Please type your reply.' ]
+        );
+        echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
+        print_r( $id );
+        echo '</pre>'; die;
     }
 
     /**

@@ -39,7 +39,7 @@ $(function() {
 			},
 			quantity: {
 				required: true,
-				pattern: /[0-9]*\d/
+				pattern: /^[1-9]+[0-9]*$\d/
 			},
 			message: {
 				required: true

@@ -146,7 +146,12 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 			Route::post( 'products/{code}/gallery',			'ProductController@add_gallery' )->name( 'my-account.product.add_gallery' );
 		});
 
-		Route::resource( 'messages', 'MessagesController' );
+		Route::resource( 'messages', 'MessagesController', [
+			'only' 			=> [ 'index', 'store', 'show' ],
+			'parameters'	=> [ 'message' => 'id' ]
+		]);
+
+		Route::post( 'messages/{id}/reply', 'MessagesController@reply' )->name( 'messages.reply' );
 	});
 
 	Route::group( [ 'prefix' => 'buyer', 'middleware' => ['IsBuyer'] ], function() {
