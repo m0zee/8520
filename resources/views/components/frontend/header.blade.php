@@ -17,144 +17,145 @@
                     <!-- start .author-area -->
                     <div class="author-area">
                         <!--start .author__notification_area -->
-                         @if( Auth::check() )
-                            <!--start .author-author__info-->
-                         @if( Auth::user()->user_type_id == 3 ) {{-- Admin --}}
-                            <div class="author-author__info inline has_dropdown">
-                                <div class="author__avatar">
-                                    <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
-                                </div>
-                                <div class="autor__info">
-                                    <p class="name">{{ Auth::user()->name }}</p>
-                                    <p class="ammount">{{ Auth::user()->user_type->name }}</p>
-                                </div>
+                        @if( Auth::check() )
 
-                                <div class="dropdown dropdown--author">
-                                    <ul>
-                                        <li>
-                                            <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
-                                                <span class="lnr lnr-user"></span> Profile
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ url( 'dashboard' ) }}">
-                                                <span class="lnr lnr-home"></span> Dashboard
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route( 'my-account.product', [ Auth::user()->code ] ) }}">
-                                                <span class="lnr lnr-book"></span> Products
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route( 'logout' ) }}"
-                                             onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
-                                                <span class="lnr lnr-exit"></span> Logout
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        @endif
-                        @if( Auth::user()->user_type_id == 1 ) {{-- Buyer --}}
-                            <div class="author-author__info inline has_dropdown">
-                                <div class="author__avatar">
-                                    <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
-                                </div>
-                                <div class="autor__info">
-                                    <p class="name">{{ Auth::user()->name }}</p>
-                                    <p class="ammount">{{ Auth::user()->user_type->name }}</p>
-                                </div>
+                            @if( Auth::user()->user_type_id == 3 ) {{-- Admin --}}
+                                <div class="author-author__info inline has_dropdown">
+                                    <div class="author__avatar">
+                                        <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
+                                    </div>
+                                    <div class="autor__info">
+                                        <p class="name">{{ Auth::user()->name }}</p>
+                                        <p class="ammount">{{ Auth::user()->user_type->name }}</p>
+                                    </div>
 
-                                <div class="dropdown dropdown--author">
-                                    <ul>
-                                        <li>
-                                            <a href="{{ url( 'dashboard' ) }}">
-                                                <span class="lnr lnr-home"></span> Dashboard
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
-                                                <span class="lnr lnr-user"></span> Profile
-                                            </a>
-                                        </li>
-                                       
-                                        <li>
-                                            <a href="{{ route( 'buyer.reviews' ) }}">
-                                                <span class="lnr lnr-list"></span> Reviews
-                                            </a>
-                                        </li>
-                                         <li>
-                                            <a href="{{ route( 'buyer.shortlist.index' ) }}">
-                                                <span class="lnr lnr-cart"></span> Shortlist
-                                            </a>
-                                        </li>
-                                         <li>
-                                            <a href="{{ route('buyer.requirements') }}">
-                                                <span class="lnr lnr-briefcase"></span> Buying Requirement
-                                            </a>
-                                        </li>
-                                         <li>
-                                            <a href="#">
-                                                <span class="lnr lnr-envelope"></span> Messages
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route( 'logout' ) }}"
-                                             onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
-                                                <span class="lnr lnr-exit"></span> Logout
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <div class="dropdown dropdown--author">
+                                        <ul>
+                                            <li>
+                                                <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
+                                                    <span class="lnr lnr-user"></span> Profile
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url( 'dashboard' ) }}">
+                                                    <span class="lnr lnr-home"></span> Dashboard
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'my-account.product', [ Auth::user()->code ] ) }}">
+                                                    <span class="lnr lnr-book"></span> Products
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'logout' ) }}"
+                                                 onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
+                                                    <span class="lnr lnr-exit"></span> Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
-                        @if( Auth::user()->user_type_id == 2 ) {{-- Vender --}}
-                            <div class="author-author__info inline has_dropdown">
-                                <div class="author__avatar">
-                                    <img src="{{ asset('storage/profile_img/50x50_'.Auth::user()->detail->profile_img) }}" alt="user avatar">
-                                </div>
-                                <div class="autor__info">
-                                    <p class="name">{{ Auth::user()->name }}</p>
-                                    <p class="ammount">{{ Auth::user()->user_type->name }}</p>
-                                </div>
+                            @endif
 
-                                <div class="dropdown dropdown--author">
-                                    <ul>
-                                        <li>
-                                            <a href="{{ url( 'dashboard' ) }}">
-                                                <span class="lnr lnr-home"></span> Dashboard
-                                            </a>
-                                        </li>
+                            @if( Auth::user()->user_type_id == 1 ) {{-- Buyer --}}
+                                <div class="author-author__info inline has_dropdown">
+                                    <div class="author__avatar">
+                                        <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
+                                    </div>
+                                    <div class="autor__info">
+                                        <p class="name">{{ Auth::user()->name }}</p>
+                                        <p class="ammount">{{ Auth::user()->user_type->name }}</p>
+                                    </div>
 
-                                        <li>
-                                            <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
-                                                <span class="lnr lnr-user"></span> Profile
-                                            </a>
-                                        </li>
-                                       
-                                        <li>
-                                             <a href="{{ route('my-account.product') }}">
-                                                <span class="lnr lnr-cart"></span>Product
-                                            </a>
-                                        </li>
-                                        <li class="{{ (isset( $active ) && $active == 'messages') ? 'active' : ''  }}">
-                                            <a href="#">
-                                                <span class="lnr lnr-envelope"></span>Messages
-
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route( 'logout' ) }}"
-                                             onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
-                                                <span class="lnr lnr-exit"></span> Logout
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <div class="dropdown dropdown--author">
+                                        <ul>
+                                            <li>
+                                                <a href="{{ url( 'dashboard' ) }}">
+                                                    <span class="lnr lnr-home"></span> Dashboard
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
+                                                    <span class="lnr lnr-user"></span> Profile
+                                                </a>
+                                            </li>
+                                           
+                                            <li>
+                                                <a href="{{ route( 'buyer.reviews' ) }}">
+                                                    <span class="lnr lnr-list"></span> Reviews
+                                                </a>
+                                            </li>
+                                             <li>
+                                                <a href="{{ route( 'buyer.shortlist.index' ) }}">
+                                                    <span class="lnr lnr-cart"></span> Shortlist
+                                                </a>
+                                            </li>
+                                             <li>
+                                                <a href="{{ route('buyer.requirements') }}">
+                                                    <span class="lnr lnr-briefcase"></span> Buying Requirement
+                                                </a>
+                                            </li>
+                                             <li>
+                                                <a href="#">
+                                                    <span class="lnr lnr-envelope"></span> Messages
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'logout' ) }}"
+                                                 onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
+                                                    <span class="lnr lnr-exit"></span> Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
-                            <!--end /.author-author__info-->
+                            @endif
+
+                            @if( Auth::user()->user_type_id == 2 ) {{-- Vender --}}
+                                <div class="author-author__info inline has_dropdown">
+                                    <div class="author__avatar">
+                                        <img src="{{ asset('storage/profile_img/50x50_'.Auth::user()->detail->profile_img) }}" alt="user avatar">
+                                    </div>
+                                    <div class="autor__info">
+                                        <p class="name">{{ Auth::user()->name }}</p>
+                                        <p class="ammount">{{ Auth::user()->user_type->name }}</p>
+                                    </div>
+
+                                    <div class="dropdown dropdown--author">
+                                        <ul>
+                                            <li>
+                                                <a href="{{ url( 'dashboard' ) }}">
+                                                    <span class="lnr lnr-home"></span> Dashboard
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
+                                                    <span class="lnr lnr-user"></span> Profile
+                                                </a>
+                                            </li>
+                                           
+                                            <li>
+                                                 <a href="{{ route( 'my-account.product' ) }}">
+                                                    <span class="lnr lnr-cart"></span> Product
+                                                </a>
+                                            </li>
+                                            <li class="{{ ( isset( $active ) && $active == 'messages' ) ? 'active' : ''  }}">
+                                                <a href="{{ route( 'messages.index' ) }}">
+                                                    <span class="lnr lnr-envelope"></span> Messages
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'logout' ) }}"
+                                                 onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
+                                                    <span class="lnr lnr-exit"></span> Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+
 
                             <a href="{{ route( 'register' ) }}" class="author-area__seller-btn inline">
                                 <span class="lnr lnr-home"></span> Dashboard
@@ -167,6 +168,7 @@
                             <form id="logout-form" action="{{ route( 'logout' ) }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
+                            
                         @else
                             <a href="{{ route( 'register' ) }}" class="author-area__seller-btn inline">Become a Vendor / Buyer</a>
                             <a href="{{ url( 'login' ) }}" class="author-area__seller-btn inline">Login</a>

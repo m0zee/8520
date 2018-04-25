@@ -116,7 +116,7 @@
                                     </div>
 
                                     <div class="body">
-                                        <p>{{ $message->message }}</p>
+                                        <p>{!! nl2br( $message->message ) !!}</p>
                                     </div>
 
                                 </div>

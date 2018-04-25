@@ -72,6 +72,14 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
+                                            @else
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <div class="alert alert-danger text-center">
+                                                            <strong>No messages found!</strong>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             @endif
                                         </tbody>
                                     </table>

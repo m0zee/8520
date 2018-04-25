@@ -14,13 +14,16 @@ class IsProfileCreated
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle( $request, Closure $next )
     {
         $user = Auth::user();
         
-        if( ! $user->detail )
+        if( $user->user_type_id !== 1 )
         {
-            return redirect( route( 'profile.create' ) )->with( 'error','Please complete your profile first.' );
+            if( ! $user->detail )
+            {
+                return redirect( route( 'profile.create' ) )->with( 'error','Please complete your profile first.' );
+            }
         }
         
         return $next($request);

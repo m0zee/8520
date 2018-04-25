@@ -147,11 +147,10 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 		});
 
 		Route::resource( 'messages', 'MessagesController', [
-			'only' 			=> [ 'index', 'store', 'show' ],
-			'parameters'	=> [ 'message' => 'id' ]
+			'only' => [ 'index', 'store', 'show' ]
 		]);
 
-		Route::post( 'messages/{id}/reply', 'MessagesController@reply' )->name( 'messages.reply' );
+		Route::post( 'messages/{message}/reply', 'MessagesController@reply' )->name( 'messages.reply' );
 	});
 
 	Route::group( [ 'prefix' => 'buyer', 'middleware' => ['IsBuyer'] ], function() {
@@ -166,8 +165,7 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 			] 
 		]);
 		
-		Route::resource( 'requirements', 	'Buyer\RequirementController',
-		[
+		Route::resource( 'requirements', 'Buyer\RequirementController', [
 			'names' => [ 
 				'index' => 'buyer.requirements',
 				'create' => 'buyer.requirements.create',

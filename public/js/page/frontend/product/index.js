@@ -39,7 +39,7 @@ $(function() {
 			},
 			quantity: {
 				required: true,
-				pattern: /^[1-9]+[0-9]*$\d/
+				pattern: /^[1-9]+[0-9]*$/
 			},
 			message: {
 				required: true
@@ -390,7 +390,6 @@ $.product.login = function( credentials ) {
 			});
 		},
 		success: function( res ) {
-// 			$.product.isUserLoggedin.val( '1' );
 			$.product.send();
 		},
 		error: function( err ) {
