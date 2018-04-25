@@ -74,11 +74,11 @@
                                                     <span class="lnr lnr-home"></span> Dashboard
                                                 </a>
                                             </li>
-                                            <li>
+                                            {{-- <li>
                                                 <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
                                                     <span class="lnr lnr-user"></span> Profile
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                            
                                             <li>
                                                 <a href="{{ route( 'buyer.reviews' ) }}">
