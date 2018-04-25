@@ -28,7 +28,7 @@
                         </a>
                     </li>
                      <li class="{{ ( $active == 'messages') ? 'active' : ''  }}">
-                        <a href="#">
+                        <a href="{{ route( 'messages.index' ) }}">
                             <span class="lnr lnr-envelope"></span> Messages
                         </a>
                     </li>

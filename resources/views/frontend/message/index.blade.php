@@ -3,7 +3,7 @@
 @section( 'title', 'Messages' )
 
 @php
-    $active = 'message';
+    $active = 'messages';
 @endphp
 
 @section( 'content' )
@@ -31,10 +31,10 @@
     =================================-->
 
     @if( Auth::user()->user_type_id == 1 ) 
-    @include( 'components.frontend.buyer_menu' )
-     @else
-     @include( 'components.frontend.vendor_menu' )
-     @endif
+        @include( 'components.frontend.buyer_menu' )
+    @else
+        @include( 'components.frontend.vendor_menu' )
+    @endif
 
 
      
