@@ -40,8 +40,9 @@ class ProductController extends Controller
      */
     public function show($category, $sub_category, $code, $slug)
     {
-        // return '<h1><center>Implement the functionality</center></h1>';
+         //return '<h1><center>Implement the functionality</center></h1>';
         $product = Product::where('code', $code)->with('category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery')->first();
+        
         return view('frontend.product.show', compact('product'));
     }
 

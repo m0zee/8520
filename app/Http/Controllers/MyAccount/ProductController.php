@@ -116,6 +116,7 @@ class ProductController extends Controller
     public function show($code)
     {
         $product = Product::where('code', $code)->with('category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery')->first();
+
         return view('frontend.profile.product.show', compact('product'));
     }
 

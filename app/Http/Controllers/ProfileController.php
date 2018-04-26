@@ -7,6 +7,7 @@ use App\Country;
 use App\User;
 use App\VendorDetail;
 use Illuminate\Support\Facades\Auth;
+use App\Product;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -204,8 +205,9 @@ class ProfileController extends Controller
     public function show( $code )
     {
         $this->data['user'] = User::with( 'detail' )->where( 'code', $code )->first();
-        
-        // if( ! $user )
+        $this->data['products'] = Product::with('user.detail', 'status', 'currency', 'unit', 'sub_category.category')->where( 'user_id', $this->data['user']->id )->where('status_id',2)->get();
+
+            // if( ! $user )
         // {
         //     return redirect( route( 'profile.create' ) )->with( 'error', 'User not found!' );
         // }
