@@ -17,11 +17,12 @@ class BuyerRequirementController extends Controller
     }
 
 
-    public function show($code)
+    public function show( $code )
     {
-    	$requirement = BuyerRequirement::where(['code' => $code, 'status_id' => '2'])->with('sub_category', 'category', 'user')->first();
-    	$related_requirement = BuyerRequirement::where(['category_id' => $requirement->category_id, 'status_id' => '2' ])->whereNotIn('id' , [$requirement->id])->with('sub_category', 'category', 'user')->get();
-    	return view('frontend.requirement.show', compact('requirement', 'related_requirement'));
+    	$requirement           = BuyerRequirement::where( [ 'code' => $code, 'status_id' => '2' ] )->with( 'sub_category', 'category', 'user' )->first();
+    	$related_requirement   = BuyerRequirement::where( [ 'category_id' => $requirement->category_id, 'status_id' => '2' ] )->whereNotIn( 'id' , [ $requirement->id ] )->with( 'sub_category', 'category', 'user' )->get();
+        // return $requirement;
+    	return view( 'frontend.requirement.show', compact( 'requirement', 'related_requirement' ) );
     }
 
 

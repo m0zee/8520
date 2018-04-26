@@ -17,14 +17,13 @@
                     <div class="breadcrumb">
                         <ul>
                             <li><a href="#">Dashboard</a></li>
-                            {{-- <li><a href="dashboard.html">Dashboard</a></li> --}}
                             <li class="active"><a href="#">Conversations</a></li>
                         </ul>
                     </div>
                     <h1 class="page-title">Conversations</h1>
-                </div><!-- end /.col-md-12 -->
-            </div><!-- end /.row -->
-        </div><!-- end /.container -->
+                </div>
+            </div>
+        </div>
     </section>
     <!--================================
         END BREADCRUMB AREA
@@ -74,7 +73,11 @@
                                                                 <br>
                                                                 {{ $conversation->receiver_email }}
                                                             @else
-                                                                <strong>{{ $conversation->sender_name }}</strong>
+                                                                @if( $user_id == $conversation->sender_id )
+                                                                    <strong>Me</strong>
+                                                                @else
+                                                                    <strong>{{ $conversation->sender_name }}</strong>
+                                                                @endif
                                                                 <br>
                                                                 {{ $conversation->sender_email }}
                                                             @endif

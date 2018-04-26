@@ -64,10 +64,10 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    // public function edit($id)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -76,10 +76,10 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -87,44 +87,45 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    // public function destroy($id)
+    // {
+    //     //
+    // }
 
 
     public function status(Request $request, $id)
     {
-        $this->validate($request,
-        [
-            'category_id' => 'required',
-            'sub_category_id' => 'required',
-            'name' => 'required',
-            'unit_id' => 'required',
-            'quantity' => 'required',
-            'description' => 'required'
+        $this->validate( $request, [
+            'category_id'       => 'required',
+            'sub_category_id'   => 'required',
+            'name'              => 'required',
+            'unit_id'           => 'required',
+            'quantity'          => 'required',
+            'description'       => 'required'
         ]);
 
-        if ($request->status == 'Approve') 
+        if( $request->status == 'Approve' ) 
         {
             $status = '2';
         }
-        if ($request->status == 'Reject') 
+        if( $request->status == 'Reject' ) 
         {
             $status = '3';
         }
 
-        $options = [
-            'name' => $request->name,
-            'slug' => $this->slugify($request->name),
-            'unit_id' => $request->unit_id,
-            'quantity' => $request->quantity,
-            'description' => $request->description,
-            'category_id' => $request->category_id,
-            'sub_category_id' => $request->sub_category_id,
-            'status_id' => $status 
+        $requirement = [
+            'name'              => $request->name,
+            'slug'              => $this->slugify($request->name),
+            'unit_id'           => $request->unit_id,
+            'quantity'          => $request->quantity,
+            'description'       => $request->description,
+            'category_id'       => $request->category_id,
+            'sub_category_id'   => $request->sub_category_id,
+            'status_id'         => $status 
         ];
-        BuyerRequirement::where('id', $id)->update($options);
-        return redirect(route('admin.requirements.index'))->with('success', 'Status successfully updated');
+
+        BuyerRequirement::where( 'id', $id )->update( $requirement );
+        
+        return redirect( route( 'admin.requirements.index' ) )->with( 'success', 'Status successfully updated' );
     }
 }

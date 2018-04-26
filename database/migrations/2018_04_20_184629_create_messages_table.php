@@ -15,9 +15,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create( 'messages', function (Blueprint $table) {
             $table->increments( 'id' );
-            $table->integer( 'product_id' );
-            // $table->integer( 'quantity' );
-            // $table->text( 'message' );
+            $table->integer( 'product_id' )->nullable();
             $table->integer( 'sender_id' );
             $table->integer( 'receiver_id' );
             $table->tinyInteger( 'seen_by_user' );

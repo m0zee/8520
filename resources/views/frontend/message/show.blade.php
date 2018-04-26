@@ -18,7 +18,6 @@
                         <ul>
                             <li><a href="#">Dashboard</a></li>
                             <li><a href="{{ route( 'messages.index' ) }}">Conversations</a></li>
-                            {{-- <li class="active"><a href="#">Conversations</a></li> --}}
                             <li class="active"><a href="#">Messages</a></li>
                         </ul>
                     </div>
@@ -75,18 +74,33 @@
                             </div>
                             <hr>
                             <div class="row">
-                                <div class="col-md-2 text-center">
-                                    <h3>Product:</h3>
-                                </div>
-                                <div class="col-md-4 text-center">
-                                    <h3>{{ $conversation->product->name }}</h3>
-                                </div>
-                                <div class="col-md-2 text-center">
-                                    <h3>Quantity:</h3>
-                                </div>
-                                <div class="col-md-4 text-left">
-                                    <h3>{{ $conversation->detail[0]->quantity . ' ' . $conversation->product->unit->name }}</h3>
-                                </div>
+                                @if( $conversation->product != null )
+                                    <div class="col-md-2 text-center">
+                                        <h3>Product:</h3>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <h3>{{ $conversation->product->name }}</h3>
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <h3>Quantity:</h3>
+                                    </div>
+                                    <div class="col-md-4 text-left">
+                                        <h3>{{ $conversation->detail[0]->quantity . ' ' . $conversation->product->unit->name }}</h3>
+                                    </div>
+                                @else
+                                    <div class="col-md-2 text-center">
+                                        <h3>Buyer Requirement:</h3>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <h3>{{ $conversation->requirement->name }}</h3>
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <h3>Quantity:</h3>
+                                    </div>
+                                    <div class="col-md-4 text-left">
+                                        <h3>{{ $conversation->detail[0]->quantity . ' ' . $conversation->requirement->unit->name }}</h3>
+                                    </div>
+                                @endif
                             </div>
                         </div>
 

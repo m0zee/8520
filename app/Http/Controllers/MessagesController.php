@@ -21,6 +21,7 @@ class MessagesController extends Controller
         $this->data['user_id']          = Auth::user()->id;
         $this->data['user_type_id']     = Auth::user()->user_type_id;
         $this->data['conversations']    = Message::getMessages( $this->data['user_id'] ); 
+        
         // return $this->data;
         return view( 'frontend.message.index', $this->data );
     }
@@ -33,19 +34,33 @@ class MessagesController extends Controller
      */
     public function store( Request $request )
     {
-        $message = [
-            'product_id'    => $request->product_id,
-            'sender_id'     => Auth::user()->id,
-            'receiver_id'   => $request->user_id,
-            'seen_by_user'  => 0,
-            'seen_by_admin' => 0
-        ];
+        if( ! $request->ajax() )
+        {
+            $this->validate( $request, 
+                [ 'message'             => 'required' ],
+                [ 'message.required'    => 'Please enter your message.' ]
+            );
+        }
 
+        $message = [
+            'product_id'        => $request->product_id,
+            'sender_id'         => Auth::user()->id,
+            'receiver_id'       => $request->user_id,
+            'requirement_id'    => $request->requirement_id,
+            'seen_by_user'      => 0,
+            'seen_by_admin'     => 0
+        ];
+        // return $message;
         $message = Message::create( $message );
         
         $this->saveMessageDetail( $request, $message->id );
         
-        return response( [ 'status' => 'OK', 'message' => 'Message has been successfully sent.' ], 200 );
+        if( $request->ajax() )
+        {
+            return response( [ 'status' => 'OK', 'message' => 'Message has been successfully sent.' ], 200 );
+        }
+
+        return redirect()->route( 'messages.index' )->with( 'success', 'Message has been successfully sent!' );
     }
 
     /**
@@ -59,12 +74,20 @@ class MessagesController extends Controller
         $message                    = Message::find( $id );
         $user_id                    = Auth::user()->id;
 
-        $conversation               = $message::with( 'product.unit', 'sender', 'receiver', 'detail.sender.detail', 'detail.receiver.detail' )->where( 'id', $id )->first();
+        if( $message->product_id != null )
+        {
+            $conversation = $message::with( 'product.unit', 'sender', 'receiver', 'detail.sender.detail', 'detail.receiver.detail' )->where( 'id', $id )->first();
+        }
+        else if( $message->requirement_id != null )
+        {
+            $conversation = $message::with( 'requirement.unit', 'sender', 'receiver', 'detail.sender.detail', 'detail.receiver.detail' )->where( 'id', $id )->first();
+        }
+        
         $this->data['user_id']      = $user_id;
         $this->data['conversation'] = $conversation;
         
         $this->updateSeen( $conversation, $message, $user_id );
-        // return $this->data['conversation'];
+        
         return view( 'frontend.message.show', $this->data );
     }
 
