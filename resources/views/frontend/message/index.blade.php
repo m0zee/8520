@@ -55,9 +55,12 @@
                                     <table class="table withdraw__table">
                                         <thead>
                                         <tr>
-                                            <th>From</th>
-                                            <th>Date</th>
-                                            <th>Actions</th>
+                                            <th class="col-md-3">
+                                                @if( $user_type_id == 1 ) To @else From @endif
+                                            </th>
+                                            <th class="col-md-6">About</th>
+                                            <th class="col-md-2">Date</th>
+                                            <th class="col-md-1">Actions</th>
                                         </tr>
                                         </thead>
 
@@ -65,7 +68,20 @@
                                             @if( isset( $conversations ) && count( $conversations ) > 0 )
                                                 @foreach( $conversations as $conversation )
                                                     <tr>
-                                                        <td>{{ $conversation->sender_name }}</td>
+                                                        <td>
+                                                            @if( $user_type_id == 1 ) 
+                                                                <strong>{{ $conversation->receiver_name }}</strong>
+                                                                <br>
+                                                                {{ $conversation->receiver_email }}
+                                                            @else
+                                                                <strong>{{ $conversation->sender_name }}</strong>
+                                                                <br>
+                                                                {{ $conversation->sender_email }}
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <strong>{{ $conversation->product_name }}</strong> ({{ $conversation->product_code }})
+                                                        </td>
                                                         <td>
                                                             {{ date( 'd-m-Y h:i:s A', strtotime( $conversation->updated_at ) ) }}
                                                         </td>

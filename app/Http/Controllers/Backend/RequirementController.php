@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\BuyerRequirement;
 use App\Unit;
 use App\category;
+
 class RequirementController extends Controller
 {
     /**
@@ -16,8 +17,9 @@ class RequirementController extends Controller
      */
     public function index()
     {
-        $requirements = BuyerRequirement::with('status', 'unit')->get();
-        return view('backend.requirement.index', compact('requirements'));
+        $requirements = BuyerRequirement::with( 'status', 'unit' )->get();
+
+        return view( 'backend.requirement.index', compact( 'requirements' ) );
     }
 
     /**
@@ -25,10 +27,10 @@ class RequirementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -36,10 +38,10 @@ class RequirementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
@@ -49,10 +51,11 @@ class RequirementController extends Controller
      */
     public function show($id)
     {
-        $requirement = BuyerRequirement::find($id);
-        $units = Unit::pluck('name', 'id');
-        $category = Category::pluck('name', 'id');
-        return view('backend.requirement.show', compact('requirement', 'units', 'category') );
+        $requirement    = BuyerRequirement::find( $id );
+        $units          = Unit::pluck( 'name', 'id' );
+        $category       = Category::pluck( 'name', 'id' );
+        
+        return view( 'backend.requirement.show', compact( 'requirement', 'units', 'category' ) );
     }
 
     /**

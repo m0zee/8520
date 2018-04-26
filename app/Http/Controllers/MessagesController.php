@@ -19,8 +19,9 @@ class MessagesController extends Controller
     public function index()
     {
         $this->data['user_id']          = Auth::user()->id;
+        $this->data['user_type_id']     = Auth::user()->user_type_id;
         $this->data['conversations']    = Message::getMessages( $this->data['user_id'] ); 
-
+        // return $this->data;
         return view( 'frontend.message.index', $this->data );
     }
 

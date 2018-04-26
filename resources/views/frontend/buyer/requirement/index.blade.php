@@ -15,11 +15,11 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                            <li class="active"><a href="#">Category</a></li>
+                            <li><a href="{{ url( 'buyer/dashboard' ) }}">Home</a></li>
+                            <li class="active"><a href="#">Buying Requirements</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Category</h1>
+                    <h1 class="page-title">Buying Requirements</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -62,21 +62,23 @@
 	                            <div class="withdraw_module withdraw_history">
 	                                <div class="withdraw_table_header">
 	                                    <h3>
-	                                        <span class="lnr lnr-users"></span> My Requirement
-	                                        <a href="{{ route('buyer.requirements.create') }}" class="btn btn-primary btn--round btn-sm pull-right">Add</a>
+	                                        <span class="lnr lnr-users"></span> My Buying Requirement
+	                                        <a href="{{ route( 'buyer.requirements.create' ) }}" class="btn btn-primary btn--round btn-sm pull-right">
+		                                        Add
+		                                    </a>
 	                                    </h3>
 	                                </div>
 	                                <div class="table-responsive">
 	                                    <table class="table withdraw__table">
 	                                        <thead>
 	                                            <tr>
-	                                                <th>Title</th>
-	                                                <th class="col-md-1">Unit</th>
-	                                                <th class="col-md-1">Quantity</th>
-	                                                <th>Description</th>
-	                                                <th>Status</th>
+	                                                <th class="col-md-3">Title</th>
+	                                                {{-- <th class="col-md-1">Unit</th>
+	                                                <th class="col-md-1">Quantity</th> --}}
+	                                                <th class="col-md-5">Description</th>
+	                                                <th class="col-md-1">Status</th>
 	                                                <th class="col-md-2">Date</th>
-	                                                <th class="col-md-2">Options</th>
+	                                                <th class="col-md-1">Options</th>
 	                                            </tr>
 	                                        </thead>
 
@@ -85,34 +87,37 @@
 	                                                @foreach( $requirements as $req )
 	                                                    <tr>
 	                                                        <td>{{ $req->name }}</td>
-	                                                        <td>{{ $req->unit->name }}</td>
-	                                                        <td>{{ $req->quantity }}</td>
-	                                                        <td>{!! nl2br($req->description) !!}</td>
+	                                                        <td>
+	                                                        	<small>Quantity</small> <small class="pull-right">{{ $req->quantity }} {{ $req->unit->name }}</small>
+	                                                        	<hr>
+	                                                        	{!! nl2br( $req->description ) !!}
+	                                                        </td>
 	                                                        <td> 
 	                                                            @if( $req->status_id == 1 )
 	                                                                <span class="label label-warning">{{ $req->status->name }}</span>
 	                                                            @elseif( $req->status_id == 2 )
 	                                                                <span class="label label-success">{{ $req->status->name }}</span>
+	                                                                <small>{{ $req->updated_at->format( 'd-m-Y h:i:s A' ) }}</small>
 	                                                            @elseif( $req->status_id == 3 )
 	                                                                <span class="label label-danger">{{ $req->status->name }}</span>
+	                                                                <small>{{ $req->updated_at->format( 'd-m-Y h:i:s A' ) }}</small>
 	                                                            @endif
 	                                                        </td>
 	                                                        <td>
-	                                                        	<small>{{ $req->created_at->format( 'd-m-Y h:i:s' ) }}</small>
+	                                                        	<small>{{ $req->created_at->format( 'd-m-Y h:i:s A' ) }}</small>
 	                                                        </td>
 	                                                        <td>
-	                                                        	<a href="{{ route('buyer.requirements.edit', [$req->code]) }}" class="btn btn-primary btn--round btn-sm tip" title="Click to edit this requirement"><i class="fa fa-pencil"></i></a>
+	                                                        	<a href="{{ route( 'buyer.requirements.edit', [ $req->code ] ) }}" 
+	                                                        		class="btn btn-primary btn--round btn-sm tip" 
+	                                                        		title="Click to edit this requirement">
+	                                                        		<i class="fa fa-pencil"></i>
+	                                                        	</a>
 	                                                        </td>
 	                                                    </tr>
 	                                                @endforeach
-	                                                
-	                                                    {{-- <tr>
-	                                                        <td colspan="5" class="text-center">{{ $reviews->links( 'vendor.pagination.pak-material' ) }}</td>
-	                                                    </tr> --}}
-	                                                
 	                                            @else
 	                                                <tr>
-	                                                    <td colspan="5">
+	                                                    <td colspan="66">
 	                                                        <div class="alert alert-danger text-center">
 	                                                            <strong>No review found!</strong>
 	                                                        </div>

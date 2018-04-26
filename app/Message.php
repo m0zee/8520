@@ -52,7 +52,7 @@ class Message extends Model
         ->join( DB::raw( '( SELECT * FROM `message_detail` as md WHERE id IN (SELECT MAX(id) FROM `message_detail` GROUP BY message_id ) ORDER BY md.id DESC ) AS md' ), 'm.id', '=', 'md.message_id' )
         ->join( 'products AS p',    'm.product_id', '=', 'p.id' )
         ->join( 'users AS sender',   'm.sender_id', '=', 'sender.id' )
-        ->join( 'users AS receiver', 'm.sender_id', '=', 'receiver.id' )
+        ->join( 'users AS receiver', 'm.receiver_id', '=', 'receiver.id' )
         ->groupBy( ['m.product_id', 'm.sender_id' ] )
         ->get();
 

@@ -133,7 +133,10 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 	Route::group( [ 'middleware' => [ 'IsProfileCreated' ] ], function() {
 		
 		Route::group( [ 'prefix' => 'my-account', 'namespace' => 'MyAccount' ], function() {
-			Route::resource( '/', 			'DashboardController', [ 'only' => [ 'index' ], 'names' => [ 'index' => 'vendor.dashboard' ] ] );
+			Route::resource( '/', 'DashboardController', [ 
+				'only' 	=> [ 'index' ],
+				'names' => [ 'index' => 'vendor.dashboard' ] 
+			]);
 
 			Route::get( 'products',  						'ProductController@index' )->name( 'my-account.product' );
 			Route::get( 'products/create',  				'ProductController@create' )->name( 'my-account.product.create' );

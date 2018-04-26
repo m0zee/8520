@@ -18,8 +18,9 @@ class RequirementController extends Controller
      */
     public function index()
     {
-        $requirements = BuyerRequirement::with('status', 'unit')->where('user_id', Auth::user()->id)->get();
-        return view('frontend.buyer.requirement.index', compact( 'requirements' ) );
+        $requirements = BuyerRequirement::with( 'status', 'unit' )->where( 'user_id', Auth::user()->id )->get();
+
+        return view( 'frontend.buyer.requirement.index', compact( 'requirements' ) );
     }
 
     /**
@@ -29,8 +30,9 @@ class RequirementController extends Controller
      */
     public function create()
     {
-        $units = Unit::pluck('name', 'id');
-        return view('frontend.buyer.requirement.create', compact('units') );
+        $units = Unit::pluck( 'name', 'id' ); 
+
+        return view( 'frontend.buyer.requirement.create', compact( 'units' ) );
     }
 
     /**
@@ -39,34 +41,32 @@ class RequirementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Request $request )
     {
-        $this->validate($request, 
-            [
-                'name' => 'required',
-                'unit_id' => 'required',
-                'quantity' => 'required',
-                'description' => 'required',
-            ]
-        );
+        $this->validate( $request, [
+            'name'          => 'required',
+            'unit_id'       => 'required',
+            'quantity'      => 'required',
+            'description'   => 'required',
+        ]);
 
-        $lastRow = BuyerRequirement::orderBy( 'id', 'DESC' )->first();
-        $code = ( $lastRow ) ? $this->generate_code( $lastRow->code ) : 'req-0001';
+        $lastRow    = BuyerRequirement::orderBy( 'id', 'DESC' )->first();
+        $code       = ( $lastRow ) ? $this->generate_code( $lastRow->code ) : 'req-0001';
 
-        // return $request->all();
-
-        $options = [
-            'user_id' => Auth::user()->id,
-            'name' => $request->name,
-            'slug' => $this->slugify($request->name),
-            'code' => $code,
-            'unit_id' => $request->unit_id,
-            'quantity' => $request->quantity,
-            'description' => $request->description,
-            'status_id' => '1'
+        $requirement = [
+            'user_id'       => Auth::user()->id,
+            'name'          => $request->name,
+            'slug'          => $this->slugify( $request->name ),
+            'code'          => $code,
+            'unit_id'       => $request->unit_id,
+            'quantity'      => $request->quantity,
+            'description'   => $request->description,
+            'status_id'     => 1
         ];
-        BuyerRequirement::create($options);
-        return redirect( route('buyer.requirements') )->with( 'success', 'Requirement successfully added' );
+        
+        BuyerRequirement::create( $requirement );
+
+        return redirect( route( 'buyer.requirements' ) )->with( 'success', 'Requirement successfully added' );
     }
 
     /**
@@ -88,9 +88,10 @@ class RequirementController extends Controller
      */
     public function edit($code)
     {
-        $units = Unit::pluck('name', 'id');
-        $requirement = BuyerRequirement::where('code', $code)->first();
-        return view('frontend.buyer.requirement.edit', compact('units', 'requirement') );
+        $units          = Unit::pluck( 'name', 'id' );
+        $requirement    = BuyerRequirement::where( 'code', $code )->first();
+
+        return view( 'frontend.buyer.requirement.edit', compact( 'units', 'requirement' ) );
     }
 
     /**
@@ -102,25 +103,25 @@ class RequirementController extends Controller
      */
     public function update(Request $request, $code)
     {
-        $this->validate($request, 
-            [
-                'name' => 'required',
-                'unit_id' => 'required',
-                'quantity' => 'required',
-                'description' => 'required',
-            ]
-        );
+        $this->validate($request, [
+            'name'          => 'required',
+            'unit_id'       => 'required',
+            'quantity'      => 'required',
+            'description'   => 'required',
+        ]);
 
-        $options = [
-            'name' => $request->name,
-            'slug' => $this->slugify($request->name),
-            'unit_id' => $request->unit_id,
-            'quantity' => $request->quantity,
-            'description' => $request->description,
-            'status_id' => '1'
+        $requirement = [
+            'name'          => $request->name,
+            'slug'          => $this->slugify( $request->name ),
+            'unit_id'       => $request->unit_id,
+            'quantity'      => $request->quantity,
+            'description'   => $request->description,
+            'status_id'     => 1
         ];
-        BuyerRequirement::where('code', $code)->update($options);
-        return redirect( route('buyer.requirements') )->with( 'success', 'Requirement successfully updated' );
+
+        BuyerRequirement::where( 'code', $code )->update( $requirement );
+
+        return redirect( route( 'buyer.requirements' ) )->with( 'success', 'Requirement successfully updated' );
     }
 
     /**
@@ -129,14 +130,14 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    // public function destroy($id)
+    // {
+    //     //
+    // }
 
 
 
-    public function generate_code( $code )
+    private function generate_code( $code )
     {
         $code =  explode( '-', $code );
 
