@@ -337,20 +337,20 @@
     <script src="{{ url( 'js/vendor/jquery.imagereader-1.0.0.min.js' ) }}"></script>
 
     <script>
-        $(document).ready(function(){
-            $("#dp").change(function (){
-                $('#old-dp').css('display', 'none');
-             });
-            $('#dp').imageReader({
-              destination: '#new-dp'
+        $( function() {
+            $( '#dp' ).change( function() {
+                $( '#old-dp' ).css( 'display', 'none' );
+            });
+            $( '#dp' ).imageReader({
+                destination: '#new-dp'
             });
 
 
-            $("#cover_photo").change(function (){
-                $('#old-cover').css('display', 'none');
-             });
-            $('#cover_photo').imageReader({
-              destination: '#new-cover'
+            $( '#cover_photo' ).change( function() {
+                $( '#old-cover' ).css( 'display', 'none' );
+            });
+            $( '#cover_photo' ).imageReader({
+                destination: '#new-cover'
             });
       });
     </script>

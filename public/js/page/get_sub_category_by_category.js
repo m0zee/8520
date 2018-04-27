@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
         var base_url = $('#base_url').val();
         $('#category').on('change', function() {
             $this = $(this);

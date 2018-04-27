@@ -172,17 +172,10 @@ class ProductController extends Controller
         // return $files;
         if ($files != '') 
         {
-
-            // $file = $request->file;
-        $filename    = $files->getClientOriginalName();
-        $new_imageName = time().'.'. \File::extension($filename);
-        $path = public_path('storage/product');
-
-        $this->resize_img_and_watermark($files, $new_imageName, $path);
-
-            // $path = public_path('storage/product');
-            // $new_imageName = time().'.'.$files->getClientOriginalName();
-            // $files->move( $path, $new_imageName );
+            $filename    = $files->getClientOriginalName();
+            $new_imageName = time().'.'. \File::extension($filename);
+            $path = public_path('storage/product');
+            $this->resize_img_and_watermark($files, $new_imageName, $path);
         }
         else
         {
