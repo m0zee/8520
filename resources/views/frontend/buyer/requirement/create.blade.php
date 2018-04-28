@@ -189,7 +189,7 @@
                                             </div>
 
                                             <div class="col-md-6 information_wrapper">
-                                                <div class="profile_image_area">
+                                                <div class="profile_image_area has-error">
                                                     
 
                                                     <label for="img" class="upload_btn">
@@ -202,9 +202,9 @@
                                                         <p class="subtitle">Max file size 2mb</p>
                                                     </div>
 
-                                                    @if ($errors->has('img'))
+                                                    @if( $errors->has( 'img' ) )
                                                         <span class="help-block">
-                                                            <strong>{{ $errors->first('img') }}</strong>
+                                                            <strong>{{ $errors->first( 'img' ) }}</strong>
                                                         </span>
                                                     @endif
 
@@ -235,7 +235,8 @@
 
 @endsection
 
-@section('js')
+@section( 'js' )
+<script src="{{ asset('js/page/get_sub_category_by_category.js') }}"></script>
 <script src="{{ url( 'js/page/get_state_and_city_dropdown.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/jquery.imagereader-1.0.0.min.js' ) }}"></script>
 

@@ -17,31 +17,10 @@ class RequirementController extends Controller
      */
     public function index()
     {
-        $requirements = BuyerRequirement::with( 'status', 'unit' )->get();
+        $this->data['requirements'] = BuyerRequirement::with( 'status', 'unit' )->get();
 
-        return view( 'backend.requirement.index', compact( 'requirements' ) );
+        return view( 'backend.requirement.index', $this->data );
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     //
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
 
     /**
      * Display the specified resource.
@@ -49,51 +28,17 @@ class RequirementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id )
     {
-        $requirement    = BuyerRequirement::find( $id );
-        $units          = Unit::pluck( 'name', 'id' );
-        $category       = Category::pluck( 'name', 'id' );
+        $this->data['requirement']    = BuyerRequirement::find( $id );
+        $this->data['units']          = Unit::pluck( 'name', 'id' );
+        $this->data['category']       = Category::pluck( 'name', 'id' );
         
-        return view( 'backend.requirement.show', compact( 'requirement', 'units', 'category' ) );
+        return view( 'backend.requirement.show', $this->data );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit($id)
-    // {
-    //     //
-    // }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function destroy($id)
-    // {
-    //     //
-    // }
-
-
-    public function status(Request $request, $id)
+    public function status( Request $request, $id )
     {
         $this->validate( $request, [
             'category_id'       => 'required',

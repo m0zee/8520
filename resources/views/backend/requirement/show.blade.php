@@ -50,6 +50,15 @@
                                 <div class="information__set toggle_module">
                                     <div class="information_wrapper form--fields">
                                         <div class="row">
+                                            
+                                            @if( $requirement->img != null && $requirement->img != '' )
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <img src="{{ asset( 'storage/requirement/361x230_' . $requirement->img ) }}" class="img-responsive">
+                                                    </div>
+                                                </div>
+                                            @endif
+
                                             <div class="col-md-12">
                                                 <div class="form-group {{ ( $errors->first( 'name' ) ) ? 'has-error' : '' }}">
                                                     <label for="name">Requirement</label>
@@ -130,6 +139,7 @@
                                                     @endif
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div><!-- end /.information_wrapper -->
                                 </div><!-- end /.information__set -->

@@ -22,9 +22,9 @@ class RequirementController extends Controller
      */
     public function index()
     {
-        $requirements = BuyerRequirement::with( 'status', 'unit' )->where( 'user_id', Auth::user()->id )->get();
+        $this->data['requirements'] = BuyerRequirement::with( 'status', 'unit' )->where( 'user_id', Auth::user()->id )->get();
 
-        return view( 'frontend.buyer.requirement.index', compact( 'requirements' ) );
+        return view( 'frontend.buyer.requirement.index', $this->data );
     }
 
     /**
@@ -34,11 +34,11 @@ class RequirementController extends Controller
      */
     public function create()
     {
-        $units      = Unit::pluck( 'name', 'id' ); 
-        $categories = Category::pluck( 'name', 'id' );
-        $country    = Country::pluck( 'name', 'id' );
+        $this->data['units']      = Unit::pluck( 'name', 'id' ); 
+        $this->data['categories'] = Category::pluck( 'name', 'id' );
+        $this->data['country']    = Country::pluck( 'name', 'id' );
 
-        return view( 'frontend.buyer.requirement.create', compact( 'units', 'categories', 'country' ) );
+        return view( 'frontend.buyer.requirement.create', $this->data );
     }
 
     /**

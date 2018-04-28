@@ -46,26 +46,32 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>From</th>
-                                            <th>To</th>
-                                            <th>Action</th>
+                                            <th class="col-md-4">From</th>
+                                            <th class="col-md-4">To</th>
+                                            <th class="col-md-3">Date</th>
+                                            <th class="col-md-1">Action</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                            @if( isset( $messages ) && $messages != NULL )
+                                            @if( isset( $messages ) && $messages->count() )
                                                 @foreach( $messages as $message )
                                                     <tr class="text-success">
                                                         <td>
                                                             <a href="{{ url( 'profile/' . $message->sender->code ) }}">
-                                                                {{ $message->sender->name }}
+                                                                <strong>{{ $message->sender->name }}</strong>
                                                             </a>
+                                                            <br>
+                                                            {{ $message->sender->email }}
                                                         </td>
                                                         <td>
                                                             <a href="{{ url( 'profile/' . $message->receiver->code ) }}">
-                                                                {{ $message->receiver->name }}
+                                                                <strong>{{ $message->receiver->name }}</strong>
                                                             </a>
+                                                            <br>
+                                                            {{ $message->receiver->email }}
                                                         </td>
+                                                        <td>{{ $message->updated_at->format( 'd-m-Y h:i:s A' ) }}</td>
                                                         <td class="action">
                                                             @if( ! $message->seen_by_admin )
                                                                 <span class="fa fa-circle text-danger"></span> 
@@ -84,6 +90,14 @@
                                                         </td>
                                                     </tr>
                                                 @endif
+                                            @else
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <div class="alert alert-danger text-center">
+                                                            No conversation found!
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             @endif
                                         </tbody>
                                     </table>

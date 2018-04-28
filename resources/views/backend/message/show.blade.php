@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="chat_area cardify">
-
+                        @if( isset( $conversation ) && $conversation !== null )
                         <div class="chat_area--title">
                             <h3>
                                 Message between 
@@ -75,12 +75,17 @@
                                     </div>
 
                                     <div class="body">
-                                        <p>{{ $message->message }}</p>
+                                        <p>{!! nl2br( $message->message ) !!}</p>
                                     </div>
 
                                 </div>
                             @endforeach
                         </div>
+                        @else
+                            <div class="alert alert-danger text-center">
+                                No message found
+                            </div>
+                        @endif
 
                     </div><!-- end /.chat_area -->
                 </div><!-- end /.col-md-7 -->

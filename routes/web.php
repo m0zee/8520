@@ -58,15 +58,15 @@ Route::get( 'admin/login', function() {
 	return view( 'backend.login' );
 });
 
-Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
+Route::group( [ 'middleware' => 'CheckAdminLogin', 'namespace' => 'Backend' ], function() {
 	
-	Route::get( 'admin/dashboard', 'Backend\DashboardController@index' )->name( 'admin.dashboard' );
+	Route::get( 'admin/dashboard', 'DashboardController@index' )->name( 'admin.dashboard' );
 	
-	Route::get( 'admin/users/{type}', 				'Backend\UserController@index' )->name( 'admin.userlist' );
-	Route::put( 'admin/users/{user_id}/approve', 	'Backend\UserController@approve' )->name( 'admin.user.approve' );
-	Route::put( 'admin/users/{user_id}/status', 	'Backend\UserController@statusUpdate' )->name( 'admin.user.status' );
+	Route::get( 'admin/users/{type}', 				'UserController@index' )->name( 'admin.userlist' );
+	Route::put( 'admin/users/{user_id}/approve', 	'UserController@approve' )->name( 'admin.user.approve' );
+	Route::put( 'admin/users/{user_id}/status', 	'UserController@statusUpdate' )->name( 'admin.user.status' );
 
-	Route::resource( 'admin/categories', 'Backend\CategoryController', [
+	Route::resource( 'admin/categories', 'CategoryController', [
 		'names' => [
 	        'index'		=> 'admin.categories.index',
 	        'store' 	=> 'admin.categories.store',
@@ -78,7 +78,7 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	    ]
 	]);
 
-	Route::resource( 'admin/categories/{category_id}/subcategories', 'Backend\SubCategoryController', [
+	Route::resource( 'admin/categories/{category_id}/subcategories', 'SubCategoryController', [
 		'names' => [
 			'index' 	=> 'admin.subcategories.index',
 	        'store'		=> 'admin.subcategories.store',
@@ -90,14 +90,14 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	    ]
 	]);
 
-	Route::resource( 'admin/reviews', 'Backend\ReviewsController', [
+	Route::resource( 'admin/reviews', 'ReviewsController', [
 		'only' => [ 'index' ],
 		'names' => [
 			'index' => 'admin.reviews.index'
 		]
 	]);
 
-	Route::resource( 'admin/messages', 'Backend\MessagesController', [
+	Route::resource( 'admin/messages', 'MessagesController', [
 		'only' => [ 'index', 'show' ],
 		'names' => [
 			'index' => 'admin.messages.index',
@@ -105,10 +105,10 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 		]
 	]);
 
-	Route::get( 'admin/reviews/{review_id}/approve', 'Backend\ReviewsController@approve' )->name( 'admin.reviews.approve' );
-	Route::get( 'admin/reviews/{review_id}/reject', 'Backend\ReviewsController@reject' )->name( 'admin.reviews.reject' );
+	Route::get( 'admin/reviews/{review_id}/approve',	'ReviewsController@approve' )->name( 'admin.reviews.approve' );
+	Route::get( 'admin/reviews/{review_id}/reject', 	'ReviewsController@reject' )->name( 'admin.reviews.reject' );
 
-	Route::resource( 'admin/products', 'Backend\ProductController', [
+	Route::resource( 'admin/products', 'ProductController', [
 		'names' => [
 	        'index'		=> 'admin.products.index',
 	        'store' 	=> 'admin.products.store',
@@ -120,11 +120,19 @@ Route::group( [ 'middleware' => 'CheckAdminLogin' ], function() {
 	    ]
 	]);
 
-	Route::put( 'admin/products/{id}/status/{status}', 'Backend\ProductController@status' )->name( 'admin.products.status' );
+	Route::put( 'admin/products/{id}/status/{status}', 'ProductController@status' )->name( 'admin.products.status' );
 
-	Route::get( 'admin/requirements', 				'Backend\RequirementController@index')->name( 'admin.requirements.index' );
-	Route::put( 'admin/requirements/{id}/status',	'Backend\RequirementController@status')->name( 'admin.requirements.status' );
-	Route::get( 'admin/requirements/{id}/show', 	'Backend\RequirementController@show')->name( 'admin.requirements.show' );
+	// Route::get( 'admin/requirements', 				'RequirementController@index')->name( 'admin.requirements.index' );
+	Route::put( 'admin/requirements/{id}/status',	'RequirementController@status')->name( 'admin.requirements.status' );
+	// Route::get( 'admin/requirements/{id}/show', 	'RequirementController@show')->name( 'admin.requirements.show' );
+
+	Route::resource( 'admin/requirements', 'RequirementController', [ 
+		'only'	=> [ 'index', 'show' ], 
+		'names'	=> [ 
+			'index' => 'admin.requirements.index', 
+			'show' 	=> 'admin.requirements.show', 
+		] 
+	]);
 });
 
 

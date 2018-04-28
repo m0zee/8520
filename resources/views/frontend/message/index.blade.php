@@ -100,7 +100,7 @@
                                                 @endforeach
                                             @else
                                                 <tr>
-                                                    <td colspan="3">
+                                                    <td colspan="4">
                                                         <div class="alert alert-danger text-center">
                                                             <strong>No messages found!</strong>
                                                         </div>
