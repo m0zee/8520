@@ -40,13 +40,41 @@
                             </a>
                             <div class="collapse in collapsible-content" id="collapse2">
                                 <ul class="card-content">
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt1" class="" name="filter_opt"> <label for="opt1"><span class="circle"></span>Trending Products</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt2" class="" name="filter_opt"> <label for="opt2"><span class="circle"></span>Popular Products</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt3" class="" name="filter_opt"> <label for="opt3"><span class="circle"></span>New Products</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt4" class="" name="filter_opt"> <label for="opt4"><span class="circle"></span>Best Seller</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt5" class="" name="filter_opt"> <label for="opt5"><span class="circle"></span>Best Rating</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt6" class="" name="filter_opt"> <label for="opt6"><span class="circle"></span>Free Support</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt7" class="" name="filter_opt"> <label for="opt7"><span class="circle"></span>On Sale</label></div></li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt1" class="" name="filter_opt"> <label for="opt1"><span class="circle"></span> Trending Products</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt2" class="" name="filter_opt"> <label for="opt2"><span class="circle"></span> Popular Products</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt3" class="" name="filter_opt"> <label for="opt3"><span class="circle"></span> New Products</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt4" class="" name="filter_opt"> <label for="opt4"><span class="circle"></span> Best Seller</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt5" class="" name="filter_opt"> <label for="opt5"><span class="circle"></span> Best Rating</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt6" class="" name="filter_opt"> <label for="opt6"><span class="circle"></span> Free Support</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt7" class="" name="filter_opt"> <label for="opt7"><span class="circle"></span>On Sale</label>
+                                    </ div>
+                                </li>
                             </ul>
                             </div>
                         </div><!-- end /.sidebar-card -->
@@ -72,8 +100,8 @@
                 <!-- start col-md-9 -->
                 <div class="col-md-9">
                     <div class="row">
-                        @if ($sub_category_products->product->count() > 0 )
-                             @foreach ($sub_category_products->product as $product)
+                        @if( $sub_category_products->product->count() > 0 )
+                             @foreach( $sub_category_products->product as $product )
                             
                                 <div class="col-md-4 col-sm-4">
                                     <!-- start .single-product -->

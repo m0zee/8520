@@ -26,10 +26,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-        $products   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->orderBy('id', 'DESC')->paginate( 12 );
+        $this->data['categories'] = Category::get();
+        $this->data['products']   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->orderBy('id', 'DESC')->paginate( 12 );
         
-        return view( 'frontend.product.index', compact( 'categories', 'products' ) )->with( 'blue_menu', true );
+        return view( 'frontend.product.index', $this->data )->with( 'blue_menu', true );
     }
 
     /**
@@ -38,13 +38,47 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($category, $sub_category, $code, $slug)
+    public function show( $category, $sub_category, $code, $slug )
     {
-         //return '<h1><center>Implement the functionality</center></h1>';
-        $product = Product::where('code', $code)->with('category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery')->first();
+        $this->data['product'] = Product::where( 'code', $code )->with( 'category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery' )->first();
         
-        return view('frontend.product.show', compact('product'));
+        return view('frontend.product.show', $this->data );
     }
+
+
+
+
+
+    public function search( Request $request )
+    {
+        $category = Category::where( 'slug', $request->category )->first();
+
+        $_query = Product::with( 'sub_category.category', 'user.detail', 'currency', 'unit' )->where( 'status_id', 2 )
+        ->where( 'name', 'like', '%' . $request->get( 'query' ) . '%' )->orderBy( 'id', 'DESC' );
+
+        if( $category != null )
+        {
+            $_query->where( 'category_id', $category->id );
+
+            $this->data['categories']   = Category::with( 'sub_category' )->where( 'slug', $request->category )->first();
+
+            $views = 'frontend.product.category_wise_products';
+        }
+        else
+        {
+            $this->data['categories'] = Category::get();
+
+            $views = 'frontend.product.index';
+        }
+
+        $this->data['products']     = $_query->paginate( 12 );
+
+        return view( $views, $this->data )->with( 'blue_menu', true );
+    }
+
+
+
+
 
     public function get( $id )
     {
@@ -62,36 +96,30 @@ class ProductController extends Controller
     }
 
 
-    public function get_by_category($category_slug)
-    {
-        $categories = Category::with( 'sub_category' )->where( 'slug', $category_slug )->first();
-        $products = DB::table('products as p')->select(
-            'p.*', 
-            'sc.name as sub_category_name', 'sc.slug as sub_category_slug', 
-            'c.name as category_name', 'c.slug as category_slug', 
-            'vd.company_name', 'vd.profile_path', 'vd.profile_img', 
-            'cur.name as currency',
-            'u.code as user_code',
-            'un.name as unit_name'
-        )
-        ->join('sub_categories AS sc',  'sc.id',        '=', 'p.sub_category_id' )
-        ->join( 'categories as c',      'c.id',         '=', 'sc.category_id' )
-        ->join( 'users as u',           'u.id',         '=', 'p.user_id' )
-        ->join( 'vendor_details as vd', 'vd.user_id',   '=', 'u.id' )
-        ->join( 'currencies as cur',    'cur.id',       '=', 'p.currency_id' )
-        ->join( 'units as un',    'un.id',       '=', 'p.unit_id' )
-        ->where( 'c.slug', $category_slug )
-        ->where('p.status_id', 2)
-        ->get();
 
-        return view( 'frontend.product.category_wise_products', compact( 'categories', 'products' ) )->with( 'blue_menu', true );
+
+
+    public function get_by_category( $category_slug )
+    {
+
+        $category = Category::with( 'sub_category' )->where( 'slug', $category_slug )->first();
+        
+        $this->data['products'] = Product::with( 'sub_category.category', 'user.detail', 'currency', 'unit' )->where( 'status_id', 2 )
+        ->where( 'category_id', $category->id )->orderBy( 'id', 'DESC' )->paginate( 12 );
+
+        $this->data['categories'] = $category;
+
+        return view( 'frontend.product.category_wise_products', $this->data )->with( 'blue_menu', true );
     }
 
 
-    public function get_by_sub_category($category_slug, $sub_category_slug)
+
+
+
+    public function get_by_sub_category( $category_slug, $sub_category_slug )
     {
-        $sub_category_products = SubCategory::where( 'slug', $sub_category_slug )->with( 'product.user.detail', 'product.currency' )->first();
-        // return $sub_category_products;
-        return view( 'frontend.product.sub_category_wise_products', compact( 'sub_category_products' ) )->with( 'blue_menu', true );
+        $this->data['sub_category_products'] = SubCategory::where( 'slug', $sub_category_slug )->with( 'product.user.detail', 'product.currency' )->first();
+
+        return view( 'frontend.product.sub_category_wise_products', $this->data )->with( 'blue_menu', true );
     }
 }

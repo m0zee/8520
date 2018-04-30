@@ -1,4 +1,4 @@
-@extends('components.frontend.master')
+@extends( 'components.frontend.master' )
 
 @section( 'title', 'Home' )
 @section( 'content' )
@@ -49,18 +49,14 @@
                 <div class="col-sm-12">
                     <!-- start .search_box -->
                     <div class="search_box">
-                        <form action="#">
-                            <input type="text" class="text_field" placeholder="Search your products...">
+                        {{ Form::open( [ 'route' => 'products.search', 'method' => 'GET' ] ) }}
+                            {{ Form::text( 'query', old( 'query' ), [ 'class' => 'text_field', 'placeholder' => 'Search product...' ] ) }}
                             <div class="search__select select-wrap">
-                                <select name="category" class="select--field" id="blah">
-                                    <option value="">All Categories</option>
-                                    <option value="">List of Categories</option>
-                                    
-                                </select>
+                                {{ Form::select( 'category', $categories, null, [ 'placeholder' => 'Select category', 'class' => 'select--field' ] ) }}
                                 <span class="lnr lnr-chevron-down"></span>
                             </div>
                             <button type="submit" class="search-btn btn--lg">Search Now</button>
-                        </form>
+                        {{ Form::close() }}
                     </div><!-- end ./search_box -->
                 </div><!-- end /.col-sm-12 -->
             </div><!-- end /.row -->

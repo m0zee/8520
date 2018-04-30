@@ -24,10 +24,13 @@
                             </a>
                             <div class="collapse in collapsible-content" id="collapse1">
                                 <ul class="card-content">
-                                    @if ($categories->sub_category->count() > 0)
-                                    @foreach ($categories->sub_category as $category)
-                                    
-                                        <li><a href="{{ 'categories/'.$category->slug }}"><span class="lnr lnr-chevron-right"></span>{{ $category->name }}</a></li>
+                                    @if( $categories->sub_category->count() > 0 )
+                                        @foreach( $categories->sub_category as $category )
+                                            <li>
+                                                <a href="{{ url( 'categories/' . $categories->slug . '/sub-categories/' . $category->slug . '/products' ) }}">
+                                                    <span class="lnr lnr-chevron-right"></span>{{ $category->name }}
+                                                </a>
+                                            </li>
                                         @endforeach
                                     @endif
                                 </ul>
@@ -40,13 +43,48 @@
                             </a>
                             <div class="collapse in collapsible-content" id="collapse2">
                                 <ul class="card-content">
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt1" class="" name="filter_opt"> <label for="opt1"><span class="circle"></span>Trending Products</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt2" class="" name="filter_opt"> <label for="opt2"><span class="circle"></span>Popular Products</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt3" class="" name="filter_opt"> <label for="opt3"><span class="circle"></span>New Products</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt4" class="" name="filter_opt"> <label for="opt4"><span class="circle"></span>Best Seller</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt5" class="" name="filter_opt"> <label for="opt5"><span class="circle"></span>Best Rating</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt6" class="" name="filter_opt"> <label for="opt6"><span class="circle"></span>Free Support</label></div></li>
-                                <li><div class="custom-checkbox2"><input type="checkbox" id="opt7" class="" name="filter_opt"> <label for="opt7"><span class="circle"></span>On Sale</label></div></li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt1" name="filter_opt"> <label for="opt1"><span class="circle">
+                                        </span>Trending Products</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt2" name="filter_opt"> <label for="opt2"><span class="circle">
+                                        </span>Popular Products</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt3" name="filter_opt"> <label for="opt3"><span class="circle">
+                                        </span>New Products</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt4" name="filter_opt"> <label for="opt4"><span class="circle">
+                                        </span>Best Seller</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt5" name="filter_opt"> <label for="opt5"><span class="circle">
+                                        </span>Best Rating</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt6" name="filter_opt"> <label for="opt6"><span class="circle">
+                                        </span>Free Support</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="custom-checkbox2">
+                                        <input type="checkbox" id="opt7" name="filter_opt"> <label for="opt7"><span class="circle">
+                                        </span>On Sale</label>
+                                    </div>
+                                </li>
                             </ul>
                             </div>
                         </div><!-- end /.sidebar-card -->
@@ -72,45 +110,50 @@
                 <!-- start col-md-9 -->
                 <div class="col-md-9">
                     <div class="row">
-                        @if ($products->count() > 0 )
-                            @foreach ($products as $product)
-                            
+                        @if( $products->count() > 0 )
+                            @foreach( $products as $product )
+
                                 <div class="col-md-4 col-sm-4">
                                     <!-- start .single-product -->
                                     <div class="product product--card product--card-small">
 
                                         <div class="product__thumbnail">
-                                            @if (file_exists($product->img_path.'/'.$product->img))
-                                                <img class="auth-img" src="{{ asset('storage/product/361x230_'.$product->img) }}" alt="Product image">
+                                            @if( file_exists( $product->img_path . '/' . $product->img ) )
+                                                <img class="auth-img" src="{{ asset( 'storage/product/361x230_' . $product->img ) }}" alt="Product image">
                                             @else
-                                                <img src="{{ asset('images/p1.jpg') }}" alt="Product Image">
+                                                <img src="{{ asset( 'images/p1.jpg' ) }}" alt="Product Image">
                                             @endif
                                             
                                             <div class="prod_btn">
-                                                <a href="{{ route('products.show', [$product->category_slug, $product->sub_category_slug, $product->code, $product->slug ]) }}" class="transparent btn--sm btn--round">More Info</a>
-                                                <a href="{{  route('profile.show', [$product->user_code]) }}" class="transparent btn--sm btn--round">Contact</a>
+                                                <a href="{{ route( 'products.show', [ $product->category_slug, $product->sub_category_slug, $product->code, $product->slug ] ) }}" class="transparent btn--sm btn--round">More Info</a>
+                                                <a href="{{  route( 'profile.show', [ $product->user_code ] ) }}" class="transparent btn--sm btn--round">Contact</a>
                                             </div><!-- end /.prod_btn -->
                                         </div><!-- end /.product__thumbnail -->
 
                                         <div class="product-desc">
-                                            <a href="{{ route('products.show', [$product->category_slug, $product->sub_category_slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ $product->name }}</h4></a>
+                                            <a href="{{ route( 'products.show', [ $product->category_slug, $product->sub_category_slug, $product->code, $product->slug ] ) }}" class="product_title"><h4>{{ $product->name }}</h4></a>
                                             <ul class="titlebtm">
                                                 <li>
-                                                    @if (file_exists($product->profile_path.'/'.$product->profile_img))
-                                                        <img class="auth-img" src="{{ asset('storage/profile_img/30x30_'.$product->profile_img) }}" alt="author image">
+                                                    @if( file_exists( $product->user->detail->profile_path . '/' . $product->user->detail->profile_img ) )
+                                                        <img class="auth-img" src="{{ asset( 'storage/profile_img/30x30_' . $product->user->detail->profile_img ) }}" alt="author image">
                                                     @else
-                                                        <img class="auth-img" src="{{ asset('images/auth.jpg') }}" alt="author image">
+                                                        <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
                                                     @endif
-                                                    <p><a href="{{  route('profile.show', [$product->user_code]) }}">{{ $product->company_name }}</a></p>
+                                                    <p><a href="{{  route( 'profile.show', [ $product->user_code ] ) }}">{{ $product->company_name }}</a></p>
                                                 </li>
                                                 <br>
-                                                <li class="">
-                                                    <a href="{{ route('categories.products', [$product->category_slug]) }}">{{ $product->category_name }}</a>
-                                                    <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->category_slug, $product->sub_category_slug]) }}">{{ $product->sub_category_name }}</a>
+                                                <li>
+                                                    <a href="{{ route( 'categories.products', [ $product->sub_category->category->slug ] ) }}">
+                                                        {{ $product->sub_category->category->name }}
+                                                    </a>
+                                                    <span class="lnr lnr-chevron-right"></span>
+                                                    <a href="{{ route( 'categories.sub-categories.products', [ $product->sub_category->category->slug, $product->sub_category->slug ] ) }}">
+                                                        {{ $product->sub_category->name }}
+                                                    </a>
                                                 </li>
 
-                                                <li class="">
-                                                    <strong>Price : </strong>{{ $product->currency }} {{ $product->price }} - {{ $product->unit_name }}</a>
+                                                <li>
+                                                    <strong>Price : </strong>{{ $product->currency->name }} {{ $product->price }} - {{ $product->unit->name }}</a>
                                                 </li>
                                             </ul>
 

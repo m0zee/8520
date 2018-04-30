@@ -146,72 +146,74 @@ class ProductController extends Controller
      */
     public function update(Request $request, $product_code)
     {
-        $product  = Product::where('code', $product_code)->first();
-        $validator = Validator::make(
-            $request->all(), [
-            '__files.*' => 'mimes:jpeg,jpg,png|max:2000',
-            'category_id' => 'required',
-            'sub_category_id' => 'required',
-            'brand_name' => 'required',
-            'name' => 'required',
-            'country_id' => 'required',
-            'unit_id' => 'required',
-            'max_supply' => 'required',
-            'currency_id' => 'required',
-            'price' => 'required',
-            'description' => 'required',
+        $product    = Product::where( 'code', $product_code )->first();
+        $validator  = Validator::make( $request->all(), [
+            '__files.*'         => 'mimes:jpeg,jpg,png|max:2000',
+            'category_id'       => 'required',
+            'sub_category_id'   => 'required',
+            'brand_name'        => 'required',
+            'name'              => 'required',
+            'country_id'        => 'required',
+            'unit_id'           => 'required',
+            'max_supply'        => 'required',
+            'currency_id'       => 'required',
+            'price'             => 'required',
+            'description'       => 'required',
         ]);
-        if ($validator->fails())
+
+        if( $validator->fails() )
         {
-            return json_encode(['errors' => $validator->errors()]);
+            return json_encode( [ 'errors' => $validator->errors() ] );
         }
 
         $new_imageName = NULL ;
 
         $files = $request->__files[0];
         // return $files;
-        if ($files != '') 
+        if( $files != '' ) 
         {
-            $filename    = $files->getClientOriginalName();
-            $new_imageName = time().'.'. \File::extension($filename);
-            $path = public_path('storage/product');
-            $this->resize_img_and_watermark($files, $new_imageName, $path);
+            $filename       = $files->getClientOriginalName();
+            $new_imageName  = time() . '.' . \File::extension( $filename );
+            $path           = public_path( 'storage/product' );
+            $this->resize_img_and_watermark( $files, $new_imageName, $path );
         }
         else
         {
-            $path = $product->img_path;
-            $old_imageName = $product->img;
+            $path           = $product->img_path;
+            $old_imageName  = $product->img;
         }
 
-        
-       
-
         $data = [
-            'name' => $request->name,
-            'description' => $request->description,
-            'brand_name' => $request->brand_name,
-            'sub_category_id' =>$request->sub_category_id,
-            'category_id' =>$request->category_id,
-            'country_id' => $request->country_id,
-            'max_supply' => $request->max_supply,
-            'unit_id' => $request->unit_id,
-            'currency_id' => $request->currency_id,
-            'price' => $request->price,
-            'img_path' => $path,
-            'img' => ($new_imageName != NULL ) ? $new_imageName : $old_imageName,
-            'user_id' => Auth::user()->id,
-            'status_id' => '2'
+            'name'              => $request->name,
+            'description'       => $request->description,
+            'brand_name'        => $request->brand_name,
+            'sub_category_id'   => $request->sub_category_id,
+            'category_id'       => $request->category_id,
+            'country_id'        => $request->country_id,
+            'max_supply'        => $request->max_supply,
+            'unit_id'           => $request->unit_id,
+            'currency_id'       => $request->currency_id,
+            'price'             => $request->price,
+            'img_path'          => $path,
+            'img'               => ( $new_imageName != NULL ) ? $new_imageName : $old_imageName,
+            'user_id'           => Auth::user()->id,
+            'status_id'         => 2
         ];
 
-        Product::where('code', $product_code)->update($data);
+        Product::where( 'code', $product_code )->update( $data );
 
         if ( $new_imageName != NULL ) 
         {
-            unlink($path.'/'.$product->img);
-            unlink($path.'/80x80_'.$product->img);
-            unlink($path.'/361x230_'.$product->img);
+            $mainImg = $path . '/' . $product->img;
+            if( file_exists( $mainImg ) && is_file( $mainImg ) )
+            {
+                unlink( $path . '/' . $product->img );
+                unlink( $path . '/80x80_' . $product->img );
+                unlink( $path . '/361x230_' . $product->img );
+            }
         }
-        return json_encode(['success' => true]);
+
+        return json_encode( [ 'success' => true ] );
     }
 
     /**
@@ -256,7 +258,7 @@ class ProductController extends Controller
 
 
 
-    public function generate_code( $code )
+    private function generate_code( $code )
     {
         $code =  explode( '-', $code );
 

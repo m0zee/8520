@@ -463,12 +463,12 @@
 
                         <!-- start mainmenu__search -->
                         <div class="mainmenu__search hidden-xs">
-                            <form action="#">
+                            {{ Form::open( [ 'route' => 'products.search', 'method' => 'GET' ] ) }}
                                 <div class="searc-wrap">
-                                    <input type="text" placeholder="Search product here...">
+                                    {{ Form::text( 'query', old( 'query' ), [ 'class' => 'text_field', 'placeholder' => 'Search product here...' ] ) }}
                                     <button type="submit" class="search-wrap__btn"><span class="lnr lnr-magnifier"></span></button>
                                 </div>
-                            </form>
+                            {{ Form::close() }}
                         </div><!-- start mainmenu__search -->
                     </nav>
                 </div><!-- end /.col-md-12 -->

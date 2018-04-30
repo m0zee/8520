@@ -28,7 +28,7 @@
     <!-- endinject -->
 
     <!-- page css -->
-    @yield('css')
+    @yield( 'css' )
     <!-- endpage css -->
 
     <!-- Favicon -->
@@ -36,7 +36,7 @@
 </head>
 
 {{-- <body class="home1 mutlti-vendor"> --}}
-<body class="@yield('body_class')">
+<body class="@yield( 'body_class' )">
 
 <!-- ================================
     START MENU AREA

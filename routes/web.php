@@ -27,8 +27,9 @@ Route::get( 'categories/{category_slug}/sub-categories/{sub_category_slug}/requi
 
 
 
-Route::get( 'products', 			'ProductController@index' )->name( 'products' );
-Route::get( 'products/{id}/get', 	'ProductController@get' )->name( 'products.get' );
+Route::get( 'products', 'ProductController@index' )->name( 'products' );
+Route::match( [ 'get', 'post'], 'products/search', 'ProductController@search' )->name( 'products.search' );
+Route::get( 'products/{id}/get', 'ProductController@get' )->name( 'products.get' );
 
 Route::get( 'categories/{category_slug}/products', 'ProductController@get_by_category' )->name( 'categories.products' );
 Route::get( 'categories/{category_slug}/sub-categories/{sub_category_slug}/products', 'ProductController@get_by_sub_category' )->name( 'categories.sub-categories.products' );
@@ -205,7 +206,8 @@ Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
 });
 
 
-Route::get( '/', 					'HomeController@index' )->name( 'home' );
+Route::get( '/',							'HomeController@index' )->name( 'home' );
+
 Route::get( 'verifyemail/{token}',	'Auth\RegisterController@verify' );
 
 Route::post( 'get_country_state', function( Request $request ) {
