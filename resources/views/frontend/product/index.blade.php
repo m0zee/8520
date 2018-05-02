@@ -27,10 +27,9 @@
                                     @if( isset( $categories ) && $categories->count() > 0 )
                                         @foreach( $categories as $category )
                                             <li>
-                                                
-                                                    <a href="{{ url( 'categories/' . $category->slug . '/products' ) }}">
-                                                        <span class="lnr lnr-chevron-right"></span>{{ $category->name }}
-                                                    </a>
+                                                <a href="{{ url( 'categories/' . $category->slug . '/products' ) }}">
+                                                    <span class="lnr lnr-chevron-right"></span>{{ $category->name }}
+                                                </a>
                                             </li>
                                         @endforeach
                                     @else

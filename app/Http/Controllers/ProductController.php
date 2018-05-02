@@ -42,7 +42,7 @@ class ProductController extends Controller
     {
         $this->data['product'] = Product::where( 'code', $code )->with( 'category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery' )->first();
         
-        return view('frontend.product.show', $this->data );
+        return view( 'frontend.product.show', $this->data );
     }
 
 
@@ -51,9 +51,9 @@ class ProductController extends Controller
 
     public function search( Request $request )
     {
-        $category = Category::where( 'slug', $request->category )->first();
+        $category   = Category::where( 'slug', $request->category )->first();
 
-        $_query = Product::with( 'sub_category.category', 'user.detail', 'currency', 'unit' )->where( 'status_id', 2 )
+        $_query     = Product::with( 'sub_category.category', 'user.detail', 'currency', 'unit' )->where( 'status_id', 2 )
         ->where( 'name', 'like', '%' . $request->get( 'query' ) . '%' )->orderBy( 'id', 'DESC' );
 
         if( $category != null )

@@ -3,7 +3,12 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav navbar-nav admin-menu">
-                    <li class="{{ ($active == 'dashboard') ? 'active' : ''  }}"><a href="{{ route('admin.dashboard')}}"><span class="lnr lnr-home"></span>Dashboard</a></li>
+
+                    <li class="{{ ($active == 'dashboard') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.dashboard')}}">
+                            <span class="lnr lnr-home"></span> Dashboard
+                        </a>
+                    </li>
                     <li class="{{ ($active == 'users') ? 'active' : ''  }} has_dropdown">
                         <a href="#">
                             <span class="lnr lnr-users"></span> Users
@@ -15,14 +20,9 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="{{ ($active == 'reviews') ? 'active' : ''  }}">
-                        <a href="{{ route( 'admin.reviews.index' ) }}">
-                            <span class="lnr lnr-briefcase"></span> Reviews
-                        </a>
-                    </li>
                     <li class="{{ ($active == 'category') ? 'active' : ''  }}">
                         <a href="{{ route('admin.categories.index') }}">
-                            <span class="lnr lnr-dice"></span> Category
+                            <span class="lnr lnr-dice"></span> Categories
                         </a>
                     </li>
                     <li class="{{ ($active == 'product') ? 'active' : ''  }}">
@@ -30,9 +30,9 @@
                             <span class="lnr lnr-briefcase"></span> Products
                         </a>
                     </li>
-                    <li class="{{ ($active == 'requirement') ? 'active' : ''  }}">
-                        <a href="{{ route('admin.requirements.index') }}">
-                            <span class="lnr lnr-cart"></span> Requirement
+                    <li class="{{ ($active == 'reviews') ? 'active' : ''  }}">
+                        <a href="{{ route( 'admin.reviews.index' ) }}">
+                            <span class="lnr lnr-briefcase"></span> Reviews
                         </a>
                     </li>
                     <li class="{{ ($active == 'message' ) ? 'active' : ''  }}">
@@ -40,8 +40,16 @@
                             <span class="lnr lnr-cart"></span> Messages
                         </a>
                     </li>
-                    
-                    
+                    <li class="{{ ($active == 'requirement') ? 'active' : ''  }}">
+                        <a href="{{ route('admin.requirements.index') }}">
+                            <span class="lnr lnr-cart"></span> Requirements
+                        </a>
+                    </li>
+                    <li class="{{ ($active == 'reports' ) ? 'active' : ''  }}">
+                        <a href="{{ route( 'admin.reports.index' ) }}">
+                            <span class="lnr lnr-cart"></span> Reports
+                        </a>
+                    </li>
                     
                 </ul><!-- end /.dashboard_menu -->
             </div><!-- end /.col-md-12 -->

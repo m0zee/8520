@@ -91,24 +91,6 @@ Route::group( [ 'middleware' => 'CheckAdminLogin', 'namespace' => 'Backend' ], f
 	    ]
 	]);
 
-	Route::resource( 'admin/reviews', 'ReviewsController', [
-		'only' => [ 'index' ],
-		'names' => [
-			'index' => 'admin.reviews.index'
-		]
-	]);
-
-	Route::resource( 'admin/messages', 'MessagesController', [
-		'only' => [ 'index', 'show' ],
-		'names' => [
-			'index' => 'admin.messages.index',
-			'show'	=> 'admin.messages.show'
-		]
-	]);
-
-	Route::get( 'admin/reviews/{review_id}/approve',	'ReviewsController@approve' )->name( 'admin.reviews.approve' );
-	Route::get( 'admin/reviews/{review_id}/reject', 	'ReviewsController@reject' )->name( 'admin.reviews.reject' );
-
 	Route::resource( 'admin/products', 'ProductController', [
 		'names' => [
 	        'index'		=> 'admin.products.index',
@@ -123,6 +105,24 @@ Route::group( [ 'middleware' => 'CheckAdminLogin', 'namespace' => 'Backend' ], f
 
 	Route::put( 'admin/products/{id}/status/{status}', 'ProductController@status' )->name( 'admin.products.status' );
 
+	Route::resource( 'admin/reviews', 'ReviewsController', [
+		'only' => [ 'index' ],
+		'names' => [
+			'index' => 'admin.reviews.index'
+		]
+	]);
+
+	Route::get( 'admin/reviews/{review_id}/approve',	'ReviewsController@approve' )->name( 'admin.reviews.approve' );
+	Route::get( 'admin/reviews/{review_id}/reject', 	'ReviewsController@reject' )->name( 'admin.reviews.reject' );
+
+	Route::resource( 'admin/messages', 'MessagesController', [
+		'only' => [ 'index', 'show' ],
+		'names' => [
+			'index' => 'admin.messages.index',
+			'show'	=> 'admin.messages.show'
+		]
+	]);
+
 	// Route::get( 'admin/requirements', 				'RequirementController@index')->name( 'admin.requirements.index' );
 	Route::put( 'admin/requirements/{id}/status',	'RequirementController@status')->name( 'admin.requirements.status' );
 	// Route::get( 'admin/requirements/{id}/show', 	'RequirementController@show')->name( 'admin.requirements.show' );
@@ -134,11 +134,21 @@ Route::group( [ 'middleware' => 'CheckAdminLogin', 'namespace' => 'Backend' ], f
 			'show' 	=> 'admin.requirements.show', 
 		] 
 	]);
+
+	Route::resource( 'admin/reports', 'ReportsController', [
+		'only' 	=> [ 'index', 'show' ],
+		'names'	=> [ 
+			'index' => 'admin.reports.index', 
+			'show'	=> 'admin.reports.show'  
+		],
+	]);
 });
 
 
 Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 	
+	Route::resource( 'reports', 'ReportsController', [ 'only' => [ 'store' ] ] );
+
 	Route::group( [ 'middleware' => [ 'IsProfileCreated' ] ], function() {
 		
 		Route::group( [ 'prefix' => 'my-account', 'namespace' => 'MyAccount' ], function() {
@@ -165,7 +175,7 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 		Route::post( 'messages/{message}/reply', 'MessagesController@reply' )->name( 'messages.reply' );
 	});
 
-	Route::group( [ 'prefix' => 'buyer', 'middleware' => ['IsBuyer'] ], function() {
+	Route::group( [ 'prefix' => 'buyer', 'middleware' => [ 'IsBuyer' ] ], function() {
 		Route::resource( 'dashboard', 	'Buyer\DashboardController', 	[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.dashboard' ] ] );
 		Route::resource( 'reviews', 	'Buyer\ReviewsController', 		[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.reviews' ] ] );
 		Route::resource( 'shortlist', 	'Buyer\ShortlistController', 	[ 

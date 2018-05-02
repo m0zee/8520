@@ -1,10 +1,8 @@
-@extends('components.frontend.master')
+@extends( 'components.frontend.master' )
 
-@section('title', 'Home')
-@section('content')
 
-@section('title', 'Products')
-@section('content')
+@section( 'title', 'Products' )
+@section( 'content' )
 <!--================================
         START BREADCRUMB AREA
     =================================-->
@@ -47,12 +45,18 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="item-preview">
+
                         <div class="item__preview-slider" style="width:99.9%">
-                            {{-- <div class="prev-slide"><img src="images/p1.jpg" alt="Keep calm this isn't the end of the world, the preview is just missing."></div> --}}
-                            <div class="prev-slide"><img id="img_01" src="{{ asset('storage/product/'.$product->img) }}"  data-zoom-image="{{ asset('storage/product/'.$product->img) }}" alt="1 Keep calm this isn't the end of the world, the preview is just missing."></div>
-                            @if ($product->gallery->count() > 0)
-                                @foreach ($product->gallery as $gallery)
-                                    <div class="prev-slide"><img src="{{ asset('storage/product/gallery/'.$gallery->img) }}" alt="1 Keep calm this isn't the end of the world, the preview is just missing."></div>
+                            <div class="prev-slide">
+                                <img id="main_img" src="{{ asset( 'storage/product/' . $product->img ) }}"  
+                                    data-zoom-image="{{ asset( 'storage/product/' . $product->img ) }}" 
+                                    alt="Keep calm this isn't the end of the world, the preview is just missing.">
+                            </div>
+                            @if( $product->gallery->count() > 0 )
+                                @foreach( $product->gallery as $gallery )
+                                    <div class="prev-slide">
+                                        <img src="{{ asset( 'storage/product/gallery/' . $gallery->img ) }}" alt="Keep calm this isn't the end of the world, the preview is just missing.">
+                                    </div>
                                 @endforeach
                             @endif
 
@@ -62,44 +66,19 @@
                             <div class="prev-thumb">
                                 <div class="thumb-slider" id="thumb-slider">
 
-                                    <a class="item-thumb" data-image="{{ asset('storage/product/'.$product->img) }}" data-zoom-image="{{ asset('storage/product/'.$product->img) }}">
-                                        <img src="{{ asset('storage/product/80x80_'.$product->img) }}" alt="This is the thumbnail of the item">
-                                    </a>
-                                    @foreach ($product->gallery as $gallery)
-                                    <a class="item-thumb" data-image="{{ asset('storage/product/gallery/'.$gallery->img) }}" data-zoom-image="{{ asset('storage/product/gallery/'.$gallery->img) }}">
-                                        <img src="{{ asset('storage/product/gallery/80x80_'.$gallery->img) }}" alt="This is the thumbnail of the item">
+                                    <a class="item-thumb" data-image="{{ asset( 'storage/product/' . $product->img ) }}" 
+                                        data-zoom-image="{{ asset( 'storage/product/' . $product->img ) }}">
+                                        <img src="{{ asset( 'storage/product/80x80_' . $product->img ) }}" alt="This is the thumbnail of the item">
                                     </a>
 
+                                    @foreach($product->gallery as $gallery)
+                                        <a class="item-thumb" data-image="{{ asset( 'storage/product/gallery/' . $gallery->img ) }}" 
+                                            data-zoom-image="{{ asset( 'storage/product/gallery/' . $gallery->img ) }}">
+                                            <img src="{{ asset( 'storage/product/gallery/80x80_' . $gallery->img ) }}" alt="This is the thumbnail of the item">
+                                        </a>
                                     @endforeach
-
-                                   {{--  <div class="item-thumb"><img src="{{ asset('storage/product/80x80_'.$product->img) }}" alt="This is the thumbnail of the item"></div>
-                                    @foreach ($product->gallery as $gallery)
-                                    <div class="item-thumb"><img src="{{ asset('storage/product/gallery/80x80_'.$gallery->img) }}" alt="This is the thumbnail of the item"></div>
-
-                                    @endforeach --}}
-                                    {{-- <div class="item-thumb"><img src="images/thumb2.jpg" alt="This is the thumbnail of the item"></div>
-                                    <div class="item-thumb"><img src="images/thumb3.jpg" alt="This is the thumbnail of the item"></div>
-                                    <div class="item-thumb"><img src="images/thumb4.jpg" alt="This is the thumbnail of the item"></div>
-                                    <div class="item-thumb"><img src="images/thumb5.jpg" alt="This is the thumbnail of the item"></div>
-                                    <div class="item-thumb"><img src="images/thumb1.jpg" alt="This is the thumbnail of the item"></div>
-                                    <div class="item-thumb"><img src="images/thumb2.jpg" alt="This is the thumbnail of the item"></div>
-                                    <div class="item-thumb"><img src="images/thumb3.jpg" alt="This is the thumbnail of the item"></div>
-                                    <div class="item-thumb"><img src="images/thumb4.jpg" alt="This is the thumbnail of the item"></div>
-                                    <div class="item-thumb"><img src="images/thumb5.jpg" alt="This is the thumbnail of the item"></div> --}}
                                 </div><!-- end /.thumb-slider -->
-
-                                {{-- <div class="prev-nav thumb-nav">
-                                    <span class="lnr nav-left lnr-arrow-left"></span>
-                                    <span class="lnr nav-right lnr-arrow-right"></span>
-                                </div> --}}<!-- end /.prev-nav -->
                             </div>
-
-                            {{-- <div class="item-action">
-                                <div class="action-btns">
-                                    <a href="#" class="btn btn--round btn--lg">Live Preview</a>
-                                    <a href="#" class="btn btn--round btn--lg btn--icon"><span class="lnr lnr-heart"></span>Add To Favorites</a>
-                                </div>
-                            </div> --}}<!-- end /.item__action -->
                         </div><!-- end /.item__preview-thumb-->
 
 
@@ -155,7 +134,7 @@
 
                             <div class="author-infos">
                                 <div class="author_avatar">
-                                    <img src="{{ asset('storage/profile_img/'.$product->user->detail->profile_img) }}" alt="Presenting the broken author avatar :D">
+                                    <img src="{{ asset( 'storage/profile_img/' . $product->user->detail->profile_img ) }}" alt="Presenting the broken author avatar :D">
                                 </div>
 
                                 <div class="author">
@@ -165,8 +144,8 @@
 
 
                                 <div class="author-btn">
-                                    <a href="#" class="btn btn--sm btn--round">View Profile</a>
-                                    <a href="#" class="btn btn--sm btn--round">Send Message</a>
+                                    <a href="{{ url( 'profile/' . $product->user->code ) }}" class="btn btn--sm btn--round">View Profile</a>
+                                    <button class="btn btn--sm btn--round" id="btn_report">Report</button>
                                 </div><!-- end /.author-btn -->
                             </div><!-- end /.author-infos -->
 
@@ -200,7 +179,7 @@
                     <div class="product product--card">
 
                         <div class="product__thumbnail">
-                            <img src="images/p4.jpg" alt="Product Image">
+                            <img src="{{ asset( 'images/p4.jpg' ) }}" alt="Product Image">
                             <div class="prod_btn">
                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                                 <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -211,11 +190,11 @@
                             <a href="#" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
                             <ul class="titlebtm">
                                 <li>
-                                    <img class="auth-img" src="images/auth3.jpg" alt="author image">
+                                    <img class="auth-img" src="{{ asset( 'images/auth3.jpg' ) }}" alt="author image">
                                     <p><a href="#">AazzTech</a></p>
                                 </li>
                                 <li class="product_cat">
-                                    <a href="#"><img src="images/cathtm.png" alt="category image">Plugin</a>
+                                    <a href="#"><img src="{{ asset( 'images/cathtm.png' ) }}" alt="category image">Plugin</a>
                                 </li>
                             </ul>
 
@@ -250,7 +229,7 @@
                     <div class="product product--card">
 
                         <div class="product__thumbnail">
-                            <img src="images/p2.jpg" alt="Product Image">
+                            <img src="{{ asset( 'images/p2.jpg' ) }}" alt="Product Image">
                             <div class="prod_btn">
                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                                 <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -261,11 +240,11 @@
                             <a href="#" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
                             <ul class="titlebtm">
                                 <li>
-                                    <img class="auth-img" src="images/auth2.jpg" alt="author image">
+                                    <img class="auth-img" src="{{ asset( 'images/auth2.jpg' ) }}" alt="author image">
                                     <p><a href="#">AazzTech</a></p>
                                 </li>
                                 <li class="product_cat">
-                                    <a href="#"><img src="images/catword.png" alt="category image">wordpress</a>
+                                    <a href="#"><img src="{{ asset( 'images/catword.png' ) }}" alt="category image">wordpress</a>
                                 </li>
                             </ul>
 
@@ -300,7 +279,7 @@
                     <div class="product product--card">
 
                         <div class="product__thumbnail">
-                            <img src="images/p6.jpg" alt="Product Image">
+                            <img src="{{ asset( 'images/p6.jpg' ) }}" alt="Product Image">
                             <div class="prod_btn">
                                 <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
                                 <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
@@ -311,16 +290,17 @@
                             <a href="#" class="product_title"><h4>The of the century</h4></a>
                             <ul class="titlebtm">
                                 <li>
-                                    <img class="auth-img" src="images/auth.jpg" alt="author image">
+                                    <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
                                     <p><a href="#">AazzTech</a></p>
                                 </li>
                                 <li class="product_cat">
-                                    <a href="#"><img src="images/catph.png" alt="Category Image">PSD</a>
+                                    <a href="#"><img src="{{ asset( 'images/catph.png' ) }}" alt="Category Image">PSD</a>
                                 </li>
                             </ul>
 
-                            <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                the mattis, leo quam aliquet congue.</p>
+                            <p>
+                                Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis, leo quam aliquet congue.
+                            </p>
                         </div><!-- end /.product-desc -->
 
                         <div class="product-purchase">
@@ -352,41 +332,69 @@
     ==============================================-->
 
     @else:
-        
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-danger text-center">
-                        No Product Found!
-                    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger text-center">
+                    No Product Found!
                 </div>
             </div>
-       
+        </div>
     @endif
+
+    <div class="modal fade reportModal" id="report_modal" tabindex="-1" role="dialog" aria-labelledby="reportModal">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                    <h4>Report this product</h4>
+                </div><!-- end /.modal-header -->
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        {{ Form::open( [ 'url' => '#', 'id' => 'myForm' ] ) }}
+                            <div class="col-md-12">
+                                <div class="information_module">
+                                            
+                                    <div class="form-group has-error">
+                                        {{ Form::label( 'message', 'Message' ) }}
+                                        {{
+                                            Form::textarea( 'message', '', [ 
+                                                'placeholder'   => 'Please enter your message here ...', 
+                                                'id'            => 'message',
+                                                'class'         => 'text_field',
+                                                'rows'          => 3,
+                                                'style'         => 'resize: none;'
+                                            ])
+                                        }}
+                                        <span class="help-block"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {{ Form::hidden( 'product_id', $product->id, [ 'id' => 'product_id' ] ) }}
+
+                            <div class="col-md-12">
+                                <div class="dashboard_setting_btn">
+                                    <button type="submit" id="btn_send" class="btn btn--round btn--md">Send</button>
+                                </div>
+                            </div><!-- end /.col-md-12 -->
+                        {{ Form::close() }}
+                    </div>
+
+                </div><!-- end /.modal-body -->
+            </div>
+        </div>
+    </div>
 
 @endsection
 
-@section('js')
-
-<script src="{{ asset('js/vendor/jquery.elevatezoom.min.js') }}"></script>
-<script>
-    $("#img_01").elevateZoom({
-        gallery:'thumb-slider',
-        cursor: 'pointer',
-        galleryActiveClass: 'active',
-        imageCrossfade: true,
-        scrollZoom : true,
-        // zoomWindowPosition
-        zoomType: 'window',
-        zoomWindowWidth: 400, 
-zoomWindowHeight:    400 ,
-zoomWindowOffetx :   0 ,  
-zoomWindowOffety :   0 , 
-zoomWindowPosition  :1,
-        
-        responsive:true,
-        loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}); 
-    
-    // {gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}
-</script>
+@section( 'js' )
+    <script src="{{ asset( 'js/vendor/jquery.elevatezoom.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/page/frontend/product/show.js' ) }}"></script>
 @endsection

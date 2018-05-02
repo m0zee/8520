@@ -11,16 +11,18 @@ class BuyerRequirementController extends Controller
 {
     public function index()
     {
-    	$requirement = BuyerRequirement::where( 'status_id', '2' )->with( 'sub_category', 'category', 'user' )->get();
+    	$this->data['requirement'] = BuyerRequirement::where( 'status_id', '2' )->with( 'sub_category', 'category', 'user' )->get();
         
-    	return view( 'frontend.requirement.index', compact( 'requirement' ) );
+    	return view( 'frontend.requirement.index', $this->data );
     }
 
 
     public function show( $code )
     {
     	$requirement                       = BuyerRequirement::where( [ 'code' => $code, 'status_id' => '2' ] )->with( 'sub_category', 'category', 'user' )->first();
-    	$this->data['related_requirement'] = BuyerRequirement::where( [ 'category_id' => $requirement->category_id, 'status_id' => '2' ] )->whereNotIn( 'id' , [ $requirement->id ] )->with( 'sub_category', 'category', 'user' )->get();
+    	$this->data['related_requirement'] = BuyerRequirement::where( [ 'category_id' => $requirement->category_id, 'status_id' => '2' ] )->whereNotIn( 'id' , [ $requirement->id ] )
+        ->with( 'sub_category', 'category', 'user' )->get();
+
         $this->data['requirement'] = $requirement;
         // return $requirement;
     	return view( 'frontend.requirement.show', $this->data );
@@ -29,9 +31,10 @@ class BuyerRequirementController extends Controller
 
     public function get_by_category($category_slug)
     {
-    	$category = Category::where('slug', $category_slug)->first();
-    	$requirement = BuyerRequirement::where(['category_id' => $category->id, 'status_id' => '2'])->with('sub_category', 'category', 'user')->get();
-    	return view('frontend.requirement.index', compact('requirement'));
+    	$this->data['category']    = Category::where( 'slug', $category_slug )->first();
+    	$this->data['requirement'] = BuyerRequirement::where( [ 'category_id' => $category->id, 'status_id' => '2' ] )->with( 'sub_category', 'category', 'user' )->get();
+
+    	return view( 'frontend.requirement.index', $this->data );
     }
 
 

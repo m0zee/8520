@@ -1,10 +1,10 @@
-@extends('components.backend.master')
+@extends( 'components.backend.master' )
 @php
     $active = 'users';
 @endphp
 
-@section('title', 'Login')
-@section('content')
+@section( 'title', 'Users' )
+@section( 'content' )
 <!--================================
         START BREADCRUMB AREA
     =================================-->
@@ -24,7 +24,7 @@
         </div><!-- end /.container -->
     </section>
     
-        @include('components.backend.menu')
+        @include( 'components.backend.menu' )
     <!--================================
         END BREADCRUMB AREA
     =================================-->

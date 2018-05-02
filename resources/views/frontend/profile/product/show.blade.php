@@ -1,10 +1,7 @@
-@extends('components.frontend.master')
+@extends( 'components.frontend.master' )
 
-@section('title', 'Home')
-@section('content')
-
-@section('title', 'Products')
-@section('content')
+@section( 'title', 'Products' )
+@section( 'content' )
 <!--================================
         START BREADCRUMB AREA
     =================================-->
@@ -169,8 +166,6 @@
                                     <a href="#" class="btn btn--sm btn--round">Send Message</a>
                                 </div><!-- end /.author-btn -->
                             </div><!-- end /.author-infos -->
-
-
                         </div><!-- end /.author-card -->
                     </aside><!-- end /.aside -->
                 </div><!-- end /.col-md-4 -->

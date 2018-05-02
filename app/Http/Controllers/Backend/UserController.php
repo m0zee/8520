@@ -23,7 +23,7 @@ class UserController extends Controller
         //        ->orderBy('id', 'desc')
         //        ->get();
         $user = $user_type->user;
-        return view('backend.users.index')->with('users', $user)->with('user_type', $user_type);
+        return view( 'backend.users.index' )->with( 'users', $user )->with( 'user_type', $user_type );
     }
 
     /**
