@@ -24,13 +24,7 @@
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    <!--================================
-        END BREADCRUMB AREA
-    =================================-->
-
-    <!--================================
-            START DASHBOARD AREA
-    =================================-->
+    
     @include( 'components.frontend.buyer_menu' )
 
 
@@ -65,9 +59,6 @@
                                     <h4 class="add_info">Category</h4>
                                 </div>
                                 <div class="col-md-2">
-                                    {{-- <h4>View</h4>
-                                </div>
-                                <div class="col-md-1"> --}}
                                     <h4>Actions</h4>
                                 </div>
                             </div>

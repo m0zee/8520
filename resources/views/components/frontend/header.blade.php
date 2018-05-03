@@ -74,32 +74,37 @@
                                                     <span class="lnr lnr-home"></span> Dashboard
                                                 </a>
                                             </li>
-                                            {{-- <li>
-                                                <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
-                                                    <span class="lnr lnr-user"></span> Profile
+                                            
+                                            <li>
+                                                <a href="{{ route( 'password.change.index' ) }}">
+                                                    <span class="lnr lnr-lock"></span> Change Password
                                                 </a>
-                                            </li> --}}
+                                            </li>
                                            
                                             <li>
                                                 <a href="{{ route( 'buyer.reviews' ) }}">
                                                     <span class="lnr lnr-list"></span> Reviews
                                                 </a>
                                             </li>
+                                            
                                              <li>
                                                 <a href="{{ route( 'buyer.shortlist.index' ) }}">
                                                     <span class="lnr lnr-cart"></span> Shortlist
                                                 </a>
                                             </li>
+                                            
                                              <li>
                                                 <a href="{{ route('buyer.requirements') }}">
                                                     <span class="lnr lnr-briefcase"></span> Buying Requirement
                                                 </a>
                                             </li>
+                                            
                                              <li>
                                                 <a href="#">
                                                     <span class="lnr lnr-envelope"></span> Messages
                                                 </a>
                                             </li>
+                                            
                                             <li>
                                                 <a href="{{ route( 'logout' ) }}"
                                                  onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
@@ -111,10 +116,10 @@
                                 </div>
                             @endif
 
-                            @if( Auth::user()->user_type_id == 2 ) {{-- Vender --}}
+                            @if( Auth::user()->user_type_id == 2 ) {{-- Vendor --}}
                                 <div class="author-author__info inline has_dropdown">
                                     <div class="author__avatar">
-                                        <img src="{{ asset('storage/profile_img/50x50_'.Auth::user()->detail->profile_img) }}" alt="user avatar">
+                                        <img src="{{ asset( 'storage/profile_img/50x50_' . Auth::user()->detail->profile_img ) }}" alt="user avatar">
                                     </div>
                                     <div class="autor__info">
                                         <p class="name">{{ Auth::user()->name }}</p>

@@ -15,9 +15,18 @@ class ChangePasswordController extends Controller
      */
     public function index()
     {
-        $this->data['user_type'] = Auth::user()->user_type_id;
-        
-        return view( 'changePassword.index', $this->data );
+        $user_type_id = Auth::user()->user_type_id;
+      
+        $this->data['user_type_id'] = $user_type_id;
+
+        if( $user_type_id == 3 )
+        {
+            return view( 'backend.changePassword.index', $this->data );
+        }
+        else if( $user_type_id == 2 || $user_type_id == 1 )
+        {
+            return view( 'frontend.changePassword.index', $this->data );
+        }
     }
 
     /**

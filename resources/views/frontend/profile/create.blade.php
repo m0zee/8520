@@ -1,8 +1,8 @@
-    @extends( 'components.frontend.master' )
+@extends( 'components.frontend.master' )
 
-    @section( 'title', 'Profile' )
+@section( 'title', 'Profile' )
 
-    @section( 'content' )
+@section( 'content' )
     <!--================================
         START BREADCRUMB AREA
     =================================-->
@@ -22,13 +22,7 @@
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    <!--================================
-        END BREADCRUMB AREA
-    =================================-->
-
-    <!--================================
-            START DASHBOARD AREA
-    =================================-->
+    
     <section class="dashboard-area">
         @include( 'components.frontend.vendor_menu' )
 
@@ -303,29 +297,29 @@
             END DASHBOARD AREA
     =================================-->
 
-    @endsection
+@endsection
 
-    @section('js')
-    <script src="{{ url( 'js/page/get_state_and_city_dropdown.js' ) }}"></script>
-    <script src="{{ url( 'js/vendor/jquery.imagereader-1.0.0.min.js' ) }}"></script>
+@section('js')
+<script src="{{ url( 'js/page/get_state_and_city_dropdown.js' ) }}"></script>
+<script src="{{ url( 'js/vendor/jquery.imagereader-1.0.0.min.js' ) }}"></script>
 
-    <script>
-        $(document).ready(function(){
-            $("#dp").change(function (){
-                $('#old-dp').css('display', 'none');
-             });
-            $('#dp').imageReader({
-              destination: '#new-dp'
-            });
+<script>
+    $(document).ready(function(){
+        $("#dp").change(function (){
+            $('#old-dp').css('display', 'none');
+         });
+        $('#dp').imageReader({
+          destination: '#new-dp'
+        });
 
 
-            $("#cover_photo").change(function (){
-                $('#old-cover').css('display', 'none');
-             });
-            $('#cover_photo').imageReader({
-              destination: '#new-cover'
-            });
-      });
-    </script>
+        $("#cover_photo").change(function (){
+            $('#old-cover').css('display', 'none');
+         });
+        $('#cover_photo').imageReader({
+          destination: '#new-cover'
+        });
+  });
+</script>
 
-    @endsection
+@endsection

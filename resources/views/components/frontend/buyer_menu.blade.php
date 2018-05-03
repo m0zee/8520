@@ -10,13 +10,6 @@
                             <span class="lnr lnr-home"></span> Dashboard
                         </a>
                     </li>
-                    
-                  {{--   <li>
-                        <a href="dashboard-purchase.html">
-                            <span class="lnr lnr-cart"></span> Profile
-                        </a>
-                    </li> --}}
-                    
                     <li class="{{ ( $active == 'reviews' ) ? 'active' : '' }}">
                         <a href="{{ route( 'buyer.reviews' ) }}">
                             <span class="lnr lnr-list"></span> Reviews

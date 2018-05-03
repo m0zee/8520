@@ -1,9 +1,4 @@
-@if( $user_type == 2 )
-    @extends( 'components.frontend.master' )
-@else
-    @extends( 'components.backend.master' )
-@endif
-
+@extends( 'components.backend.master' )
 @php
     $active = '';
 @endphp
@@ -28,11 +23,8 @@
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    @if( $user_type == 2 )
-        @include( 'components.frontend.vendor_menu' )
-    @else
-        @include( 'components.backend.menu' )
-    @endif
+    
+    @include( 'components.backend.menu' )
     
     <section class="dashboard-area">
 
@@ -45,22 +37,20 @@
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             
-                            @if( $user_type != 2 )  
-                                @if( session( 'success' ) )
-                                    <div class="alert alert-success text-center">
-                                        <strong>{{ session( 'success' ) }}</strong>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span class="lnr lnr-cross" aria-hidden="true"></span>
-                                        </button>
-                                    </div>
-                                @elseif( session( 'error' ) )
-                                    <div class="alert alert-danger text-center">
-                                        <strong>{{ session( 'error' ) }}</strong>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span class="lnr lnr-cross" aria-hidden="true"></span>
-                                        </button>
-                                    </div>
-                                @endif
+                            @if( session( 'success' ) )
+                                <div class="alert alert-success text-center">
+                                    <strong>{{ session( 'success' ) }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span class="lnr lnr-cross" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            @elseif( session( 'error' ) )
+                                <div class="alert alert-danger text-center">
+                                    <strong>{{ session( 'error' ) }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span class="lnr lnr-cross" aria-hidden="true"></span>
+                                    </button>
+                                </div>
                             @endif
 
                             <div class="information_module">
