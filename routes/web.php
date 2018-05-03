@@ -146,6 +146,9 @@ Route::group( [ 'middleware' => 'CheckAdminLogin', 'namespace' => 'Backend' ], f
 
 
 Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
+
+	Route::get( 'password/change', 'ChangePasswordController@index' )->name( 'password.change.index');
+	Route::post( 'password/change', 'ChangePasswordController@store' )->name( 'password.change.store');;
 	
 	Route::resource( 'reports', 'ReportsController', [ 'only' => [ 'store' ] ] );
 

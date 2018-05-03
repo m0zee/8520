@@ -5,7 +5,7 @@
 
 @section('title', 'Category')
 @section('content')
-<!--================================
+    <!--================================
         START BREADCRUMB AREA
     =================================-->
     <section class="breadcrumb-area">
@@ -25,14 +25,8 @@
         </div><!-- end /.container -->
     </section>
     
-        @include('components.backend.menu')
-    <!--================================
-        END BREADCRUMB AREA
-    =================================-->
-
-     <!--================================
-            START DASHBOARD AREA
-    =================================-->
+    @include( 'components.backend.menu' )
+    
     <section class="dashboard-area">
 
         <div class="dashboard_contents">
@@ -68,8 +62,5 @@
             </div><!-- end /.container -->
         </div><!-- end /.dashboard_menu_area -->
     </section>
-    <!--================================
-            END DASHBOARD AREA
-    =================================-->
 
 @endsection

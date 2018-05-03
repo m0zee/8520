@@ -1,4 +1,4 @@
-@extends( 'components.frontend.master' )
+@extends( 'components.backend.master' )
 
 @php  $active = 'requirement';  @endphp
 

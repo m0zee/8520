@@ -38,7 +38,7 @@
         <div class="dashboard_contents">
             <div class="container">
 
-                <form action="{{ route('admin.categories.update', [$category->id]) }}" method="POST" class="setting_form">
+                <form action="{{ route( 'admin.categories.update', [ $category->id ]) }}" method="POST" class="setting_form">
                     <input type="hidden" name="_method" value="PUT">
                     {{ csrf_field() }}
                     <div class="row">

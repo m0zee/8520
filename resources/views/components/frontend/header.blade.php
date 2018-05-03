@@ -134,6 +134,12 @@
                                                     <span class="lnr lnr-user"></span> Profile
                                                 </a>
                                             </li>
+                                            
+                                            <li>
+                                                <a href="{{ route( 'password.change.index' ) }}">
+                                                    <span class="lnr lnr-lock"></span> Change Password
+                                                </a>
+                                            </li>
                                            
                                             <li>
                                                  <a href="{{ route( 'my-account.product' ) }}">

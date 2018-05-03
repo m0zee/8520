@@ -1,9 +1,12 @@
-@extends('components.backend.master')
+@extends( 'components.backend.master' )
+
 @php
     $active = 'dashboard';
 @endphp
-@section('title', 'Login')
-@section('content')
+
+@section( 'title', 'Dashboard' )
+
+@section( 'content' )
 
     <!--================================
         START BREADCRUMB AREA
@@ -14,11 +17,10 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li><a href="#">Dashboard</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Author's Dashboard</h1>
+                    <h1 class="page-title">Admin Dashboard</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -30,9 +32,9 @@
     <!--================================
             START DASHBOARD AREA
     =================================-->
-    @include('components.backend.menu')
+    @include( 'components.backend.menu' )
+    
     <section class="dashboard-area">
-        
 
         <div class="dashboard_contents">
             <div class="container">
@@ -719,10 +721,11 @@
                 </div><!-- end /.row -->
             </div><!-- end /.container -->
         </div><!-- end /.dashboard_menu_area -->
+
     </section>
     <!--================================
             END DASHBOARD AREA
     =================================-->
-    </div>
+    {{-- </div> --}}
 
 @endsection

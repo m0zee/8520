@@ -20,12 +20,11 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="dashboard.html">Dashboard</a></li>
-                            <li class="active"><a href="#">Manage Item</a></li>
+                            <li><a href="{{ route( 'vendor.dashboard' ) }}">Dashboard</a></li>
+                            <li class="active"><a href="#">Products</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Manage Item</h1>
+                    <h1 class="page-title">Products</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->

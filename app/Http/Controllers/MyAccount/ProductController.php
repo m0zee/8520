@@ -24,7 +24,7 @@ class ProductController extends Controller
     {
         $product = Product::with('user.detail', 'status', 'currency', 'unit', 'sub_category.category')->where( 'user_id', Auth::user()->id )->get();
         
-        return view('frontend.profile.product.list')->withProducts($product);
+        return view( 'frontend.profile.product.list' )->withProducts( $product );
     }
 
     /**
