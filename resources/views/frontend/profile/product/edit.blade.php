@@ -2,7 +2,7 @@
 @php
     $active = 'product'; 
 @endphp
-@section( 'title', 'Product' )
+@section( 'title', 'Edit Product' )
 
 @section( 'content' )
 
@@ -60,87 +60,96 @@
                                 </div><!-- end /.module_title -->
 
                                 <div class="modules__content">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="category">Category</label>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group has-error">
+                                                <label for="category_id">Category</label>
                                                 <div class="select-wrap select-wrap2">
-                                                    {{ Form::select('category_id', $categories, $product->category_id, ['placeholder' => 'Please Select', 'id' => 'category'] ) }}
+                                                    {{ Form::select( 'category_id', $categories, $product->category_id, [ 'placeholder' => 'Please Select', 'id' => 'category_id' ] ) }}
                                                     <span class="lnr lnr-chevron-down"></span>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-6">
-                                                <label for="category">Sub Category</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group has-error">
+                                                <label for="sub_category">Sub Category</label>
                                                 <div class="select-wrap select-wrap2">
                                                     <select name="sub_category_id" id="sub_category">
-                                                        <option value="0">Please Select</option>
+                                                        <option value>Please Select</option>
                                                     </select>
                                                     <span class="lnr lnr-chevron-down"></span>
-
+                                                
                                                     <input type="hidden" value="{{ $product->sub_category_id }}" id="sub_category_id">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                       <div class="row">
-                                           <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group has-error">
                                                 <label for="brand_name">Brand Name <span>(Max 100 characters)</span></label>
-                                               <input type="text" id="brand_name" name="brand_name" class="text_field" placeholder="Enter your brand name here..." value="{{ $product->brand_name }}">
-                                           </div>
-                                           <div class="col-md-6">
-                                               <label for="product_name">Product Name <span>(Max 100 characters)</span></label>
-                                        <input type="text" id="product_name" class="text_field" name="name" placeholder="Enter your product name here..." value="{{ $product->name }}">
-                                           </div>
-                                       </div>
+                                                <input type="text" id="brand_name" name="brand_name" class="text_field" placeholder="Enter your brand name here..." value="{{ $product->brand_name }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group has-error">
+                                                <label for="name">Product Name <span>(Max 100 characters)</span></label>
+                                                <input type="text" id="name" class="text_field" name="name" placeholder="Enter your product name here..." value="{{ $product->name }}">
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="category">Made in</label>
+                                   <div class="form-group has-error">
+                                        <label for="country_id">Made in</label>
                                         <div class="select-wrap select-wrap2">
-                                            {{ Form::select('country_id', $countries, $product->country_id, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
+                                            {{ Form::select( 'country_id', $countries, $product->country_id, [ 'placeholder' => 'Please Select', 'id' => 'country_id' ] ) }}
                                             <span class="lnr lnr-chevron-down"></span>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="row">
-                                            
-                                                <div class="col-md-3">
-                                                    <label for="category">Max Supplies</label>
-                                                    <div class="select-wrap select-wrap2">
-                                                        {{ Form::select('unit_id', $units, $product->unit_id, ['placeholder' => 'Select Unit', 'id' => 'unit'] ) }}
-                                                        <span class="lnr lnr-chevron-down"></span>
-                                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="unit_id">Max Supplies</label>
+                                                <div class="select-wrap select-wrap2">
+                                                    {{ Form::select( 'unit_id', $units, $product->unit_id, [ 'placeholder' => 'Select Unit', 'id' => 'unit_id' ] ) }}
+                                                    <span class="lnr lnr-chevron-down"></span>
                                                 </div>
+                                            </div>
+                                        </div>
 
-                                                <div class="col-md-3">
-                                                    <label for="category">&nbsp;</label>
-                                                    <input type="text" name="max_supply" value="{{ $product->max_supply }}" class="text_field" placeholder="Enter quantity">
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="max_supply">&nbsp;</label>
+                                                <input type="text" name="max_supply" id="max_supply" value="{{ $product->max_supply }}" class="text_field" placeholder="Enter quantity">
+                                            </div>
+                                        </div>
+
+                                    
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="currency_id">Amount</label>
+                                                <div class="select-wrap select-wrap2">
+                                                    {{ Form::select( 'currency_id', $currencies, $product->currency_id, [ 'placeholder' => 'Select Currency', 'id' => 'currency_id' ] ) }}
+                                                    <span class="lnr lnr-chevron-down"></span>
                                                 </div>
+                                            </div>
+                                        </div>
 
-                                            
-                                                <div class="col-md-3">
-                                                    <label for="category">Amount</label>
-                                                    <div class="select-wrap select-wrap2">
-                                                        {{ Form::select('currency_id', $currencies, $product->currency_id, ['placeholder' => 'Select Currency', 'id' => 'country'] ) }}
-                                                        <span class="lnr lnr-chevron-down"></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <label for="category">&nbsp;</label>
-                                                    <input type="text" name="price" class="text_field" value="{{ $product->price }}" placeholder="Enter amount">
-                                                </div>
-                                            
-
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="price">&nbsp;</label>
+                                                <input type="text" name="price" id="price" class="text_field" value="{{ $product->price }}" placeholder="Enter amount">
+                                            </div>
                                         </div>
                                     </div>
 
 
-                                    <div class="form-group no-margin">
+                                    <div class="form-group no-margin has-error">
                                         <p class="label">Product Description</p>
                                         <textarea name="description" class="form-control" id="trumbowyg-demo" cols="30" rows="10">{{ $product->description }}</textarea>
                                     </div>
@@ -178,7 +187,16 @@
 
                                             {{-- <span class="lnr upload_cross lnr-cross"></span> --}}
                                         </div><!-- end /.upload_wrapper -->
-                                        <div id="output"><!-- error or success results --></div>
+                                        <div id="output"></div>
+
+                                        <hr>
+
+                                        <div id="product_img" class="col-md-2 col-md-offset-5">
+                                            @if( $product->img != null && $product->img != '' )
+                                                <img src="{{ asset('storage/product/361x230_' . $product->img ) }}" alt="Product Image">
+                                            @endif
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div><!-- end /.form-group -->
 
 
@@ -265,59 +283,20 @@
 
 @endsection
 
-@section('js')
+@section( 'js' )
 
-<script src="{{ asset('js/page/get_sub_category_by_category.js') }}"></script>
-<script>
+    <script src="{{ asset( 'js/page/get_sub_category_by_category.js' ) }}"></script>
+    <script src="{{ asset( 'js/vendor/jquery.imagereader-1.0.0.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/page/frontend/products/edit.js' ) }}"></script>
+{{-- <script>
 
     $('.file-upload').on('change', function() {
-            var file_name = $(this).val().split('\\').pop();
-            file_name = ( file_name != '' ) ? file_name : 'No file selected' ;
-            $('.selected_img_name').text(file_name);
-        });
-
-    // $(document).ready(function() {
-    //     var base_url = $('#base_url').val();
-    //     $('#category').on('change', function() {
-    //         $this = $(this);
-    //         get_sub_category($this);
-    //     });
-
-    //     if ( $('#category').val() > 0 ) 
-    //     {
-    //         $this = $('#category');
-    //         get_sub_category($this);
-    //     }
-
-    //     function get_sub_category($this) {
-    //         var category_id = $this.val();
-
-    //         $.ajax({
-    //             url: base_url + '/get_sub_category',
-    //             type: 'POST',
-    //             dataType: 'JSON',
-    //             data: {category_id: category_id},
-    //             success:function (response){
-    //                 var rows = makeRows(response);
-    //                 $('#sub_category').html(rows);
-
-    //                 if ( $('#sub_category_id').val() > 0 ) 
-    //                 {
-    //                     $('#sub_category').val( $('#sub_category_id').val() );
-    //                 }
-    //             }
-    //         });
-            
-    //     }
-
-    //     function makeRows(response) {
-    //         var row = '<option value="0"> Please Select </options>';
-    //         $.each(response, function(index, val) {
-    //             row +=  '<option value="'+val.id+'"> '+val.name+' </options>';
-    //         });
-    //         return row;
-    //     }
-    // });
+        var file_name = $(this).val().split('\\').pop();
+        file_name = ( file_name != '' ) ? file_name : 'No file selected' ;
+        $('.selected_img_name').text(file_name);
+    });
 
        //configuration
         var max_file_size           = 2048576; //allowed file size. (1 MB = 1048576)
@@ -434,5 +413,5 @@
             });
             
         });
-</script>
+</script> --}}
 @endsection

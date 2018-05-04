@@ -396,5 +396,5 @@
 @section( 'js' )
     <script src="{{ asset( 'js/vendor/jquery.elevatezoom.min.js' ) }}"></script>
     <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
-    <script src="{{ asset( 'js/page/frontend/product/show.js' ) }}"></script>
+    <script src="{{ asset( 'js/page/home/show.js' ) }}"></script>
 @endsection

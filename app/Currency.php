@@ -8,6 +8,6 @@ class Currency extends Model
 {
     public function product()
     {
-    	return $this->hasOne('App\Product');
+    	return $this->hasOne( 'App\Product' );
     }
 }

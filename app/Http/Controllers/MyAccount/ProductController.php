@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
+
 use App\Product;
 use App\ProductGallery;
 use App\Category;
 use App\Country;
-use Illuminate\Support\Facades\Validator;
-use Intervention\Image\ImageManagerStatic as Image;
+use App\Unit;
+use App\Currency;
 
 class ProductController extends Controller
 {
@@ -22,7 +25,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::with('user.detail', 'status', 'currency', 'unit', 'sub_category.category')->where( 'user_id', Auth::user()->id )->get();
+        $product = Product::with( 'user.detail', 'status', 'currency', 'unit', 'sub_category.category' )->where( 'user_id', Auth::user()->id )->get();
         
         return view( 'frontend.profile.product.list' )->withProducts( $product );
     }
@@ -34,11 +37,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $countries = Country::pluck('name', 'id');
-        $categories = Category::pluck('name', 'id');
-        $units = DB::table('units')->pluck('name', 'id');
-        $currencies = DB::table('currencies')->pluck('name', 'id');
-        return view('frontend.profile.product.create', compact('categories', 'countries', 'currencies', 'units'));
+        $this->data['countries']  = Country::pluck( 'name', 'id' );
+        $this->data['categories'] = Category::pluck( 'name', 'id' );
+        $this->data['units']      = Unit::pluck( 'name', 'id' );
+        $this->data['currencies'] = Currency::pluck( 'name', 'id' );
+
+        return view( 'frontend.profile.product.create', $this->data );
     }
 
     /**
@@ -47,64 +51,64 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Request $request )
     {
-        $validator = Validator::make(
-            $request->all(), [
-            '__files.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'category_id' => 'required',
-            'sub_category_id' => 'required',
-            'brand_name' => 'required',
-            'name' => 'required',
-            'country_id' => 'required',
-            'unit_id' => 'required',
-            'max_supply' => 'required',
-            'currency_id' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-        ]);
-        if ($validator->fails())
+        $validator = $this->makeValidator( $request );
+
+        if( $validator->fails() )
         {
-            return json_encode(['errors' => $validator->errors()]);
+            return json_encode( ['errors' => $validator->errors() ] );
         }
 
-        $files = $request->__files[0];
-        $filename    = $files->getClientOriginalName();
-        $imageName = time().'.'. \File::extension($filename);
-        $path = public_path('storage/product');
+        $files      = $request->__files[0];
+        $filename   = $files->getClientOriginalName();
+        $imageName  = time() . '.' .  \File::extension($filename);
+        $path       = public_path( 'storage/product' );
 
-        $this->resize_img_and_watermark($files, $imageName, $path);
-
-
-        // $files = $request->__files[0];
-        // $path = public_path('storage/product');
-        // $imageName = time().'.'.$files->getClientOriginalName();
-        // $files->move( $path, $imageName );
+        $this->resize_img_and_watermark( $files, $imageName, $path );
         
-        $lastProduct = Product::orderBy( 'id', 'DESC' )->first();
-        $code = ( $lastProduct ) ? $this->generate_code( $lastProduct->code ) : 'pr-0001';
+        $lastProduct    = Product::orderBy( 'id', 'DESC' )->first();
+        $code           = ( $lastProduct ) ? $this->generate_code( $lastProduct->code ) : 'pr-0001';
 
         $data = [
-            'name' => $request->name,
-            'slug' => $this->slugify($request->name),
-            'code' => $code,
-            'description' => $request->description,
-            'brand_name' => $request->brand_name,
-            'sub_category_id' =>$request->sub_category_id,
-            'category_id' =>$request->category_id,
-            'country_id' => $request->country_id,
-            'max_supply' => $request->max_supply,
-            'unit_id' => $request->unit_id,
-            'currency_id' => $request->currency_id,
-            'price' => $request->price,
-            'img_path' => $path,
-            'img' => $imageName,
-            'user_id' => Auth::user()->id,
-            'status_id' => '2'
+            'name'              => $request->name,
+            'slug'              => $this->slugify($request->name),
+            'code'              => $code,
+            'description'       => $request->description,
+            'brand_name'        => $request->brand_name,
+            'sub_category_id'   =>$request->sub_category_id,
+            'category_id'       => $request->category_id,
+            'country_id'        => $request->country_id,
+            'max_supply'        => $request->max_supply,
+            'unit_id'           => $request->unit_id,
+            'currency_id'       => $request->currency_id,
+            'price'             => $request->price,
+            'img_path'          => $path,
+            'img'               => $imageName,
+            'user_id'           => Auth::user()->id,
+            'status_id'         => 1
         ];
 
-        Product::create($data);
-        return json_encode(['success' => true]);
+        Product::create( $data );
+
+        return response( [ 'success' => true ], 200 );
+    }
+
+    private function makeValidator( $request )
+    {
+        return Validator::make( $request->all(), [
+            '__files.*'         => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'category_id'       => 'required',
+            'sub_category_id'   => 'required',
+            'brand_name'        => 'required',
+            'name'              => 'required',
+            'country_id'        => 'required',
+            'unit_id'           => 'required',
+            'max_supply'        => 'required',
+            'currency_id'       => 'required',
+            'price'             => 'required',
+            'description'       => 'required',
+        ]);
     }
 
     /**
@@ -113,11 +117,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($code)
+    public function show( $code )
     {
-        $product = Product::where('code', $code)->with('category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery')->first();
+        $this->data['product'] = Product::where( 'code', $code )->with( 'category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery' )->first();
 
-        return view('frontend.profile.product.show', compact('product'));
+        return view( 'frontend.profile.product.show', $this->data );
     }
 
     /**
@@ -128,13 +132,13 @@ class ProductController extends Controller
      */
     public function edit($product_code)
     {
-        $countries = Country::pluck('name', 'id');
-        $categories = Category::pluck('name', 'id');
-        $units = DB::table('units')->pluck('name', 'id');
-        $currencies = DB::table('currencies')->pluck('name', 'id');
+        $this->data['countries']  = Country::pluck( 'name', 'id' );
+        $this->data['categories'] = Category::pluck( 'name', 'id' );
+        $this->data['units']      = Unit::pluck( 'name', 'id' );
+        $this->data['currencies'] = Currency::pluck( 'name', 'id' );
+        $this->data['product']    = Product::where( 'code', $product_code )->first();
 
-        $product  = Product::where('code', $product_code)->first();
-        return view('frontend.profile.product.edit', compact('categories', 'countries', 'currencies', 'units', 'product'));
+        return view( 'frontend.profile.product.edit', $this->data );
     }
 
     /**
@@ -287,11 +291,12 @@ class ProductController extends Controller
     }
 
 
-    public function gallery($code)
+    public function gallery( $code )
     {
-        $product = Product::where('code', $code)->first();
-        $gallery = ProductGallery::where('product_id', $product->id)->get(); 
-        return view('frontend.profile.product.gallery', compact('gallery') );
+        $product                = Product::where( 'code', $code )->first();
+        $this->data['gallery']  = ProductGallery::where( 'product_id', $product->id )->get();
+
+        return view('frontend.profile.product.gallery', $this->data );
     }
 
 
@@ -416,7 +421,4 @@ class ProductController extends Controller
         $img->insert(public_path('images/watermark/1.png'), 'center');
         $img->save($value);
     }
-
-
-
 }

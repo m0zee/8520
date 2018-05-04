@@ -493,7 +493,7 @@
 @endsection
 
 @section( 'js' )
-<script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
-<script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
-<script src="{{ asset( 'js/page/frontend/product/index.js' ) }}"></script>
-@stop
+    <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/page/home/index.js' ) }}"></script>
+@endsection

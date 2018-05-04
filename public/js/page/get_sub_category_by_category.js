@@ -1,17 +1,15 @@
 $(function() {
         var base_url = $('#base_url').val();
-        $('#category').on('change', function() {
+        $('#category_id').on('change', function() {
             $this = $(this);
             get_sub_category($this);
         });
 
-        if ( $('#category').val() > 0 ) 
-        {
-            $this = $('#category');
-            get_sub_category($this);
+        if( $('#category_id').val() > 0 ) {
+            get_sub_category(  $( '#category_id' ) );
         }
 
-        function get_sub_category($this) {
+        function get_sub_category( $this ) {
             var category_id = $this.val();
 
             $.ajax({
@@ -23,9 +21,9 @@ $(function() {
                     var rows = makeRows(response);
                     $('#sub_category').html(rows);
 
-                    if ( $('#sub_category_id').val() > 0 ) 
+                    if( $('#sub_category_id').val() > 0 ) 
                     {
-                        $('#sub_category').val( $('#sub_category_id').val() );
+                        $( '#sub_category' ).val( $( '#sub_category_id' ).val() );
                     }
                 }
             });

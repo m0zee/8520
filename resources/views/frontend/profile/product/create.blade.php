@@ -2,7 +2,7 @@
 @php
     $active = 'product'; 
 @endphp
-@section( 'title', 'Product' )
+@section( 'title', 'Products' )
 
 @section( 'content' )
 
@@ -52,6 +52,9 @@
 
                 <div class="row">
                     <div class="col-md-12 col-sm-7">
+
+                        <div id="errorMessageContainer"></div>
+
                         <form action="{{ route('my-account.product.store') }}" method="post" enctype="multipart/form-data" id="product_form">
                             <div class="upload_modules">
                                 <div class="modules__title">
@@ -59,85 +62,97 @@
                                 </div><!-- end /.module_title -->
 
                                 <div class="modules__content">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-3">
+
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
                                                 <label for="category">Category</label>
                                                 <div class="select-wrap select-wrap2">
-                                                    {{ Form::select('category_id', $categories, NULL, ['placeholder' => 'Please Select', 'id' => 'category'] ) }}
+                                                    {{ Form::select( 'category_id', $categories, null, [ 'placeholder' => 'Please Select', 'id' => 'category_id' ] ) }}
                                                     <span class="lnr lnr-chevron-down"></span>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-3">
-                                                <label for="category">Sub Category</label>
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="sub_category_id">Sub Category</label>
                                                 <div class="select-wrap select-wrap2">
-                                                    <select name="sub_category_id" id="sub_category">
-                                                        <option value="0">Please Select</option>
+                                                    <select name="sub_category_id" id="sub_category_id">
+                                                        <option value>Please Select</option>
                                                     </select>
                                                     <span class="lnr lnr-chevron-down"></span>
                                                 </div>
                                             </div>
-
-                                            <div class="col-md-3">
-                                                <label for="brand_name">Brand Name <span>(Max 100char)</span></label>
-                                               <input type="text" id="brand_name" name="brand_name" class="text_field" placeholder="Brand Name">
-                                           </div>
-
-                                            <div class="col-md-3">
-                                               <label for="product_name">Product Name <span>(Max 100char)</span>
-                                               </label>
-                                                 <input type="text" id="product_name" class="text_field" name="name" placeholder="Product Name">
-                                           </div>
-
                                         </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="brand_name">Brand Name <span>(Max 100char)</span></label>
+                                                <input type="text" id="brand_name" name="brand_name" class="text_field" placeholder="Brand Name">
+                                            </div>
+                                       </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="name">Product Name <span>(Max 100char)</span></label>
+                                                <input type="text" id="name" class="text_field" name="name" placeholder="Product Name">
+                                            </div>
+                                       </div>
+
                                     </div>
 
                                     
                                     <div class="form-group">
-                                        <label for="category">Made in</label>
-                                        <div class="select-wrap select-wrap2">
-                                            {{ Form::select('country_id', $countries, NULL, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
-                                            <span class="lnr lnr-chevron-down"></span>
+                                        <div class="form-group has-error">
+                                            <label for="country_id">Made in</label>
+                                            <div class="select-wrap select-wrap2">
+                                                {{ Form::select( 'country_id', $countries, null, [ 'placeholder' => 'Please Select', 'id' => 'country_id' ] ) }}
+                                                <span class="lnr lnr-chevron-down"></span>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="row">
-                                            
-                                                <div class="col-md-3">
-                                                    <label for="category">Max Supplies</label>
-                                                    <div class="select-wrap select-wrap2">
-                                                        {{ Form::select('unit_id', $units, NULL, ['placeholder' => 'Select Unit', 'id' => 'unit'] ) }}
-                                                        <span class="lnr lnr-chevron-down"></span>
-                                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="unit_id">Max Supplies</label>
+                                                <div class="select-wrap select-wrap2">
+                                                    {{ Form::select( 'unit_id', $units, null, [ 'placeholder' => 'Select Unit', 'id' => 'unit_id' ] ) }}
+                                                    <span class="lnr lnr-chevron-down"></span>
                                                 </div>
-
-                                                <div class="col-md-3">
-                                                    <label for="category">&nbsp;</label>
-                                                    <input type="text" name="max_supply" class="text_field" placeholder="Enter quantity">
-                                                </div>
-
-                                            
-                                                <div class="col-md-3">
-                                                    <label for="category">Amount</label>
-                                                    <div class="select-wrap select-wrap2">
-                                                        {{ Form::select('currency_id', $currencies, NULL, ['placeholder' => 'Select Currency', 'id' => 'country'] ) }}
-                                                        <span class="lnr lnr-chevron-down"></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <label for="category">&nbsp;</label>
-                                                    <input type="text" name="price" class="text_field" placeholder="Enter amount">
-                                                </div>
-                                            
-
+                                            </div>
                                         </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="max_supply">&nbsp;</label>
+                                                <input type="text" name="max_supply" id="max_supply" class="text_field" placeholder="Enter quantity">
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="currency_id">Amount</label>
+                                                <div class="select-wrap select-wrap2">
+                                                    {{ Form::select( 'currency_id', $currencies, null, [ 'placeholder' => 'Select Currency', 'id' => 'currency_id' ] ) }}
+                                                    <span class="lnr lnr-chevron-down"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group has-error">
+                                                <label for="price">&nbsp;</label>
+                                                <input type="text" name="price" id="price" class="text_field" placeholder="Enter amount">
+                                            </div>
+                                        </div>
+
                                     </div>
 
-
-                                    <div class="form-group no-margin">
+                                    <div class="form-group no-margin has-error">
                                         <p class="label">Product Description</p>
                                         <textarea name="description" class="form-control" id="trumbowyg-demo" cols="30" rows="10"></textarea>
                                     </div>
@@ -173,9 +188,14 @@
                                                 </div>
                                             </div><!-- end /.progress_wrapper -->
 
-                                            {{-- <span class="lnr upload_cross lnr-cross"></span> --}}
                                         </div><!-- end /.upload_wrapper -->
-                                        <div id="output"><!-- error or success results --></div>
+                                        
+                                        <div id="output"></div>
+
+                                        <hr>
+
+                                        <div id="product_img" class="col-md-2 col-md-offset-5"></div>
+                                        <div class="clearfix"></div>
                                     </div><!-- end /.form-group -->
 
 
@@ -186,6 +206,7 @@
                             <!-- submit button -->
                             <button type="submit" class="btn btn--round btn--fullwidth btn--lg">Submit Your Item for Review</button>
                         </form>
+                        {{ Form::hidden( 'redirectionUrl', route( 'my-account.product' ), [ 'id' => 'redirectionUrl' ] ) }}
                     </div><!-- end /.col-md-8 -->
 
                   {{--   <div class="col-md-4 col-sm-5">
@@ -262,158 +283,8 @@
 
 @endsection
 
-@section('js')
-<script>
-    $(function() {
-        var base_url = $('#base_url').val();
-        $('#category').on('change', function() {
-            $this = $(this);
-            get_sub_category($this);
-        });
-
-        $('.file-upload').on('change', function() {
-            var file_name = $(this).val().split('\\').pop();
-            file_name = ( file_name != '' ) ? file_name : 'No file selected' ;
-            $('.selected_img_name').text(file_name);
-        });
-
-        function get_sub_category($this) {
-            var category_id = $this.val();
-
-            $.ajax({
-                url: base_url + '/get_sub_category',
-                type: 'POST',
-                dataType: 'JSON',
-                data: {category_id: category_id},
-                success:function (response){
-                    var rows = makeRows(response);
-                    $('#sub_category').html(rows);
-                }
-            });
-        }
-
-        function makeRows(response) {
-            var row = '<option value="0"> Please Select </options>';
-            $.each(response, function(index, val) {
-                row += '<option value="'+val.id+'">' + val.name + '</options>';
-            });
-            return row;
-        }
-    });
-
-        //configuration
-        var max_file_size           = 2048576; //allowed file size. (1 MB = 1048576)
-        var allowed_file_types      = ['image/png', 'image/jpeg', 'image/pjpeg']; //allowed file types
-        var result_output           = '#output'; //ID of an element for response output
-        var my_form_id              = '#product_form'; //ID of an element for response output
-        var progress_bar_id         = '#progress-wrp'; //ID of an element for response output
-        var total_files_allowed     = 1; //Number files allowed to upload
-
-
-
-        //on form submit
-        $(my_form_id).on( "submit", function(event) { 
-            event.preventDefault();
-            var proceed = true; //set proceed flag
-            var error = []; //errors
-            var total_files_size = 0;
-            
-            //reset progressbar
-            $(progress_bar_id).removeClass('hidden');
-            $(progress_bar_id +" .progress-bar").css("width", "0%");
-            $("#progress-status").text("0%");
-            
-            if(!window.File && window.FileReader && window.FileList && window.Blob){ //if browser doesn't supports File API
-                error.push("Your browser does not support new File API! Please upgrade."); //push error text
-        }else{
-                var total_selected_files = this.elements['__files[]'].files.length; //number of files
-                
-                //check if file is available
-                if( total_selected_files <= 0 ){
-                    error.push( "You have not selected image. Please select image."); //push error text
-                    proceed = false; //set proceed flag to false
-                }
-                //limit number of files allowed
-                else if(total_selected_files > total_files_allowed){
-                    error.push( "You have selected "+total_selected_files+" file(s), " + total_files_allowed +" is maximum!"); //push error text
-                    proceed = false; //set proceed flag to false
-                }
-                 //iterate files in file input field
-                 $(this.elements['__files[]'].files).each(function(i, ifile){
-                    if(ifile.value !== ""){ //continue only if file(s) are selected
-                        if(allowed_file_types.indexOf(ifile.type) === -1){ //check unsupported file
-                            error.push( "<b>"+ ifile.name + "</b> is unsupported file type!"); //push error text
-                            proceed = false; //set proceed flag to false
-                        }
-
-                        total_files_size = total_files_size + ifile.size; //add file size to total size
-                    }
-                });
-                 
-                //if total file size is greater than max file size
-                if(total_files_size > max_file_size){ 
-                    error.push( "You have "+total_selected_files+" file(s) with total size "+total_files_size+", Allowed size is " + max_file_size +", Try smaller file!"); //push error text
-                    proceed = false; //set proceed flag to false
-                }
-                
-                var submit_btn  = $(this).find("input[type=submit]"); //form submit button  
-                
-                //if everything looks good, proceed with jQuery Ajax
-                if(proceed){
-                    //submit_btn.val("Please Wait...").prop( "disabled", true); //disable submit button
-                    var form_data = new FormData(this); //Creates new FormData object
-                    var post_url = $(this).attr("action"); //get action URL of form
-                    
-                    //jQuery Ajax to Post form data
-                    $.ajax({
-                        url : post_url,
-                        type: "POST",
-                        dataType: 'JSON',
-                        data : form_data,
-                        contentType: false,
-                        cache: false,
-                        processData:false,
-                        xhr: function(){
-                            //upload Progress
-                            var xhr = $.ajaxSettings.xhr();
-                            if (xhr.upload) {
-                                xhr.upload.addEventListener('progress', function(event) {
-                                    var percent = 0;
-                                    var position = event.loaded || event.position;
-                                    var total = event.total;
-                                    if (event.lengthComputable) {
-                                        percent = Math.ceil(position / total * 100);
-                                    }
-                                    //update progressbar
-                                    $(progress_bar_id +" .progress-bar").css("width", + percent +"%");
-                                    $("#progress-status").text(percent +"%");
-                                }, true);
-                            }
-                            return xhr;
-                        },
-                        mimeType:"multipart/form-data"
-                    }).done(function(res){ //
-                        if (res.hasOwnProperty('success') ) 
-                        {
-                            window.location.href = "{{ route('my-account.product') }}"  ;
-                        }
-                        else if(res.errors != '')
-                        {
-                            console.log(res.errors);
-                        }
-                        // $(my_form_id)[0].reset(); //reset form
-                        // $(result_output).html(res); //output response from server
-                        // submit_btn.val("Upload").prop( "disabled", false); //enable submit button once ajax is done
-                    });
-
-        }
-        }
-
-            $(result_output).html(""); //reset output 
-            $(error).each(function(i){ //output any error to output element
-                $(result_output).append('<div class="error">'+error[i]+"</div>");
-            });
-            
-        });
-</script>
+@section( 'js' )
+    <script src="{{ asset( 'js/vendor/jquery.imagereader-1.0.0.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/page/frontend/products/create.js' ) }}"></script>
 @endsection

@@ -87,7 +87,6 @@
                                 <img src="{{ asset('storage/product/361x230_'.$product->img) }}" alt="Product Image">
                             @else
                                 <img src="{{ asset('images/p1.jpg') }}" alt="Product Image">
-
                             @endif
 
                                 <div class="prod_option">
