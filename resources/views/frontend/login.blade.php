@@ -141,7 +141,8 @@
                                 <div class="modules__content text-center">
                                     <div class="social social--color--filled">
                                         <ul>
-                                            <div class="fb-login-button" data-max-rows="1" data-size="Medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+                                            {{-- <div class="fb-login-button"></div> --}}
+                                            <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
                                             <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
                                             <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
                                         </ul>

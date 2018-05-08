@@ -4,6 +4,11 @@
 @endphp
 
 @section( 'title', 'Users' )
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-editable.css') }}">
+@endsection
+
 @section( 'content' )
 <!--================================
         START BREADCRUMB AREA
@@ -53,6 +58,7 @@
                                             @if (Request::segment(3) == 'vendor' || Request::segment(3) == 'Vendor' )
                                                 <th>Is Approved</th>
                                                 <th>Approved at</th>
+                                                <th>Limit</th>
                                             @endif
                                         </tr>
                                         </thead>
@@ -103,6 +109,8 @@
                                                         
                                                         <td class="bold"><span>{{ ($user->approved_at != NULL) ? date('d-M-Y', strtotime($user->approved_at)) : '' }}</span></td>
                                                         @endif
+                                                        <td> <a href="" class="product_limit" data-pk="{{ $user->id }}">{{ $user->product_limit }}</a></td>
+
                                                     </tr>
                                                 @endforeach
                                             @endif
@@ -119,5 +127,37 @@
     <!--================================
             END SIGNUP AREA
     =================================-->
+
+@endsection
+
+@section('js')
+<script src="{{ asset('js/vendor/bootstrap-editable.min.js') }}"></script>
+
+<script>
+    $(function() {
+        var base_url = $('#base_url').val();
+
+        $('.product_limit').editable({
+            title: 'Enter Prodcut Limit',
+
+            validate: function(value) {
+                if( isNaN(parseFloat( value )) && !isFinite( value ) ) {
+                    return 'Value should be in numeric';
+                }
+
+                if( $.trim(value) == '' ) {
+                    return 'This field is required';
+                }
+            },
+
+            url: base_url + '/admin/users/product_limit',
+            name: 'product_limit',
+            ajaxOptions: {
+                type: 'post',
+                dataType: 'json'
+            }
+        });
+    }); 
+</script>
 
 @endsection

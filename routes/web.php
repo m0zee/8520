@@ -54,6 +54,8 @@ Route::get( 'users/{email}/get', function( $email ) {
 });
 
 Auth::routes();
+Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 Route::get( 'admin/login', function() {
 	return view( 'backend.login' );
@@ -66,6 +68,7 @@ Route::group( [ 'middleware' => 'CheckAdminLogin', 'namespace' => 'Backend' ], f
 	Route::get( 'admin/users/{type}', 				'UserController@index' )->name( 'admin.userlist' );
 	Route::put( 'admin/users/{user_id}/approve', 	'UserController@approve' )->name( 'admin.user.approve' );
 	Route::put( 'admin/users/{user_id}/status', 	'UserController@statusUpdate' )->name( 'admin.user.status' );
+	Route::post( 'admin/users/product_limit', 	'UserController@productLimit' )->name( 'admin.user.approve' );
 
 	Route::resource( 'admin/categories', 'CategoryController', [
 		'names' => [

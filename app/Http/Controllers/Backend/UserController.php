@@ -118,4 +118,15 @@ class UserController extends Controller
             ]);
         return redirect(route('admin.userlist', [$user->user_type->name]));
     }
+
+
+    public function productLimit(Request $request)
+    {
+        $limit = $request->value;
+        $data = [
+            'product_limit' => $limit
+        ];
+        User::where( 'id', $request->pk )->update($data);
+        return $limit;
+    }
 }

@@ -1,3 +1,4 @@
+<input type="hidden" value="{{ url('') }}" id="base_url">
  <footer class="footer-area">
     <div class="footer-big section--padding">
         <!-- start .container -->
