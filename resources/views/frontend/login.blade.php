@@ -142,7 +142,9 @@
                                     <div class="social social--color--filled">
                                         <ul>
                                             {{-- <div class="fb-login-button"></div> --}}
-                                            <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
+                                            {{-- <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a> --}}
+                                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                                            </fb:login-button>
                                             <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
                                             <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
                                         </ul>
