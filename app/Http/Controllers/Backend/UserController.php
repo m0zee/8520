@@ -17,12 +17,10 @@ class UserController extends Controller
      */
     public function index($user_type)
     {
-        $user_type = UserType::where('name', $user_type)->first();
+        $user_type  = UserType::where('name', $user_type)->first();
 
-        // $user = User::where('user_type_id', $user_type->id)
-        //        ->orderBy('id', 'desc')
-        //        ->get();
-        $user = $user_type->user;
+        $user       = $user_type->user;
+        
         return view( 'backend.users.index' )->with( 'users', $user )->with( 'user_type', $user_type );
     }
 

@@ -55,7 +55,7 @@
                                             <th>Email</th>
                                             <th>Verified</th>
                                             <th>Status</th>
-                                            @if (Request::segment(3) == 'vendor' || Request::segment(3) == 'Vendor' )
+                                            @if( Request::segment( 3 ) == 'vendor' || Request::segment( 3 ) == 'Vendor' )
                                                 <th>Is Approved</th>
                                                 <th>Approved at</th>
                                                 <th>Limit</th>
@@ -64,52 +64,53 @@
                                         </thead>
 
                                         <tbody>
-                                            @if ($users != NULL)
-                                                @foreach ($users as $user)
-                                            
-                                                
-                                            
+                                            @if( $users != null )
+                                                @foreach( $users as $user )
                                                     <tr>
                                                         <td>{{ $user->name }}</td>
                                                         <td>{{ $user->email }}</td>
                                                         <td>
-                                                        <span 
-                                                            class="{{ ( $user->verified == 1 ) ? 
-                                                                'fa fa-check-circle fa-lg tip' : 
-                                                                'fa fa-exclamation-triangle fa-lg tip'}}" 
-                                                            style="{{ ( $user->verified == 1 ) ? 
-                                                                'color:lightgreen;' : 
-                                                                'color: orange;' }}" 
-                                                            title="{{ ( $user->verified == 1 ) ? 
-                                                                'Verified' : 
-                                                                'Pending' }}">
-                                                        
+                                                            <span 
+                                                                class="{{ ( $user->verified == 1 ) ? 
+                                                                    'fa fa-check-circle fa-lg tip' : 
+                                                                    'fa fa-exclamation-triangle fa-lg tip'}}" 
+                                                                style="{{ ( $user->verified == 1 ) ? 
+                                                                    'color:lightgreen;' : 
+                                                                    'color: orange;' }}" 
+                                                                title="{{ ( $user->verified == 1 ) ? 
+                                                                    'Verified' : 
+                                                                    'Pending' }}">
+                                                                </span>
                                                         </td>
 
-                                                        <form action="{{route('admin.user.status', [ 'user_id' => $user->id ] ) }}" method="POST">
+                                                        <form action="{{ route( 'admin.user.status', [ 'user_id' => $user->id ] ) }}" method="POST">
                                                             <input name="_method" type="hidden" value="PUT">
                                                             {{ csrf_field() }}
                                                             <td class="bold ">
-                                                                <button class="btn {{ ($user->status == 1) ? 'btn-primary' : "btn-danger" }} btn-sm btn--round" type="submit">{{ ($user->status == 1) ? 'Active' : "Deactive" }}</button>
+                                                                <button class="btn {{ ( $user->status == 1 ) ? 'btn-primary' : "btn-danger" }} btn-sm btn--round" type="submit">
+                                                                    {{ ( $user->status == 1 ) ? 'Active' : "Deactive" }}
+                                                                </button>
                                                             </td>
                                                         </form>
 
-                                                         @if (Request::segment(3) == 'vendor' || Request::segment(3) == 'Vendor' )
-                                                        <form action="{{route('admin.user.approve', [ 'user_id' => $user->id ] ) }}" method="POST">
-                                                            <input name="_method" type="hidden" value="PUT">
-                                                            {{ csrf_field() }}
-                                                                <td class="bold ">
-                                                                    @if (($user->approved_by == NULL))
-                                                                        <button class="btn btn-warning btn-sm btn--round" type="submit">Pending</button>
-                                                                    @else
-                                                                        <span class="btn btn-success btn-sm btn--round">Approved</span>
-                                                                    @endif
-                                                                </td>
-                                                        </form>
+                                                        @if( Request::segment( 3 ) == 'vendor' || Request::segment( 3 ) == 'Vendor' )
+                                                            <form action="{{route( 'admin.user.approve', [ 'user_id' => $user->id ] ) }}" method="POST">
+                                                                <input name="_method" type="hidden" value="PUT">
+                                                                {{ csrf_field() }}
+                                                                    <td class="bold ">
+                                                                        @if( ( $user->approved_by == null ) )
+                                                                            <button class="btn btn-warning btn-sm btn--round" type="submit">Pending</button>
+                                                                        @else
+                                                                            <span class="btn btn-success btn-sm btn--round">Approved</span>
+                                                                        @endif
+                                                                    </td>
+                                                            </form>
                                                         
-                                                        <td class="bold"><span>{{ ($user->approved_at != NULL) ? date('d-M-Y', strtotime($user->approved_at)) : '' }}</span></td>
+                                                        <td class="bold">
+                                                            <span>{{ ( $user->approved_at != null ) ? date( 'd-M-Y', strtotime( $user->approved_at ) ) : '' }}</span>
+                                                        </td>
                                                         @endif
-                                                        <td> <a href="" class="product_limit" data-pk="{{ $user->id }}">{{ $user->product_limit }}</a></td>
+                                                        <td><a href="" class="product_limit" data-pk="{{ $user->id }}">{{ $user->product_limit }}</a></td>
 
                                                     </tr>
                                                 @endforeach
