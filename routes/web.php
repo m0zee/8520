@@ -57,6 +57,20 @@ Auth::routes();
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
 
+Route::group( [ 'prefix' => 'social-auth' ], function() {
+	// Google
+	Route::group( [ 'prefix' => 'google' ], function() {
+		Route::get( 'redirect',	'SocialAuthController@googleRedirect' )->name( 'google.login' );
+		Route::get( 'handle',	'SocialAuthController@googleHandle' );
+	});
+	// FACEBOOK
+	Route::group( [ 'prefix' => 'fb' ], function() {
+		Route::get( 'redirect',	'SocialAuthController@fbRedirect' )->name( 'fb.login' );
+		Route::get( 'handle',	'SocialAuthController@fbHandle' );
+	});
+
+});
+
 Route::get( 'admin/login', function() {
 	return view( 'backend.login' );
 });

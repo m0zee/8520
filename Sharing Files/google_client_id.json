@@ -1,0 +1,13 @@
+{
+	"web":
+	{
+		"client_id":"654108092432-hj7as95qqp6qbq18285969inkrhicrh8.apps.googleusercontent.com",
+		"project_id":"stellar-sunrise-203513",
+		"auth_uri":"https://accounts.google.com/o/oauth2/auth",
+		"token_uri":"https://accounts.google.com/o/oauth2/token",
+		"auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+		"client_secret":"uT5JBT7xuJXmi2zAOmvQgFya",
+		"redirect_uris":["http://pakmaterial.org/social-auth/google/redirect"],
+		"javascript_origins":["http://pakmaterial.org"]
+	}
+}
