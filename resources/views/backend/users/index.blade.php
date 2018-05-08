@@ -82,36 +82,35 @@
                                                                     'Pending' }}">
                                                                 </span>
                                                         </td>
-
-                                                        <form action="{{ route( 'admin.user.status', [ 'user_id' => $user->id ] ) }}" method="POST">
-                                                            <input name="_method" type="hidden" value="PUT">
-                                                            {{ csrf_field() }}
-                                                            <td class="bold ">
-                                                                <button class="btn {{ ( $user->status == 1 ) ? 'btn-primary' : "btn-danger" }} btn-sm btn--round" type="submit">
-                                                                    {{ ( $user->status == 1 ) ? 'Active' : "Deactive" }}
-                                                                </button>
-                                                            </td>
-                                                        </form>
-
-                                                        @if( Request::segment( 3 ) == 'vendor' || Request::segment( 3 ) == 'Vendor' )
-                                                            <form action="{{route( 'admin.user.approve', [ 'user_id' => $user->id ] ) }}" method="POST">
+                                                        <td class="bold ">
+                                                            <form action="{{ route( 'admin.user.status', [ 'user_id' => $user->id ] ) }}" method="POST">
                                                                 <input name="_method" type="hidden" value="PUT">
                                                                 {{ csrf_field() }}
-                                                                    <td class="bold ">
-                                                                        @if( ( $user->approved_by == null ) )
-                                                                            <button class="btn btn-warning btn-sm btn--round" type="submit">Pending</button>
-                                                                        @else
-                                                                            <span class="btn btn-success btn-sm btn--round">Approved</span>
-                                                                        @endif
-                                                                    </td>
+                                                                    <button class="btn {{ ( $user->status == 1 ) ? 'btn-primary' : "btn-danger" }} btn-sm btn--round" type="submit">
+                                                                        {{ ( $user->status == 1 ) ? 'Active' : "Deactive" }}
+                                                                    </button>
                                                             </form>
-                                                        
-                                                        <td class="bold">
-                                                            <span>{{ ( $user->approved_at != null ) ? date( 'd-M-Y', strtotime( $user->approved_at ) ) : '' }}</span>
                                                         </td>
-                                                        @endif
-                                                        <td><a href="" class="product_limit" data-pk="{{ $user->id }}">{{ $user->product_limit }}</a></td>
 
+                                                        @if( Request::segment( 3 ) == 'vendor' || Request::segment( 3 ) == 'Vendor' )
+                                                            <td class="bold ">
+                                                                <form action="{{route( 'admin.user.approve', [ 'user_id' => $user->id ] ) }}" method="POST">
+                                                                    <input name="_method" type="hidden" value="PUT">
+                                                                    {{ csrf_field() }}
+                                                                    @if( ( $user->approved_by == null ) )
+                                                                        <button class="btn btn-warning btn-sm btn--round" type="submit">Pending</button>
+                                                                    @else
+                                                                        <span class="btn btn-success btn-sm btn--round">Approved</span>
+                                                                    @endif
+                                                                </form>
+                                                            </td>
+                                                            
+                                                            <td class="bold">
+                                                                <span>{{ ( $user->approved_at != null ) ? date( 'd-M-Y', strtotime( $user->approved_at ) ) : '' }}</span>
+                                                            </td>
+
+                                                            <td><a href="" class="product_limit" data-pk="{{ $user->id }}">{{ $user->product_limit }}</a></td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
                                             @endif
