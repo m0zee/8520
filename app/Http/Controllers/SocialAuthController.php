@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Socialite;
-use App\Services\SocialFacebookAccountService;
+use App\Services\FacebookAccountService;
+use App\Services\GoogleAccountService;
 
 class SocialAuthController extends Controller
 {
@@ -16,11 +17,13 @@ class SocialAuthController extends Controller
     	return Socialite::driver( 'google' )->redirect();
     }
 
-    public function googleHandle($value='')
+    public function googleHandle( GoogleAccountService $service )
     {
-    	echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
-    	print_r( 'google/handle' );
-    	echo '</pre>'; die;
+    	$user = $service->createOrGetUser( Socialite::driver( 'google' )->user() );
+
+        auth()->login( $user );
+
+        return redirect()->to( '/' );
     }
 
 
@@ -35,11 +38,12 @@ class SocialAuthController extends Controller
         return Socialite::driver( 'facebook' )->scopes( [ 'email' ] )->redirect();
     }
 
-
-    public function fbHandle(SocialFacebookAccountService $service)
+     public function fbHandle( FacebookAccountService $service )
     {
-        $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
-        auth()->login($user);
+        $user = $service->createOrGetUser( Socialite::driver( 'facebook' )->user() );
+
+        auth()->login( $user );
+
         return redirect()->to('/');
     }
 }
