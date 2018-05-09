@@ -3,7 +3,7 @@
 @section('title', 'Login')
 @section('content')
 
-<script>
+{{-- <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -79,7 +79,7 @@
 	    }, {scope: 'email,user_likes'});      
     });
   }
-</script>
+</script> --}}
     <!--================================
         START BREADCRUMB AREA
     =================================-->
