@@ -8,7 +8,7 @@
     <!--================================
         START BREADCRUMB AREA
     =================================-->
-    <section class="breadcrumb-area">
+    {{-- <section class="breadcrumb-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -23,7 +23,7 @@
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
-    </section>
+    </section> --}}
     <!--================================
         END BREADCRUMB AREA
     =================================-->
@@ -45,6 +45,7 @@
                 @endif
                 
                 <div class="col-md-8">
+
                     <div class="item-info">
 
                         <div class="item-navigation">
@@ -73,7 +74,7 @@
 
                     <hr>
 
-                    {{ Form::open( [ 'route' => 'messages.store' ]) }}
+                    {{ Form::open( [ 'route' => 'messages.store', 'id' => 'message-form' ]) }}
 
                         <div class="form-group {{ $errors->has( 'message' ) ? 'has-error' : '' }}">
                             {{ Form::label( 'message', 'Your Message' ) }}
@@ -103,6 +104,7 @@
                 </div><!-- end /.col-md-8 -->
 
                 <div class="col-md-4">
+                    
                     <aside class="sidebar sidebar--single-product">
                        
                         <div class="sidebar-card card--product-infos">
@@ -114,10 +116,10 @@
                                 <li><p class="data-label">Code:</p><p class="info">{{ $requirement->code }} </p></li>
                                 <li><p class="data-label">Units</p><p class="info">{{ $requirement->unit->name }}</p></li>
                                 <li><p class="data-label">Quantity</p><p class="info">{{ $requirement->quantity }}</p></li>
-                                <li class="text-center">
+                                {{-- <li class="text-center">
                                     <a href="" class="btn btn--round btn-warning btn-sm">
                                     Contact
-                                </a></li>
+                                </a></li> --}}
                             </ul>
 
                         </div><!-- end /.aside -->
@@ -129,6 +131,7 @@
 
                         </div> --}}<!-- end /.author-card -->
                     </aside><!-- end /.aside -->
+                    
                 </div><!-- end /.col-md-4 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->

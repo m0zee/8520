@@ -3,11 +3,12 @@
     $active = 'requirement';
     @endphp
 @section( 'title', 'Home' )
+
 @section( 'content' )
 <!--================================
         START BREADCRUMB AREA
     =================================-->
-    <section class="breadcrumb-area">
+    {{-- <section class="breadcrumb-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -21,7 +22,7 @@
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
-    </section>
+    </section> --}}
     <!--================================
         END BREADCRUMB AREA
     =================================-->
@@ -65,9 +66,9 @@
 
                                 <div class="product-purchase text-center">
                                     <div class="price_love">
-                                        <a href="{{ route('requirement.show', [$req->code]) }}" class="btn btn--round btn-primary btn-sm">Detail</a>
+                                        <a href="{{ route( 'requirement.show', [ $req->code ] ) }}" class="btn btn--round btn-primary btn-sm">Detail</a>
                                     </div>
-                                    <a href="" class="btn btn--round btn-warning btn-sm">Contact</a>
+                                    <a href="{{ route( 'requirement.show', [ $req->code ] ) . '#message-form' }}" class="btn btn--round btn-warning btn-sm">Contact</a>
                                 </div>
                             </div>
                         </div>

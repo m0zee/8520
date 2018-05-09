@@ -19,11 +19,11 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active"><a href="#">Table</a></li>
+                            <li><a href="{{ route( 'admin.dashboard' ) }}">Dashboard</a></li>
+                            <li class="active"><a href="#">Users / {{ $user_type->name }}s</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Table</h1>
+                    <h1 class="page-title">Users</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->

@@ -14,12 +14,12 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                            <li><a href="{{ route('admin.categories.index') }}">Category</a></li>
-                            <li><a href="{{ route('admin.categories.create') }}">Create</a></li>
+                            <li><a href="{{ route( 'admin.dashboard' ) }}">Dashboard</a></li>
+                            <li><a href="{{ route( 'admin.categories.index' ) }}">Categories</a></li>
+                            <li class="active"><a href="#">Create</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Category Create</h1>
+                    <h1 class="page-title">Create Category</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->

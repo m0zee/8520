@@ -14,8 +14,8 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                            <li><a href="{{ route('admin.categories.index') }}">Category</a></li>
+                            <li><a href="{{ route( 'admin.dashboard' ) }}">Dashboard</a></li>
+                            <li><a href="{{ route( 'admin.categories.index' ) }}">Categories</a></li>
                             <li class="active"><a href="#">Edit</a></li>
                         </ul>
                     </div>

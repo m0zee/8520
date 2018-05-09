@@ -169,62 +169,70 @@
                 <!-- start col-md-12 -->
                 <div class="col-md-12">
                     <div class="section-title">
-                        <h1>More Items <span class="highlighted">by Aazztech</span></h1>
+                        <h1>More Items <span class="highlighted">{{ $product->user->detail->company_name }}</span></h1>
                     </div>
                 </div><!-- end /.col-md-12 -->
 
-                <!-- start .col-md-4 -->
-                <div class="col-md-4 col-sm-6">
-                    <!-- start .single-product -->
-                    <div class="product product--card">
+                @if( $relativeProducts->count() > 0 )
+                    @foreach( $relativeProducts as $relative )
+                        <div class="col-md-4 col-sm-6">
+                            <!-- start .single-product -->
+                            <div class="product product--card">
 
-                        <div class="product__thumbnail">
-                            <img src="{{ asset( 'images/p4.jpg' ) }}" alt="Product Image">
-                            <div class="prod_btn">
-                                <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                            </div><!-- end /.prod_btn -->
-                        </div><!-- end /.product__thumbnail -->
+                                <div class="product__thumbnail">
+                                    <img src="{{ asset( 'images/p4.jpg' ) }}" alt="Product Image">
+                                    <div class="prod_btn">
+                                        <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
+                                        <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
+                                    </div><!-- end /.prod_btn -->
+                                </div><!-- end /.product__thumbnail -->
 
-                        <div class="product-desc">
-                            <a href="#" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
-                            <ul class="titlebtm">
-                                <li>
-                                    <img class="auth-img" src="{{ asset( 'images/auth3.jpg' ) }}" alt="author image">
-                                    <p><a href="#">AazzTech</a></p>
-                                </li>
-                                <li class="product_cat">
-                                    <a href="#"><img src="{{ asset( 'images/cathtm.png' ) }}" alt="category image">Plugin</a>
-                                </li>
-                            </ul>
+                                <div class="product-desc">
+                                    <a href="#" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
+                                    <ul class="titlebtm">
+                                        <li>
+                                            <img class="auth-img" src="{{ asset( 'images/auth3.jpg' ) }}" alt="author image">
+                                            <p><a href="#">AazzTech</a></p>
+                                        </li>
+                                        <li class="product_cat">
+                                            <a href="#"><img src="{{ asset( 'images/cathtm.png' ) }}" alt="category image">Plugin</a>
+                                        </li>
+                                    </ul>
 
-                            <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                the mattis, leo quam aliquet congue.</p>
-                        </div><!-- end /.product-desc -->
+                                    <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
+                                        the mattis, leo quam aliquet congue.</p>
+                                </div><!-- end /.product-desc -->
 
-                        <div class="product-purchase">
-                            <div class="price_love">
-                                <span>$10</span>
-                                <p><span class="lnr lnr-heart"></span> 48</p>
-                            </div>
+                                <div class="product-purchase">
+                                    <div class="price_love">
+                                        <span>$10</span>
+                                        <p><span class="lnr lnr-heart"></span> 48</p>
+                                    </div>
 
-                            <div class="rating product--rating">
-                                <ul>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star-half-o"></span></li>
-                                </ul>
-                            </div>
+                                    <div class="rating product--rating">
+                                        <ul>
+                                            <li><span class="fa fa-star"></span></li>
+                                            <li><span class="fa fa-star"></span></li>
+                                            <li><span class="fa fa-star"></span></li>
+                                            <li><span class="fa fa-star"></span></li>
+                                            <li><span class="fa fa-star-half-o"></span></li>
+                                        </ul>
+                                    </div>
 
-                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>50</span></p></div>
-                        </div><!-- end /.product-purchase -->
-                    </div><!-- end /.single-product -->
-                </div><!-- end /.col-md-4 -->
+                                    <div class="sell"><p><span class="lnr lnr-cart"></span><span>50</span></p></div>
+                                </div><!-- end /.product-purchase -->
+                            </div><!-- end /.single-product -->
+                        </div>
+                    @endforeach
+                @else
+                    <div class="col-xs-12">
+                        <div class="alert alert-danger text-center">
+                            No more items found
+                        </div>
+                    </div>
+                @endif
 
-                <!-- start .col-md-4 -->
-                <div class="col-md-4 col-sm-6">
+                {{-- <div class="col-md-4 col-sm-6">
                     <!-- start .single-product -->
                     <div class="product product--card">
 
@@ -271,9 +279,8 @@
                             <div class="sell"><p><span class="lnr lnr-cart"></span><span>50</span></p></div>
                         </div><!-- end /.product-purchase -->
                     </div><!-- end /.single-product -->
-                </div><!-- end /.col-md-4 -->
+                </div>
 
-                <!-- start .col-md-4 -->
                 <div class="col-md-4 col-sm-6">
                     <!-- start .single-product -->
                     <div class="product product--card">
@@ -322,7 +329,7 @@
                             <div class="sell"><p><span class="lnr lnr-cart"></span><span>50</span></p></div>
                         </div><!-- end /.product-purchase -->
                     </div><!-- end /.single-product -->
-                </div><!-- end /.col-md-4 -->
+                </div> --}}
 
                 </div><!-- end /.container -->
             </div><!-- end /.container -->

@@ -17,10 +17,10 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="#">Dashboard</a></li>
+                            <li class="active"><a href="#">Dashboard</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Admin Dashboard</h1>
+                    <h1 class="page-title">Dashboard</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->

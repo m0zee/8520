@@ -54,8 +54,8 @@ Route::get( 'users/{email}/get', function( $email ) {
 });
 
 Auth::routes();
-Route::get('/redirect', 'SocialAuthFacebookController@redirect');
-Route::get('/callback', 'SocialAuthFacebookController@callback');
+// Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+// Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 Route::group( [ 'prefix' => 'social-auth' ], function() {
 	// Google
