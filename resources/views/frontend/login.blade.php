@@ -3,7 +3,7 @@
 @section('title', 'Login')
 @section('content')
 
-<script>
+{{-- <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -79,7 +79,7 @@
 	    }, {scope: 'email,user_likes'});      
     });
   }
-</script>
+</script> --}}
     <!--================================
         START BREADCRUMB AREA
     =================================-->
@@ -142,9 +142,8 @@
                                     <div class="social social--color--filled">
                                         <ul>
                                             {{-- <div class="fb-login-button"></div> --}}
-                                            {{-- <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a> --}}
-                                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                                            </fb:login-button>
+                                            <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
+                                            {{-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> --}}
                                             <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
                                             <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
                                         </ul>

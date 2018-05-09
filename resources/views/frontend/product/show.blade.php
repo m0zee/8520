@@ -3,6 +3,7 @@
 
 @section( 'title', 'Products' )
 @section( 'content' )
+
 <!--================================
         START BREADCRUMB AREA
     =================================-->
@@ -36,11 +37,11 @@
         START SINGLE PRODUCT DESCRIPTION AREA
     ==============================================-->
     <section class="single-product-desc">
-        @if ($product->status_id != 2)
+        {{-- @if ($product->status_id != 2)
             <div class="alert alert-info text-center">
                 <strong>This Product status is {{ $product->status->name }} </strong>
             </div>
-        @endif
+        @endif --}}
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -83,6 +84,14 @@
 
 
                     </div><!-- end /.item-preview-->
+
+
+                   {{--  <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> --}}
+
+                   <div class="fb-share-button" data-href="{{ url()->current() }}" data-layout="button"></div>
+                   {{-- <a href="whatsapp://send" data-text="How to create the Share on WhatsApp button on your site:" data-href="" class="wa_btn wa_btn_s">Share</a> --}}
+
+                   <a href="whatsapp://send?text={{ url()->current() }}" data-action="share/whatsapp/share">Share via Whatsapp</a>
 
                     
 

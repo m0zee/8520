@@ -10,6 +10,19 @@
 @endsection
 
 @section( 'content' )
+
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({ cache: true });
+        $.getScript('//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8', function(){
+            FB.init({
+                appId: '164484080926748',
+            });     
+            $('#loginbutton,#feedbutton').removeAttr('disabled');
+            FB.getLoginStatus(updateStatusCallback);
+        });
+    });
+</script>
 <!--================================
         START BREADCRUMB AREA
     =================================-->
@@ -45,7 +58,13 @@
                         <div class="modules__content">
                             <div class="withdraw_module withdraw_history">
                                 <div class="withdraw_table_header">
-                                    <h3><span class="lnr lnr-users"></span>{{ $user_type->name }} List</h3>
+                                    <h3>
+                                        <span class="lnr lnr-users"></span>{{ $user_type->name }} List
+                                        @if (Request::segment(3) == 'vendor' || Request::segment(3) == 'Vendor' )
+                                            <a href="" class="btn btn--round btn-primary btn-sm pull-right"><i class="fa fa-plus"></i> Create</a>
+                                        @endif
+                                    </h3>
+
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table withdraw__table">
