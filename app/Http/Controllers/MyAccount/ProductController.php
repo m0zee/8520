@@ -25,9 +25,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::with( 'user.detail', 'status', 'currency', 'unit', 'sub_category.category' )->where( 'user_id', Auth::user()->id )->get();
+        $this->data['products'] = Product::with( 'user.detail', 'status', 'currency', 'unit', 'sub_category.category' )->where( 'user_id', Auth::user()->id )->get();
         
-        return view( 'frontend.profile.product.list' )->withProducts( $product );
+        return view( 'frontend.profile.product.list', $this->data );
     }
 
     /**
@@ -37,12 +37,22 @@ class ProductController extends Controller
      */
     public function create()
     {
+        if( $this->isProductLimitExceed() )
+        {
+            return redirect()->back()->with( 'error', 'You have reached your limit. You cannot add any more products.' );
+        }
+
         $this->data['countries']  = Country::pluck( 'name', 'id' );
         $this->data['categories'] = Category::pluck( 'name', 'id' );
         $this->data['units']      = Unit::pluck( 'name', 'id' );
         $this->data['currencies'] = Currency::pluck( 'name', 'id' );
 
         return view( 'frontend.profile.product.create', $this->data );
+    }
+
+    private function isProductLimitExceed()
+    {
+        return !( Auth::user()->product_limit > Product::where( 'user_id', Auth::user()->id )->count() );
     }
 
     /**

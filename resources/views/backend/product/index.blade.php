@@ -78,14 +78,14 @@
                                                         </td>
 
                                                         <td>
-                                                            <form action="{{ route('admin.products.status',[ $product->id, 'approve' ]) }}" method="POST">
+                                                            <form action="{{ route( 'admin.products.status', [ $product->id, 'approve' ] ) }}" method="POST">
                                                                 <input name="_method" type="hidden" value="PUT">
                                                                 {{csrf_field()}}
                                                                 <button class="btn btn-success  btn--round btn-sm tip" title="Click to approve this product" type="submit"><span class="fa fa-check"></span></button>
                                                             </form>
 
 
-                                                            <form action="{{ route('admin.products.status',[ $product->id, 'reject' ]) }}" method="POST">
+                                                            <form action="{{ route( 'admin.products.status', [ $product->id, 'reject' ] ) }}" method="POST">
                                                                 <input name="_method" type="hidden" value="PUT">
                                                                 {{csrf_field()}}
                                                                 <button class="btn btn-danger btn--round btn-sm tip" title="Click to reject this tip product" type="submit"><span class="fa fa-times"></span></button>

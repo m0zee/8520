@@ -20,9 +20,9 @@ return [
     ],
 
     'ses' => [
-        'key' => env('SES_KEY'),
-        'secret' => env('SES_SECRET'),
-        'region' => 'us-east-1',
+        'key'       => env('SES_KEY'),
+        'secret'    => env('SES_SECRET'),
+        'region'    => 'us-east-1',
     ],
 
     'sparkpost' => [
@@ -30,15 +30,20 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+        'model'     => App\User::class,
+        'key'       => env('STRIPE_KEY'),
+        'secret'    => env('STRIPE_SECRET'),
     ],
 
     'facebook' => [
-        'client_id' => '164484080926748',
-        'client_secret' => '8474478ed48a2bb7fe8135005dc75dbe',
-        'redirect' => '/callback',
+        'client_id'     => env('FB_CLIENT_ID'),
+        'client_secret' => env('FB_CLIENT_SECRET'),
+        'redirect'      => env('FB_REDIRECT'),
     ],
 
+    'google' => [
+        'client_id'     => env('GOOGLE_ID'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect'      => env('GOOGLE_REDIRECT')
+    ]
 ];

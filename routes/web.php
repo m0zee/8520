@@ -57,6 +57,20 @@ Auth::routes();
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
 
+Route::group( [ 'prefix' => 'social-auth' ], function() {
+	// Google
+	Route::group( [ 'prefix' => 'google' ], function() {
+		Route::get( 'redirect',	'SocialAuthController@googleRedirect' )->name( 'google.login' );
+		Route::get( 'handle',	'SocialAuthController@googleHandle' );
+	});
+	// FACEBOOK
+	Route::group( [ 'prefix' => 'fb' ], function() {
+		Route::get( 'redirect',	'SocialAuthController@fbRedirect' )->name( 'fb.login' );
+		Route::get( 'handle',	'SocialAuthController@fbHandle' );
+	});
+
+});
+
 Route::get( 'admin/login', function() {
 	return view( 'backend.login' );
 });
@@ -164,14 +178,17 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 			]);
 
 			Route::get( 'products',  						'ProductController@index' )->name( 'my-account.product' );
-			Route::get( 'products/create',  				'ProductController@create' )->name( 'my-account.product.create' );
-			Route::get( 'products/{prodcut_code}/edit',  	'ProductController@edit' )->name( 'my-account.product.edit' );
-			Route::put( 'products/{prodcut_code}/edit',  	'ProductController@update' )->name( 'my-account.product.update' );
-			Route::post( 'products/create',					'ProductController@store' )->name( 'my-account.product.store' );
-			Route::get( 'products/{code}/gallery',			'ProductController@gallery' )->name( 'my-account.product.gallery' );
-			Route::post( 'products/{id}/gallery/destroy',	'ProductController@destroy' )->name( 'my-account.product.gallery.destroy' );
-			Route::get( '{code}/products',					'ProductController@show' )->name( 'my-account.product.show' );
-			Route::post( 'products/{code}/gallery',			'ProductController@add_gallery' )->name( 'my-account.product.add_gallery' );
+			
+			Route::group( [ 'middleware' => [ 'IsVendorApproved' ] ], function() {
+				Route::get( 'products/create',  				'ProductController@create' )->name( 'my-account.product.create' );
+				Route::get( 'products/{prodcut_code}/edit',  	'ProductController@edit' )->name( 'my-account.product.edit' );
+				Route::put( 'products/{prodcut_code}/edit',  	'ProductController@update' )->name( 'my-account.product.update' );
+				Route::post( 'products/create',					'ProductController@store' )->name( 'my-account.product.store' );
+				Route::get( 'products/{code}/gallery',			'ProductController@gallery' )->name( 'my-account.product.gallery' );
+				Route::post( 'products/{id}/gallery/destroy',	'ProductController@destroy' )->name( 'my-account.product.gallery.destroy' );
+				Route::get( '{code}/products',					'ProductController@show' )->name( 'my-account.product.show' );
+				Route::post( 'products/{code}/gallery',			'ProductController@add_gallery' )->name( 'my-account.product.add_gallery' );
+			});
 		});
 
 		Route::resource( 'messages', 'MessagesController', [
