@@ -8,11 +8,11 @@ class Unit extends Model
 {
     public function product()
     {
-    	return $this->hasOne('App\Product');
+    	return $this->hasOne( 'App\Product' );
     }
 
     public function buyer_requirement()
     {
-    	return $this->hasOne('App\BuyerRequirement');
+    	return $this->hasOne( 'App\BuyerRequirement' );
     }
 }

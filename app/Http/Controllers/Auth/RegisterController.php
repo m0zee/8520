@@ -106,7 +106,7 @@ class RegisterController extends Controller
             'password'      => bcrypt($data['password']),
             'user_type_id'  => $data['user_type_id'],
             'code'          => $code,
-            'status'        => 1,
+            'status'        => 0,
             'email_token'   => base64_encode( time() . $data['email'] )
         ]);
     }

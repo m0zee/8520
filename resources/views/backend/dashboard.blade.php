@@ -42,14 +42,14 @@
                     <div class="col-md-3 col-sm-6">
                         <div class="author-info author-info--dashboard mcolorbg4">
                             <p>Total Items</p>
-                            <h3>4,369</h3>
+                            <h3>{{ number_format( $items ) }}</h3>
                         </div>
                     </div><!-- end /.col-md-3 -->
 
                     <div class="col-md-3 col-sm-6">
                         <div class="author-info author-info--dashboard mcolorbg2">
-                            <p>Monthly Sales</p>
-                            <h3>$273.00</h3>
+                            <p>Total Users</p>
+                            <h3>{{ number_format( $users ) }}</h3>
                         </div>
                     </div><!-- end /.col-md-3 -->
 

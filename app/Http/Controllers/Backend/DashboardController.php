@@ -9,6 +9,9 @@ class DashboardController extends Controller
 {
    	public function index()
    	{
-   		return view( 'backend.dashboard' );
+   		$this->data['items'] = \App\Product::where( 'status_id', 2 )->count( 'id' );
+   		$this->data['users'] = \App\User::where( 'status', 1 )->count( 'id' );
+   		// return $this->data;
+   		return view( 'backend.dashboard', $this->data );
    	}
 }

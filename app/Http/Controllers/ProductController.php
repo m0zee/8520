@@ -42,7 +42,7 @@ class ProductController extends Controller
     {
         $this->data['product'] = Product::where( 'code', $code )->with( 'category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery' )->first();
         $this->data['relativeProducts'] = Product::where( 'code', '!=', $code )->with( 'category', 'sub_category', 'currency', 'unit', 'user.detail' )->take( 3 )->get();
-// return $this->data['product']->user->detail->company_name;
+
         return view( 'frontend.product.show', $this->data );
     }
 
