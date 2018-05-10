@@ -18,9 +18,8 @@ class SubCategoryController extends Controller
     {
         $category       = Category::find( $category_id );
         $subcategory    = SubCategory::where( 'category_id', $category_id )->get();
-
+        
         return view( 'backend.subcategory.index' )->with( 'subcategories', $subcategory )->with( 'category', $category );
-
     }
 
     /**

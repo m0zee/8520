@@ -14,10 +14,10 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                            <li><a href="{{ route('admin.categories.index') }}">Category</a></li>
-                            <li><a href="{{ route('admin.subcategories.index', [$category->id]) }}">{{ $category->name }}</a></li>
-                            <li><a href="#">Edit</a></li>
+                            <li><a href="{{ route( 'admin.dashboard' ) }}">Dashboard</a></li>
+                            <li><a href="{{ route( 'admin.categories.index' ) }}">Categories</a></li>
+                            <li><a href="{{ route( 'admin.subcategories.index', [ $category->id ] ) }}">{{ $category->name }}</a></li>
+                            <li  class="active"><a href="#">Edit</a></li>
                         </ul>
                     </div>
                     <h1 class="page-title">Edit Sub Category</h1>

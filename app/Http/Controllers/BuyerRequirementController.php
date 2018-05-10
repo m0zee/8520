@@ -13,7 +13,7 @@ class BuyerRequirementController extends Controller
     {
     	$this->data['requirement'] = BuyerRequirement::where( 'status_id', '2' )->with( 'sub_category', 'category', 'user' )->get();
         
-    	return view( 'frontend.requirement.index', $this->data );
+    	return view( 'frontend.requirement.index', $this->data )->with( 'blue_menu', true );
     }
 
 
@@ -25,7 +25,7 @@ class BuyerRequirementController extends Controller
 
         $this->data['requirement'] = $requirement;
         // return $requirement;
-    	return view( 'frontend.requirement.show', $this->data );
+    	return view( 'frontend.requirement.show', $this->data )->with( 'blue_menu', true );
     }
 
 

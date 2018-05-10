@@ -6,48 +6,48 @@
 
                     <li class="{{ ($active == 'dashboard') ? 'active' : ''  }}">
                         <a href="{{ route('admin.dashboard')}}">
-                            <span class="lnr lnr-home"></span> Dashboard
+                            <span class="fa fa-tachometer"></span> Dashboard
                         </a>
                     </li>
                     <li class="{{ ($active == 'users') ? 'active' : ''  }} has_dropdown">
                         <a href="#">
-                            <span class="lnr lnr-users"></span> Users
+                            <span class="fa fa-users"></span> Users
                         </a>
                         <div class="dropdown dropdown--menu">
                             <ul>
-                                <li><a href="{{ route('admin.userlist', ['vendor']) }}">Vendors</a></li>
-                                <li><a href="{{ route('admin.userlist', ['buyer']) }}">Buyers</a></li>
+                                <li><a href="{{ route( 'admin.userlist', [ 'vendor' ]) }}">Vendors</a></li>
+                                <li><a href="{{ route( 'admin.userlist', [ 'buyer' ]) }}">Buyers</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="{{ ($active == 'category') ? 'active' : ''  }}">
                         <a href="{{ route('admin.categories.index') }}">
-                            <span class="lnr lnr-dice"></span> Categories
+                            <span class="fa fa-list"></span> Categories
                         </a>
                     </li>
                     <li class="{{ ($active == 'product') ? 'active' : ''  }}">
                         <a href="{{ route('admin.products.index') }}">
-                            <span class="lnr lnr-briefcase"></span> Products
+                            <span class="fa fa-archive"></span> Products
                         </a>
                     </li>
                     <li class="{{ ($active == 'reviews') ? 'active' : ''  }}">
                         <a href="{{ route( 'admin.reviews.index' ) }}">
-                            <span class="lnr lnr-briefcase"></span> Reviews
+                            <span class="fa fa-star"></span> Reviews
                         </a>
                     </li>
                     <li class="{{ ($active == 'message' ) ? 'active' : ''  }}">
                         <a href="{{ route( 'admin.messages.index' ) }}">
-                            <span class="lnr lnr-cart"></span> Messages
+                            <span class="fa fa-comments-o"></span> Messages
                         </a>
                     </li>
                     <li class="{{ ($active == 'requirement') ? 'active' : ''  }}">
                         <a href="{{ route('admin.requirements.index') }}">
-                            <span class="lnr lnr-cart"></span> Requirements
+                            <span class="fa fa-info-circle"></span> Requirements
                         </a>
                     </li>
                     <li class="{{ ($active == 'reports' ) ? 'active' : ''  }}">
                         <a href="{{ route( 'admin.reports.index' ) }}">
-                            <span class="lnr lnr-cart"></span> Reports
+                            <span class="fa fa-bug"></span> Reports
                         </a>
                     </li>
                     

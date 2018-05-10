@@ -3,8 +3,8 @@
     $active = 'category';
 @endphp
 
-@section('title', 'Category')
-@section('content')
+@section( 'title', 'Categories')
+@section( 'content' )
 <!--================================
         START BREADCRUMB AREA
     =================================-->
@@ -14,17 +14,17 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                            <li class="active"><a href="#">Category</a></li>
+                            <li><a href="{{ route( 'admin.dashboard' ) }}">Dashboard</a></li>
+                            <li class="active"><a href="#">Categories</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Category</h1>
+                    <h1 class="page-title">Categories</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    
-        @include('components.backend.menu')
+
+    @include( 'components.backend.menu' )
     <!--================================
         END BREADCRUMB AREA
     =================================-->

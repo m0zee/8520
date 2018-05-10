@@ -309,12 +309,17 @@
                                 </ul>
                             </div>
                         </div><!--end /.author-author__info-->
-                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="author-area__seller-btn inline">logout</a>
+                        <a
+                            href="{{ route('logout') }}" 
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                            class="author-area__seller-btn inline">
+                            Logout
+                        </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
                         @else
-                            <a href="{{ url('login') }}" class="author-area__seller-btn inline">Login</a>
+                            <a href="{{ url( 'login' ) }}" class="author-area__seller-btn inline">Login</a>
                         @endif
                     </div><!-- end .author-area -->
                     
