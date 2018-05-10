@@ -1,6 +1,6 @@
-    @extends( 'components.frontend.master' )
+    @extends( 'components.backend.master' )
     @php
-    $vendor_active = 'vendorProfile';
+    $active = 'vendorProfile';
     @endphp
     @section('title', 'Login')
 
@@ -15,11 +15,11 @@
                     <div class="breadcrumb">
                         <ul>
                             <li><a href="{{ url('') }}">Home</a></li>
-                            <li><a href="{{ route('vendor.dashboard') }}">Dashboard</a></li>
-                            <li class="active"><a href="#">Profile</a></li>
+                            <li><a href="{{ route('admin.userlist', ['vendor']) }}">Vendor</a></li>
+                            <li class="active"><a href="#">Create</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Company Profile Settings</h1>
+                    <h1 class="page-title">Create Vendor</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -32,7 +32,7 @@
             START DASHBOARD AREA
     =================================-->
     <section class="dashboard-area">
-        @include( 'components.frontend.vendor_menu' )
+        @include( 'components.backend.menu' )
 
 
 
@@ -43,19 +43,14 @@
                         <div class="dashboard_title_area">
                             <div class="dashboard__title">
                                 <h3>
-                                    Company Profile
-                                    <a  href="{{ route( 'profile.show', [ 'user_type_id' => Auth::user()->code ] ) }}" 
-                                        class="btn btn--round btn--md pull-right">
-                                        View as visitor
-                                    </a>
+                                    Create Vendor
                                 </h3>
                             </div>
                         </div>
                     </div><!-- end /.col-md-12 -->
                 </div><!-- end /.row -->
 
-                <form action="{{ route('profile.update', [$user->id]) }}" class="setting_form" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_method" value="PUT">
+                <form action="{{ route('admin.vendor.store') }}" class="setting_form" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-md-6">
@@ -72,7 +67,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                                     <label for="full_name">Full Name <sup>*</sup></label>
-                                                    <input type="text" id="full_name" class="text_field" name="name" placeholder="Full Name" value="{{ old('name') ? old('name') : $user->name  }}">
+                                                    <input type="text" id="full_name" class="text_field" name="name" placeholder="Full Name" value="{{ old('name')  }}">
 
                                                      @if ($errors->has('name'))
                                                         <span class="help-block">
@@ -86,7 +81,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">
                                                 <label for="email">Company Name<sup>*</sup></label>
-                                                <input type="text" id="email" class="text_field" name="company_name" placeholder="Company Name" value="{{ old('company_name') ? old('company_name') : $user->detail->company_name  }}">
+                                                <input type="text" id="email" class="text_field" name="company_name" placeholder="Company Name" value="{{ old('company_name') }}">
 
                                                 @if ($errors->has('company_name'))
                                                     <span class="help-block">
@@ -99,9 +94,45 @@
 
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                             <label for="email1">Email Adress <sup>*</sup></label>
-                                            <input type="text" id="email1" disabled="disable" value="{{ $user->email }}" class="text_field" placeholder="Email address">
+                                            <input type="text" id="email1" name="email" value="{{ old('email') }}" class="text_field" placeholder="Email address">
+                                             @if ($errors->has('email'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('email') }}</strong>
+                                                        </span>
+                                                    @endif
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                                    <label for="password">Pasword <sup>*</sup></label>
+                                                    <input type="password" id="password" class="text_field" name="password" placeholder="Pasword" value="{{ old('password')  }}">
+
+                                                     @if ($errors->has('password'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('password') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        
+
+                                            <div class="col-md-6">
+                                                <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                                                    <label for="password_confirmation">Confirm Password<sup>*</sup></label>
+                                                    <input type="password" id="password_confirmation" class="text_field" name="password_confirmation" placeholder="Confirm Password" value="{{ old('password_confirmation') }}">
+
+                                                    @if ($errors->has('password_confirmation'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                                        </span>
+                                                    @endif
+
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                         <div class="row">
@@ -109,14 +140,14 @@
                                                 <div class="form-group {{ $errors->has('country_id') ? ' has-error' : '' }}">
                                                     <label for="country">Country <sup>*</sup></label>
                                                     <div class="select-wrap select-wrap2">
-                                                        {{ Form::select('country_id', $country, ( $errors->has('country_id') ) ? old('country_id') : $user->detail->country_id, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
+                                                        {{ Form::select('country_id', $country, old('country_id'), ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
                                                         <span class="lnr lnr-chevron-down"></span>
-                                                        @if ($errors->has('country_id'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('country_id') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
+                                                    @if ($errors->has('country_id'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('country_id') }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             
@@ -127,14 +158,14 @@
                                                         <select name="state_id" id="state" class="text_field">
                                                             <option value="">Please Select</option>
                                                         </select>
-                                                        <input type="hidden" id="hidden_state_id" value="{{ old('state_id') ? old('state_id') : $user->detail->state_id }}">
+                                                        <input type="hidden" id="hidden_state_id" value="{{ old('state_id') }}">
                                                         <span class="lnr lnr-chevron-down"></span>
-                                                        @if ($errors->has('state_id'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('state_id') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
+                                                    @if ($errors->has('state_id'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('state_id') }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             
@@ -146,14 +177,14 @@
                                                             <option value="">Please Select</option>
                                                         </select>
                                                         <span class="lnr lnr-chevron-down"></span>
-                                                        <input type="hidden" id="hidden_city_id" value="{{ old('city_id') ? old('city_id') : $user->detail->city_id }}">
+                                                        <input type="hidden" id="hidden_city_id" value="{{ old('city_id') }}">
 
-                                                        @if ($errors->has('city_id'))
-                                                            <span class="help-block">
-                                                                <strong>{{ $errors->first('city_id') }}</strong>
-                                                            </span>
-                                                        @endif
                                                     </div>
+                                                    @if ($errors->has('city_id'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('city_id') }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -162,7 +193,7 @@
 
                                         <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
                                             <label for="address">Address <sup>*</sup></label>
-                                            <input type="text" id="address" class="text_field" name="address" value="{{ old('address') ? old('address') : $user->detail->address }}" placeholder="Write your address">
+                                            <input type="text" id="address" class="text_field" name="address" value="{{ old('address') }}" placeholder="Write your address">
                                             @if ($errors->has('address'))
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('address') }}</strong>
@@ -174,7 +205,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group{{ $errors->has('mobile_number')  ? ' has-error' : ''}}">
                                                     <label for="mobile_number">Mobile Number <sup>*</sup></label>
-                                                    <input type="text" id="mobile_number" value="{{ old('mobile_number') ? old('mobile_number') : $user->detail->mobile_number }}" name="mobile_number" class="text_field" placeholder="Mobile Number">
+                                                    <input type="text" id="mobile_number" value="{{ old('mobile_number') }}" name="mobile_number" class="text_field" placeholder="Mobile Number">
 
                                                     @if ($errors->has('mobile_number'))
                                                         <span class="help-block">
@@ -186,7 +217,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group{{ $errors->has('phone_number')  ? ' has-error' : ''}}">
                                                     <label for="phone_number">Phone Number <sup>*</sup></label>
-                                                    <input type="text" id="phone_number" value="{{ old('phone_number') ? old('phone_number') : $user->detail->phone_number }}" name="phone_number" class="text_field" placeholder="Phone Number">
+                                                    <input type="text" id="phone_number" value="{{ old('phone_number') }}" name="phone_number" class="text_field" placeholder="Phone Number">
                                                     @if ($errors->has('phone_number'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('phone_number') }}</strong>
@@ -202,7 +233,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
-                                                        <input type="checkbox" value="1" id="cod" name="cod" {{ $user->detail->cod == 1 ? 'checked' : ' ' }}>
+                                                        <input type="checkbox" value="1" id="cod" name="cod" {{ old('cod') == 1 ? 'checked' : ' ' }}>
                                                         <label for="cod">
                                                             <span class="shadow_checkbox"></span>
                                                             <span class="radio_title">COD</span>
@@ -214,7 +245,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
-                                                        <input type="checkbox" value="1" id="cash" name="cash" {{ $user->detail->cash == 1 ? 'checked' : ' ' }}>
+                                                        <input type="checkbox" value="1" id="cash" name="cash" {{ old('cash') == 1 ? 'checked' : ' ' }}>
                                                         <label for="cash">
                                                             <span class="shadow_checkbox"></span>
                                                             <span class="radio_title">Cash</span>
@@ -225,7 +256,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
-                                                        <input type="checkbox" value="1" id="cheque" name="cheque" {{ $user->detail->cheque == 1 ? 'checked' : ' ' }}>
+                                                        <input type="checkbox" value="1" id="cheque" name="cheque" {{ old('cheque') == 1 ? 'checked' : ' ' }}>
                                                         <label for="cheque">
                                                             <span class="shadow_checkbox"></span>
                                                             <span class="radio_title">Cheque</span>
@@ -236,7 +267,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
-                                                        <input type="checkbox" value="1" id="card" name="card" {{ $user->detail->card == 1 ? 'checked' : ' ' }}>
+                                                        <input type="checkbox" value="1" id="card" name="card" {{ old('card') == 1 ? 'checked' : ' ' }}>
                                                         <label for="card">
                                                             <span class="shadow_checkbox"></span>
                                                             <span class="radio_title">Visa/Master Card</span>
@@ -248,7 +279,7 @@
 
                                         <div class="form-group">
                                             <label for="authbio">About Company</label>
-                                            <textarea name="description" id="authbio" class="text_field" placeholder="Short brief about yourself or your account...">{{ $user->detail->description }}</textarea>
+                                            <textarea name="description" id="authbio" class="text_field" placeholder="Short brief about yourself or your account...">{{ old('description') }}</textarea>
                                         </div>
                                     </div>
                                 </div><!-- end /.information__set -->
@@ -265,7 +296,7 @@
                                     <div class="information_wrapper">
                                         <div class="profile_image_area">
                                             <div id="new-dp">
-                                                <img src="{{ asset('storage/profile_img/'.$user->detail->profile_img) }} " alt="Author profile area" id="old-dp" >
+                                                <img src="{{ asset('images/authplc.png') }} " alt="Author profile area" id="old-dp" >
                                             </div>
                                             <div class="img_info">
                                                 <p class="bold">Profile Image</p>
@@ -291,7 +322,7 @@
                                             <p class="bold">Cover Image</p>
 
                                             <div id="new-cover">
-                                                <img src="{{ asset('storage/cover_img/'.$user->detail->cover_img) }}" alt="The great warrior of China" id="old-cover">
+                                                <img src="{{ asset('images/cvrplc.jpg') }}" alt="The great warrior of China" id="old-cover">
                                             </div>
 
 

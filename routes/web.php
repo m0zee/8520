@@ -83,6 +83,8 @@ Route::group( [ 'middleware' => 'CheckAdminLogin', 'namespace' => 'Backend' ], f
 	Route::put( 'admin/users/{user_id}/approve', 	'UserController@approve' )->name( 'admin.user.approve' );
 	Route::put( 'admin/users/{user_id}/status', 	'UserController@statusUpdate' )->name( 'admin.user.status' );
 	Route::post( 'admin/users/product_limit', 	'UserController@productLimit' );
+	Route::get( 'admin/users/vendor/create', 	'UserController@create' )->name( 'admin.vendor.create' );;
+	Route::post( 'admin/users/vendor/create', 	'UserController@store' )->name( 'admin.vendor.store' );;
 
 	Route::resource( 'admin/categories', 'CategoryController', [
 		'names' => [

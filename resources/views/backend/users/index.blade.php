@@ -61,7 +61,7 @@
                                     <h3>
                                         <span class="lnr lnr-users"></span>{{ $user_type->name }} List
                                         @if (Request::segment(3) == 'vendor' || Request::segment(3) == 'Vendor' )
-                                            <a href="" class="btn btn--round btn-primary btn-sm pull-right"><i class="fa fa-plus"></i> Create</a>
+                                            <a href="{{ route('admin.vendor.create') }}" class="btn btn--round btn-primary btn-sm pull-right"><i class="fa fa-plus"></i> Create</a>
                                         @endif
                                     </h3>
 
