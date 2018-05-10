@@ -16,7 +16,7 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="{{ route( 'vendor.dashboard' ) }}">Dashboard</a></li>
                             <li><a href="{{ route( 'messages.index' ) }}">Conversations</a></li>
                             <li class="active"><a href="#">Messages</a></li>
                         </ul>

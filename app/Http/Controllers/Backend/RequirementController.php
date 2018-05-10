@@ -60,7 +60,7 @@ class RequirementController extends Controller
 
         $requirement = [
             'name'              => $request->name,
-            'slug'              => $this->slugify($request->name),
+            'slug'              => $this->slugify( $request->name ),
             'unit_id'           => $request->unit_id,
             'quantity'          => $request->quantity,
             'description'       => $request->description,

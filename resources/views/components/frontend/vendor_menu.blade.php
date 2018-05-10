@@ -5,17 +5,17 @@
                 <ul class="dashboard_menu">
 
                     <li class="{{ ( isset( $active ) && $active == 'dashboard' ) ? 'active' : '' }}">
-                        <a href="dashboard.html">
+                        <a href="{{ route( 'vendor.dashboard' ) }}">
                             <span class="lnr lnr-home"></span> Dashboard
                         </a>
                     </li>
                     <li class="{{ ( isset( $active ) && $active == 'vendorProfile' ) ? 'active' : '' }}">
-                        <a href="{{route('profile.edit' , [Auth::user()->code])}}">
+                        <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
                             <span class="lnr lnr-user"></span> Profile
                         </a>
                     </li>
                     <li class="{{ ( isset( $active ) && $active == 'product' ) ? 'active' : '' }}">
-                        <a href="{{ route('my-account.product') }}">
+                        <a href="{{ route( 'my-account.product' ) }}">
                             <span class="lnr lnr-cart"></span> Product
                         </a>
                     </li>

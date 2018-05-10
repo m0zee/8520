@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MyAccount;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use \Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,16 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return '<center><h1>Implement the functionality</h1></center>';
+        $user_id = Auth::user()->id;
+
+        $this->data['pendingProducts']  = \App\Product::where( [ 'status_id' => 1, 'user_id' => $user_id ] )->count( 'id' );
+        $this->data['approvedProducts'] = \App\Product::where( [ 'status_id' => 2, 'user_id' => $user_id ] )->count( 'id' );
+        $this->data['rejectedProducts'] = \App\Product::where( [ 'status_id' => 3, 'user_id' => $user_id ] )->count( 'id' );
+
+        // $this->data['pendingRequirements']  = \App\BuyerRequirement::where( 'status_id', 1 )->count( 'id' );
+        // $this->data['approvedRequirements'] = \App\BuyerRequirement::where( 'status_id', 2 )->count( 'id' );
+        // $this->data['rejectedRequirements'] = \App\BuyerRequirement::where( 'status_id', 3 )->count( 'id' );
+        return view( 'frontend.profile.dashboard', $this->data );
     }
 
     /**

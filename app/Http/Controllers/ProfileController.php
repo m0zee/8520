@@ -111,6 +111,12 @@ class ProfileController extends Controller
 
     public function edit( $code )
     {
+        $userCode = Auth::user()->code;
+        if( $code !== $userCode )
+        {
+            return redirect( route( 'profile.edit', [ $userCode ] ) );
+        }
+
         $country    = Country::pluck( 'name', 'id' );
         $user       = User::with( 'detail' )->where( 'code', $code )->first();
         

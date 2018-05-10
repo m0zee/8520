@@ -74,7 +74,7 @@
                                                 <div class="form-group {{ $errors->has( 'category_id' ) ? 'has-error' : '' }}">
                                                     <label for="category">Category</label>
                                                     <div class="select-wrap select-wrap2">
-                                                        {{ Form::select( 'category_id', $category, old( 'category_id', $requirement->category_id ), [ 'placeholder' => 'Please Select', 'id' => 'category' ] ) }}
+                                                        {{ Form::select( 'category_id', $category, old( 'category_id', $requirement->category_id ), [ 'placeholder' => 'Please Select', 'id' => 'category_id' ] ) }}
                                                         <span class="lnr lnr-chevron-down"></span>
                                                     </div>
                                                     @if ( $errors->has( 'category_id' ) )
