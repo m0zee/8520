@@ -210,15 +210,12 @@ class ProfileController extends Controller
 
     public function show( $code )
     {
-        $this->data['user'] = User::with( 'detail' )->where( 'code', $code )->first();
-        $this->data['products'] = Product::with('user.detail', 'status', 'currency', 'unit', 'sub_category.category')->where( 'user_id', $this->data['user']->id )->where('status_id',2)->get();
-
-            // if( ! $user )
-        // {
-        //     return redirect( route( 'profile.create' ) )->with( 'error', 'User not found!' );
-        // }
-
-        // $this->data['user'] = $user;
+        $this->data['user']         = User::with( 'detail' )->where( 'code', $code )->first();
+        $this->data['productCount'] = Product::where( [ 'user_id' => $this->data['user']->id, 'status_id' => 2 ] )->count();
+        $this->data['products']     = Product::with( 'user.detail', 'status', 'currency', 'unit', 'sub_category.category' )->where([ 
+            'user_id'   => $this->data['user']->id,
+            'status_id' => 2
+        ])->take( 4 )->get();
 
         return view( 'frontend.profile.show', $this->data );
     }

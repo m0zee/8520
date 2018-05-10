@@ -6,22 +6,22 @@
 
                     <li class="{{ ( isset( $active ) && $active == 'dashboard' ) ? 'active' : '' }}">
                         <a href="{{ route( 'vendor.dashboard' ) }}">
-                            <span class="lnr lnr-home"></span> Dashboard
+                            <span class="fa fa-tachometer"></span> Dashboard
                         </a>
                     </li>
                     <li class="{{ ( isset( $active ) && $active == 'vendorProfile' ) ? 'active' : '' }}">
                         <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
-                            <span class="lnr lnr-user"></span> Profile
+                            <span class="fa fa-user"></span> Profile
                         </a>
                     </li>
                     <li class="{{ ( isset( $active ) && $active == 'product' ) ? 'active' : '' }}">
                         <a href="{{ route( 'my-account.product' ) }}">
-                            <span class="lnr lnr-cart"></span> Product
+                            <span class="fa fa-archive"></span> Product
                         </a>
                     </li>
                     <li class="{{ ( isset( $active ) && $active == 'message' ) ? 'active' : '' }}">
                         <a href="{{ route( 'messages.index' ) }}">
-                            <span class="lnr lnr-envelope"></span> Messages
+                            <span class="fa fa-comments-o"></span> Messages
                         </a>
                     </li>
                 </ul><!-- end /.dashboard_menu -->
