@@ -259,8 +259,267 @@
     <!--================================
         END AUTHOR AREA
     =================================-->
+    <!-- Modal -->
+    @if( Auth::check() )
+        <div class="modal fade not_loggedind_modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="not_loggedind_modal">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                        <h4>Send Enquiry</h4>
+                    </div><!-- end /.modal-header -->
+
+                    <div class="modal-body">
+
+                        <div class="row">
+                            {{ Form::open( [ 'url' => '#', 'id' => 'myForm' ] ) }}
+                            <div class="col-md-12">
+                                <div class="information_module">
+                                    <div class="information__set toggle_module collapse in" id="collapse2">
+                                        <div class="information_wrapper form--fields">
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'quantity', 'Quantity' ) }}
+                                                        {{
+                                                            Form::text( 'quantity', '', [ 
+                                                                'placeholder'   => 'Please enter quantity', 
+                                                                'id'            => 'quantity',
+                                                                'class'         => 'text_field number'
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'unit', 'Unit' ) }}
+                                                        <div class="text_field" id="unit" style="padding: 0 20px;">asdfasd</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group has-error">
+                                                {{ Form::label( 'message', 'Enquiry' ) }}
+                                                {{
+                                                    Form::textarea( 'message', '', [ 
+                                                        'placeholder'   => 'Please enter enquiry', 
+                                                        'id'            => 'message',
+                                                        'class'         => 'text_field',
+                                                        'rows'          => 3,
+                                                        'style'         => 'resize: none;'
+                                                    ])
+                                                }}
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" id="isUserLoggedin" value="1">
+
+                            <div class="col-md-12">
+                                <div class="dashboard_setting_btn">
+                                    <button type="submit" id="btn-send" class="btn btn--round btn--md">Send</button>
+                                </div>
+                            </div><!-- end /.col-md-12 -->
+                            {{ Form::close() }}
+                        </div>
+
+                    </div><!-- end /.modal-body -->
+                </div>
+            </div>
+        </div>
+    @else
+        <div class="modal fade not_loggedind_modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="not_loggedind_modal">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                        <h4>Send Enquiry</h4>
+                    </div><!-- end /.modal-header -->
+
+                    <div class="modal-body">
+
+                        <div class="row">
+                            {{ Form::open( [ 'url' => '#', 'id' => 'myForm' ] ) }}
+                            <div class="col-md-12">
+                                <div class="information_module">
+                                    <div class="information__set toggle_module collapse in" id="collapse2">
+                                        <div class="information_wrapper form--fields">
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'email', 'Email Address' ) }}
+                                                        {{
+                                                            Form::text( 'email', null, [ 
+                                                                'placeholder'   => 'Please enter your email address', 
+                                                                'id'            => 'email',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row loginFields hidden">
+                                                <div class="col-md-12">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'password', 'Password' ) }}
+                                                        {{
+                                                            Form::password( 'loginPassword', [ 
+                                                                'placeholder'   => 'Please enter password', 
+                                                                'id'            => 'loginPassword',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row registerFields hidden">
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'name', 'Name' ) }}
+                                                        {{
+                                                            Form::text( 'name', '', [ 
+                                                                'placeholder'   => 'Please enter name', 
+                                                                'id'            => 'name',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="#">&nbsp;</label>
+                                                        <br>
+                                                        <label class="radio-inline" >
+                                                            <input type="radio" id="buyer" value="1" checked name="userTypeId"> Buyer
+                                                        </label>
+                                                        
+                                                        <label class="radio-inline">
+                                                            <input type="radio" id="vendor" value="2" name="userTypeId"> Vendor
+                                                        </label>
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row registerFields hidden">
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'password', 'Password' ) }}
+                                                        {{
+                                                            Form::password( 'registerPassword', [ 
+                                                                'placeholder'   => 'Please enter password', 
+                                                                'id'            => 'registerPassword',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'conpassword', 'Confirm Password' ) }}
+                                                        {{
+                                                            Form::password( 'conpassword', [ 
+                                                                'placeholder'   => 'Please enter password again', 
+                                                                'id'            => 'conpassword',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'quantity', 'Quantity' ) }}
+                                                        {{
+                                                            Form::text( 'quantity', '', [ 
+                                                                'placeholder'   => 'Please enter quantity', 
+                                                                'id'            => 'quantity',
+                                                                'class'         => 'text_field number'
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'unit', 'Unit' ) }}
+                                                        <div class="text_field" id="unit" style="padding: 0 20px;">asdfasd</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group has-error">
+                                                {{ Form::label( 'message', 'Enquiry' ) }}
+                                                {{
+                                                    Form::textarea( 'message', '', [ 
+                                                        'placeholder'   => 'Please enter enquiry', 
+                                                        'id'            => 'message',
+                                                        'class'         => 'text_field',
+                                                        'rows'          => 3,
+                                                        'style'         => 'resize: none;'
+                                                    ])
+                                                }}
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" id="isUserExists" value="0">
+                            <input type="hidden" id="isUserLoggedin" value="0">
+
+                            <div class="col-md-12">
+                                <div class="dashboard_setting_btn">
+                                    <button type="submit" id="btn-send" class="btn btn--round btn--md">Send</button>
+                                </div>
+                            </div><!-- end /.col-md-12 -->
+                            {{ Form::close() }}
+                        </div>
+
+                    </div><!-- end /.modal-body -->
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <div class="modal fade loading_modal" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loading_modal">
+        <div class="modal-dialog modal-md text-center" role="document" style="vertical-align: middle; height: 100%; vertical-align: middle; position: absolute; top: 30%; right: 30%;">
+            <span class="fa fa-spinner fa-spin" style="font-size: 300px;"></span>
+            <br><br>
+            <h3>LOADING...Please wait!</h3>
+        </div>
+    </div> 
 
 @endsection
 
 @section( 'js' )
-@endsection
+<script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
+<script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
+<script src="{{ asset( 'js/page/frontend/product/index.js' ) }}"></script>
+@stop
