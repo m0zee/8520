@@ -39,36 +39,113 @@
         <div class="dashboard_contents">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg4">
-                            <p>Total Items</p>
-                            <h3>{{ number_format( $items ) }}</h3>
-                        </div>
-                    </div><!-- end /.col-md-3 -->
+                    <div class="col-xs-12">
+                        <h4>Users</h4>
+                        <hr>
+                    </div>
 
                     <div class="col-md-3 col-sm-6">
                         <div class="author-info author-info--dashboard mcolorbg2">
-                            <p>Total Users</p>
-                            <h3>{{ number_format( $users ) }}</h3>
+                            <p>Pending Approval</p>
+                            <h3>{{ number_format( $pendingApproval ) }}</h3>
                         </div>
-                    </div><!-- end /.col-md-3 -->
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg3">
-                            <p>Yearly Sales</p>
-                            <h3>$2,249.00</h3>
-                        </div>
-                    </div><!-- end /.col-md-3 -->
+                    </div>
 
                     <div class="col-md-3 col-sm-6">
                         <div class="author-info author-info--dashboard mcolorbg1">
-                            <p>Lifetime Sales</p>
-                            <h3>$5,583.00</h3>
+                            <p>Approved Users</p>
+                            <h3>{{ number_format( $approvedUsers ) }}</h3>
                         </div>
-                    </div><!-- end /.col-md-3 -->
-                </div><!-- end /.row -->
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg1">
+                            <p>Activated Users</p>
+                            <h3>{{ number_format( $activatedUsers ) }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg4">
+                            <p>De-activated Users</p>
+                            <h3>{{ number_format( $deactivatedUsers ) }}</h3>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg2">
+                            <p>Buyers</p>
+                            <h3>{{ number_format( $buyers ) }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg3">
+                            <p>Vendors</p>
+                            <h3>{{ number_format( $vendors ) }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>Products</h4>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg2">
+                            <p>Pending Approval</p>
+                            <h3>{{ number_format( $pendingProducts ) }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg1">
+                            <p>Approved</p>
+                            <h3>{{ number_format( $approvedProducts ) }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg4">
+                            <p>Rejected</p>
+                            <h3>{{ number_format( $rejectedProducts ) }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>Buying Requirements</h4>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg2">
+                            <p>Pending</p>
+                            <h3>{{ number_format( $pendingRequirements ) }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg1">
+                            <p>Approved</p>
+                            <h3>{{ number_format( $approvedRequirements ) }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg4">
+                            <p>Rejected</p>
+                            <h3>{{ number_format( $rejectedRequirements ) }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- <div class="row">
                     <div class="col-md-12">
                         <div class="dashboard_module statistics_module">
                             <div class="dashboard__title">
@@ -718,7 +795,7 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- end /.row -->
+                </div> --}}
             </div><!-- end /.container -->
         </div><!-- end /.dashboard_menu_area -->
 

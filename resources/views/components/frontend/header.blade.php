@@ -129,7 +129,7 @@
                                     <div class="dropdown dropdown--author">
                                         <ul>
                                             <li>
-                                                <a href="{{ url( 'dashboard' ) }}">
+                                                <a href="{{ route( 'vendor.dashboard' ) }}">
                                                     <span class="lnr lnr-home"></span> Dashboard
                                                 </a>
                                             </li>

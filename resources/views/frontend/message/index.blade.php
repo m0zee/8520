@@ -3,7 +3,7 @@
 @section( 'title', 'Messages' )
 
 @php
-    $active = 'messages';
+    $active = 'message';
 @endphp
 
 @section( 'content' )
@@ -16,7 +16,7 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="{{ route( 'vendor.dashboard' ) }}">Dashboard</a></li>
                             <li class="active"><a href="#">Conversations</a></li>
                         </ul>
                     </div>

@@ -14,12 +14,11 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="{{ url('') }}">Home</a></li>
-                            <li><a href="{{ route('vendor.dashboard') }}">Dashboard</a></li>
-                            <li class="active"><a href="#">Profile</a></li>
+                            <li><a href="{{ route( 'vendor.dashboard' ) }}">Dashboard</a></li>
+                            <li class="active"><a href="#">Profile / Edit</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Company Profile Settings</h1>
+                    <h1 class="page-title">Edit Profile</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->

@@ -1,6 +1,6 @@
 @extends( 'components.frontend.master' )
 
-@section( 'title', 'Home' )
+@section( 'title', 'Products' )
 @section( 'content' )
 
 

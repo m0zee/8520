@@ -12,12 +12,11 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="dashboard.html">Dashboard</a></li>
-                            <li class="active"><a href="#">Settings</a></li>
+                            <li><a href="{{ route( 'vendor.dashboard' )}}">Dashboard</a></li>
+                            <li class="active"><a href="#">Profile / Create</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Author's Settings</h1>
+                    <h1 class="page-title">Create Profile</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
