@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SubCategory as SubCategory;
 use App\Category as Category;
-
+use App\Product;
 class SubCategoryController extends Controller
 {
     /**
@@ -113,8 +113,11 @@ class SubCategoryController extends Controller
      */
     public function destroy( $category_id, $id )
     {
-        SubCategory::destroy( $id );
+        $product = Product::where('category_id', $id)->count();
+        if ( $product != NULL ) 
+            return redirect( route( 'admin.subcategories.index', [ $category_id ] ) )->with('error', 'You can\'t delete this subcategory because it has '.$product.' product\'s   ');
 
+        SubCategory::destroy( $id );
         return redirect( route( 'admin.subcategories.index', [ $category_id ] ) );
     }
 }

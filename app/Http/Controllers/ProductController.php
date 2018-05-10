@@ -105,7 +105,7 @@ class ProductController extends Controller
 
         $category = Category::with( 'sub_category' )->where( 'slug', $category_slug )->first();
         
-        $this->data['products'] = Product::with( 'sub_category.category', 'user.detail', 'currency', 'unit' )->where( 'status_id', 2 )
+        $this->data['products'] = Product::with( 'sub_category', 'user.detail', 'currency', 'unit' )->where( 'status_id', 2 )
         ->where( 'category_id', $category->id )->orderBy( 'id', 'DESC' )->paginate( 12 );
 
         $this->data['categories'] = $category;

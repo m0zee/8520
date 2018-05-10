@@ -119,7 +119,11 @@
                             @if( Auth::user()->user_type_id == 2 ) {{-- Vendor --}}
                                 <div class="author-author__info inline has_dropdown">
                                     <div class="author__avatar">
-                                        <img src="{{ asset( 'storage/profile_img/50x50_' . Auth::user()->detail->profile_img ) }}" alt="user avatar">
+                                        @if (Auth::user()->detail != NULL)
+                                            <img src="{{ asset( 'storage/profile_img/50x50_' . Auth::user()->detail->profile_img ) }}" alt="user avatar">
+                                            @else
+                                            <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
+                                        @endif
                                     </div>
                                     <div class="autor__info">
                                         <p class="name">{{ Auth::user()->name }}</p>

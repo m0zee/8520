@@ -38,12 +38,44 @@ class SocialAuthController extends Controller
         return Socialite::driver( 'facebook' )->scopes( [ 'email' ] )->redirect();
     }
 
-     public function fbHandle( FacebookAccountService $service )
+     public function fbHandle( FacebookAccountService $service, Request $request )
     {
-        $user = $service->createOrGetUser( Socialite::driver( 'facebook' )->user() );
+        if ( $request->has('error') ) 
+        {
+            return redirect('/login')->with('error', $request->error_description );
+        }
+        $user_data =  Socialite::driver( 'facebook' )->user();
+        $email = $user_data->getEmail();
+
+        if ( $email == NULL ) 
+        {
+            return redirect('/login')->with('error', 'Email address is required.');
+        }
+
+        $user = $service->createOrGetUser( $user_data );
 
         auth()->login( $user );
 
         return redirect()->to('/');
     }
+
+    // public function fbHandle( FacebookAccountService $service, Request $request )
+    // {
+    //     if ( $request->has('error') ) 
+    //     {
+    //         return redirect('/login')->with('error', $request->error_description );
+    //     }
+    //     $user_data = Socialite::driver( 'facebook' )->user();
+    //     $email = $user_data->getEmail();
+
+    //     if ( $email == NULL ) 
+    //     {
+    //         return redirect('/login')->with('error', 'Email address is required.');
+    //     }
+    //     $user = $service->createOrGetUser( Socialite::driver( 'facebook' )->user() );
+
+    //     auth()->login( $user );
+
+    //     return redirect()->to('/');
+    // }
 }
