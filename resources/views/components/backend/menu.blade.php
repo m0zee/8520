@@ -4,12 +4,12 @@
             <div class="col-md-12">
                 <ul class="nav navbar-nav admin-menu">
 
-                    <li class="{{ ($active == 'dashboard') ? 'active' : ''  }}">
-                        <a href="{{ route('admin.dashboard')}}">
+                    <li class="{{ ( $active == 'dashboard' ) ? 'active' : ''  }}">
+                        <a href="{{ route( 'admin.dashboard' )}}">
                             <span class="fa fa-tachometer"></span> Dashboard
                         </a>
                     </li>
-                    <li class="{{ ($active == 'users') ? 'active' : ''  }} has_dropdown">
+                    <li class="{{ ( $active == 'users' ) ? 'active' : ''  }} has_dropdown">
                         <a href="#">
                             <span class="fa fa-users"></span> Users
                         </a>
@@ -20,32 +20,32 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="{{ ($active == 'category') ? 'active' : ''  }}">
-                        <a href="{{ route('admin.categories.index') }}">
+                    <li class="{{ ( $active == 'category' ) ? 'active' : ''  }}">
+                        <a href="{{ route( 'admin.categories.index' ) }}">
                             <span class="fa fa-list"></span> Categories
                         </a>
                     </li>
-                    <li class="{{ ($active == 'product') ? 'active' : ''  }}">
-                        <a href="{{ route('admin.products.index') }}">
+                    <li class="{{ ( $active == 'product' ) ? 'active' : ''  }}">
+                        <a href="{{ route( 'admin.products.index' ) }}">
                             <span class="fa fa-archive"></span> Products
                         </a>
                     </li>
-                    <li class="{{ ($active == 'reviews') ? 'active' : ''  }}">
+                    <li class="{{ ( $active == 'reviews' ) ? 'active' : ''  }}">
                         <a href="{{ route( 'admin.reviews.index' ) }}">
                             <span class="fa fa-star"></span> Reviews
                         </a>
                     </li>
-                    <li class="{{ ($active == 'message' ) ? 'active' : ''  }}">
+                    <li class="{{ ( $active == 'message' ) ? 'active' : ''  }}">
                         <a href="{{ route( 'admin.messages.index' ) }}">
                             <span class="fa fa-comments-o"></span> Messages
                         </a>
                     </li>
-                    <li class="{{ ($active == 'requirement') ? 'active' : ''  }}">
-                        <a href="{{ route('admin.requirements.index') }}">
+                    <li class="{{ ( $active == 'requirement' ) ? 'active' : ''  }}">
+                        <a href="{{ route( 'admin.requirements.index' ) }}">
                             <span class="fa fa-info-circle"></span> Requirements
                         </a>
                     </li>
-                    <li class="{{ ($active == 'reports' ) ? 'active' : ''  }}">
+                    <li class="{{ ( $active == 'reports' ) ? 'active' : ''  }}">
                         <a href="{{ route( 'admin.reports.index' ) }}">
                             <span class="fa fa-bug"></span> Reports
                         </a>

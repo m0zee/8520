@@ -76,13 +76,6 @@
                             </ul>
                         </div><!-- end /.author-menu -->
 
-                        {{-- <div class="sidebar-card freelance-status">
-                            <div class="custom-radio">
-                                <input type="radio" id="opt1" class="" name="filter_opt" checked>
-                                <label for="opt2"><span class="circle"></span>Email</label>
-                            </div>
-                        </div> --}}<!-- end /.author-card -->
-
                         <div class="sidebar-card message-card">
                             <div class="card-title">
                                 <h4>Contact Information</h4>
@@ -109,7 +102,7 @@
                         <div class="col-md-6 col-sm-6">
                            <div class="author-info mcolorbg4">
                                <p>Total Products</p>
-                               <h3>4,369</h3>
+                               <h3>{{ number_format( $productCount )}}</h3>
                            </div>
                         </div><!-- end /.col-md-4 -->
 
