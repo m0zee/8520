@@ -108,7 +108,15 @@
     <section class="login_area section--padding2">
         <div class="container">
             <div class="row">
+
                 <div class="col-md-6 col-md-offset-3">
+                    @if (session('error'))
+                        {{-- expr --}}
+                    <div class="alert alert-danger text-center">
+                       {{ session('error') }}
+                    </div>
+                    @endif
+
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
                         <div class="cardify login">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category as Category;
+use App\Product;
+use App\SubCategory;
 
 class CategoryController extends Controller
 {
@@ -41,7 +43,7 @@ class CategoryController extends Controller
             'name' => $request->input('name') ,
             'slug' => str_slug( $request->input('name') )
         ]);
-        return redirect(route('admin.categories.index'));
+        return redirect(route('admin.categories.index'))->with('success', 'Category successfully added');
 
     }
 
@@ -81,7 +83,7 @@ class CategoryController extends Controller
             'name' => $request->input('name'),
             'slug' => str_slug($request->input('name'))
         ]);
-        return redirect( route('admin.categories.index') );
+        return redirect( route('admin.categories.index') )->with('success', 'category successfully updated');
     }
 
     /**
@@ -92,7 +94,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $product = Product::where('category_id', $id)->count();
+        
+        if ( $product != NULL ) 
+            return redirect( route( 'admin.categories.index' ) )->with('error', 'You can\'t delete this category because it has '.$product.' product\'s   ');
+
+        SubCategory::where('category_id', $id)->delete();
         Category::destroy($id);
-        return redirect( route( 'admin.categories.index' ) );
+        return redirect( route( 'admin.categories.index' ) )->with('success', 'Category successfully deleted');
     }
 }
