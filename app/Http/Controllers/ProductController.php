@@ -27,7 +27,9 @@ class ProductController extends Controller
     public function index()
     {
         $this->data['categories'] = Category::get();
-        $this->data['products']   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->orderBy('id', 'DESC')->paginate( 12 );
+        $this->data['products']   = Product::with( 'sub_category.category', 'user.detail', 'currency' )->orderBy('id', 'DESC')
+        ->where('status_id', 2)
+        ->paginate( 12 );
         
         return view( 'frontend.product.index', $this->data )->with( 'blue_menu', true );
     }
@@ -105,7 +107,8 @@ class ProductController extends Controller
 
         $category = Category::with( 'sub_category' )->where( 'slug', $category_slug )->first();
         
-        $this->data['products'] = Product::with( 'sub_category', 'user.detail', 'currency', 'unit' )->where( 'status_id', 2 )
+        $this->data['products'] = Product::with( 'sub_category', 'user.detail', 'currency', 'unit' )
+        ->where( 'status_id', 2 )
         ->where( 'category_id', $category->id )->orderBy( 'id', 'DESC' )->paginate( 12 );
 
         $this->data['categories'] = $category;
@@ -119,8 +122,12 @@ class ProductController extends Controller
 
     public function get_by_sub_category( $category_slug, $sub_category_slug )
     {
-        $this->data['sub_category_products'] = SubCategory::where( 'slug', $sub_category_slug )->with( 'product.user.detail', 'product.currency' )->first();
+        $sub_category = SubCategory::where( 'slug', $sub_category_slug )->first();
 
+        // $this->data['sub_category_products'] = SubCategory::where( 'slug', $sub_category_slug )->with( 'product.user.detail', 'product.currency' )->first();
+        $this->data['product'] = Product::where( 'sub_category_id', $sub_category->id )
+        ->where('status_id', 2)
+        ->with( 'sub_category', 'user.detail', 'currency', 'unit' )->get();
         return view( 'frontend.product.sub_category_wise_products', $this->data )->with( 'blue_menu', true );
     }
 }

@@ -100,8 +100,8 @@
                 <!-- start col-md-9 -->
                 <div class="col-md-9">
                     <div class="row">
-                        @if( $sub_category_products->product->count() > 0 )
-                             @foreach( $sub_category_products->product as $product )
+                        @if( $product->count() > 0 )
+                             @foreach( $product as $product )
                             
                                 <div class="col-md-4 col-sm-4">
                                     <!-- start .single-product -->

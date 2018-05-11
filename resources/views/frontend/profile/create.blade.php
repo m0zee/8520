@@ -178,7 +178,19 @@
                                         
 
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <div class="custom_checkbox">
+                                                        <input type="checkbox" value="1" id="cod" name="cod" {{ $user->detail->cod == 1 ? 'checked' : ' ' }}>
+                                                        <label for="cod">
+                                                            <span class="shadow_checkbox"></span>
+                                                            <span class="radio_title">COD</span>
+                                                        </label>
+                                                    </div>
+                                                </div><!-- end /.custom-radio -->
+                                            </div>
+
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
                                                         <input type="checkbox" value="1" id="cash" name="cash" checked>
@@ -189,7 +201,7 @@
                                                     </div>
                                                 </div><!-- end /.custom-radio -->
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
                                                         <input type="checkbox" value="1" id="cheque" name="cheque" checked>
@@ -200,7 +212,7 @@
                                                     </div>
                                                 </div><!-- end /.custom-radio -->
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
                                                         <input type="checkbox" value="1" id="card" name="card" checked>

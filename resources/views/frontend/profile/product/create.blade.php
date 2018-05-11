@@ -286,5 +286,7 @@
 @section( 'js' )
     <script src="{{ asset( 'js/vendor/jquery.imagereader-1.0.0.min.js' ) }}"></script>
     <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
+
     <script src="{{ asset( 'js/page/frontend/products/create.js' ) }}"></script>
 @endsection

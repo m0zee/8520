@@ -43,9 +43,16 @@ class ProfileController extends Controller
                 'profile_img' => 'image|mimes:jpeg,png,jpg|max:2048'
             ]);
 
-            $path = public_path( 'storage/profile_img' );
-            $imageName = time() . '.' . $request->profile_img->getClientOriginalName();
-            $request->profile_img->move( $path, $imageName );
+            // $path = public_path( 'storage/profile_img' );
+            // $imageName = time() . '.' . $request->profile_img->getClientOriginalName();
+            // $request->profile_img->move( $path, $imageName );
+
+            $path      = public_path( 'storage/profile_img' );
+            $files     = $request->profile_img;
+            $filename  = $files->getClientOriginalName();
+            $imageName = time().'.'. \File::extension($filename);
+            $this->resize_profile_img($files, $imageName, $path);
+
 
             $profile_img = [
                 'profile_img'   => $imageName,
@@ -99,6 +106,7 @@ class ProfileController extends Controller
             'cash'          => $request->input( 'cash' ),
             'cheque'        => $request->input( 'cheque' ),
             'card'          => $request->input( 'card' ),
+            'cod'          => $request->input( 'cod' ),
             'description'   => $request->input( 'description' )
         ];
 
@@ -186,6 +194,7 @@ class ProfileController extends Controller
             'cash'          => $request->input( 'cash' ),
             'cheque'        => $request->input( 'cheque' ),
             'card'          => $request->input( 'card' ),
+            'cod'          => $request->input( 'cod' ),
             'description'   => $request->input( 'description' )
         ];
 
