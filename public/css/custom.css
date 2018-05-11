@@ -89,3 +89,12 @@ button.my-btn:hover, .my-btn:hover
 .hero-area::before{
     background: none;
 }
+
+.info-contact li .info-icon, .info-contact li .info {
+    display: inline-block;
+    vertical-align: top;
+}
+.section--padding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
