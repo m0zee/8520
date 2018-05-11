@@ -293,6 +293,50 @@
                                             <span class="lnr lnr-lock"></span> Change Password
                                         </a>
                                     </li>
+
+                                    <li>
+                                        <a href="{{ route( 'admin.userlist', [ 'vendor' ]) }}">
+                                            <span class="fa fa-users"></span> Vendors
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.userlist', [ 'buyer' ]) }}">
+                                            <span class="fa fa-users"></span> Buyers
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.categories.index' ) }}">
+                                            <span class="fa fa-list"></span> Categories
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.products.index' ) }}">
+                                            <span class="fa fa-archive"></span> Products
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route( 'admin.reviews.index' ) }}">
+                                            <span class="fa fa-star"></span> Reviews
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.messages.index' ) }}">
+                                            <span class="fa fa-comments-o"></span> Messages
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.requirements.index' ) }}">
+                                            <span class="fa fa-info-circle"></span> Requirements
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.reports.index' ) }}">
+                                            <span class="fa fa-bug"></span> Reports
+                                        </a>
+                                    </li>
+
+
                                     {{-- <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
                                     <li><a href="cart.html"><span class="lnr lnr-cart"></span>Purchases</a></li>
                                     <li><a href="favourites.html"><span class="lnr lnr-heart"></span> Favourite</a></li>

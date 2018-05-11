@@ -30,30 +30,77 @@
                                     </div>
 
                                     <div class="dropdown dropdown--author">
-                                        <ul>
-                                            <li>
-                                                <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
-                                                    <span class="lnr lnr-user"></span> Profile
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ url( 'admin.dashboard' ) }}">
-                                                    <span class="lnr lnr-home"></span> Dashboard
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route( 'my-account.product', [ Auth::user()->code ] ) }}">
-                                                    <span class="lnr lnr-book"></span> Products
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route( 'logout' ) }}"
-                                                 onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
-                                                    <span class="lnr lnr-exit"></span> Logout
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <ul>
+                                    {{-- <li><a href="author.html"><span class="lnr lnr-user"></span>Profile</a></li> --}}
+                                    <li>
+                                        <a href="{{ route( 'admin.dashboard' ) }}">
+                                            <span class="lnr lnr-home"></span> Dashboard
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'password.change.index' ) }}">
+                                            <span class="lnr lnr-lock"></span> Change Password
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route( 'admin.userlist', [ 'vendor' ]) }}">
+                                            <span class="fa fa-users"></span> Vendors
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.userlist', [ 'buyer' ]) }}">
+                                            <span class="fa fa-users"></span> Buyers
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.categories.index' ) }}">
+                                            <span class="fa fa-list"></span> Categories
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.products.index' ) }}">
+                                            <span class="fa fa-archive"></span> Products
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route( 'admin.reviews.index' ) }}">
+                                            <span class="fa fa-star"></span> Reviews
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.messages.index' ) }}">
+                                            <span class="fa fa-comments-o"></span> Messages
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.requirements.index' ) }}">
+                                            <span class="fa fa-info-circle"></span> Requirements
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route( 'admin.reports.index' ) }}">
+                                            <span class="fa fa-bug"></span> Reports
+                                        </a>
+                                    </li>
+
+
+                                    {{-- <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
+                                    <li><a href="cart.html"><span class="lnr lnr-cart"></span>Purchases</a></li>
+                                    <li><a href="favourites.html"><span class="lnr lnr-heart"></span> Favourite</a></li>
+                                    <li><a href="dashboard-add-credit.html"><span class="lnr lnr-dice"></span>Add Credits</a></li>
+                                    <li><a href="dashboard-statement.html"><span class="lnr lnr-chart-bars"></span>Sale Statement</a></li>
+                                    <li><a href="dashboard-upload.html"><span class="lnr lnr-upload"></span>Upload Item</a></li>
+                                    <li><a href="dashboard-manage-item.html"><span class="lnr lnr-book"></span>Manage Item</a></li>
+                                    <li><a href="dashboard-withdrawal.html"><span class="lnr lnr-briefcase"></span>Withdrawals</a></li> --}}
+                                    <li>
+                                        <a href="{{ route( 'logout' ) }}" onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
+                                                <span class="lnr lnr-exit"></span> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                                 </div>
                             @endif
 
