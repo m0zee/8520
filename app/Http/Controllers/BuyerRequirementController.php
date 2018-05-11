@@ -31,10 +31,10 @@ class BuyerRequirementController extends Controller
 
     public function get_by_category($category_slug)
     {
-    	$this->data['category']    = Category::where( 'slug', $category_slug )->first();
+    	$category    = Category::where( 'slug', $category_slug )->first();
     	$this->data['requirement'] = BuyerRequirement::where( [ 'category_id' => $category->id, 'status_id' => '2' ] )->with( 'sub_category', 'category', 'user' )->get();
 
-    	return view( 'frontend.requirement.index', $this->data );
+    	return view( 'frontend.requirement.index', $this->data )->with('blue_menu', true);
     }
 
 
@@ -43,6 +43,6 @@ class BuyerRequirementController extends Controller
     	$sub_category              = SubCategory::where('slug', $sub_category_slug)->first();
     	$this->data['requirement'] = BuyerRequirement::where( [ 'sub_category_id' => $sub_category->id, 'status_id' => '2' ] )->with( 'sub_category', 'category', 'user' )->get();
 
-    	return view( 'frontend.requirement.index', $this->data );
+    	return view( 'frontend.requirement.index', $this->data )->with('blue_menu', true);
     }
 }

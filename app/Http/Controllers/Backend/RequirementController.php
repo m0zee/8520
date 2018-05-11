@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\BuyerRequirement;
 use App\Unit;
-use App\category;
+use App\Category;
+use App\Country;
 
 class RequirementController extends Controller
 {
@@ -17,7 +18,7 @@ class RequirementController extends Controller
      */
     public function index()
     {
-        $this->data['requirements'] = BuyerRequirement::with( 'status', 'unit' )->get();
+        $this->data['requirements'] = BuyerRequirement::with( 'status', 'unit' )->orderBy('id', 'DESC')->get();
 
         return view( 'backend.requirement.index', $this->data );
     }
@@ -33,6 +34,7 @@ class RequirementController extends Controller
         $this->data['requirement']    = BuyerRequirement::find( $id );
         $this->data['units']          = Unit::pluck( 'name', 'id' );
         $this->data['category']       = Category::pluck( 'name', 'id' );
+        $this->data['country']        = Country::pluck( 'name', 'id' );
         
         return view( 'backend.requirement.show', $this->data );
     }
@@ -41,13 +43,30 @@ class RequirementController extends Controller
     public function status( Request $request, $id )
     {
         $this->validate( $request, [
-            'category_id'       => 'required',
-            'sub_category_id'   => 'required',
             'name'              => 'required',
             'unit_id'           => 'required',
-            'quantity'          => 'required',
-            'description'       => 'required'
-        ]);
+            'quantity'          => 'regex:/^[1-9]+[0-9]*$/',
+            'description'       => 'required',
+            'category_id'       => 'required',
+            'sub_category_id'   => 'required',
+            'country_id'        => 'required',
+            'state_id'          => 'required',
+            'city_id'           => 'required',
+            'img'               => 'mimes:jpg,jpeg,png|max:2000',
+        ],
+        [
+            'name.required'             => 'Please enter requirement',
+            'unit_id.required'          => 'Please select unit',
+            'quantity.regex'            => 'Please enter quantity greate than 0',
+            'description.required'      => 'Plese enter description',
+            'category_id.required'      => 'Please select category',
+            'sub_category_id.required'  => 'Please select sub category',
+            'country_id.required'       => 'Please select country',
+            'state_id.required'         => 'Please select state',
+            'city_id.required'          => 'Please select city',
+            'img'                       => 'mimes:jpg,jpeg,png|max:2000',
+        ]
+    );
 
         if( $request->status == 'Approve' ) 
         {
@@ -66,6 +85,9 @@ class RequirementController extends Controller
             'description'       => $request->description,
             'category_id'       => $request->category_id,
             'sub_category_id'   => $request->sub_category_id,
+            'country_id'        => $request->country_id,
+            'state_id'          => $request->state_id,
+            'city_id'           => $request->city_id,
             'status_id'         => $status 
         ];
 

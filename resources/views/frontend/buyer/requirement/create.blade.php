@@ -67,7 +67,7 @@
                                                 <div class="form-group has-error">
                                                     <label for="category">Category</label>
                                                     <div class="select-wrap select-wrap2">
-                                                        {{ Form::select( 'category_id', $categories, old( 'category_id' ), [ 'placeholder' => 'Please Select', 'id' => 'category' ] ) }}
+                                                        {{ Form::select( 'category_id', $categories, old( 'category_id' ), [ 'placeholder' => 'Please Select', 'id' => 'category_id' ] ) }}
                                                         <span class="lnr lnr-chevron-down"></span>
                                                     </div>
                                                     @if( $errors->has( 'category_id' ) )
@@ -87,6 +87,7 @@
                                                         </select>
                                                         <span class="lnr lnr-chevron-down"></span>
                                                     </div>
+                                                    <input type="hidden" id="sub_category_id" value="{{ old('sub_category_id') }}">
                                                     @if( $errors->has( 'sub_category_id' ) )
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first( 'sub_category_id' ) }}</strong>
@@ -244,10 +245,10 @@
     $(function() {
         var base_url = $( '#base_url' ).val();
 
-        $( '#category' ).on( 'change', function() {
-            $this = $(this);
-            get_sub_category($this);
-        });
+        // $( '#category' ).on( 'change', function() {
+        //     $this = $(this);
+        //     get_sub_category($this);
+        // });
 
         $( '.file-upload' ).on( 'change', function() {
             var file_name = $( this ).val().split( '\\' ).pop();
@@ -255,28 +256,28 @@
             $( '.selected_img_name' ).text( file_name );
         });
 
-        function get_sub_category($this) {
-            var category_id = $this.val();
+        // function get_sub_category($this) {
+        //     var category_id = $this.val();
 
-            $.ajax({
-                url: base_url + '/get_sub_category',
-                type: 'POST',
-                dataType: 'JSON',
-                data: { category_id: category_id },
-                success:function (response){
-                    var rows = makeOptions(response);
-                    $( '#sub_category' ).html( rows );
-                }
-            });
-        }
+        //     $.ajax({
+        //         url: base_url + '/get_sub_category',
+        //         type: 'POST',
+        //         dataType: 'JSON',
+        //         data: { category_id: category_id },
+        //         success:function (response){
+        //             var rows = makeOptions(response);
+        //             $( '#sub_category' ).html( rows );
+        //         }
+        //     });
+        // }
 
-        function makeOptions( response ) {
-            var row = '<option value="0"> Please Select </options>';
-            $.each(response, function(index, val) {
-                row += '<option value="'+val.id+'">' + val.name + '</options>';
-            });
-            return row;
-        }
+        // function makeOptions( response ) {
+        //     var row = '<option value="0"> Please Select </options>';
+        //     $.each(response, function(index, val) {
+        //         row += '<option value="'+val.id+'">' + val.name + '</options>';
+        //     });
+        //     return row;
+        // }
 
         $( '#img' ).change( function() {
             $( '#old-img' ).css( 'display', 'none' );

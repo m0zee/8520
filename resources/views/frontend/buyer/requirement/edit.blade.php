@@ -69,7 +69,7 @@
                                                     <label for="category">Category</label>
                                                     <div class="select-wrap select-wrap2">
                                                         {{ Form::select( 'category_id', $categories, old( 'category_id', $requirement->category_id ), 
-                                                            [ 'placeholder' => 'Please Select', 'id' => 'category' ]
+                                                            [ 'placeholder' => 'Please Select', 'id' => 'category_id' ]
                                                         ) }}
                                                         <span class="lnr lnr-chevron-down"></span>
                                                     </div>
@@ -223,7 +223,7 @@
                                             </div>
                                             <div class="col-md-6" id="new-img" >
                                                 <div class="alert alert-info text-center">
-                                                    Followin is the current image. If you do not want to change the image, please do not select any image.
+                                                    Following is the current image. If you do not want to change the image, please do not select any image.
                                                 </div>
                                                 <img src="{{ ( $requirement->img != null ) ? asset( 'storage/requirement/' . $requirement->img ) : '' }}" id="old-img" >
                                             </div>
@@ -262,18 +262,8 @@
     $.requirement = $.requirement || {};
 
     $(function() {
-        $.requirement.dropdownCategory      = $( '#category' );
-        $.requirement.dropdownSubCategory   = $( '#sub_category' );
 
         $.requirement.baseUrl               = $( '#base_url' ).val();
-
-
-
-        $.requirement.dropdownCategory.on( 'change', function() {
-            $.requirement.getSubCategories( $( this ).val() );
-        });
-
-        // $.requirement.getSubCategories( $.requirement.dropdownCategory.val() );
 
         $( '.file-upload' ).on( 'change', function() {
             var file_name = $( this ).val().split( '\\' ).pop();
@@ -291,33 +281,5 @@
             destination: '#new-img'
         });
     });
-
-    $.requirement.getSubCategories = function( categoryId ) {
-        if( categoryId != undefined && categoryId != 0 ) {
-            $.ajax({
-                url:        $.requirement.baseUrl + '/get_sub_category',
-                type:       'POST',
-                dataType:   'JSON',
-                data: { category_id: categoryId },
-                success: function( res ){
-                    var _options = $.requirement.makeOptions( res );
-                     $.requirement.dropdownSubCategory.html( _options );
-                }
-            });
-        }
-    };
-
-    $.requirement.makeOptions = function( data ) {
-        var row = '<option value="0"> Please Select </options>';
-
-        $.each( data, function( index, val ) {
-            row += '<option value="' + val.id + '">' + val.name + '</options>';
-        });
-
-        return row;
-    };
 </script>
-
-<script src="{{ asset('js/page/get_sub_category_by_category.js') }}"></script>
-
 @endsection

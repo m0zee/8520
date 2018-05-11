@@ -75,6 +75,7 @@ class RequirementController extends Controller
             'sub_category_id'   => $request->sub_category_id,
             'country_id'        => $request->country_id,
             'state_id'          => $request->state_id,
+            'city_id'           => $request->city_id,
             'img'               => ( isset( $imageName ) ) ? $imageName : '' ,
             'path'              => ( isset( $path ) ) ? $path : '',
             'status_id'         => 1
@@ -144,6 +145,7 @@ class RequirementController extends Controller
             'sub_category_id'   => $request->sub_category_id,
             'country_id'        => $request->country_id,
             'state_id'          => $request->state_id,
+            'city_id'           => $request->city_id,
             'status_id'         => 1
         ];
 

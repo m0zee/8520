@@ -40,6 +40,17 @@
 
                         <div class="col-md-4 col-sm-6">
                             <div class="product product--card">
+
+                                <div class="product__thumbnail">
+                                    @if( file_exists( $req->path . '/' . $req->img ) )
+                                        <img class="auth-img" src="{{ asset( 'storage/requirement/361x230_' . $req->img ) }}" alt="author image">
+                                    @else
+                                        <img src="images/p1.jpg" alt="Product Image">
+                                    @endif
+                                    
+                                </div><!-- end /.product__thumbnail -->
+
+                                        
                                 <div class="product-desc">
                                     <a href="{{ route( 'requirement.show', [ $req->code ] ) }}" class="product_title">
                                         <h4>{{ $req->name }}</h4>

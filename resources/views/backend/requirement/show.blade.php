@@ -100,6 +100,59 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-4">
+                                                <div class="form-group has-error">
+                                                    <label for="country">Country <sup>*</sup></label>
+                                                    <div class="select-wrap select-wrap2">
+                                                        {{ Form::select('country_id', $country,  old( 'country_id', $requirement->country_id ), 
+                                                            [ 'placeholder' => 'Please Select', 'id' => 'country' ]
+                                                        ) }}
+                                                        <span class="lnr lnr-chevron-down"></span>
+                                                    </div>
+                                                    @if( $errors->has( 'country_id' ) )
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first( 'country_id' ) }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-4">
+                                                <div class="form-group has-error">
+                                                    <label for="state">State <sup>*</sup></label>
+                                                    <div class="select-wrap select-wrap2">
+                                                        <select name="state_id" id="state" class="text_field">
+                                                            <option value="">Please Select</option>
+                                                        </select>
+                                                        <input type="hidden" id="hidden_state_id" value="{{ old('state_id', $requirement->state_id ) }}">
+                                                        <span class="lnr lnr-chevron-down"></span>
+                                                    </div>
+                                                    @if( $errors->has( 'state_id' ) )
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first( 'state_id' ) }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-4">
+                                                <div class="form-group has-error">
+                                                    <label for="city">City <sup>*</sup></label>
+                                                    <div class="select-wrap select-wrap2">
+                                                        <select name="city_id" id="city" class="text_field">
+                                                            <option value="">Please Select</option>
+                                                        </select>
+                                                        <span class="lnr lnr-chevron-down"></span>
+                                                        <input type="hidden" id="hidden_city_id" value="{{ old( 'city_id', $requirement->city_id ) }}">
+                                                    </div>
+                                                    @if( $errors->has( 'city_id' ) )
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first( 'city_id' ) }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-6">
                                                 <div class="form-group {{ $errors->has( 'unit_id' ) ? 'has-error' : '' }}">
                                                     <label for="name">unit</label>
@@ -130,9 +183,7 @@
                                                 <div class="form-group {{ $errors->has( 'description' ) ? 'has-error' : ''  }}">
                                                     <label for="description">Description</label>
                                                     <textarea name="description" id="description" cols="30" rows="10" class="form-gorup text_field" 
-                                                        placeholder="Type requirement description here...">
-                                                        {{ old( 'description', $requirement->description ) }}
-                                                    </textarea>
+                                                        placeholder="Type requirement description here...">{{ old( 'description', $requirement->description ) }}</textarea>
 
                                                     @if( $errors->has( 'description' ) )
                                                         <span class="help-block"><strong>{{ $errors->first( 'description' ) }}</strong></span>
@@ -165,4 +216,5 @@
 
 @section( 'js' )
     <script src="{{ asset( 'js/page/get_sub_category_by_category.js' ) }}"></script>
+    <script src="{{ url( 'js/page/get_state_and_city_dropdown.js' ) }}"></script>
 @endsection
