@@ -125,9 +125,9 @@ class ProductController extends Controller
         $sub_category = SubCategory::where( 'slug', $sub_category_slug )->first();
 
         // $this->data['sub_category_products'] = SubCategory::where( 'slug', $sub_category_slug )->with( 'product.user.detail', 'product.currency' )->first();
-        $this->data['product'] = Product::where( 'sub_category_id', $sub_category->id )
+        $this->data['products'] = Product::where( 'sub_category_id', $sub_category->id )
         ->where('status_id', 2)
-        ->with( 'sub_category', 'user.detail', 'currency', 'unit' )->get();
+        ->with( 'sub_category', 'user.detail', 'currency', 'unit' )->paginate( 12 );
         return view( 'frontend.product.sub_category_wise_products', $this->data )->with( 'blue_menu', true );
     }
 }

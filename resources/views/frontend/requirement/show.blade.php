@@ -46,6 +46,20 @@
                 
                 <div class="col-md-8">
 
+
+                    <div class="item-preview">
+                        <div class="item__preview-slider" style="width:99.9%">
+                            <div class="prev-slide">
+                                <img id="main_img" src="{{ asset( 'storage/requirement/' . $requirement->img ) }}"  
+                                    data-zoom-image="{{ asset( 'storage/requirement/' . $requirement->img ) }}" 
+                                    alt="Keep calm this isn't the end of the world, the preview is just missing.">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
                     <div class="item-info">
 
                         <div class="item-navigation">
