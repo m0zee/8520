@@ -309,6 +309,12 @@
                                 </ul>
                             </div>
                         </div><!--end /.author-author__info-->
+                        
+                        <a
+                            href="{{ route('admin.dashboard') }}"  
+                            class="author-area__seller-btn inline">
+                            Dashboard
+                        </a>
                         <a
                             href="{{ route('logout') }}" 
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 

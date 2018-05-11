@@ -37,7 +37,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ url( 'dashboard' ) }}">
+                                                <a href="{{ url( 'admin.dashboard' ) }}">
                                                     <span class="lnr lnr-home"></span> Dashboard
                                                 </a>
                                             </li>
@@ -171,10 +171,34 @@
                                 </div>
                             @endif
 
+                            @php
+                                switch ( Auth::user()->user_type_id ) {
+                                    
+                                    case '1':
+                                        $url = route('dashboard');
+                                        break;
 
-                            <a href="{{ route( 'register' ) }}" class="author-area__seller-btn inline">
+                                    case '2':
+                                        $url = route('vendor.dashboard');
+                                        break;
+
+                                    case '3':
+                                        $url = route('admin.dashboard');
+                                        break;
+
+                                    default:
+                                        $url = route('register');
+                                        break;
+                                }
+                            @endphp
+
+                            
+
+
+                            <a href="{{  $url  }}" class="author-area__seller-btn inline">
                                 <span class="lnr lnr-home"></span> Dashboard
                             </a>
+                            
                             <a href="{{ route( 'logout' ) }}" 
                                 onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();" 
                                 class="author-area__seller-btn inline">

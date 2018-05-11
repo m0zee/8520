@@ -146,7 +146,7 @@
 
 
                                         <div class="form-group {{ $errors->has( 'address' ) ? ' has-error' : '' }}">
-                                            <label for="address">Address</label>
+                                            <label for="address">Address <sup>*</sup></label>
                                             <input type="text" id="address" class="text_field" name="address" placeholder="Write your address">
                                             @if( $errors->has( 'address' ) )
                                                 <span class="help-block">
@@ -158,7 +158,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group {{ $errors->has( 'mobile_number' ) ? ' has-error' : '' }}">
-                                                    <label for="mobile_number">Mobile Number</label>
+                                                    <label for="mobile_number">Mobile Number <sup>*</sup></label>
                                                     <input type="text" id="mobile_number" name="mobile_number" class="text_field" placeholder="Mobile Number">
                                                     @if( $errors->has( 'mobile_number' ) )
                                                         <span class="help-block">
@@ -169,7 +169,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="phone_number">Phone Number</label>
+                                                    <label for="phone_number">Phone Number <sup>*</sup></label>
                                                     <input type="text" id="phone_number" name="phone_number" class="text_field" placeholder="Phone Number">
                                                 </div>  
                                             </div>
@@ -181,10 +181,10 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <div class="custom_checkbox">
-                                                        <input type="checkbox" value="1" id="cod" name="cod" {{ $user->detail->cod == 1 ? 'checked' : ' ' }}>
+                                                        <input type="checkbox" value="1" id="cod" name="cod" checked>
                                                         <label for="cod">
                                                             <span class="shadow_checkbox"></span>
-                                                            <span class="radio_title">COD</span>
+                                                            <span class="radio_title">COD<sup>*</sup></span>
                                                         </label>
                                                     </div>
                                                 </div><!-- end /.custom-radio -->
@@ -196,7 +196,7 @@
                                                         <input type="checkbox" value="1" id="cash" name="cash" checked>
                                                         <label for="cash">
                                                             <span class="shadow_checkbox"></span>
-                                                            <span class="radio_title">Cash</span>
+                                                            <span class="radio_title">Cash<sup>*</sup></span>
                                                         </label>
                                                     </div>
                                                 </div><!-- end /.custom-radio -->
@@ -207,7 +207,7 @@
                                                         <input type="checkbox" value="1" id="cheque" name="cheque" checked>
                                                         <label for="cheque">
                                                             <span class="shadow_checkbox"></span>
-                                                            <span class="radio_title">Cheque</span>
+                                                            <span class="radio_title">Cheque<sup>*</sup></span>
                                                         </label>
                                                     </div>
                                                 </div><!-- end /.custom-radio -->
@@ -218,7 +218,7 @@
                                                         <input type="checkbox" value="1" id="card" name="card" checked>
                                                         <label for="card">
                                                             <span class="shadow_checkbox"></span>
-                                                            <span class="radio_title">Visa / Master Card</span>
+                                                            <span class="radio_title">Visa / Master Card<sup>*</sup></span>
                                                         </label>
                                                     </div>
                                                 </div><!-- end /.custom-radio -->
@@ -226,7 +226,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="authbio">Description</label>
+                                            <label for="authbio">Description<sup>*</sup></label>
                                             <textarea name="description" id="authbio" class="text_field" placeholder="Short brief about yourself or your account..."></textarea>
                                         </div>
                                     </div>
@@ -247,8 +247,8 @@
                                                 <img src="{{url('images/authplc.png')}}" alt="Author profile area" id="old-dp" >
                                             </div>
                                             <div class="img_info">
-                                                <p class="bold">Profile Image</p>
-                                                <p class="subtitle">JPG, JPEG or PNG 100x100 px</p>
+                                                <p class="bold">Profile Image<sup>*</sup></p>
+                                                <p class="subtitle">JPG, JPEG or PNG 100x100 px <br>max size 2MB</p>
                                             </div>
 
                                             <label for="dp" class="upload_btn">
@@ -266,7 +266,7 @@
                                         </div>
 
                                         <div class="prof_img_upload">
-                                            <p class="bold">Cover Image</p>
+                                            <p class="bold">Cover Image<sup>*</sup></p>
 
                                             <div id="new-cover">
                                                 <img src="{{ url('images/cvrplc.jpg')}}" alt="The great warrior of China" id="old-cover">
@@ -274,7 +274,7 @@
 
 
                                             <div  class="upload_title">
-                                                <p>JPG, JPEG or PNG 750x370 px</p>
+                                                <p>JPG, JPEG or PNG 750x370 px <br>max size 2MB</p>
                                                 <label for="cover_photo" class="upload_btn">
                                                     <input type="file" id="cover_photo" name="cover_img">
                                                     <span class="btn btn--sm btn--round" aria-hidden="true">Upload Image</span>
