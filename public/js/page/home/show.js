@@ -1,13 +1,13 @@
-$.product = $.product || {};
+$.productDetail = $.productDetail || {};
 
 $(function() {
-	$.product.baseUrl 		= $( '#base_url' ).val();
-	$.product.mainImg 		= $( '#main_img' );
-	$.product.btnReport		= $( '#btn_report' );
-	$.product.reportModal 	= $( '#report_modal' );
-	$.product.id 			= $.product.reportModal.find( '#product_id' ).val();
-	$.product.message		= $.product.reportModal.find( '#message' );
-	$.product.btnSend 		= $.product.reportModal.find( '#btn_send' );
+	$.productDetail.baseUrl 		= $( '#base_url' ).val();
+	$.productDetail.mainImg 		= $( '#main_img' );
+	$.productDetail.btnReport		= $( '#btn_report' );
+	$.productDetail.reportModal 	= $( '#report_modal' );
+	$.productDetail.id 				= $.productDetail.reportModal.find( '#product_id' ).val();
+	$.productDetail.message			= $.productDetail.reportModal.find( '#message' );
+	$.productDetail.btnSend 		= $.productDetail.reportModal.find( '#btn_send' );
 
 
 
@@ -17,7 +17,7 @@ $(function() {
 	// 				FORM VALIDATION
 	// =============================================
 
-	$.product.validator = $( '#myForm' ).validate({
+	$.productDetail.validator = $( '#reportForm' ).validate({
  		errorClass: 'invalid',
  		ignore: ':hidden',
 		rules: {
@@ -56,7 +56,7 @@ $(function() {
 	// 				PLUGINS INIT
 	// =============================================
 
-	$.product.mainImg.elevateZoom({
+	$.productDetail.mainImg.elevateZoom({
         gallery:'thumb-slider',
         cursor: 'pointer',
         galleryActiveClass: 'active',
@@ -81,19 +81,19 @@ $(function() {
 	// 				EVENT BINDINGS
 	// =============================================
 
-	$.product.btnReport.on( 'click', function() {
-		$.product.reportModal.modal( 'show' );
+	$.productDetail.btnReport.on( 'click', function() {
+		$.productDetail.reportModal.modal( 'show' );
 	});
 
-	$.product.btnSend.on( 'click', function( e ) {
+	$.productDetail.btnSend.on( 'click', function( e ) {
 		e.preventDefault();
 
-		if( $.product.validator.form() ) {
-			$.product.sendReport();
+		if( $.productDetail.validator.form() ) {
+			$.productDetail.sendReport();
 		}
 	});
 
-	$.product.reportModal.on( 'hidden.bs.modal', function() {
+	$.productDetail.reportModal.on( 'hidden.bs.modal', function() {
 	    $ ( this ).find( 'form' )[0].reset();
 	});
 });
@@ -102,18 +102,18 @@ $(function() {
 
 
 
-$.product.sendReport = function() {
+$.productDetail.sendReport = function() {
 	$.ajax({
-		url: 		$.product.baseUrl + '/reports',
+		url: 		$.productDetail.baseUrl + '/reports',
 		type: 		'POST',
 		dataType: 	'JSON',
 		data: {
-			product_id: $.product.id,
-			message: 	$.product.message.val()
+			product_id: $.productDetail.id,
+			message: 	$.productDetail.message.val()
 		},
 		success: function( res ) { 
 			if( res.status === 'success' ) {
-				$.product.reportModal.modal( 'hide' );
+				$.productDetail.reportModal.modal( 'hide' );
 				
 				$.pakMaterial.notify( 'success', '<strong>' + res.message + '</strong>' );
 			}

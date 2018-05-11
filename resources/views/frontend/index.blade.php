@@ -80,44 +80,6 @@
 
             <!-- start .row -->
             <div class="row">
-                <!-- start .col-md-4 -->
-                {{-- <div class="col-md-4 col-sm-6">
-                    <!-- start .single-product -->
-                    <div class="product product--card">
-
-                        <div class="product__thumbnail">
-                            <img src="images/p1.jpg" alt="Product Image">
-                            <div class="prod_btn">
-                                <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                <a href="single-product.html" class="transparent btn--sm btn--round">Contact</a>
-                            </div><!-- end /.prod_btn -->
-                        </div><!-- end /.product__thumbnail -->
-
-                        <div class="product-desc">
-                            <a href="single-product.html" class="product_title"><h4>MartPlace Extension Bundle</h4></a>
-                            <ul class="titlebtm">
-                                <li>
-                                    <img class="auth-img" src="images/auth.jpg" alt="author image">
-                                    <p><a href="#">AazzTech</a></p>
-                                </li>
-                            </ul>
-
-                            <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                the mattis, leo quam aliquet congue.</p>
-                        </div><!-- end /.product-desc -->
-
-                        <div class="product-purchase text-center">
-                            <button class="btn--icon my-btn btn--round">
-                                <span class="lnr lnr-list"></span> More Info
-                            </button>
-
-                            <button class="btn--icon my-btn btn--round">
-                                <span class="lnr lnr-envelope"></span> Contact
-                            </button>
-                        </div><!-- end /.product-purchase -->
-                        
-                    </div><!-- end /.single-product -->
-                </div> --}}<!-- end /.col-md-4 -->
                 @if( isset( $products ) && $products->count() > 0 )
                     <div class="row" id="product-container">
                         @foreach( $products as $product )

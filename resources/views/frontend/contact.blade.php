@@ -12,8 +12,21 @@
     =================================-->
     <section class="contact-area section--padding">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+
+            @if( session( 'success' ) )
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-success text-center">
+                            <strong>{{ session( 'success' ) }}</strong>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            {{-- <div class="row">
+
+                <div class="col-md-12"> --}}
+
                     <div class="row">
                         <!-- start col-md-12 -->
                         {{-- <div class="col-md-12">
@@ -64,66 +77,95 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-2">
                                         <div class="contact_form--wrapper">
-                                            <form action="#">
+                                            {{ Form::open( [ 'route' => 'contact.send' ]) }}
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="text"  placeholder="Name">
+                                                        <div class="form-group has-error">
+                                                            {{ Form::text( 'name', old( 'name' ), [ 'id' => 'name', 'placeholder' => 'Name' ] )}}
+                                                            @if( $errors->has( 'name' ) )
+                                                                <span class="help-block">{{ $errors->first( 'name' ) }}</span>
+                                                            @endif
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="text" placeholder="Email">
+                                                        <div class="form-group has-error">
+                                                            {{ Form::email( 'email', old( 'email' ), [ 'id' => 'email', 'placeholder' => 'Email' ] )}}
+                                                            @if( $errors->has( 'email' ) )
+                                                                <span class="help-block">{{ $errors->first( 'email' ) }}</span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="text" placeholder="Name">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group has-error">
+                                                            <div class="select-wrap select-wrap2">
+                                                                {{ Form::select( 'country_id', $countries,  old( 'country_id' ), [ 'placeholder' => 'Please select country', 'id' => 'country' ] ) }}
+                                                                <span class="lnr lnr-chevron-down"></span>
+                                                            </div>
+                                                            @if( $errors->has( 'country_id' ) )
+                                                                <span class="help-block">{{ $errors->first( 'country_id' ) }}</span>
+                                                            @endif
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="text" placeholder="Email">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group has-error">
+                                                            <div class="select-wrap select-wrap2">
+                                                                {{ Form::select( 'state_id', [],  old( 'state_id' ), [ 'placeholder' => 'Please select country first', 'id' => 'state' ] ) }}
+                                                                <span class="lnr lnr-chevron-down"></span>
+                                                                <input type="hidden" id="hidden_state_id" value="{{ old('state_id') }}">
+                                                            </div>
+                                                            @if( $errors->has( 'state_id' ) )
+                                                                <span class="help-block">{{ $errors->first( 'state_id' ) }}</span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group has-error">
+                                                            <div class="select-wrap select-wrap2">
+                                                                {{ Form::select( 'city_id', [],  old( 'city_id' ), [ 'placeholder' => 'Please selec', 'id' => 'city' ] ) }}
+                                                                <span class="lnr lnr-chevron-down"></span>
+                                                                <input type="hidden" id="hidden_city_id" value="{{ old( 'city_id' ) }}">
+                                                            </div>
+                                                            @if( $errors->has( 'city_id' ) )
+                                                                <span class="help-block">{{ $errors->first( 'city_id' ) }}</span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <textarea cols="30" rows="10" placeholder="Yout text here"></textarea>
+                                                <div class="form-group has-error">
+                                                    {{ Form::textarea( 'message', old( 'message' ), [ 'placeholder' => 'Please enter your message here...', 'id' => 'message', 'style' => 'resize: none;'] ) }}
+                                                    @if( $errors->has( 'message' ) )
+                                                        <span class="help-block">{{ $errors->first( 'message' ) }}</span>
+                                                    @endif
+                                                </div>
 
                                                 <div class="sub_btn">
-                                                    <button type="button" class="btn btn--round btn--default">Send Request</button>
+                                                    <button type="submit" class="btn btn--round btn--default">Send Request</button>
                                                 </div>
-                                            </form>
+                                            {{ Form::close() }}
                                         </div>
                                     </div><!-- end /.col-md-8 -->
                                 </div><!-- end /.row -->
+
                             </div><!-- end /.contact_form -->
                         </div><!-- end /.col-md-12 -->
+
                     </div><!-- end /.row -->
-                </div><!-- end /.col-md-12 -->
-            </div><!-- end /.row -->
+
+                {{-- </div><!-- end /.col-md-12 -->
+
+            </div><!-- end /.row --> --}}
         </div><!-- end /.container -->
     </section>
-    <!--================================
-        END BREADCRUMB AREA
-    =================================-->
 
+@endsection
 
-  
-
-
-
-
-
-
-
-
-<!--================================
-    END CALL TO ACTION AREA
-=================================-->
+@section( 'js' )
+    <script src="{{ url( 'js/page/get_state_and_city_dropdown.js' ) }}"></script>
 @endsection

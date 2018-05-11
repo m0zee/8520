@@ -10,8 +10,8 @@ $(function() {
 	$.pakMaterial.numberOnlyFields();
 	
 	$.product.validator = $( '#myForm' ).validate({
- 		errorClass: 'invalid',
- 		ignore: ':hidden',
+ 		errorClass: 'help-block',
+ 		ignore: 	':hidden',
 		rules: {
 			email: {
 				required: true,
@@ -76,7 +76,7 @@ $(function() {
 		},
 		errorElement: "span",
 		errorPlacement: function( error, element ) {
-			error.addClass( 'help-block' );
+			// error.addClass( 'help-block' );
 
 			if( element.attr( 'type' ) === 'radio' ) {
 				element.parent().parent( '.radio' ).append( error );
@@ -366,7 +366,17 @@ $.product.register = function() {
 			$.product.login( { 'password': $.product.modal.inputRegisterPassword.val() } );
 		},
 		error: function( err ) {
-			console.log( err );
+			if( err.hasOwnProperty( 'responseJSON' ) ) {
+				var _errors = err.responseJSON;
+				
+				if( _errors.hasOwnProperty( 'email' ) ) {
+					$.pakMaterial.notify( 'danger', _errors.email );
+				}
+
+				if( _errors.hasOwnProperty( 'password' ) ) {
+					$.pakMaterial.notify( 'danger', _errors.password );
+				}
+			}
 		},
 		complete: function( jqXHR, _data ) {
 			$.product.loadingModal.modal( 'hide' );
@@ -398,6 +408,10 @@ $.product.login = function( credentials ) {
 				
 				if( _errors.hasOwnProperty( 'email' ) ) {
 					$.pakMaterial.notify( 'danger', _errors.email );
+				}
+
+				if( _errors.hasOwnProperty( 'password' ) ) {
+					$.pakMaterial.notify( 'danger', _errors.password );
 				}
 			}
 		},
@@ -433,7 +447,19 @@ $.product.send = function() {
 			}
 		},
 		error: function( err ) {
-			alert( err );
+			$.product.showContactErrors( err.responseJSON );
 		}
 	});
-}
+};
+
+$.product.showContactErrors = function( err ) {
+	$.each( err, function( _field, _errMessage ) {
+		var _el = $.product.modal.find( '#' + _field );
+		
+		if( _el.length ) {
+			var _container = _el.parent( '.form-group' );
+			_container.children( '.help-block' ).remove();
+			_container.append( '<span class="help-block">' + _errMessage + '</span>' );
+		}
+	});
+};

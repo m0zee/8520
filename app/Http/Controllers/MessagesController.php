@@ -34,13 +34,7 @@ class MessagesController extends Controller
      */
     public function store( Request $request )
     {
-        if( ! $request->ajax() )
-        {
-            $this->validate( $request, 
-                [ 'message'             => 'required' ],
-                [ 'message.required'    => 'Please enter your message.' ]
-            );
-        }
+        $this->validateRequest( $request );
 
         $message = [
             'product_id'        => $request->product_id,
@@ -61,6 +55,20 @@ class MessagesController extends Controller
         }
 
         return redirect()->route( 'messages.index' )->with( 'success', 'Message has been successfully sent!' );
+    }
+
+    private function validateRequest( $request )
+    {
+        $this->validate( $request,
+            [
+                'message'   => 'required',
+                'quantity'  => 'required'
+            ],
+            [
+                'message.required'    => 'Please enter your message.',
+                'quantity.required'    => 'Please enter quantity.' 
+            ]
+        );
     }
 
     /**

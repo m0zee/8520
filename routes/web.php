@@ -14,11 +14,6 @@ Route::get( 'recover-password', function () {
     return view( 'frontend.recover_password' );
 });
 
-Route::get( 'contact', function() {
-	return view( 'frontend.contact' )->with( 'blue_menu', true );
-})->name( 'contact' );
-
-
 Route::get( 'buyer-requirement', 				'BuyerRequirementController@index' )->name( 'requirement' );
 Route::get( 'buyer-requirement/{code}/show',	'BuyerRequirementController@show' )->name( 'requirement.show' );
 
@@ -54,8 +49,6 @@ Route::get( 'users/{email}/get', function( $email ) {
 });
 
 Auth::routes();
-// Route::get('/redirect', 'SocialAuthFacebookController@redirect');
-// Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 Route::group( [ 'prefix' => 'social-auth' ], function() {
 	// Google
@@ -241,7 +234,9 @@ Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
 });
 
 
-Route::get( '/',							'HomeController@index' )->name( 'home' );
+Route::get( '/',		'HomeController@index' )->name( 'home' );
+Route::get( 'contact',	'HomeController@getContact' )->name( 'contact' );
+Route::post( 'contact',	'HomeController@send' )->name( 'contact.send' );
 
 Route::get( 'verifyemail/{token}',	'Auth\RegisterController@verify' );
 
