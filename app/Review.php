@@ -25,12 +25,4 @@ class Review extends Model
     {
         return $this->hasOne( 'App\Status', 'id', 'status_id' );
     }
-
-    // ***************************
-    //          ACCESSORS
-    // ***************************
-    // public function getCreatedAtAttribute( $value )
-    // {
-    // 	# code...
-    // }
 }

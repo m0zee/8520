@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use App\Http\Requests\VendorReviewRequest;
+use App\User;
 use App\Review;
+use App\Product;
 
 class ReviewsController extends Controller
 {
@@ -20,22 +24,25 @@ class ReviewsController extends Controller
      */
     public function index( $vendor_code )
     {
-        $this->data['vendor']   = \App\User::where( [ 'code' => $vendor_code ] )->first();
-        // return $this->data['vendor'];
-        $this->data['reviews']  = \App\Review::where( [ 'status_id' => 2, 'vendor_code' => $vendor_code ] )->with( 'user.detail' )->paginate( 10 );
+        $user                       = User::where( [ 'code' => $vendor_code ] )->first();
+        $this->data['vendor']       = $user;
+        $this->data['reviews']      = Review::where( [ 'status_id' => 2, 'vendor_code' => $vendor_code ] )->with( 'user.detail' )->paginate( 10 );
+        $this->data['productCount'] = Product::where( [ 'user_id' => $user->id, 'status_id' => 2 ] )->count();
+
+        $this->getRatings( $vendor_code );
 
         return view( 'review.index', $this->data );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     //
-    // }
+    private function getRatings( $user_code )
+    {
+        $ratings = Review::select([
+            DB::raw( 'SUM( ratings ) AS stars' ), DB::raw( 'COUNT( id ) AS raters' )
+        ])->where( [ 'vendor_code' =>  $user_code, 'status_id' => 2 ] )->first();
+
+        $this->data['raters']       = $ratings->raters;
+        $this->data['avgRatings']   = ( $ratings->stars != null ) ? round( (int)$ratings->stars / (int)$ratings->raters ) : 0;
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -66,62 +73,4 @@ class ReviewsController extends Controller
         
         return redirect()->back()->with( 'success', 'Your reveiw has been saved and sent to the admin for approval. You can check the status of your review in review section.' );
     }
-
-    // public function ratings(Request $request, $vendor_code )
-    // {
-    //     $user_id = Auth::user()->id;
-    //     // \Illuminate\Support\Facades\DB::enableQueryLog();
-    //     $review = Review::where( [ 'user_id' => $user_id, 'vendor_code' => $vendor_code ] )->first();
-
-    //     if( ! $review )
-    //     {
-    //         // $review->
-    //     }
-    //     return $review;
-    // }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function show($id)
-    // {
-    //     //
-    // }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit($id)
-    // {
-    //     //
-    // }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function destroy($id)
-    // {
-    //     //
-    // }
 }

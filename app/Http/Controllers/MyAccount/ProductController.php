@@ -130,6 +130,7 @@ class ProductController extends Controller
     public function show( $code )
     {
         $this->data['product'] = Product::where( 'code', $code )->with( 'category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery' )->first();
+        $this->data['relativeProducts'] = Product::where( 'code', '!=', $code )->with( 'category', 'sub_category', 'currency', 'unit', 'user.detail' )->take( 3 )->get();
 
         return view( 'frontend.profile.product.show', $this->data );
     }
