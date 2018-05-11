@@ -1,36 +1,29 @@
 @extends( 'components.frontend.master' )
 
-@section( 'title', 'Login' )
+@section( 'title', 'Profile' )
 
 @section( 'content' )
-    
 
-
-    <!--================================
-        START BREADCRUMB AREA
-    =================================-->
     <section class="breadcrumb-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active"><a href="#">Favorites</a></li>
+                            <li><a href="{{ route( 'home' ) }}">Home</a></li>
+                            <li class="active"><a href="#">Profile</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Your Favourites</h1>
+                    <h1 class="page-title">Profile</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    <!--================================
-        END BREADCRUMB AREA
-    =================================-->
 
-    <!--================================
-        START AUTHOR AREA
-    =================================-->
+
+
+
+
     @if( Auth::check() )
         @include( 'components.frontend.vendor_menu' )
     @endif
@@ -52,12 +45,10 @@
 
                                 <div class="author">
                                     <h4>{{ $user->detail->company_name }}</h4>
-                                    
                                 </div><!-- end /.author -->
 
                                 {{-- <span class="{{ ( $user->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $user->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
-                                </span> {{ $user->email }}
- --}}
+                                </span> {{ $user->email }} --}}
 
                                {{--  <div class="author-btn">
                                     <a href="#" class="btn btn--md btn--round">Contact</a>
@@ -71,8 +62,7 @@
                             <ul>
                                 <li><a href="{{ route( 'profile.show', [ $user->code ] )}}" class="active">Profile</a></li>
                                 
-                                <li><a href="{{ route( 'vendors.reviews.index', [ 'vendor_code' => $user->code ] ) }}">Customer Reviews</a></li>
-                                
+                                <li><a href="{{ route( 'vendors.reviews.index', [ $user->code ] ) }}">Customer Reviews</a></li>
                             </ul>
                         </div><!-- end /.author-menu -->
 
@@ -84,13 +74,13 @@
                             <div class="message-form mycontact-info">
         
                                
-                             <p><span class="lnr lnr-envelope "></span> {{$user->email}} </p>
+                             <p><span class="lnr lnr-envelope "></span>{{ $user->email }}</p>
                              
-                            <p><span class="lnr lnr-phone"></span> {{$user->detail->phone_number}}</p>
+                            <p><span class="lnr lnr-phone"></span>{{ $user->detail->phone_number }}</p>
 
-                            <p><span class="lnr lnr-smartphone"></span> {{$user->detail->mobile_number}}</p>
+                            <p><span class="lnr lnr-smartphone"></span>{{ $user->detail->mobile_number }}</p>
 
-                            <p><span class="lnr lnr-map-marker"></span> {{$user->detail->address}}</p>
+                            <p><span class="lnr lnr-map-marker"></span>{{ $user->detail->address }}</p>
 
                             </div><!-- end /.message-form -->
                         </div><!-- end /.freelance-status -->
@@ -114,19 +104,22 @@
                         </div> --}}<!-- end /.col-md-4 -->
 
                         <div class="col-md-6 col-sm-6">
-                            <div class="author-info scolorbg">
-                                <p>Total Rating</p>
-                                <div class="rating product--rating">
-                                    <ul>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star-half-o"></span></li>
-                                    </ul>
-                                    <span class="rating__count">(26)</span>
+                            <a href="{{ route( 'vendors.reviews.index', [ 'vendor_code' => $user->code ] ) }}">
+                                <div class="author-info scolorbg">
+                                    <p>Total Rating</p>
+                                    <div class="rating product--rating">
+                                        <ul>
+                                            @for( $i = 0; $i < $avgRatings; $i ++ )
+                                                <li><span class="fa fa-star"></span></li>
+                                            @endfor
+                                            @for( $i = 5; $i > $avgRatings; $i -- )
+                                                <li><span class="fa fa-star-o"></span></li>
+                                            @endfor
+                                        </ul>
+                                        <span class="rating__count">({{ $raters }})</span>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div><!-- end /.col-md-4 -->
 
                         <div class="col-md-12 col-sm-12">
@@ -175,13 +168,19 @@
                                                     @endif
                                                     
                                                     <div class="prod_btn">
-                                                        <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="transparent btn--sm btn--round">More Info</a>
-                                                        <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round btn-contact">Contact</a>
+                                                        <a href="{{ route( 'products.show', [ $product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}"
+                                                            class="transparent btn--sm btn--round">
+                                                            More Info
+                                                        </a>
+                                                        <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round">Profile</a>
                                                     </div><!-- end /.prod_btn -->
                                                 </div><!-- end /.product__thumbnail -->
 
                                                 <div class="product-desc">
-                                                    <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ (strlen($product->name) > 23) ? substr($product->name,0,23).'...' :$product->name  }}</h4></a>
+                                                    <a href="{{ route( 'products.show', [ $product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}"
+                                                        class="product_title">
+                                                        <h4>{{ ( strlen( $product->name ) > 23 ) ? substr( $product->name, 0, 23 ) . '...' : $product->name }}</h4>
+                                                    </a>
 
                                                     
                                                     <ul class="titlebtm">
@@ -191,7 +190,7 @@
                                                             @else
                                                                 <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
                                                             @endif
-                                                            <p><a href="{{ route('profile.show', [$product->user->code]) }}">{{ $product->user->detail->company_name }}</a></p>
+                                                            <p><a href="{{ route( 'profile.show', [ $product->user->code ] ) }}">{{ $product->user->detail->company_name }}</a></p>
                                                         </li>
                                                         <br>
                                                         <li>
@@ -249,11 +248,267 @@
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    <!--================================
-        END AUTHOR AREA
-    =================================-->
+
+    @if( Auth::check() )
+        <div class="modal fade not_loggedind_modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="not_loggedind_modal">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                        <h4>Send Enquiry</h4>
+                    </div><!-- end /.modal-header -->
+
+                    <div class="modal-body">
+
+                        <div class="row">
+                            {{ Form::open( [ 'url' => '#', 'id' => 'myForm' ] ) }}
+                            <div class="col-md-12">
+                                <div class="information_module">
+                                    <div class="information__set toggle_module collapse in" id="collapse2">
+                                        <div class="information_wrapper form--fields">
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'quantity', 'Quantity' ) }}
+                                                        {{
+                                                            Form::text( 'quantity', '', [ 
+                                                                'placeholder'   => 'Please enter quantity', 
+                                                                'id'            => 'quantity',
+                                                                'class'         => 'text_field number'
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'unit', 'Unit' ) }}
+                                                        <div class="text_field" id="unit" style="padding: 0 20px;">asdfasd</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group has-error">
+                                                {{ Form::label( 'message', 'Enquiry' ) }}
+                                                {{
+                                                    Form::textarea( 'message', '', [ 
+                                                        'placeholder'   => 'Please enter enquiry', 
+                                                        'id'            => 'message',
+                                                        'class'         => 'text_field',
+                                                        'rows'          => 3,
+                                                        'style'         => 'resize: none;'
+                                                    ])
+                                                }}
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" id="isUserLoggedin" value="1">
+
+                            <div class="col-md-12">
+                                <div class="dashboard_setting_btn">
+                                    <button type="submit" id="btn-send" class="btn btn--round btn--md">Send</button>
+                                </div>
+                            </div><!-- end /.col-md-12 -->
+                            {{ Form::close() }}
+                        </div>
+
+                    </div><!-- end /.modal-body -->
+                </div>
+            </div>
+        </div>
+    @else
+        <div class="modal fade not_loggedind_modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="not_loggedind_modal">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                        <h4>Send Enquiry</h4>
+                    </div><!-- end /.modal-header -->
+
+                    <div class="modal-body">
+
+                        <div class="row">
+                            {{ Form::open( [ 'url' => '#', 'id' => 'myForm' ] ) }}
+                            <div class="col-md-12">
+                                <div class="information_module">
+                                    <div class="information__set toggle_module collapse in" id="collapse2">
+                                        <div class="information_wrapper form--fields">
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'email', 'Email Address' ) }}
+                                                        {{
+                                                            Form::text( 'email', null, [ 
+                                                                'placeholder'   => 'Please enter your email address', 
+                                                                'id'            => 'email',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row loginFields hidden">
+                                                <div class="col-md-12">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'password', 'Password' ) }}
+                                                        {{
+                                                            Form::password( 'loginPassword', [ 
+                                                                'placeholder'   => 'Please enter password', 
+                                                                'id'            => 'loginPassword',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row registerFields hidden">
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'name', 'Name' ) }}
+                                                        {{
+                                                            Form::text( 'name', '', [ 
+                                                                'placeholder'   => 'Please enter name', 
+                                                                'id'            => 'name',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="#">&nbsp;</label>
+                                                        <br>
+                                                        <label class="radio-inline" >
+                                                            <input type="radio" id="buyer" value="1" checked name="userTypeId"> Buyer
+                                                        </label>
+                                                        
+                                                        <label class="radio-inline">
+                                                            <input type="radio" id="vendor" value="2" name="userTypeId"> Vendor
+                                                        </label>
+                                                        <span class="help-block"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row registerFields hidden">
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'password', 'Password' ) }}
+                                                        {{
+                                                            Form::password( 'registerPassword', [ 
+                                                                'placeholder'   => 'Please enter password', 
+                                                                'id'            => 'registerPassword',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'conpassword', 'Confirm Password' ) }}
+                                                        {{
+                                                            Form::password( 'conpassword', [ 
+                                                                'placeholder'   => 'Please enter password again', 
+                                                                'id'            => 'conpassword',
+                                                                'class'         => 'text_field'
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'quantity', 'Quantity' ) }}
+                                                        {{
+                                                            Form::text( 'quantity', '', [ 
+                                                                'placeholder'   => 'Please enter quantity', 
+                                                                'id'            => 'quantity',
+                                                                'class'         => 'text_field number'
+                                                            ])
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-group has-error">
+                                                        {{ Form::label( 'unit', 'Unit' ) }}
+                                                        <div class="text_field" id="unit" style="padding: 0 20px;">asdfasd</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group has-error">
+                                                {{ Form::label( 'message', 'Enquiry' ) }}
+                                                {{
+                                                    Form::textarea( 'message', '', [ 
+                                                        'placeholder'   => 'Please enter enquiry', 
+                                                        'id'            => 'message',
+                                                        'class'         => 'text_field',
+                                                        'rows'          => 3,
+                                                        'style'         => 'resize: none;'
+                                                    ])
+                                                }}
+                                                <span class="help-block"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" id="isUserExists" value="0">
+                            <input type="hidden" id="isUserLoggedin" value="0">
+
+                            <div class="col-md-12">
+                                <div class="dashboard_setting_btn">
+                                    <button type="submit" id="btn-send" class="btn btn--round btn--md">Send</button>
+                                </div>
+                            </div><!-- end /.col-md-12 -->
+                            {{ Form::close() }}
+                        </div>
+
+                    </div><!-- end /.modal-body -->
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <div class="modal fade loading_modal" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loading_modal">
+        <div class="modal-dialog modal-md text-center" role="document" style="vertical-align: middle; height: 100%; vertical-align: middle; position: absolute; top: 30%; right: 30%;">
+            <span class="fa fa-spinner fa-spin" style="font-size: 300px;"></span>
+            <br><br>
+            <h3>LOADING...Please wait!</h3>
+        </div>
+    </div>
 
 @endsection
 
 @section( 'js' )
+    <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/page/home/index.js' ) }}"></script>
 @endsection

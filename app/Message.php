@@ -56,7 +56,9 @@ class Message extends Model
                 INNER JOIN `users` AS `receiver` ON `m`.`receiver_id` = `receiver`.`id`
                 WHERE `m`.`sender_id` = {$user_id} OR `m`.`receiver_id` = {$user_id}
                 GROUP BY `m`.`product_id`, `m`.`sender_id`
+                
                 UNION ALL
+                
                 SELECT
                     `m`.`id`, `m`.`product_id`, `m`.`sender_id`, `m`.`receiver_id`, `m`.`requirement_id`, `m`.`seen_by_user`, `m`.`seen_by_admin`, `m`.`updated_at`,
                     `md`.`message`, `md`.`created_at` AS `md_created_at`, `md`.`sender_id` AS `last_sender_id`,

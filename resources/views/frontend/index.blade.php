@@ -133,13 +133,19 @@
                                         @endif
                                         
                                         <div class="prod_btn">
-                                            <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="transparent btn--sm btn--round">More Info</a>
-                                            <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round">Contact</a>
+                                            <a href="{{ route( 'products.show', [ $product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}" 
+                                                class="transparent btn--sm btn--round">
+                                                More Info
+                                            </a>
+                                            <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round">Profile</a>
                                         </div><!-- end /.prod_btn -->
                                     </div><!-- end /.product__thumbnail -->
 
                                     <div class="product-desc">
-                                       <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ (strlen($product->name) > 28) ? substr($product->name,0,28).'...' :$product->name  }}</h4></a>
+                                        <a href="{{ route( 'products.show', [ $product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}"
+                                            class="product_title">
+                                            <h4>{{ ( strlen( $product->name ) > 28 ) ? substr( $product->name, 0, 28 ) . '...' : $product->name }}</h4>
+                                        </a>
                                         <ul class="titlebtm">
                                             @if( $product->user->detail != null )
                                                 <li>
@@ -148,7 +154,7 @@
                                                     @else
                                                         <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
                                                     @endif
-                                                    <p><a href="{{ route('profile.show', [$product->user->code]) }}">{{ $product->user->detail->company_name }}</a></p>
+                                                    <p><a href="{{ route( 'profile.show', [ $product->user->code ] ) }}">{{ $product->user->detail->company_name }}</a></p>
                                                 </li>
                                                 <br>
                                             @endif

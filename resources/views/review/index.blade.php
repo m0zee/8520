@@ -4,9 +4,6 @@
 
 @section( 'content' )
 
-    <!--================================
-        START BREADCRUMB AREA
-    =================================-->
     <section class="breadcrumb-area">
         <div class="container">
             <div class="row">
@@ -22,13 +19,11 @@
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    <!--================================
-        END BREADCRUMB AREA
-    =================================-->
 
-    <!--================================
-        START AUTHOR AREA
-    =================================-->
+
+
+    
+
     <section class="author-profile-area">
         <div class="container">
 
@@ -46,7 +41,7 @@
                         @endif
                     </div>
                 </div>
-            @endif;
+            @endif
 
             @if( $errors->any() )
                 <div class="row">
@@ -74,35 +69,13 @@
                                 <div class="author">
                                     <h4>{{ $vendor->detail->company_name }}</h4>
                                 </div><!-- end /.author -->
-                                
-                                    {{-- <span class="{{ ( $vendor->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $vendor->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
-                                                 
-                                    </span> {{ $vendor->email }}
-
-                                    <span>{{ $vendor->email }}</span> --}}
-                                
-
-                                {{-- <div class="social social--color--filled">
-                                    <ul>
-                                        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                        <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                                        <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
-                                    </ul>
-                                </div> --}}<!-- end /.social -->
-
-                               {{--  <div class="author-btn">
-                                    <a href="#" class="btn btn--md btn--round">Contact</a>
-                                </div> --}}
                             </div><!-- end /.author-infos -->
                         </div><!-- end /.author-card -->
 
                         <div class="sidebar-card author-menu">
                             <ul>
                                 <li><a href="{{ route( 'profile.show', [ $vendor->code ] )}}">Profile</a></li>
-                                {{-- <li><a href="author-items.html">Author Items</a></li> --}}
                                 <li><a class="active" href="{{ route( 'vendors.reviews.index', $vendor->code ) }}">Customer Reviews</a></li>
-                                {{-- <li><a href="author-followers.html">Followers (67)</a></li>
-                                <li><a href="author-following.html">Following (39)</a></li> --}}
                             </ul>
                         </div><!-- end /.author-menu -->
                         <div class="sidebar-card message-card">
@@ -113,13 +86,13 @@
                             <div class="message-form mycontact-info">
         
                                
-                             <p><span class="lnr lnr-envelope "></span> {{$vendor->email}}</p>
+                             <p><span class="lnr lnr-envelope "></span> {{ $vendor->email }}</p>
                              
-                            <p><span class="lnr lnr-phone"></span> {{$vendor->detail->phone_number}}</p>
+                            <p><span class="lnr lnr-phone"></span> {{ $vendor->detail->phone_number }}</p>
 
-                            <p><span class="lnr lnr-smartphone"></span> {{$vendor->detail->mobile_number}}</p>
+                            <p><span class="lnr lnr-smartphone"></span> {{ $vendor->detail->mobile_number }}</p>
 
-                            <p><span class="lnr lnr-map-marker"></span> {{$vendor->detail->address}}</p>
+                            <p><span class="lnr lnr-map-marker"></span> {{ $vendor->detail->address }}</p>
 
                             </div><!-- end /.message-form -->
                         </div><!-- end /.freelance-status -->
@@ -131,7 +104,7 @@
                         <div class="col-md-6 col-sm-6">
                             <div class="author-info mcolorbg4">
                                 <p>Total Products</p>
-                                <h3>4,369</h3>
+                                <h3>{{ number_format( $productCount )}}</h3>
                             </div>
                         </div><!-- end /.col-md-4 -->
 
@@ -139,15 +112,16 @@
                         <div class="col-md-6 col-sm-6">
                             <div class="author-info scolorbg">
                                 <p>Total Rating</p>
-                                <div class="rating">
+                                <div class="rating product--rating">
                                     <ul>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star"></span></li>
-                                        <li><span class="fa fa-star-half-o"></span></li>
+                                        @for( $i = 0; $i < $avgRatings; $i ++ )
+                                            <li><span class="fa fa-star"></span></li>
+                                        @endfor
+                                        @for( $i = 5; $i > $avgRatings; $i -- )
+                                            <li><span class="fa fa-star-o"></span></li>
+                                        @endfor
                                     </ul>
-                                    <span class="rating__count">(26)</span>
+                                    <span class="rating__count">({{ $raters }})</span>
                                 </div>
                             </div>
                         </div><!-- end /.col-md-4 -->
@@ -167,11 +141,11 @@
                                         @foreach( $reviews as $review )
                                             <li class="single-thread">
                                                 <div class="media">
-                                                    <div class="media-left">
+                                                    {{-- <div class="media-left">
                                                         <a href="#">
                                                             <img class="media-object" src="{{ url( 'images/m1.png' ) }}" alt="Commentator Avatar">
                                                         </a>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="media-body">
                                                         <div class="clearfix">
                                                             <div class="pull-left">
@@ -250,11 +224,6 @@
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    <!--================================
-        END AUTHOR AREA
-    =================================-->
-
-    {{-- {{ Form::hidden( 'rating_url', route( 'vendors.ratings.store', Request::segment( 2 ) ), [ 'id' => 'rating_url' ] ) }} --}}
 
 @endsection
 

@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use App\Country;
 use App\User;
 use App\VendorDetail;
-use Illuminate\Support\Facades\Auth;
 use App\Product;
+use \App\Review;
+
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -19,8 +23,6 @@ class ProfileController extends Controller
     }
 
 
-
-
     public function create()
     {
     	$country   = Country::pluck( 'name', 'id' );
@@ -28,9 +30,6 @@ class ProfileController extends Controller
 
     	return view( 'frontend.profile.create', compact( 'country', 'user' ) );
     }
-
-
-
 
 
     public function store( Request $request )
@@ -205,19 +204,30 @@ class ProfileController extends Controller
     }
 
 
-
-
-
     public function show( $code )
     {
-        $this->data['user']         = User::with( 'detail' )->where( 'code', $code )->first();
-        $this->data['productCount'] = Product::where( [ 'user_id' => $this->data['user']->id, 'status_id' => 2 ] )->count();
+        $user                       = User::with( 'detail' )->where( 'code', $code )->first();
+        
+        $this->data['user']         = $user;
+        $this->data['productCount'] = Product::where( [ 'user_id' => $user->id, 'status_id' => 2 ] )->count();
         $this->data['products']     = Product::with( 'user.detail', 'status', 'currency', 'unit', 'sub_category.category' )->where([ 
             'user_id'   => $this->data['user']->id,
             'status_id' => 2
         ])->take( 4 )->get();
 
+        $this->getRatings( $user->code );
+        
         return view( 'frontend.profile.show', $this->data );
+    }
+
+    private function getRatings( $user_code )
+    {
+        $ratings = Review::select([
+            DB::raw( 'SUM( ratings ) AS stars' ), DB::raw( 'COUNT( id ) AS raters' )
+        ])->where( [ 'vendor_code' =>  $user_code, 'status_id' => 2 ] )->first();
+
+        $this->data['raters']       = $ratings->raters;
+        $this->data['avgRatings']   = ( $ratings->stars != null ) ? round( (int)$ratings->stars / (int)$ratings->raters ) : 0;
     }
 
 
