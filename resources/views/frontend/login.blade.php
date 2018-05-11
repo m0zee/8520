@@ -158,9 +158,7 @@
                                             <li>
                                                 <a href="{{ route( 'google.login' ) }}"><span class="fa fa-google-plus"></span></a>
                                             </li>
-                                            <li>
-                                                <a href="#"><span class="fa fa-linkedin"></span></a>
-                                            </li>
+                                            
                                         </ul>
                                     </div>
                                 </div>
