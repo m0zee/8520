@@ -166,7 +166,7 @@
                                 </div>
     
                                 <div class="login_assist">
-                                    <p class="recover">Lost your <a href="pass-recovery.html">username</a> or <a href="pass-recovery.html">password</a>?</p>
+                                    <p class="recover">Lost your <a href="{{ route('password.request') }}">username</a> or <a href="{{ route('password.request') }}">password</a>?</p>
                                     <p class="signup">Don't have an <a href="{{ url('/register') }}">account</a>?</p>
                                 </div>
                             </div><!-- end .login form -->
