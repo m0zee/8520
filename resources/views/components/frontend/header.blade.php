@@ -30,77 +30,76 @@
                                     </div>
 
                                     <div class="dropdown dropdown--author">
-                                <ul>
-                                    {{-- <li><a href="author.html"><span class="lnr lnr-user"></span>Profile</a></li> --}}
-                                    <li>
-                                        <a href="{{ route( 'admin.dashboard' ) }}">
-                                            <span class="lnr lnr-home"></span> Dashboard
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route( 'password.change.index' ) }}">
-                                            <span class="lnr lnr-lock"></span> Change Password
-                                        </a>
-                                    </li>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ route( 'admin.dashboard' ) }}">
+                                                    <span class="lnr lnr-home"></span> Dashboard
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'password.change.index' ) }}">
+                                                    <span class="lnr lnr-lock"></span> Change Password
+                                                </a>
+                                            </li>
 
-                                    <li>
-                                        <a href="{{ route( 'admin.userlist', [ 'vendor' ]) }}">
-                                            <span class="fa fa-users"></span> Vendors
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route( 'admin.userlist', [ 'buyer' ]) }}">
-                                            <span class="fa fa-users"></span> Buyers
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route( 'admin.categories.index' ) }}">
-                                            <span class="fa fa-list"></span> Categories
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route( 'admin.products.index' ) }}">
-                                            <span class="fa fa-archive"></span> Products
-                                        </a>
-                                    </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.userlist', [ 'vendor' ]) }}">
+                                                    <span class="fa fa-users"></span> Vendors
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.userlist', [ 'buyer' ]) }}">
+                                                    <span class="fa fa-users"></span> Buyers
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.categories.index' ) }}">
+                                                    <span class="fa fa-list"></span> Categories
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.products.index' ) }}">
+                                                    <span class="fa fa-archive"></span> Products
+                                                </a>
+                                            </li>
 
-                                    <li>
-                                        <a href="{{ route( 'admin.reviews.index' ) }}">
-                                            <span class="fa fa-star"></span> Reviews
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route( 'admin.messages.index' ) }}">
-                                            <span class="fa fa-comments-o"></span> Messages
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route( 'admin.requirements.index' ) }}">
-                                            <span class="fa fa-info-circle"></span> Requirements
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route( 'admin.reports.index' ) }}">
-                                            <span class="fa fa-bug"></span> Reports
-                                        </a>
-                                    </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.reviews.index' ) }}">
+                                                    <span class="fa fa-star"></span> Reviews
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.messages.index' ) }}">
+                                                    <span class="fa fa-comments-o"></span> Messages
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.requirements.index' ) }}">
+                                                    <span class="fa fa-info-circle"></span> Requirements
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.reports.index' ) }}">
+                                                    <span class="fa fa-bug"></span> Reports
+                                                </a>
+                                            </li>
 
 
-                                    {{-- <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
-                                    <li><a href="cart.html"><span class="lnr lnr-cart"></span>Purchases</a></li>
-                                    <li><a href="favourites.html"><span class="lnr lnr-heart"></span> Favourite</a></li>
-                                    <li><a href="dashboard-add-credit.html"><span class="lnr lnr-dice"></span>Add Credits</a></li>
-                                    <li><a href="dashboard-statement.html"><span class="lnr lnr-chart-bars"></span>Sale Statement</a></li>
-                                    <li><a href="dashboard-upload.html"><span class="lnr lnr-upload"></span>Upload Item</a></li>
-                                    <li><a href="dashboard-manage-item.html"><span class="lnr lnr-book"></span>Manage Item</a></li>
-                                    <li><a href="dashboard-withdrawal.html"><span class="lnr lnr-briefcase"></span>Withdrawals</a></li> --}}
-                                    <li>
-                                        <a href="{{ route( 'logout' ) }}" onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
-                                                <span class="lnr lnr-exit"></span> Logout
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                                            {{-- <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
+                                            <li><a href="cart.html"><span class="lnr lnr-cart"></span>Purchases</a></li>
+                                            <li><a href="favourites.html"><span class="lnr lnr-heart"></span> Favourite</a></li>
+                                            <li><a href="dashboard-add-credit.html"><span class="lnr lnr-dice"></span>Add Credits</a></li>
+                                            <li><a href="dashboard-statement.html"><span class="lnr lnr-chart-bars"></span>Sale Statement</a></li>
+                                            <li><a href="dashboard-upload.html"><span class="lnr lnr-upload"></span>Upload Item</a></li>
+                                            <li><a href="dashboard-manage-item.html"><span class="lnr lnr-book"></span>Manage Item</a></li>
+                                            <li><a href="dashboard-withdrawal.html"><span class="lnr lnr-briefcase"></span>Withdrawals</a></li> --}}
+                                            <li>
+                                                <a href="{{ route( 'logout' ) }}" onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
+                                                        <span class="lnr lnr-exit"></span> Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             @endif
 
@@ -265,7 +264,7 @@
                                 <li>
                                     <div class="icon_wrap">
                                         <a href="{{ route( 'comparison.index' )}}">
-                                            <span class="fa fa-shopping-basket"></span> <span class="notification_count msg" id="comparisonProductCountContainer"></span>
+                                            <span class="fa fa-shopping-basket"></span> <span class="notification_count msg comparisonProductCountContainer" id="comparisonProductCountContainer"></span>
                                         </a>
                                     </div>
                                 </li>
@@ -278,65 +277,248 @@
                         <span class="lnr lnr-user menu_icon"></span>
 
                         <!-- offcanvas menu -->
-                        <div class="offcanvas-menu closed">
+                        <div class="offcanvas-menu closed ">
+
                             <span class="lnr lnr-cross close_menu"></span>
-                            <div class="author-author__info">
-                                <div class="author__avatar v_middle">
-                                    <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
+                            @if( Auth::check() )
+
+                                @if( Auth::user()->user_type_id == 3 ) {{-- Admin --}}
+                                    <div class="author-author__info">
+                                        <div class="author__avatar v_middle"> 
+                                            <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
+                                        </div>
+                                        <div class="autor__info v_middle">
+
+                                            <p class="name">{{ Auth::user()->name }}</p>
+                                            <p class="ammount">{{ Auth::user()->user_type->name }}</p>
+                                        </div>
+                                    </div><!--end /.author-author__info-->
+
+                                    <div class="author__notification_area">
+                                        <ul>
+                                            <li>
+                                                <div class="icon_wrap">
+                                                    <a href="{{ route( 'comparison.index' )}}">
+                                                        <span class="fa fa-shopping-basket"></span> <span class="notification_count msg comparisonProductCountContainer" id="comparisonProductCountContainer"></span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div><!--start .author__notification_area -->
+
+                                    <div class="dropdown dropdown--author">
+                                        <ul>
+                                            <li>
+                                                <a href="{{ route( 'admin.dashboard' ) }}">
+                                                    <span class="lnr lnr-home"></span> Dashboard
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'password.change.index' ) }}">
+                                                    <span class="lnr lnr-lock"></span> Change Password
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{ route( 'admin.userlist', [ 'vendor' ]) }}">
+                                                    <span class="fa fa-users"></span> Vendors
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.userlist', [ 'buyer' ]) }}">
+                                                    <span class="fa fa-users"></span> Buyers
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.categories.index' ) }}">
+                                                    <span class="fa fa-list"></span> Categories
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.products.index' ) }}">
+                                                    <span class="fa fa-archive"></span> Products
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{ route( 'admin.reviews.index' ) }}">
+                                                    <span class="fa fa-star"></span> Reviews
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.messages.index' ) }}">
+                                                    <span class="fa fa-comments-o"></span> Messages
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.requirements.index' ) }}">
+                                                    <span class="fa fa-info-circle"></span> Requirements
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'admin.reports.index' ) }}">
+                                                    <span class="fa fa-bug"></span> Reports
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'logout' ) }}" onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
+                                                        <span class="lnr lnr-exit"></span> Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                @if( Auth::user()->user_type_id == 2 ) {{-- Vendor --}}
+
+                                    <div class="author-author__info">
+                                        <div class="author__avatar v_middle">
+                                            @if (Auth::user()->detail != NULL)
+                                                <img src="{{ asset( 'storage/profile_img/50x50_' . Auth::user()->detail->profile_img ) }}" alt="user avatar">
+                                                @else
+                                                <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
+                                            @endif
+                                        </div>
+                                        <div class="autor__info v_middle">
+
+                                            <p class="name">{{ Auth::user()->name }}</p>
+                                            <p class="ammount">{{ Auth::user()->user_type->name }}</p>
+                                        </div>
+                                    </div><!--end /.author-author__info-->
+
+                                    <div class="author__notification_area">
+                                        <ul>
+                                            <li>
+                                                <div class="icon_wrap">
+                                                    <a href="{{ route( 'comparison.index' )}}">
+                                                        <span class="fa fa-shopping-basket"></span> <span class="notification_count msg comparisonProductCountContainer" id="comparisonProductCountContainer"></span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div><!--start .author__notification_area -->
+
+                                    <div class="dropdown dropdown--author">
+                                        <ul>
+                                            <li>
+                                                <a href="{{ route( 'vendor.dashboard' ) }}">
+                                                    <span class="lnr lnr-home"></span> Dashboard
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{ route( 'profile.edit', [ Auth::user()->code ] ) }}">
+                                                    <span class="lnr lnr-user"></span> Profile
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="{{ route( 'password.change.index' ) }}">
+                                                    <span class="lnr lnr-lock"></span> Change Password
+                                                </a>
+                                            </li>
+                                           
+                                            <li>
+                                                 <a href="{{ route( 'my-account.product' ) }}">
+                                                    <span class="lnr lnr-cart"></span> Product
+                                                </a>
+                                            </li>
+                                            <li class="{{ ( isset( $active ) && $active == 'messages' ) ? 'active' : ''  }}">
+                                                <a href="{{ route( 'messages.index' ) }}">
+                                                    <span class="lnr lnr-envelope"></span> Messages
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route( 'logout' ) }}"
+                                                 onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
+                                                    <span class="lnr lnr-exit"></span> Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                @endif
+
+                                @if( Auth::user()->user_type_id == 1 ) {{-- Buyer --}}
+                                    <div class="author-author__info">
+                                        <div class="author__avatar v_middle"> 
+                                            <img src="{{ url( 'images/usr_avatar.png' ) }}" alt="user avatar">
+                                        </div>
+                                        <div class="autor__info v_middle">
+
+                                            <p class="name">{{ Auth::user()->name }}</p>
+                                            <p class="ammount">{{ Auth::user()->user_type->name }}</p>
+                                        </div>
+                                    </div><!--end /.author-author__info-->
+
+                                    <div class="author__notification_area">
+                                        <ul>
+                                            <li>
+                                                <div class="icon_wrap">
+                                                    <a href="{{ route( 'comparison.index' )}}">
+                                                        <span class="fa fa-shopping-basket"></span> <span class="notification_count msg comparisonProductCountContainer" id="comparisonProductCountContainer"></span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div><!--start .author__notification_area -->
+
+                                    <div class="dropdown dropdown--author">
+                                        <ul>
+                                            <li>
+                                                <a href="{{ url( 'dashboard' ) }}">
+                                                    <span class="lnr lnr-home"></span> Dashboard
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="{{ route( 'password.change.index' ) }}">
+                                                    <span class="lnr lnr-lock"></span> Change Password
+                                                </a>
+                                            </li>
+                                           
+                                            <li>
+                                                <a href="{{ route( 'buyer.reviews' ) }}">
+                                                    <span class="lnr lnr-list"></span> Reviews
+                                                </a>
+                                            </li>
+                                            
+                                             <li>
+                                                <a href="{{ route( 'buyer.shortlist.index' ) }}">
+                                                    <span class="lnr lnr-cart"></span> Shortlist
+                                                </a>
+                                            </li>
+                                            
+                                             <li>
+                                                <a href="{{ route('buyer.requirements') }}">
+                                                    <span class="lnr lnr-briefcase"></span> Buying Requirement
+                                                </a>
+                                            </li>
+                                            
+                                             <li>
+                                                <a href="#">
+                                                    <span class="lnr lnr-envelope"></span> Messages
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="{{ route( 'logout' ) }}"
+                                                 onclick="event.preventDefault(); document.getElementById( 'logout-form' ).submit();">
+                                                    <span class="lnr lnr-exit"></span> Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
+                                
+                            @else
+                                <br>
+                                <br>
+                                <div class="text-center">
+                                    <a href="{{ route('register') }}" class="author-area__seller-btn inline">Signup</a>
+                                    <a href="{{ url( 'login' ) }}" class="author-area__seller-btn inline">Login</a>
                                 </div>
-                                <div class="autor__info v_middle">
-                                    <p class="name">
-                                        Jhon Doe
-                                    </p>
-                                    <p class="ammount">$20.45</p>
-                                </div>
-                            </div><!--end /.author-author__info-->
-
-                            <div class="author__notification_area">
-                                <ul>
-                                    <li>
-                                        <a href="notification.html">
-                                            <div class="icon_wrap">
-                                                <span class="lnr lnr-alarm"></span> <span class="notification_count noti">25</span>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="message.html">
-                                            <div class="icon_wrap">
-                                                <span class="lnr lnr-envelope"></span> <span class="notification_count msg">6</span>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="cart.html">
-                                            <div class="icon_wrap">
-                                                <span class="lnr lnr-cart"></span> <span class="notification_count purch">2</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div><!--start .author__notification_area -->
-
-                            <div class="dropdown dropdown--author">
-                                <ul>
-                                    <li><a href="author.html"><span class="lnr lnr-user"></span>Profile</a></li>
-                                    <li><a href="dashboard.html"><span class="lnr lnr-home"></span> Dashboard</a></li>
-                                    <li><a href="dashboard-setting.html"><span class="lnr lnr-cog"></span> Setting</a></li>
-                                    <li><a href="cart.html"><span class="lnr lnr-cart"></span>Purchases</a></li>
-                                    <li><a href="favourites.html"><span class="lnr lnr-heart"></span> Favourite</a></li>
-                                    <li><a href="dashboard-add-credit.html"><span class="lnr lnr-dice"></span>Add Credits</a></li>
-                                    <li><a href="dashboard-statement.html"><span class="lnr lnr-chart-bars"></span>Sale Statement</a></li>
-                                    <li><a href="dashboard-upload.html"><span class="lnr lnr-upload"></span>Upload Item</a></li>
-                                    <li><a href="dashboard-manage-item.html"><span class="lnr lnr-book"></span>Manage Item</a></li>
-                                    <li><a href="dashboard-withdrawal.html"><span class="lnr lnr-briefcase"></span>Withdrawals</a></li>
-                                    <li><a href="#"><span class="lnr lnr-exit"></span>Logout</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="text-center"><a href="{{ route('register') }}" class="author-area__seller-btn inline">Become a Seller</a></div>
+                            @endif
                         </div>
                     </div><!-- end /.mobile_content -->
                 </div><!-- end /.col-md-5 -->

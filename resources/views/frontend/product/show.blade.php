@@ -84,13 +84,6 @@
 
                        {{--  <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> --}}
 
-                       <div class="fb-share-button" data-href="{{ url()->current() }}" data-layout="button"></div>
-                       {{-- <a href="whatsapp://send" data-text="How to create the Share on WhatsApp button on your site:" data-href="" class="wa_btn wa_btn_s">Share</a> --}}
-
-                       <a href="whatsapp://send?text={{ url()->current() }}" data-action="share/whatsapp/share">Share via Whatsapp</a>
-
-                        
-
                         <div class="item-info">
                             <div class="item-navigation">
                                 <ul class="nav nav-tabs">
@@ -108,6 +101,15 @@
                                 </div><!-- end /.tab-content -->
                             </div><!-- end /.tab-content -->
                         </div><!-- end /.item-info -->
+                        <br>
+
+                        <div class="text-center" id="share">
+                            {{-- <div class="fb-share-button" data-href="{{ url()->current() }}" data-layout="button" ></div> --}}
+                            <a href="javascript:void()" onclick="facebookShare()" id="facebookShare" data-url="{{ url()->current() }}" class="btn btn-primary btn-lg"><i class="fa fa-facebook"></i> Share via Facebook</a>
+                           
+                           
+                            <a href="whatsapp://send?text={{ url()->current() }}" data-action="share/whatsapp/share" class="btn btn-success btn-lg"><i class="fa fa-whatsapp"></i> Share via Whatsapp</a>
+                        </div>
                     </div><!-- end /.col-md-8 -->
 
 
@@ -588,4 +590,13 @@
     <script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
     <script src="{{ asset( 'js/page/home/show.js' ) }}"></script>
     <script src="{{ asset( 'js/page/home/index.js' ) }}"></script>
+    <script>
+        function facebookShare(){
+            // $('#share .fb-share-button').click();
+            FB.ui({
+                method: 'share',
+                href: $('#facebookShare').data('url'),
+            }, function(response){});
+        }
+    </script>
 @endsection

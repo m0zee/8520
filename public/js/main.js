@@ -8,7 +8,7 @@ $.pakMaterial = $.pakMaterial || {};
         $( '.tip' ).tooltip();
 
         $.pakMaterial.hiddComparisonProductCount        = $( '#hiddComparisonProductCount' );
-        $.pakMaterial.comparisonProductCountContainer   = $( '#comparisonProductCountContainer' );
+        $.pakMaterial.comparisonProductCountContainer   = $( '.comparisonProductCountContainer' );
         $.pakMaterial.notificationArea                  = $.pakMaterial.comparisonProductCountContainer.closest( '.author__notification_area' )
 
         $.pakMaterial.notify = function( type, message ) {

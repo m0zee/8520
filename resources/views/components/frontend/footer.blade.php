@@ -122,7 +122,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="copyright-text">
-                        <p>&copy; 2018 <a href="#">MartPlace</a>. All rights reserved. Created by <a href="http://www.ascentisglobal.com/">AscentisGlobal</a></p>
+                        <p>&copy; 2018 <a href="{{ url('') }}">PakMaterial</a>. All rights reserved. Created by <a href="http://www.ascentisglobal.com/">AscentisGlobal</a></p>
                     </div>
 
                     <div class="go_top">

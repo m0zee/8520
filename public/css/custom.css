@@ -98,3 +98,11 @@ button.my-btn:hover, .my-btn:hover
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+.item-preview {
+    height:640px;
+}
+
+.item-info .tab-content {
+    margin-top: 0px;
+}
