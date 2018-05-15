@@ -21,7 +21,7 @@
                     </li>
                     <li class="{{ ( isset( $active ) && $active == 'message' ) ? 'active' : '' }}">
                         <a href="{{ route( 'messages.index' ) }}">
-                            <span class="fa fa-comments-o"></span> Messages
+                            <span class="fa fa-comments-o"></span> Messages <span id="messageCountBadge" class="badge"></span>
                         </a>
                     </li>
                 </ul><!-- end /.dashboard_menu -->

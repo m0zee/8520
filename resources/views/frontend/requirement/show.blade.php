@@ -5,33 +5,6 @@
 @section( 'title', 'Buyer Requirements' )
 @section( 'content' )
 
-    <!--================================
-        START BREADCRUMB AREA
-    =================================-->
-    {{-- <section class="breadcrumb-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="breadcrumb">
-                        <ul>
-                            <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="{{ route('requirement') }}">Requirement</a></li>
-                            <li class="active"><a href="#">Show</a></li>
-                        </ul>
-                    </div>
-                    <h1 class="page-title">{{ $requirement->count() > 0 ? $requirement->name : 'Requirement Not Available' }}</h1>
-                </div><!-- end /.col-md-12 -->
-            </div><!-- end /.row -->
-        </div><!-- end /.container -->
-    </section> --}}
-    <!--================================
-        END BREADCRUMB AREA
-    =================================-->
-
-
-    <!--============================================
-        START SINGLE PRODUCT DESCRIPTION AREA
-    ==============================================-->
     <section class="single-product-desc">
         <div class="container">
             <div class="row">
@@ -39,7 +12,7 @@
                 @if( $errors->any() )
                     <div class="col-md-12">
                         <div class="alert alert-danger text-center">
-                            Message could not be sent. There is an error. Please see the form below.
+                            <strong>Message could not be sent. There is an error. Please see the form below.</strong>
                         </div>
                     </div>
                 @endif
@@ -71,16 +44,11 @@
                                 </li>
                             </ul>
                         </div><!-- end /.item-navigation -->
-
-                        <ul class="tab-content-wrapper">
-                            <li>Unit: {{ $requirement->unit->name }}</li>
-                            <li>Quantity: {{ $requirement->quantity }}</li>
-                        </ul>
                             
                         <div class="fade in tab-pane product-tab active" id="product-details">
                             <div class="tab-content-wrapper">
                                 <h3>Description</h3><br>
-                                {{ $requirement->description }}
+                                {!! nl2br( $requirement->description ) !!}
                             </div>
                         </div><!-- end /.tab-content -->
                        
@@ -128,35 +96,17 @@
 
                             <ul class="infos">
                                 <li><p class="data-label">Code:</p><p class="info">{{ $requirement->code }} </p></li>
-                                <li><p class="data-label">Units</p><p class="info">{{ $requirement->unit->name }}</p></li>
-                                <li><p class="data-label">Quantity</p><p class="info">{{ $requirement->quantity }}</p></li>
-                                {{-- <li class="text-center">
-                                    <a href="" class="btn btn--round btn-warning btn-sm">
-                                    Contact
-                                </a></li> --}}
+                                <li><p class="data-label">Quantity</p><p class="info">{{ $requirement->quantity . ' ' . $requirement->unit->name }}</p></li>
                             </ul>
 
                         </div><!-- end /.aside -->
-
-                        {{-- <div class="author-card sidebar-card ">
-                            <div class="card-title">
-                                <h4>Contact</h4>
-                            </div>
-
-                        </div> --}}<!-- end /.author-card -->
                     </aside><!-- end /.aside -->
                     
                 </div><!-- end /.col-md-4 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    <!--===========================================
-        END SINGLE PRODUCT DESCRIPTION AREA
-    ===============================================-->
 
-    <!--============================================
-        START MORE PRODUCT ARE
-    ==============================================-->
     <section class="more_product_area section--padding">
         <div class="container">
             <div class="row">
@@ -224,9 +174,5 @@
                 </div><!-- end /.container -->
             </div><!-- end /.container -->
     </section>
-    <!--============================================
-        END MORE PRODUCT AREA
-    ==============================================-->
-
 
 @endsection
