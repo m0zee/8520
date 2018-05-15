@@ -106,3 +106,32 @@ button.my-btn:hover, .my-btn:hover
 .item-info .tab-content {
     margin-top: 0px;
 }
+
+.card_content .delete{
+    position: relative;
+    margin-bottom:20px;
+}
+
+/*.delete img {
+    width: 100%;
+    height: auto;
+}*/
+
+.delete .btn {
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    padding: 3px 6px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.product .prod_btn{
+    z-index: 2;
+}

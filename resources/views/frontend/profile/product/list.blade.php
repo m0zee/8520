@@ -51,7 +51,7 @@
 
                             <div class="pull-right">
                                 <div class="filter__option filter--text">
-                                    <p><span>{{ $products->count() }}</span> Products</p>
+                                    <p><span>{{ $count->count() }}</span> Products</p>
                                 </div>
 
                                 {{-- <div class="filter__option filter--select">
@@ -158,20 +158,14 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="pagination-area">
-                            <nav class="navigation pagination" role="navigation">
-                                <div class="nav-links">
-                                    <a class="prev page-numbers" href="#"><span class="lnr lnr-arrow-left"></span></a>
-                                    <a class="page-numbers current" href="#">1</a>
-                                    <a class="page-numbers" href="#">2</a>
-                                    <a class="page-numbers" href="#">3</a>
-                                    <a class="next page-numbers" href="#"><span class="lnr lnr-arrow-right"></span></a>
-                                </div>
-                            </nav>
-                        </div><!-- end /.pagination-area -->
-                    </div><!-- end /.col-md-12 -->
-                </div><!-- end /.row -->
+                <div class="col-md-12">
+                    <div class="pagination-area categorised_item_pagination">
+                        @if( isset( $products ) && $products->hasPages() )
+                            {{ $products->links( 'vendor.pagination.pak-material' ) }}
+                        @endif
+                    </div>
+                </div>
+            </div><!-- end /.row -->
 
                 @else
 

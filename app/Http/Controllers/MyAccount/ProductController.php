@@ -25,7 +25,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $this->data['products'] = Product::with( 'user.detail', 'status', 'currency', 'unit', 'sub_category.category' )->where( 'user_id', Auth::user()->id )->get();
+        $this->data['products'] = Product::with( 'user.detail', 'status', 'currency', 'unit', 'sub_category.category' )->where( 'user_id', Auth::user()->id )->paginate(12);
+
+        $this->data['count'] = Product::where( 'user_id', Auth::user()->id )->get();
         
         return view( 'frontend.profile.product.list', $this->data );
     }
@@ -304,8 +306,8 @@ class ProductController extends Controller
 
     public function gallery( $code )
     {
-        $product                = Product::where( 'code', $code )->first();
-        $this->data['gallery']  = ProductGallery::where( 'product_id', $product->id )->get();
+        $this->data['product']                = Product::where( 'code', $code )->first();
+        $this->data['gallery']  = ProductGallery::where( 'product_id', $this->data['product']->id )->get();
 
         return view('frontend.profile.product.gallery', $this->data );
     }

@@ -26,11 +26,15 @@ class GoogleAccountService
 
             if( !$user )
             {
+                $lastUser = User::orderBy( 'id', 'DESC' )->first();
+                $code = ( $lastUser ) ? $this->generate_user_code( $lastUser->code ) : 'u-0001';
+
                 $user = User::create([
                     'email'         => $providerUser->getEmail(),
                     'name'          => $providerUser->getName(),
                     'password'      => md5(rand(1,10000)),
-                    'user_type_id'  => 1
+                    'user_type_id'  => 1,
+                    'code'          => $code
                 ]);
             }
 
@@ -40,5 +44,33 @@ class GoogleAccountService
 
             return $user;
         }
+    }
+
+    public function generate_user_code( $code )
+    {
+        $code =  explode( '-', $code );
+
+        $index  = $code[1] + 1;
+
+        $length = strlen( $index );
+
+        switch( $length )
+        {
+            case 1:
+                $index = '000' . $index;
+            break;
+            
+            case 2:
+                $index = '00' . $index;
+            break;
+
+            case 3:
+                $index = '0' . $index;
+            break;
+        }
+
+        $code = 'u-'. $index;
+
+        return $code;
     }
 }

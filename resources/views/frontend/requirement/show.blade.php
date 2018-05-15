@@ -175,17 +175,24 @@
 
                         <div class="col-md-4 col-sm-6">
                             <div class="product product--card">
+                                <div class="product__thumbnail">
+                                    @if( file_exists( $req->path . '/' . $req->img ) )
+                                        <img class="auth-img" src="{{ asset( 'storage/requirement/361x230_' . $req->img ) }}" alt="author image">
+                                    @else
+                                        <img src="images/p1.jpg" alt="Product Image">
+                                    @endif
+                                    
+                                </div>
                                 <div class="product-desc">
                                     <a href="{{ route('requirement.show', [$req->code]) }}" class="product_title"><h4>{{ $req->name }}</h4></a>
                                     <ul class="titlebtm">
-                                        <li>
-                                            <img class="auth-img" src="{{ asset('images/auth.jpg') }}" alt="author image">
-                                            <p><a href="#">{{ $req->user->name }}</a></p>
-                                        </li>
 
                                         <li class="">
+                                                <span class="fa fa-folder iconcolor"></span>
                                                 <a href="{{ route('categories.requirement', [$req->category->slug]) }}">{{ $req->category->name }}</a>
-                                                <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.requirement', [$req->category->slug, $req->sub_category->slug]) }}">{{ $req->sub_category->name }}</a>
+                                                <span class="lnr lnr-chevron-right"></span>
+                                                <span class="fa fa-folder iconcolor"></span>
+                                                <a href="{{ route('categories.sub-categories.requirement', [$req->category->slug, $req->sub_category->slug]) }}">{{ $req->sub_category->name }}</a>
                                             </li>
 
                                     </ul>
@@ -198,7 +205,7 @@
                                     <div class="price_love">
                                         <a href="{{ route('requirement.show', [$req->code]) }}" class="btn btn--round btn-primary btn-sm">Detail</a>
                                     </div>
-                                    <a href="" class="btn btn--round btn-warning btn-sm">Contact</a>
+                                    <a href="{{ route( 'requirement.show', [ $req->code ] ) . '#message-form' }}" class="btn btn--round btn-warning btn-sm">Contact</a>
                                     {{-- <div class="sell"><p><span class="lnr lnr-cart"></span><span>16</span></p></div> --}}
                                 </div><!-- end /.product-purchase -->
                             </div><!-- end /.single-product -->

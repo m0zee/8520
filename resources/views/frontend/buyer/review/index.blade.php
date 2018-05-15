@@ -16,7 +16,7 @@
                     <div class="breadcrumb">
                         <ul>
                             <li><a href="{{ url('') }}">Home</a></li>
-                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li class="active"><a href="#">Dashboard</a></li>
                         </ul>
                     </div>
                     <h1 class="page-title">Buyer's Dashboard</h1>

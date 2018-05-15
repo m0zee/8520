@@ -170,12 +170,7 @@ $( my_form_id ).on( "submit", function( event ) {
         var total_selected_files = this.elements['__files[]'].files.length; //number of files
         
         //check if file is available
-        if( total_selected_files <= 0 ){
-            error.push( "You have not selected image. Please select image."); //push error text
-            proceed = false; //set proceed flag to false
-        }
-        //limit number of files allowed
-        else if(total_selected_files > total_files_allowed){
+        if(total_selected_files > total_files_allowed){
             error.push( "You have selected "+total_selected_files+" file(s), " + total_files_allowed +" is maximum!"); //push error text
             proceed = false; //set proceed flag to false
         }
@@ -237,7 +232,7 @@ $( my_form_id ).on( "submit", function( event ) {
             .done(function(res) { //
                 if (res.hasOwnProperty('success') ) 
                 {
-                    window.location.href = "{{ route('my-account.product') }}"  ;
+                    window.location.href =  $('#base_url').val() + "/my-account/products"  ;
                 }
                 else if(res.errors != '')
                 {

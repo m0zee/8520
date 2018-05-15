@@ -16,10 +16,11 @@
                     <div class="breadcrumb">
                         <ul>
                             <li><a href="{{ url( '/' ) }}">Home</a></li>
-                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li><a href="{{ route('buyer.dashboard') }}">Dashboard</a></li>
+                            <li class="active"><a href="#">Short List</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Buyer's Dashboard</h1>
+                    <h1 class="page-title">Short List</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->

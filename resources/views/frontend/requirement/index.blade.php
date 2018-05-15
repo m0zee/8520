@@ -56,14 +56,13 @@
                                         <h4>{{ $req->name }}</h4>
                                     </a>
                                     <ul class="titlebtm">
-                                        <li>
-                                            <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
-                                            <p><a href="#">{{ $req->user->name }}</a></p>
-                                        </li>
+                                        
 
                                         <li>
+                                            <span class="fa fa-folder iconcolor"></span>
                                             <a href="{{ route( 'categories.requirement', [ $req->category->slug ] ) }}">{{ $req->category->name }}</a>
                                             <span class="lnr lnr-chevron-right"></span>
+                                            <span class="fa fa-folder iconcolor"></span>
                                             <a href="{{ route( 'categories.sub-categories.requirement', [ $req->category->slug, $req->sub_category->slug ] ) }}">
                                                 {{ $req->sub_category->name }}
                                             </a>

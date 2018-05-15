@@ -16,8 +16,8 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li><a href="{{ url('') }}">Home</a></li>
+                            <li><a href="{{ route('vendor.dashboard') }}">Dashboard</a></li>
                             <li class="active"><a href="#">Manage Item</a></li>
                         </ul>
                     </div>

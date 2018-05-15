@@ -10,11 +10,11 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li class="active"><a href="#">Favorites</a></li>
+                            <li><a href="{{ url('') }}">Home</a></li>
+                            <li class="active"><a href="#">Reviews</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Your Favourites</h1>
+                    <h1 class="page-title">Reviews</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->

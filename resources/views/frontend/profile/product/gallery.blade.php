@@ -23,12 +23,12 @@
                     <div class="breadcrumb">
                         <ul>
                             <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li><a href="{{ route('vendor.dashboard') }}">Dashboard</a></li>
                             <li><a href="{{ route('my-account.product') }}">Product</a></li>
                             <li class="active"><a href="#">Galary</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">PRODUCT NAME HERE</h1>
+                    <h1 class="page-title">{{ $product != NULL ? $product->name : 'Product Not Available' }}</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -76,7 +76,7 @@
                         <aside class="sidebar upload_sidebar">
                             <div class="sidebar-card">
                                 <div class="card-title">
-                                    <h3>Quick Upload  Rules</h3>
+                                    <h3>Uploaded Images</h3>
                                 </div>
 
                                 <div class="card_content" id="saved_images_container">
@@ -85,7 +85,7 @@
                                         @foreach ($gallery as $img)
                                             {{-- <img src="{{ asset('storage/product/gallery/'.$img->img) }}" alt=""> --}}
 
-                                               <div class="col-md-6">
+                                               <div class="col-md-6 delete">
                                                     <a href="{{ route('my-account.product.gallery.destroy', [$img->id]) }}"
                                                                class="btn btn-xs btn-danger rounded tip delete-image del-btn-pos-right"
                                                                role="button" data-placement="bottom" title="Click to delete this image.">
@@ -127,6 +127,7 @@ $(function () {
     $.uploadedImage.count   = 0;
     // $._queued = null
     // $.uploadedImage.files = [];
+
      
 
     var defaultMsgText =    '<h1>Drop file here to upload</h1> or ';
@@ -163,6 +164,7 @@ $(function () {
         // autoProcessQueue: false,
         maxFiles: 4,
         maxFilesize: 2,
+        parallelUploads: 1,
         // uploadMultiple: true,
         addRemoveLinks: true,
         // previewsContainer: "#preview",
@@ -234,7 +236,7 @@ showInImageContainer = function ( data ) {
         //                  '</div>' +
         //             '</div>';
 
-        template =  '<div class="col-md-6">' +
+        template =  '<div class="col-md-6 delete">' +
                             '<a href="'+ data.delete_url + '" class="btn btn-xs btn-danger rounded tip delete-image del-btn-pos-right" role="button" data-placement="bottom" title="Click to delete this image.">' +
                                 '<span class="fa fa-trash"></span>' +
                             '</a>' +
