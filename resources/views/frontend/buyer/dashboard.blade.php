@@ -583,7 +583,7 @@
                                                 <img src="images/notification_head2.png" alt="">
                                             </div>
                                             <div class="info">
-                                                <p><span>Michael Jorden</span> commented on <a href="#">MartPlace Extension Bundle</a></p>
+                                                <p><span>Michael Jorden</span> commented on <a href="#">PakMaterial Extension Bundle</a></p>
                                                 <p class="time">Just now</p>
                                             </div>
                                         </div><!-- end /.notifications -->

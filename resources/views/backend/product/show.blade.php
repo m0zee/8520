@@ -92,13 +92,6 @@
                                     <span class="lnr nav-right lnr-arrow-right"></span>
                                 </div> --}}<!-- end /.prev-nav -->
                             </div>
-
-                            <div class="item-action">
-                                <div class="action-btns">
-                                    <a href="#" class="btn btn--round btn--lg">Live Preview</a>
-                                    <a href="#" class="btn btn--round btn--lg btn--icon"><span class="lnr lnr-heart"></span>Add To Favorites</a>
-                                </div>
-                            </div><!-- end /.item__action -->
                         </div><!-- end /.item__preview-thumb-->
 
 
@@ -130,7 +123,7 @@
                 <div class="col-md-4">
                     <aside class="sidebar sidebar--single-product">
                         <div class="sidebar-card card-pricing">
-                            <div class="price"><h1><sup>{{ $product->currency->name }}</sup> {{ $product->price }}</h1></div>
+                            <div class="price"><h1><sup>{{ $product->currency->name }}</sup> {{ number_format($product->price) }}</h1></div>
                         </div><!-- end /.sidebar--card -->
 
                         <div class="sidebar-card card--product-infos">
@@ -139,7 +132,7 @@
                             </div>
 
                             <ul class="infos">
-                                <li><p class="data-label">Code:</p><p class="info">{{ $product->code }} </p></li>
+                                <li><p class="data-label">Code</p><p class="info">{{ $product->code }} </p></li>
                                 <li><p class="data-label">Units</p><p class="info">{{ $product->unit->name }}</p></li>
                                 <li><p class="data-label">Max Quantity</p><p class="info">{{ $product->max_supply }}</p></li>
                                 <li><p class="data-label">Brand</p><p class="info">{{ $product->brand_name }}</p></li>
@@ -181,176 +174,7 @@
         END SINGLE PRODUCT DESCRIPTION AREA
     ===============================================-->
 
-    <!--============================================
-        START MORE PRODUCT ARE
-    ==============================================-->
-    <section class="more_product_area section--padding">
-        <div class="container">
-            <div class="row">
-                <!-- start col-md-12 -->
-                <div class="col-md-12">
-                    <div class="section-title">
-                        <h1>More Items <span class="highlighted">by Aazztech</span></h1>
-                    </div>
-                </div><!-- end /.col-md-12 -->
-
-                <!-- start .col-md-4 -->
-                <div class="col-md-4 col-sm-6">
-                    <!-- start .single-product -->
-                    <div class="product product--card">
-
-                        <div class="product__thumbnail">
-                            <img src="images/p4.jpg" alt="Product Image">
-                            <div class="prod_btn">
-                                <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                            </div><!-- end /.prod_btn -->
-                        </div><!-- end /.product__thumbnail -->
-
-                        <div class="product-desc">
-                            <a href="#" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
-                            <ul class="titlebtm">
-                                <li>
-                                    <img class="auth-img" src="images/auth3.jpg" alt="author image">
-                                    <p><a href="#">AazzTech</a></p>
-                                </li>
-                                <li class="product_cat">
-                                    <a href="#"><img src="images/cathtm.png" alt="category image">Plugin</a>
-                                </li>
-                            </ul>
-
-                            <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                the mattis, leo quam aliquet congue.</p>
-                        </div><!-- end /.product-desc -->
-
-                        <div class="product-purchase">
-                            <div class="price_love">
-                                <span>$10</span>
-                                <p><span class="lnr lnr-heart"></span> 48</p>
-                            </div>
-
-                            <div class="rating product--rating">
-                                <ul>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star-half-o"></span></li>
-                                </ul>
-                            </div>
-
-                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>50</span></p></div>
-                        </div><!-- end /.product-purchase -->
-                    </div><!-- end /.single-product -->
-                </div><!-- end /.col-md-4 -->
-
-                <!-- start .col-md-4 -->
-                <div class="col-md-4 col-sm-6">
-                    <!-- start .single-product -->
-                    <div class="product product--card">
-
-                        <div class="product__thumbnail">
-                            <img src="images/p2.jpg" alt="Product Image">
-                            <div class="prod_btn">
-                                <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                            </div><!-- end /.prod_btn -->
-                        </div><!-- end /.product__thumbnail -->
-
-                        <div class="product-desc">
-                            <a href="#" class="product_title"><h4>Mccarther Coffee Shop</h4></a>
-                            <ul class="titlebtm">
-                                <li>
-                                    <img class="auth-img" src="images/auth2.jpg" alt="author image">
-                                    <p><a href="#">AazzTech</a></p>
-                                </li>
-                                <li class="product_cat">
-                                    <a href="#"><img src="images/catword.png" alt="category image">wordpress</a>
-                                </li>
-                            </ul>
-
-                            <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                the mattis, leo quam aliquet congue.</p>
-                        </div><!-- end /.product-desc -->
-
-                        <div class="product-purchase">
-                            <div class="price_love">
-                                <span>$10</span>
-                                <p><span class="lnr lnr-heart"></span> 48</p>
-                            </div>
-
-                            <div class="rating product--rating">
-                                <ul>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star-half-o"></span></li>
-                                </ul>
-                            </div>
-
-                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>50</span></p></div>
-                        </div><!-- end /.product-purchase -->
-                    </div><!-- end /.single-product -->
-                </div><!-- end /.col-md-4 -->
-
-                <!-- start .col-md-4 -->
-                <div class="col-md-4 col-sm-6">
-                    <!-- start .single-product -->
-                    <div class="product product--card">
-
-                        <div class="product__thumbnail">
-                            <img src="images/p6.jpg" alt="Product Image">
-                            <div class="prod_btn">
-                                <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                            </div><!-- end /.prod_btn -->
-                        </div><!-- end /.product__thumbnail -->
-
-                        <div class="product-desc">
-                            <a href="#" class="product_title"><h4>The of the century</h4></a>
-                            <ul class="titlebtm">
-                                <li>
-                                    <img class="auth-img" src="images/auth.jpg" alt="author image">
-                                    <p><a href="#">AazzTech</a></p>
-                                </li>
-                                <li class="product_cat">
-                                    <a href="#"><img src="images/catph.png" alt="Category Image">PSD</a>
-                                </li>
-                            </ul>
-
-                            <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque
-                                the mattis, leo quam aliquet congue.</p>
-                        </div><!-- end /.product-desc -->
-
-                        <div class="product-purchase">
-                            <div class="price_love">
-                                <span>$10</span>
-                                <p><span class="lnr lnr-heart"></span> 48</p>
-                            </div>
-
-                            <div class="rating product--rating">
-                                <ul>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star"></span></li>
-                                    <li><span class="fa fa-star-half-o"></span></li>
-                                </ul>
-                            </div>
-
-                            <div class="sell"><p><span class="lnr lnr-cart"></span><span>50</span></p></div>
-                        </div><!-- end /.product-purchase -->
-                    </div><!-- end /.single-product -->
-                </div><!-- end /.col-md-4 -->
-
-                </div><!-- end /.container -->
-            </div><!-- end /.container -->
-    </section>
-    <!--============================================
-        END MORE PRODUCT AREA
-    ==============================================-->
-
+   
     @else:
         
 

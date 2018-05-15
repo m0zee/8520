@@ -90,11 +90,11 @@
                             @endif
 
                                 <div class="prod_option">
-                                    <a href="#" id="drop2" class="dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        <span class="lnr lnr-cog setting-icon"></span>
+                                    <a href="{{ route('my-account.product.edit', [$product->code]) }}" class="tip" title="Edit Product">
+                                        <span class="lnr lnr-pencil setting-icon"></span>
                                     </a>
 
-                                    <a href="{{ route('my-account.product.gallery', [$product->code] ) }}" >
+                                    <a href="{{ route('my-account.product.gallery', [$product->code] ) }}" class="tip" title="Upload product gallery">
                                         <span class="lnr lnr-upload setting-icon"></span>
                                     </a>
 

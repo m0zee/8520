@@ -221,7 +221,7 @@
                                 switch ( Auth::user()->user_type_id ) {
                                     
                                     case '1':
-                                        $url = route('dashboard');
+                                        $url = route('buyer.dashboard');
                                         break;
 
                                     case '2':

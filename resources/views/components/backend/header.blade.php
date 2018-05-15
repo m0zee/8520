@@ -55,7 +55,7 @@
                                                         <img src="{{ url( 'images/notification_head2.png' ) }}" alt="">
                                                     </div>
                                                     <div class="info">
-                                                        <p><span>Michael</span> commented on <a href="#">MartPlace Extension Bundle</a></p>
+                                                        <p><span>Michael</span> commented on <a href="#">Pak Material Extension Bundle</a></p>
                                                         <p class="time">Just now</p>
                                                     </div>
                                                 </div><!-- end /.notifications -->

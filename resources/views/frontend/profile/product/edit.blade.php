@@ -16,12 +16,13 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="dashboard.html">Dashboard</a></li>
-                            <li class="active"><a href="#">Manage Item</a></li>
+                            <li><a href="{{ url('') }}">Home</a></li>
+                            <li><a href="{{ route('vendor.dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ route('my-account.product') }}">Product</a></li>
+                            <li class="active"><a href="#">Edit</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Manage Item</h1>
+                    <h1 class="page-title">Edit Product</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -51,7 +52,7 @@
                 </div><!-- end /.row -->
 
                 <div class="row">
-                    <div class="col-md-8 col-sm-7">
+                    <div class="col-md-12 col-sm-12">
                         <form action="{{ route('my-account.product.update', [$product->code]) }}" method="post" enctype="multipart/form-data" id="product_form">
                             <input type="hidden" name="_method" value="PUT">
                             <div class="upload_modules">
@@ -209,70 +210,7 @@
                         </form>
                     </div><!-- end /.col-md-8 -->
 
-                    <div class="col-md-4 col-sm-5">
-                        <aside class="sidebar upload_sidebar">
-                            <div class="sidebar-card">
-                                <div class="card-title">
-                                    <h3>Quick Upload  Rules</h3>
-                                </div>
-
-                                <div class="card_content">
-                                    <div class="card_info">
-                                        <h4>Image Upload</h4>
-                                        <p>Nunc placerat mi id nisi interdum mollis. Praesent there pharetra, justo ut sceleris que the mattis interdum.</p>
-                                    </div>
-
-                                    <div class="card_info">
-                                        <h4>File Upload</h4>
-                                        <p>Nunc placerat mi id nisi interdum mollis. Praesent there pharetra, justo ut sceleris que the mattis interdum.</p>
-                                    </div>
-
-                                    <div class="card_info">
-                                        <h4>Vector Upload</h4>
-                                        <p>Nunc placerat mi id nisi interdum mollis. Praesent there pharetra, justo ut sceleris que the mattis interdum.</p>
-                                    </div>
-                                </div>
-                            </div><!-- end /.sidebar-card -->
-
-                            <div class="sidebar-card">
-                                <div class="card-title">
-                                    <h3>Trouble Uploading?</h3>
-                                </div>
-
-                                <div class="card_content">
-                                    <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut sceler isque the mattis, leo quam aliquet congue.</p>
-                                    <ul>
-                                        <li>Consectetur elit, sed do eiusmod the
-                                            labore et dolore magna.</li>
-                                        <li>Consectetur elit, sed do eiusmod the
-                                            labore et dolore magna.</li>
-                                        <li>Consectetur elit, sed do eiusmod the
-                                            labore et dolore magna.</li>
-                                        <li>Consectetur elit, sed do eiusmod the</li>
-                                    </ul>
-                                </div>
-                            </div><!-- end /.sidebar-card -->
-
-                            <div class="sidebar-card">
-                                <div class="card-title">
-                                    <h3>More Upload Info</h3>
-                                </div>
-
-                                <div class="card_content">
-                                    <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut sceler isque the mattis, leo quam aliquet congue.</p>
-                                    <ul>
-                                        <li>Consectetur elit, sed do eiusmod the
-                                            labore et dolore magna.</li>
-                                        <li>Consectetur elit, sed do eiusmod the
-                                            labore et dolore magna.</li>
-                                        <li>Consectetur elit, sed do eiusmod the
-                                            labore et dolore magna.</li>
-                                        <li>Consectetur elit, sed do eiusmod the</li>
-                                    </ul>
-                                </div>
-                            </div><!-- end /.sidebar-card -->
-                        </aside><!-- end /.sidebar -->
-                    </div><!-- end /.col-md-4 -->
+                    
                 </div><!-- end /.row -->
             </div><!-- end /.container -->
         </div><!-- end /.dashboard_menu_area -->

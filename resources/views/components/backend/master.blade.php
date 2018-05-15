@@ -6,8 +6,8 @@
     <!-- viewport meta -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MartPlace - Complete Online Multipurpose Marketplace HTML Template">
-    <meta name="keywords" content="marketplace, easy digital download, digital product, digital, html5">
+    <meta name="description" content="PakMaterial - Where Vendor and Buyer meet">
+    <meta name="keywords" content="PakMaterial, multi vendor, buying requirement">
     <meta name="csrf_token" content="{{ csrf_token() }}">
 
 
