@@ -15,90 +15,10 @@
             <!-- start .row -->
             <div class="row">
                 <!-- start .col-md-3 -->
-                <div class="col-md-3">
-                    <!-- start aside -->
-                    <aside class="sidebar product--sidebar">
-                       {{--  <div class="sidebar-card card--category">
-                            <a class="card-title" href="#collapse1" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapse1">
-                                <h4 >Categories <span class="lnr lnr-chevron-down"></span></h4>
-                            </a>
-                            <div class="collapse in collapsible-content" id="collapse1">
-                                <ul class="card-content">
-                                    @if ($categories->sub_category->count() > 0)
-                                    @foreach ($categories->sub_category as $category)
-                                    
-                                        <li><a href="{{ 'categories/'.$category->slug }}"><span class="lnr lnr-chevron-right"></span>{{ $category->name }}</a></li>
-                                        @endforeach
-                                    @endif
-                                </ul>
-                            </div><!-- end /.collapsible_content -->
-                        </div><!-- end /.sidebar-card --> --}}
-
-                        <div class="sidebar-card card--filter">
-                            <a class="card-title" href="#collapse2" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapse2">
-                                <h4>Filter Products<span class="lnr lnr-chevron-down"></span></h4>
-                            </a>
-                            <div class="collapse in collapsible-content" id="collapse2">
-                                <ul class="card-content">
-                                <li>
-                                    <div class="custom-checkbox2">
-                                        <input type="checkbox" id="opt1" class="" name="filter_opt"> <label for="opt1"><span class="circle"></span> Trending Products</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-checkbox2">
-                                        <input type="checkbox" id="opt2" class="" name="filter_opt"> <label for="opt2"><span class="circle"></span> Popular Products</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-checkbox2">
-                                        <input type="checkbox" id="opt3" class="" name="filter_opt"> <label for="opt3"><span class="circle"></span> New Products</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-checkbox2">
-                                        <input type="checkbox" id="opt4" class="" name="filter_opt"> <label for="opt4"><span class="circle"></span> Best Seller</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-checkbox2">
-                                        <input type="checkbox" id="opt5" class="" name="filter_opt"> <label for="opt5"><span class="circle"></span> Best Rating</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-checkbox2">
-                                        <input type="checkbox" id="opt6" class="" name="filter_opt"> <label for="opt6"><span class="circle"></span> Free Support</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="custom-checkbox2">
-                                        <input type="checkbox" id="opt7" class="" name="filter_opt"> <label for="opt7"><span class="circle"></span>On Sale</label>
-                                    </ div>
-                                </li>
-                            </ul>
-                            </div>
-                        </div><!-- end /.sidebar-card -->
-    
-                       {{--  <div class="sidebar-card card--slider">
-                                <a class="card-title" href="#collapse3" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapse3">
-                                    <h4>Filter Products<span class="lnr lnr-chevron-down"></span></h4>
-                                </a>
-                                <div class="collapse in collapsible-content" id="collapse3">
-                                    <div class="card-content">
-                                        <div class="range-slider price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 6%; width: 54%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 6%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 60%;"></span></div>
-
-                                        <div class="price-ranges">
-                                            <span class="from rounded">$30</span>
-                                            <span class="to rounded">$300</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}<!-- end /.sidebar-card -->
-                        </aside><!-- end aside -->
-                </div><!-- end /.col-md-3 -->
+                
 
                 <!-- start col-md-9 -->
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="row" id="product-container">
                         @if( $products->count() > 0 )
                             @foreach( $products as $product )
