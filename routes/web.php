@@ -23,7 +23,7 @@ Route::get( 'categories/{category_slug}/sub-categories/{sub_category_slug}/requi
 
 
 Route::get( 'products', 'ProductController@index' )->name( 'products' );
-Route::match( [ 'get', 'post'], 'products/search', 'ProductController@search' )->name( 'products.search' );
+Route::match( [ 'get', 'post' ], 'products/search', 'ProductController@search' )->name( 'products.search' );
 Route::get( 'products/{id}/get', 'ProductController@get' )->name( 'products.get' );
 
 Route::get( 'categories/{category_slug}/products', 'ProductController@get_by_category' )->name( 'categories.products' );
@@ -172,7 +172,7 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 				'names' => [ 'index' => 'vendor.dashboard' ] 
 			]);
 
-			Route::get( 'products',  						'ProductController@index' )->name( 'my-account.product' );
+			Route::get( 'products',  'ProductController@index' )->name( 'my-account.product' );
 			
 			Route::group( [ 'middleware' => [ 'IsVendorApproved' ] ], function() {
 				Route::get( 'products/create',  				'ProductController@create' )->name( 'my-account.product.create' );
@@ -190,7 +190,8 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 			'only' => [ 'index', 'store', 'show' ]
 		]);
 
-		Route::post( 'messages/{message}/reply', 'MessagesController@reply' )->name( 'messages.reply' );
+		Route::post( 'messages/{message}/reply',	'MessagesController@reply' )->name( 'messages.reply' );
+		Route::get( 'messages/new/count', 			'MessagesController@getNewMessageCount' )->name( 'messages.count' );
 	});
 
 	Route::group( [ 'prefix' => 'buyer', 'middleware' => [ 'IsBuyer' ] ], function() {
@@ -207,11 +208,11 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 		
 		Route::resource( 'requirements', 'Buyer\RequirementController', [
 			'names' => [ 
-				'index' => 'buyer.requirements',
-				'create' => 'buyer.requirements.create',
-				'store' => 'buyer.requirements.store',
-				'edit' => 'buyer.requirements.edit',
-				'update' => 'buyer.requirements.update'
+				'index' 	=> 'buyer.requirements',
+				'create' 	=> 'buyer.requirements.create',
+				'store' 	=> 'buyer.requirements.store',
+				'edit' 		=> 'buyer.requirements.edit',
+				'update'	=> 'buyer.requirements.update'
 			] 
 		]);
 	});

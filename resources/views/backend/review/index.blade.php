@@ -5,9 +5,7 @@
 
 @section( 'title', 'Reviews' )
 @section( 'content' )
-    <!--================================
-        START BREADCRUMB AREA
-    =================================-->
+
     <section class="breadcrumb-area">
         <div class="container">
             <div class="row">
@@ -25,13 +23,7 @@
     </section>
     
     @include( 'components.backend.menu' )
-    <!--================================
-        END BREADCRUMB AREA
-    =================================-->
 
-    <!--================================
-            START SIGNUP AREA
-    =================================-->
     <section class="section--padding2 bgcolor">
         <div class="container">
             <div class="row">
@@ -78,14 +70,18 @@
                                                 @foreach( $reviews as $review )
                                                     <tr>
                                                         <td>
-                                                            <a href="{{ url( 'profile/' . $review->user->code ) }}" class="tip" title="Click to see the profile">
-                                                                {{ $review->user->name }}
+                                                            <a href="#" class="tip" title="This user does not have profile">
+                                                                <strong>{{ $review->user->name }}</strong>
                                                             </a>
+                                                            <br>
+                                                            {{ $review->user->email }}
                                                         </td>
                                                         <td>
                                                             <a href="{{ url( 'profile/' . $review->vendor->code ) }}" class="tip" title="Click to see the profile">
-                                                                {{ $review->vendor->name }}
+                                                                <strong>{{ $review->vendor->name }}</strong>
                                                             </a>
+                                                            <br>
+                                                            {{ $review->vendor->email }}
                                                         </td>
                                                         <td>
                                                             Rating: 
@@ -157,9 +153,7 @@
             </div><!-- end .row -->
         </div><!-- end .container -->
     </section>
-    <!--================================
-            END SIGNUP AREA
-    =================================-->
+
 
     <div class="modal fade rating_modal" id="confirmation_modal" tabindex="-1" role="dialog" aria-labelledby="confirmation_modal">
         <div class="modal-dialog modal-md" role="document">
@@ -167,7 +161,6 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h3 class="modal-title text-center">___</h3>
-                    {{-- <p>You will not be able to recover this file!</p> --}}
                 </div><!-- end /.modal-header -->
 
                 <div class="modal-body text-center">

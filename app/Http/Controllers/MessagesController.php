@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use App\Http\Requests\MessageReplyRequest;
 
 use App\Message;
@@ -22,8 +24,28 @@ class MessagesController extends Controller
         $this->data['user_type_id']     = Auth::user()->user_type_id;
         $this->data['conversations']    = Message::getMessages( $this->data['user_id'] ); 
         
-        // return $this->data;
         return view( 'frontend.message.index', $this->data );
+    }
+
+    public function getNewMessageCount()
+    {
+        
+        switch( Auth::user()->user_type_id )
+        {
+            case 3:
+                $messageCount   = Message::where( 'seen_by_admin', 0 )->count();
+            break;
+            
+            default:
+                $user_id        = Auth::user()->id;
+                $messageCount   = Message::getUnreadMessageCount( $user_id );
+            break;
+        };
+
+        if( request()->ajax() )
+        {
+            return response( [ 'status'=> 'ok', 'messageCount' => $messageCount ], 200 );
+        }
     }
 
     /**

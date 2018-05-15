@@ -15,9 +15,10 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        $this->data['messages'] = Message::with( 'sender', 'receiver' )
+        $this->data['messages'] = Message::with( 'sender', 'receiver', 'product.sub_category.category', 'requirement' )
         ->orderBy( 'seen_by_admin' )->orderBy( 'updated_at', 'DESC' )->paginate( 15 );
-        
+        // return $this->data['messages'][0];//->product->category;
+        // categories/{category_slug}/sub-categories/{sub_category_slug}/products/{code}/{slug}
         return view( 'backend.message.index', $this->data );
     }
 
