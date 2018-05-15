@@ -1,6 +1,6 @@
 @extends( 'components.frontend.master' )
 
-@section( 'title', 'Profile' )
+@section( 'title', 'Reviews' )
 
 @section( 'content' )
 
@@ -10,11 +10,11 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="{{ route( 'home' ) }}">Home</a></li>
-                            <li class="active"><a href="#">Profile</a></li>
+                            <li><a href="{{ url('') }}">Home</a></li>
+                            <li class="active"><a href="#">Product</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Profile</h1>
+                    <h1 class="page-title">Product List</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -22,50 +22,63 @@
 
 
 
-
-
-    @if( Auth::check() )
-        @include( 'components.frontend.vendor_menu' )
-    @endif
+    
 
     <section class="author-profile-area">
         <div class="container">
+
+            @if( session( 'success' ) || session( 'error' ) )
+                <div class="row">
+                    <div class="col-md-12">
+                        @if( session( 'success' ) )
+                            <div class="alert alert-success text-center">
+                                <strong>{{ session( 'success' ) }}</strong>
+                            </div>
+                        @elseif( session( 'error' ) )
+                            <div class="alert alert-danger text-center">
+                                <strong>{{ session( 'error' ) }}</strong>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            @endif
+
+            @if( $errors->any() )
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger text-center">
+                            <strong>You have errors in the review form. Please resolve them</strong>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-md-4">
                     <aside class="sidebar sidebar_author">
                         <div class="author-card sidebar-card">
                             <div class="author-infos">
-                                <div class="author_avatar">
-                                    @if( $user->detail->profile_img )
-                                        <img src="{{ asset( 'storage/profile_img/' . $user->detail->profile_img ) }}" alt="">
+                                 <div class="author_avatar">
+                                    @if( $vendor->detail->profile_img )
+                                        <img src="{{ asset( 'storage/profile_img/' . $vendor->detail->profile_img ) }}" alt="">
                                     @else
                                         <div class="alert alert-danger text-center">No imge found</div>
                                     @endif
                                 </div>
 
                                 <div class="author">
-                                    <h4>{{ $user->detail->company_name }}</h4>
+                                    <h4>{{ $vendor->detail->company_name }}</h4>
                                 </div><!-- end /.author -->
-
-                                {{-- <span class="{{ ( $user->verified == 1 ) ? 'fa fa-check-circle fa-lg' : 'fa fa-exclamation-triangle fa-lg'}}" style="{{ ( $user->verified == 1 ) ? 'color:lightgreen;' : 'color: orange;' }}">
-                                </span> {{ $user->email }} --}}
-
-                               {{--  <div class="author-btn">
-                                    <a href="#" class="btn btn--md btn--round">Contact</a>
-                                </div> --}}<!-- end /.author-btn -->
                             </div><!-- end /.author-infos -->
-
-
                         </div><!-- end /.author-card -->
 
                         <div class="sidebar-card author-menu">
                             <ul>
-                                <li><a class="active" href="{{ route( 'profile.show', [ $user->code ] )}}">Profile</a></li>
-                                <li><a href="{{ route( 'vendors.reviews.index', $user->code ) }}">Customer Reviews</a></li>
-                                <li><a href="{{ route( 'vendors.product.index', $user->code ) }}">Product</a></li>
+                                <li><a href="{{ route( 'profile.show', [ $vendor->code ] )}}">Profile</a></li>
+                                <li><a  href="{{ route( 'vendors.reviews.index', $vendor->code ) }}">Customer Reviews</a></li>
+                                <li><a class="active" href="{{ route( 'vendors.product.index', $vendor->code ) }}">Product</a></li>
                             </ul>
                         </div><!-- end /.author-menu -->
-
                         <div class="sidebar-card message-card">
                             <div class="card-title">
                                 <h4>Contact Information</h4>
@@ -74,13 +87,13 @@
                             <div class="message-form mycontact-info">
         
                                
-                             <p><span class="lnr lnr-envelope "></span>{{ $user->email }}</p>
+                             <p><span class="lnr lnr-envelope "></span> {{ $vendor->email }}</p>
                              
-                            <p><span class="lnr lnr-phone"></span>{{ $user->detail->phone_number }}</p>
+                            <p><span class="lnr lnr-phone"></span> {{ $vendor->detail->phone_number }}</p>
 
-                            <p><span class="lnr lnr-smartphone"></span>{{ $user->detail->mobile_number }}</p>
+                            <p><span class="lnr lnr-smartphone"></span> {{ $vendor->detail->mobile_number }}</p>
 
-                            <p><span class="lnr lnr-map-marker"></span>{{ $user->detail->address }}</p>
+                            <p><span class="lnr lnr-map-marker"></span> {{ $vendor->detail->address }}</p>
 
                             </div><!-- end /.message-form -->
                         </div><!-- end /.freelance-status -->
@@ -90,164 +103,141 @@
                 <div class="col-md-8">
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
-                           <div class="author-info mcolorbg4">
-                               <p>Total Products</p>
-                               <h3>{{ number_format( $productCount )}}</h3>
-                           </div>
+                            <div class="author-info mcolorbg4">
+                                <p>Total Products</p>
+                                <h3>{{ number_format( $productCount )}}</h3>
+                            </div>
                         </div><!-- end /.col-md-4 -->
 
-                        {{-- <div class="col-md-6 col-sm-6">
-                            <div class="author-info pcolorbg">
-                                <p>Total sales</p>
-                                <h3>36,957</h3>
-                            </div>
-                        </div> --}}<!-- end /.col-md-4 -->
 
                         <div class="col-md-6 col-sm-6">
-                            <a href="{{ route( 'vendors.reviews.index', [ 'vendor_code' => $user->code ] ) }}">
-                                <div class="author-info scolorbg">
-                                    <p>Total Rating</p>
-                                    <div class="rating product--rating">
-                                        <ul>
-                                            @for( $i = 0; $i < $avgRatings; $i ++ )
-                                                <li><span class="fa fa-star"></span></li>
-                                            @endfor
-                                            @for( $i = 5; $i > $avgRatings; $i -- )
-                                                <li><span class="fa fa-star-o"></span></li>
-                                            @endfor
-                                        </ul>
-                                        <span class="rating__count">({{ $raters }})</span>
-                                    </div>
+                            <div class="author-info scolorbg">
+                                <p>Total Rating</p>
+                                <div class="rating product--rating">
+                                    <ul>
+                                        @for( $i = 0; $i < $avgRatings; $i ++ )
+                                            <li><span class="fa fa-star"></span></li>
+                                        @endfor
+                                        @for( $i = 5; $i > $avgRatings; $i -- )
+                                            <li><span class="fa fa-star-o"></span></li>
+                                        @endfor
+                                    </ul>
+                                    <span class="rating__count">({{ $raters }})</span>
                                 </div>
-                            </a>
+                            </div>
                         </div><!-- end /.col-md-4 -->
-
-                        <div class="col-md-12 col-sm-12">
-                            <div class="author_module">
-                                @if( $user->detail->cover_img )
-                                    <img src="{{ asset( 'storage/cover_img/' . $user->detail->cover_img ) }}" alt="author image">
-                                @else
-                                    <div class="alert alert-danger text-center">No image found!</div>
-                                @endif
-                            </div>
-
-                            <div class="author_module about_author">
-                                <h2>About <span>{{ $user->detail->company_name }}</span></h2>
-                                <p>
-                                    {{$user->detail->description}}
-                                </p>
-                            </div>
-                        </div>
                     </div><!-- end /.row -->
 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="product-title-area">
                                 <div class="product__title">
-                                    <h2>{{ $user->detail->company_name }} Products</h2>
+                                    <h2><span class="bold">{{ $productCount }}</span> Products</h2>
                                 </div>
-
-                                {{-- <a href="#" class="btn btn--sm">See all Items</a> --}}
                             </div><!-- end /.product-title-area -->
-                        </div><!-- end /.col-md-12 -->
-                    <!-- start col-md-9 -->
-                   
-                        <div class="col-md-12">
+                            
                             @if( isset( $products ) && $products->count() > 0 )
-                                <div class="row" id="product-container">
-                                    @foreach( $products as $product )
-                                        <div class="col-md-6 col-sm-6">
-                                            <!-- start .single-product -->
-                                            <div class="product product--card product--card-small">
+                        <div class="row" id="product-container">
+                            @foreach( $products as $product )
+                                <div class="col-md-4 col-sm-4">
+                                    <!-- start .single-product -->
+                                    <div class="product product--card product--card-small">
 
-                                                <div class="product__thumbnail">
-                                                    @if( file_exists( $product->img_path . '/' . $product->img ) )
-                                                        <img class="auth-img" src="{{ asset( 'storage/product/361x230_' . $product->img ) }}" alt="author image">
-                                                    @else
-                                                        <img src="images/p1.jpg" alt="Product Image">
-                                                    @endif
-                                                    
-                                                    <div class="prod_btn">
-                                                        <a href="{{ route( 'products.show', [ $product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}"
-                                                            class="transparent btn--sm btn--round">
-                                                            More Info
-                                                        </a>
-                                                        <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round">Profile</a>
-                                                    </div><!-- end /.prod_btn -->
-                                                </div><!-- end /.product__thumbnail -->
+                                        <div class="product__thumbnail">
+                                            @if( file_exists( $product->img_path . '/' . $product->img ) )
+                                                <img class="auth-img" src="{{ asset( 'storage/product/361x230_' . $product->img ) }}" alt="author image">
+                                            @else
+                                                <img src="images/p1.jpg" alt="Product Image">
+                                            @endif
+                                            
+                                            <div class="prod_btn">
+                                                <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="transparent btn--sm btn--round">More Info</a>
+                                                <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round">Profile</a>
+                                            </div><!-- end /.prod_btn -->
+                                        </div><!-- end /.product__thumbnail -->
 
-                                                <div class="product-desc">
-                                                    <a href="{{ route( 'products.show', [ $product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}"
-                                                        class="product_title">
-                                                        <h4>{{ ( strlen( $product->name ) > 23 ) ? substr( $product->name, 0, 23 ) . '...' : $product->name }}</h4>
+                                        <div class="product-desc">
+                                            <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ (strlen($product->name) > 23) ? substr($product->name,0,23).'...' :$product->name  }}</h4></a>
+
+                                            
+                                            <ul class="titlebtm">
+                                                @if( $product->user->detail != null  )
+                                                    <li>
+                                                        @if( $product->user->detail->profile_img && file_exists( $product->user->detail->profile_path . '/' . $product->user->detail->profile_img ) )
+                                                            <img class="auth-img" src="{{ asset( 'storage/profile_img/30x30_' . $product->user->detail->profile_img ) }}" alt="author image">
+                                                        @else
+                                                            <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
+                                                        @endif
+                                                        <p><a href="{{ route('profile.show', [$product->user->code]) }}">{{ $product->user->detail->company_name }}</a></p>
+                                                    </li>
+                                                    <br>
+                                                @endif
+                                                <li>
+                                                    <span class="fa fa-folder iconcolor"></span>
+                                                    <a href="{{ route('categories.products', [$product->sub_category->category->slug]) }}">
+                                                        {{ $product->sub_category->category->name }}
                                                     </a>
+                                                    {{-- <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->sub_category->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a> --}}
+                                                </li>
 
-                                                    
-                                                    <ul class="titlebtm">
-                                                        <li>
-                                                            @if( $product->user->detail->profile_img && file_exists( $product->user->detail->profile_path . '/' . $product->user->detail->profile_img ) )
-                                                                <img class="auth-img" src="{{ asset( 'storage/profile_img/30x30_' . $product->user->detail->profile_img ) }}" alt="author image">
-                                                            @else
-                                                                <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
-                                                            @endif
-                                                            <p><a href="{{ route( 'profile.show', [ $product->user->code ] ) }}">{{ $product->user->detail->company_name }}</a></p>
-                                                        </li>
-                                                        <br>
-                                                        <li>
-                                                            <span class="fa fa-folder iconcolor"></span>
-                                                            <a href="{{ route('categories.products', [$product->sub_category->category->slug]) }}">
-                                                                {{ $product->sub_category->category->name }}
-                                                            </a>
-                                                            {{-- <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->sub_category->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a> --}}
-                                                        </li>
+                                                <li>
+                                                   <span class="fa fa-money iconcolor"></span>
+                                                   <strong>{{ $product->price }} {{ $product->currency->name }} - {{ $product->unit->name }}</strong>
+                                                </li>
 
-                                                        <li>
-                                                           <span class="fa fa-money iconcolor"></span><strong> {{ $product->price }} {{ $product->currency->name }} - {{ $product->unit->name }}</strong>
-                                                        </li>
+                                                {{-- <li>
+                                                   <span class="fa fa-barcode iconcolor"></span> </strong>{{ strtoupper($product->code) }}</strong>
+                                                </li> --}}
+                                            </ul>
+                                        </div><!-- end /.product-desc -->
 
-                                                        {{-- <li>
-                                                           <span class="fa fa-barcode iconcolor"></span> </strong>{{ strtoupper($product->code) }}</strong>
-                                                        </li> --}}
-                                                    </ul>
-                                                </div><!-- end /.product-desc -->
+                                        <div class="product-purchase text-center">
+                                            <button data-product-id="{{ $product->id }}" data-shortlisted="{{ 0 }}"
+                                                 class="my-btn btn--round tip add-shortlist" title="Click to shortlist this product">
+                                                <span class="fa fa-heart-o"></span>
+                                            </button>
 
-                                                <div class="product-purchase text-center">
-                                                    <button data-product-id="{{ $product->id }}" data-shortlisted="{{ 0 }}"
-                                                         class="my-btn btn--round tip add-shortlist" title="Click to shortlist this product">
-                                                        <span class="fa fa-heart-o"></span>
-                                                    </button>
+                                            
 
-                                                    <button class="btn--icon my-btn btn--round btn-contact" data-product-id="{{ $product->id }}">
-                                                        <span class="lnr lnr-envelope"></span> Contact
-                                                    </button>
+                                            <button data-product-id="{{ $product->id }}" 
+                                                class="btn--icon my-btn btn--round tip add-compare" title="Click to add this product to comparison list">
+                                                <span class="fa fa-plus"></span> 
+                                            </button>
 
-                                                    <button data-product-id="{{ $product->id }}" 
-                                                        class="btn--icon my-btn btn--round tip add-compare" title="Click to add this product to comparison list">
-                                                        <span class="fa fa-plus"></span> 
-                                                    </button>
-                                                </div><!-- end /.product-purchase -->
-                                            </div><!-- end /.single-product -->
-                                        </div><!-- end /.col-md-4 -->
-                                    @endforeach
+                                            <button style="margin-top: 10px" class="btn--icon my-btn btn--round btn-contact" data-product-id="{{ $product->id }}">
+                                                <span class="lnr lnr-envelope"></span> Contact
+                                            </button>
+                                        </div><!-- end /.product-purchase -->
+                                    </div><!-- end /.single-product -->
+                                </div><!-- end /.col-md-4 -->
+                            @endforeach
+                        </div>
+                        <div class="row">
+                <div class="col-md-12">
+                    <div class="pagination-area categorised_item_pagination">
+                        @if( isset( $products ) && $products->hasPages() )
+                            {{ $products->links( 'vendor.pagination.pak-material' ) }}
+                        @endif
+                    </div>
+                </div>
+            </div>
+                     @else
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger text-center">
+                                    No Product Found!
                                 </div>
-                             @else
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="alert alert-danger text-center">
-                                            No Product Found!
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        </div><!-- end /.col-md-9 -->
-               
-                      
+                            </div>
+                        </div>
+                    @endif
+                        </div><!-- end /.col-md-12 -->
                     </div><!-- end /.row -->
                 </div><!-- end /.col-md-8 -->
 
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
+
 
     @if( Auth::check() )
         <div class="modal fade not_loggedind_modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="not_loggedind_modal">
@@ -508,7 +498,9 @@
 @endsection
 
 @section( 'js' )
+    <script src="{{ asset( 'js/vendor/jquery-bar-rating/jquery.barrating.min.js' ) }}"></script>
     <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
     <script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
     <script src="{{ asset( 'js/page/home/index.js' ) }}"></script>
+    <script src="{{ asset( 'js/page/vendors/reviews/index.js' ) }}"></script>
 @endsection

@@ -229,6 +229,20 @@ class ProfileController extends Controller
         return view( 'frontend.profile.show', $this->data );
     }
 
+
+    public function product( $vendor_code )
+    {
+        $user                       = User::where( [ 'code' => $vendor_code ] )->first();
+        $this->data['vendor']       = $user;
+        $this->data['products'] = Product::with( 'user.detail', 'status', 'currency', 'unit', 'sub_category.category' )
+        ->where( ['user_id' => $user->id, 'status_id' => 2 ])->orderBy('id', 'DESC')->paginate(12);
+        $this->data['productCount'] = Product::where( [ 'user_id' => $user->id, 'status_id' => 2 ] )->count();
+
+        $this->getRatings( $vendor_code );
+
+        return view( 'product.index', $this->data );
+    }
+
     private function getRatings( $user_code )
     {
         $ratings = Review::select([

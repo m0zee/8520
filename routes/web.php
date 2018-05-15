@@ -232,6 +232,9 @@ Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
 			'store' => 'vendors.reviews.store'
 		] 
 	]);
+
+	
+	Route::get( 'products', 			'ProfileController@product' )->name( 'vendors.product.index' );
 });
 
 

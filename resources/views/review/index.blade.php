@@ -76,6 +76,7 @@
                             <ul>
                                 <li><a href="{{ route( 'profile.show', [ $vendor->code ] )}}">Profile</a></li>
                                 <li><a class="active" href="{{ route( 'vendors.reviews.index', $vendor->code ) }}">Customer Reviews</a></li>
+                                <li><a href="{{ route( 'vendors.product.index', $vendor->code ) }}">Product</a></li>
                             </ul>
                         </div><!-- end /.author-menu -->
                         <div class="sidebar-card message-card">
