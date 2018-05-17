@@ -17,59 +17,82 @@
                 <div class="col-md-12">
                     <div class="breadcrumb">
                         <ul>
-                            <li><a href="{{ url('') }}">Home</a></li>
-                            <li><a href="{{ url('dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ url( '' ) }}">Home</a></li>
+                            <li><a href="{{ url( 'dashboard' ) }}">Dashboard</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Buyer's Dashboard</h1>
+                    <h1 class="page-title">Dashboard</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
     </section>
-    <!--================================
-        END BREADCRUMB AREA
-    =================================-->
 
-    <!--================================
-            START DASHBOARD AREA
-    =================================-->
     @include( 'components.frontend.buyer_menu' )
     <section class="dashboard-area">
-        
 
         <div class="dashboard_contents">
             <div class="container">
+
                 <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg4">
-                            <p>Total Items</p>
-                            <h3>4,369</h3>
-                        </div>
-                    </div><!-- end /.col-md-3 -->
+
+                    <div class="col-xs-12">
+                        <h4>My Buying Requirement</h4>
+                        <hr>
+                    </div>
 
                     <div class="col-md-3 col-sm-6">
                         <div class="author-info author-info--dashboard mcolorbg2">
-                            <p>Monthly Sales</p>
-                            <h3>$273.00</h3>
+                            <p>Pending Approval</p>
+                            <h3>{{ number_format( $pendingRequirement ) }}</h3>
                         </div>
-                    </div><!-- end /.col-md-3 -->
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg3">
-                            <p>Yearly Sales</p>
-                            <h3>$2,249.00</h3>
-                        </div>
-                    </div><!-- end /.col-md-3 -->
+                    </div>
 
                     <div class="col-md-3 col-sm-6">
                         <div class="author-info author-info--dashboard mcolorbg1">
-                            <p>Lifetime Sales</p>
-                            <h3>$5,583.00</h3>
+                            <p>Approved</p>
+                            <h3>{{ number_format( $approvedRequirement ) }}</h3>
                         </div>
-                    </div><!-- end /.col-md-3 -->
-                </div><!-- end /.row -->
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg4">
+                            <p>Rejected</p>
+                            <h3>{{ number_format( $rejectedRequirement ) }}</h3>
+                        </div>
+                    </div>
+                    
+                </div>
 
                 <div class="row">
+
+                    <div class="col-xs-12">
+                        <h4>My Reviews</h4>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg2">
+                            <p>Pending Approval</p>
+                            <h3>{{ number_format( $pendingReviews ) }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg1">
+                            <p>Approved</p>
+                            <h3>{{ number_format( $approvedReviews ) }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="author-info author-info--dashboard mcolorbg4">
+                            <p>Rejected</p>
+                            <h3>{{ number_format( $rejectedReviews ) }}</h3>
+                        </div>
+                    </div>
+                </div>
+
+               {{--  <div class="row">
                     <div class="col-md-12">
                         <div class="dashboard_module statistics_module">
                             <div class="dashboard__title">
@@ -719,7 +742,7 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- end /.row -->
+                </div><!-- end /.row --> --}}
             </div><!-- end /.container -->
         </div><!-- end /.dashboard_menu_area -->
     </section>

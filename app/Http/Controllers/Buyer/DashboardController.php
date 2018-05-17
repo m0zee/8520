@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Buyer;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+
 use App\BuyerRequirement;
+use App\Review;
 
 class DashboardController extends Controller
 {
@@ -15,11 +18,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $this->data['approved_requirement'] = BuyerRequirement::where([ 'user_id' => Auth::user()->id, 'status' ])->count();
+        $this->data['pendingRequirement']   = BuyerRequirement::where( [ 'user_id' => Auth::user()->id, 'status_id' => 1 ] )->count();
+        $this->data['approvedRequirement']  = BuyerRequirement::where( [ 'user_id' => Auth::user()->id, 'status_id' => 2 ] )->count();
+        $this->data['rejectedRequirement']  = BuyerRequirement::where( [ 'user_id' => Auth::user()->id, 'status_id' => 3 ] )->count();
 
-        return $this->data['approved_requirement'];
+        $this->data['pendingReviews']       = Review::where( [ 'user_id' => Auth::user()->id, 'status_id' => 1 ] )->count();
+        $this->data['approvedReviews']      = Review::where( [ 'user_id' => Auth::user()->id, 'status_id' => 2 ] )->count();
+        $this->data['rejectedReviews']      = Review::where( [ 'user_id' => Auth::user()->id, 'status_id' => 3 ] )->count();
 
-        return view( 'frontend.buyer.dashboard' );
+        // return $this->data;
+
+        return view( 'frontend.buyer.dashboard', $this->data );
     }
 
     /**
