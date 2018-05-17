@@ -186,7 +186,7 @@
 
                                     {{ Form::open( [ 'route' => [ 'vendors.reviews.store', $vendor->code ], 'class' => 'comment-reply-form' ] ) }}
 
-                                        <div class="form-group {{ $errors->has( 'selected_ratings' ) ? 'has-error' : '' }}">
+                                        <div class="form-group {{ ( $errors->has( 'selected_ratings' ) ) ? 'has-error' : '' }}">
                                             {{ Form::select( 'ratings', [ 
                                                 '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5' 
                                                 ], '', [ 'id' => 'ratings', 'class' => 'form-control' ] ) }}
@@ -199,7 +199,7 @@
                                         <div class="media comment-form">
                                             
                                             <div class="media-body">
-                                                <div class="form-group {{ $errors->has( 'review' ) ? 'has-error' : '' }}">
+                                                <div class="form-group {{ ( $errors->has( 'review' ) ) ? 'has-error' : '' }}">
                                                     {{ Form::textarea( 'review', old( 'review' ), [ 'placeholder' => 'Write your review here...' ] ) }}
                                                     @if( $errors->has( 'review' ) )
                                                         <span class="help-block">{{ $errors->first( 'review' ) }}</span>

@@ -30,7 +30,13 @@
         END BREADCRUMB AREA
     =================================-->
 
+    @if (Auth::user()->user_type_id == '1')
+        {{-- expr --}}
+    @include( 'components.frontend.buyer_menu' )
+    @else
     @include( 'components.frontend.vendor_menu' )
+
+    @endif
     <!--================================
             START DASHBOARD AREA
     =================================-->

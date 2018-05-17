@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Buyer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\BuyerRequirement;
 
 class DashboardController extends Controller
 {
@@ -14,6 +15,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $this->data['approved_requirement'] = BuyerRequirement::where([ 'user_id' => Auth::user()->id, 'status' ])->count();
+
+        return $this->data['approved_requirement'];
+
         return view( 'frontend.buyer.dashboard' );
     }
 
