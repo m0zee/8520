@@ -125,7 +125,7 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="author_module">
                                 @if( $user->detail->cover_img )
-                                    <img src="{{ asset( 'storage/cover_img/' . $user->detail->cover_img ) }}" alt="author image">
+                                    <img src="{{ asset( 'storage/cover_img/' . $user->detail->cover_img ) }}" alt="author image" width="100%">
                                 @else
                                     <div class="alert alert-danger text-center">No image found!</div>
                                 @endif

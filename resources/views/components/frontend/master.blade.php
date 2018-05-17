@@ -11,11 +11,11 @@
     
 
     <meta property="fb:app_id"        content="164484080926748" />
-    <meta property="og:url"           content="{{ url('') }}" />
-    <meta property="og:image"         content={{ asset( 'images/logo.png' ) }} >
+    <meta property="og:url"           content="{{ url()->current() }}" />
+    <meta property="og:image"         content={{ ( isset($product) && $product != null ) ? asset( 'storage/product/' . $product->img ) : asset( 'images/logo.png' ) }} >
     {{-- <meta property="og:type"          content="website" /> --}}
-    <meta property="og:title"         content="Pak Material" />
-    <meta property="og:description"   content="mutlti vendor Material site" />
+    <meta property="og:title"         content="{{ ( isset($product) && $product != null ) ? $product->name : 'Product Not Available' }}" />
+    <meta property="og:description"   content="multi vendor Material site" />
 
 
     <meta name="csrf_token" content="{{ csrf_token() }}">
