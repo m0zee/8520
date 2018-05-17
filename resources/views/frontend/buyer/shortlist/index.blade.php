@@ -93,12 +93,12 @@
 		                                    <div class="product__additional_info">
 		                                        <ul>
 		                                            <li>
-		                                                <a href="#">
+		                                                <a href="{{ route('categories.products', [$product->category->slug]) }}">
 		                                                	{{-- <img src="{{ asset( 'images/catword.png' ) }}" alt=""> --}}
 		                                                	{{ $product->category->name }} 
 		                                                </a>
 		                                                <span class="lnr lnr-chevron-right"></span>
-		                                                <a href="#">
+		                                                <a href="{{ route('categories.sub-categories.products', [$product->category->slug, $product->sub_category->slug]) }}">
 		                                                	{{-- <img src="{{ asset( 'images/catword.png' ) }}" alt=""> --}}
 	                                                		{{ $product->sub_category->name }} 
 	                                                	</a>

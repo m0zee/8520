@@ -65,9 +65,20 @@ class ProfileController extends Controller
                 'cover_img' => 'image|mimes:jpeg,png,jpg|max:2048'
             ]);
 
-            $path = public_path( 'storage/cover_img' );
-            $imageName = time() . '.' . $request->cover_img->getClientOriginalName();
-            $request->cover_img->move( $path, $imageName );
+
+            $files     = $request->cover_img;
+            $filename  = $files->getClientOriginalName();
+            $path       = public_path( 'storage/cover_img' );
+            $imageName  = time().'.'. \File::extension($filename);
+            // $request->cover_img->move( $path, $imageName );
+            $image_resize = Image::make($files->getRealPath());              
+            $image_resize->resize(495, 200);
+            $image_resize->save($path.'/'.$imageName);
+
+
+            // $path = public_path( 'storage/cover_img' );
+            // $imageName = time() . '.' . $request->cover_img->getClientOriginalName();
+            // $request->cover_img->move( $path, $imageName );
 
             $cover_img = [
                 'cover_img'     => $imageName,
@@ -170,9 +181,17 @@ class ProfileController extends Controller
 
         if( $request->hasFile( 'cover_img' ) ) 
         {
+
+            $files     = $request->cover_img;
+            $filename  = $files->getClientOriginalName();
+
             $path       = public_path( 'storage/cover_img' );
-            $imageName  = time() . '.' . $request->cover_img->getClientOriginalName();
-            $request->cover_img->move( $path, $imageName );
+            $imageName  = time().'.'. \File::extension($filename);
+            // $request->cover_img->move( $path, $imageName );
+
+            $image_resize = Image::make($files->getRealPath());              
+            $image_resize->resize(495, 200);
+            $image_resize->save($path.'/'.$imageName);
 
             $cover_img = [
                 'cover_img'     => $imageName,
