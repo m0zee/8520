@@ -14,6 +14,10 @@ Route::get( 'recover-password', function () {
     return view( 'frontend.recover_password' );
 });
 
+Route::get('privacy', function () {
+    return view( 'frontend.privacy' );
+});
+
 Route::get( 'buyer-requirement', 				'BuyerRequirementController@index' )->name( 'requirement' );
 Route::get( 'buyer-requirement/{code}/show',	'BuyerRequirementController@show' )->name( 'requirement.show' );
 
@@ -255,4 +259,6 @@ Route::post( 'get_state_city', function( Request $request ) {
 Route::post( 'get_sub_category', function( Request $request ) {
 	return \App\SubCategory::where( 'category_id', $request->category_id )->get();
 });
+
+
 
