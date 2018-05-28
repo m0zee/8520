@@ -195,7 +195,8 @@
                     <!-- start col-md-12 -->
                     <div class="col-md-12">
                         <div class="section-title">
-                            <h1>More Items <span class="highlighted">{{ $product->user->detail->company_name }}</span></h1>
+                            {{-- {{ $product->user->detail->company_name }} --}}
+                            <h1>Related <span class="highlighted">Products</span></h1>
                         </div>
                     </div><!-- end /.col-md-12 -->
 
