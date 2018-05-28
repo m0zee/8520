@@ -10,9 +10,12 @@ class DashboardController extends Controller
    	public function index()
    	{
    		$this->data['approvedUsers']	= \App\User::where( 'approved_at', '!=',  '' )->count( 'id' );
-   		$this->data['pendingApproval']	= \App\User::where( 'approved_at',  null )->count( 'id' );
-   		$this->data['activatedUsers'] 	= \App\User::where( 'status', 1 )->count( 'id' );
-   		$this->data['deactivatedUsers'] = \App\User::where( 'status', 0 )->count( 'id' );
+   		$this->data['pendingApproval']	= \App\User::where( 'approved_at',  null )->where('user_type_id', 2)->count( 'id' );
+         $this->data['activatedBuyers']   = \App\User::where( 'status', 1 )->where('user_type_id', 1)->count( 'id' );
+   		$this->data['deactivatedBuyers'] 	= \App\User::where( 'status', 0 )->where('user_type_id', 1)->count( 'id' );
+
+         $this->data['activatedVendors']   = \App\User::where( 'status', 1 )->where('user_type_id', 2)->count( 'id' );
+         $this->data['deactivatedVendors']    = \App\User::where( 'status', 0 )->where('user_type_id', 2)->count( 'id' );
    		$this->data['buyers']			= \App\User::where( 'user_type_id', 1 )->count( 'id' );
    		$this->data['vendors'] 			= \App\User::where( 'user_type_id', 2 )->count( 'id' );
 

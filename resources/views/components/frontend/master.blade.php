@@ -15,7 +15,7 @@
     <meta property="og:image"         content={{ ( isset($product) && $product != null ) ? asset( 'storage/product/' . $product->img ) : asset( 'images/logo.png' ) }} >
     {{-- <meta property="og:type"          content="website" /> --}}
     <meta property="og:title"         content="{{ ( isset($product) && $product != null ) ? $product->name : 'Product Not Available' }}" />
-    <meta property="og:description"   content="multi vendor Material site" />
+    <meta property="og:description"   content="{{ ( isset($product) && $product != null ) ? strip_tags($product->description) : 'Product Not Available' }}" />
 
 
     <meta name="csrf_token" content="{{ csrf_token() }}">

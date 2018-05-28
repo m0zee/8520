@@ -102,12 +102,14 @@
 
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="author-info mcolorbg4">
-                                <p>Total Products</p>
-                                <h3>{{ number_format( $productCount )}}</h3>
-                            </div>
-                        </div><!-- end /.col-md-4 -->
+                        <a href="{{ route( 'vendors.product.index', $vendor->code ) }}">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="author-info mcolorbg4">
+                                    <p>Total Products</p>
+                                    <h3>{{ number_format( $productCount )}}</h3>
+                                </div>
+                            </div><!-- end /.col-md-4 -->
+                        </a>
 
 
                         <div class="col-md-6 col-sm-6">
@@ -151,7 +153,7 @@
                                                         <div class="clearfix">
                                                             <div class="pull-left">
                                                                 <div class="media-heading">
-                                                                    <a href="author.html"><h4>{{ $review->user->name }}</h4></a>
+                                                                    <a href="#"><h4>{{ $review->user->name }}</h4></a>
                                                                 </div>
                                                                 <div class="rating product--rating">
                                                                     <ul>
@@ -166,7 +168,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="pull-right rev_time">{{ $review->created_at->diffForHumans() }}</div>
+                                                            <div class="pull-right rev_time">{{ $review->created_at }}</div>
                                                         </div>
                                                         <p>{!! nl2br( $review->review ) !!}</p>
                                                     </div>

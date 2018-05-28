@@ -135,3 +135,13 @@ button.my-btn:hover, .my-btn:hover
 .product .prod_btn{
     z-index: 2;
 }
+
+.author-card .author-infos .author_avatar, .product-desc ul.titlebtm .auth-img, .profile_images .profile_image_area img{
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.profile_images .profile_image_area img{
+    width: 100px;
+    height: 100px;
+}

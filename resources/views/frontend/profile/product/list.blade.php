@@ -51,7 +51,7 @@
 
                             <div class="pull-right">
                                 <div class="filter__option filter--text">
-                                    <p><span>{{ $count->count() }}</span> Products</p>
+                                    <p><span>{{ $count }}</span> Products</p>
                                 </div>
 
                                 {{-- <div class="filter__option filter--select">

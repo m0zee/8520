@@ -16,10 +16,33 @@ class RequirementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( $status_type = NULL )
     {
-        $this->data['requirements'] = BuyerRequirement::with( 'status', 'unit' )->orderBy('id', 'DESC')->get();
+        $this->query = BuyerRequirement::with( 'status', 'unit' )->orderBy('id', 'DESC');
 
+        if ( $status_type != NULL ) 
+        {
+            switch ($status_type) {
+                case 'pending':
+                    $status_id = 1;
+                    break;
+
+                case 'approved':
+                    $status_id = 2;
+                    break;
+                
+                case 'rejected':
+                    $status_id = 3;
+                    break;
+            }
+            $this->requirement = $this->query->where('status_id', $status_id )->get();
+        }
+
+        else{
+            $this->requirement = $this->query->get();   
+        }
+
+        $this->data['requirements'] = $this->requirement;
         return view( 'backend.requirement.index', $this->data );
     }
 

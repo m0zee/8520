@@ -236,7 +236,7 @@ $( my_form_id ).on( "submit", function( event ) {
             })
             .done(function( res ) { //
                 if( res.hasOwnProperty('success') ) {
-                    window.location.href = $( '#redirectionUrl' ).val();
+                    window.location.href = res.redirect;
                 }
                 else if( res.errors != '' ) {
                     showErrors( res.errors );

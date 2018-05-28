@@ -13,9 +13,32 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( $status_type = NULL )
     {
-        $this->data['products'] = Product::with( 'sub_category', 'category', 'user.detail', 'currency', 'status' )->get();
+
+        $this->query = Product::with( 'sub_category', 'category', 'user.detail', 'currency', 'status' );
+        if ( $status_type != NULL ) 
+        {
+            switch ($status_type) {
+                case 'pending':
+                    $status_id = 1;
+                    break;
+
+                case 'approved':
+                    $status_id = 2;
+                    break;
+                
+                case 'rejected':
+                    $status_id = 3;
+                    break;
+            }
+            $this->product = $this->query->where('status_id', $status_id )->get();
+        }
+        else{
+            $this->product = $this->query->get();   
+        }
+        
+        $this->data['products'] = $this->product;
 
         return view( 'backend.product.index', $this->data );       
     }

@@ -110,7 +110,7 @@
 	                                                <tr>
 	                                                    <td colspan="7">
 	                                                        <div class="alert alert-danger text-center">
-	                                                            <strong>No review found!</strong>
+	                                                            <strong>No Requirement found!</strong>
 	                                                        </div>
 	                                                    </td>
 	                                                </tr>

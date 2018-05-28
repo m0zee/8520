@@ -3,7 +3,7 @@
 @section( 'title', 'Dashboard' )
 
 @php
-    $active = 'product'; 
+    $active = 'dashboard'; 
 @endphp
 
 @section( 'content' )
@@ -30,7 +30,13 @@
 
         <div class="dashboard_contents">
             <div class="container">
-
+                
+                @if (Auth::user()->verified == 0 || Auth::user()->approved_at == NULL )
+                    {{-- expr --}}
+                <div class="alert alert-info text-center">
+                    Please verify your email and wait for admin approval
+                </div>
+                @endif
                 <div class="row">
                     <div class="col-xs-12">
                         <h4>Products</h4>
@@ -38,24 +44,30 @@
                     </div>
 
                     <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg2">
-                            <p>Pending Approval</p>
-                            <h3>{{ number_format( $pendingProducts ) }}</h3>
-                        </div>
+                        <a href="{{ route('my-account.product.status', ['1']) }}">
+                            <div class="author-info author-info--dashboard mcolorbg2">
+                                <p>Pending Approval</p>
+                                <h3>{{ number_format( $pendingProducts ) }}</h3>
+                            </div>
+                        </a>
                     </div>
 
                     <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg1">
-                            <p>Approved</p>
-                            <h3>{{ number_format( $approvedProducts ) }}</h3>
-                        </div>
+                        <a href="{{ route('my-account.product.status', ['2']) }}">
+                            <div class="author-info author-info--dashboard mcolorbg1">
+                                <p>Approved</p>
+                                <h3>{{ number_format( $approvedProducts ) }}</h3>
+                            </div>
+                        </a>
                     </div>
 
                     <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg4">
-                            <p>Rejected</p>
-                            <h3>{{ number_format( $rejectedProducts ) }}</h3>
-                        </div>
+                        <a href="{{ route('my-account.product.status', ['3']) }}">
+                            <div class="author-info author-info--dashboard mcolorbg4">
+                                <p>Rejected</p>
+                                <h3>{{ number_format( $rejectedProducts ) }}</h3>
+                            </div>
+                        </a>
                     </div>
                 </div>
 

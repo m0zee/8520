@@ -23,12 +23,32 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($status_id = NULL)
     {
-        $this->data['products'] = Product::with( 'user.detail', 'status', 'currency', 'unit', 'sub_category.category' )->where( 'user_id', Auth::user()->id )->paginate(12);
+        $this->query = Product::with( 'user.detail', 'status', 'currency', 'unit', 'sub_category.category' )
+        ->where( 'user_id', Auth::user()->id )->orderBy('id', 'DESC');
+        if ($status_id == NULL ) {
 
-        $this->data['count'] = Product::where( 'user_id', Auth::user()->id )->get();
+            $products = $this->query->paginate(12);
+        }
+        else
+        {
+            $products = $this->query->where('status_id', $status_id)->paginate(12);
+            // $this->data['page_title'] = ''
+        }
+        $this->data['products'] = $products;
+
+        $data = Product::where( 'user_id', Auth::user()->id );
+        if ($status_id != NULL) {
+            $count = $data->where('status_id', $status_id)->count();
+        }
+        else
+        {
+            $count = $data->count();
+        }
         
+        
+        $this->data['count'] = $count;
         return view( 'frontend.profile.product.list', $this->data );
     }
 
@@ -101,9 +121,9 @@ class ProductController extends Controller
             'status_id'         => 1
         ];
 
-        Product::create( $data );
+        $product = Product::create( $data );
 
-        return response( [ 'success' => true ], 200 );
+        return response( [ 'success' => true, 'redirect' => route('my-account.product.add_gallery', $product->code ) ], 200 );
     }
 
     private function makeValidator( $request )

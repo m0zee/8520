@@ -19,11 +19,30 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( $user_type )
+    public function index( $user_type, $status_type = NULL )
     {
         $user_type  = UserType::where( 'name', $user_type )->first();
+
+        $query       = User::where('user_type_id', $user_type->id);
         
-        $user       = $user_type->user;
+        if ( $status_type != NULL ) 
+        {
+            switch ($status_type) {
+                case 'activated':
+                    $status = 1;
+                    break;
+
+                case 'deactivated':
+                    $status = 0;
+                    break;
+            }
+
+            $user = $query->where('status', $status)->get();
+        }
+        else{
+            $user = $query->get();
+        }
+
         
         return view( 'backend.users.index' )->with( 'users', $user )->with( 'user_type', $user_type );
     }
@@ -221,6 +240,24 @@ class UserController extends Controller
         ];
         User::where( 'id', $request->pk )->update($data);
         return $limit;
+    }
+
+
+    public function vendor_by_type( $approval_type )
+    {
+
+        $user_type  = UserType::where( 'name', 'vendor' )->first();
+
+        if ( $approval_type == 'pending' ) 
+        {
+            $user       = User::where( ['approved_at' => NULL, 'user_type_id' => 2] )->get();
+        }
+        elseif ( $approval_type == 'approved' ) {
+            $user       = User::where( 'user_type_id', 2 )->where('approved_at' , '!=' ,  NULL)->get();
+        }
+        
+        
+        return view( 'backend.users.index' )->with( 'users', $user )->with( 'user_type', $user_type );
     }
 
 

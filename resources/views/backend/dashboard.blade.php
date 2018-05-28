@@ -44,49 +44,78 @@
                         <hr>
                     </div>
 
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg2">
-                            <p>Pending Approval</p>
-                            <h3>{{ number_format( $pendingApproval ) }}</h3>
+                    <a href="{{ route('admin.vendorlist', ['pending']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg2">
+                                <p>Pending Approval</p>
+                                <h3>{{ number_format( $pendingApproval ) }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg1">
-                            <p>Approved Users</p>
-                            <h3>{{ number_format( $approvedUsers ) }}</h3>
+                    <a href="{{ route('admin.vendorlist', ['approved']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg3">
+                                <p>Approved Users</p>
+                                <h3>{{ number_format( $approvedUsers ) }}</h3>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg1">
-                            <p>Activated Users</p>
-                            <h3>{{ number_format( $activatedUsers ) }}</h3>
+                    </a>
+                    
+                    <a href="{{ route('admin.userlist.status', ['buyer', 'activated']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg1">
+                                <p>Activated Buyers</p>
+                                <h3>{{ number_format( $activatedBuyers ) }}</h3>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg4">
-                            <p>De-activated Users</p>
-                            <h3>{{ number_format( $deactivatedUsers ) }}</h3>
+                    </a>
+                    
+                     <a href="{{ route('admin.userlist.status', ['buyer', 'deactivated']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg4">
+                                <p>De-activated Buyers</p>
+                                <h3>{{ number_format( $deactivatedBuyers ) }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-
                 <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg2">
-                            <p>Buyers</p>
-                            <h3>{{ number_format( $buyers ) }}</h3>
+                    <a href="{{ route('admin.userlist', ['buyer']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg2">
+                                <p>Buyers</p>
+                                <h3>{{ number_format( $buyers ) }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+                    <a href="{{ route('admin.userlist', ['vendor']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg3">
+                                <p>Vendors</p>
+                                <h3>{{ number_format( $vendors ) }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="{{ route('admin.userlist.status', ['vendor', 'activated']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg1">
+                                <p>Activated Vendors</p>
+                                <h3>{{ number_format( $activatedVendors ) }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="{{ route('admin.userlist.status', ['vendor', 'deactivated']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg4">
+                                <p>De-activated Vendors</p>
+                                <h3>{{ number_format( $deactivatedVendors ) }}</h3>
+                            </div>
+                        </div>
+                    </a>
 
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg3">
-                            <p>Vendors</p>
-                            <h3>{{ number_format( $vendors ) }}</h3>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="row">
@@ -94,27 +123,32 @@
                         <h4>Products</h4>
                         <hr>
                     </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg2">
-                            <p>Pending Approval</p>
-                            <h3>{{ number_format( $pendingProducts ) }}</h3>
+                    <a href="{{ route('admin.status.wise.products', ['pending']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg2">
+                                <p>Pending Approval</p>
+                                <h3>{{ number_format( $pendingProducts ) }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg1">
-                            <p>Approved</p>
-                            <h3>{{ number_format( $approvedProducts ) }}</h3>
+                    <a href="{{ route('admin.status.wise.products', ['approved']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg1">
+                                <p>Approved</p>
+                                <h3>{{ number_format( $approvedProducts ) }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg4">
-                            <p>Rejected</p>
-                            <h3>{{ number_format( $rejectedProducts ) }}</h3>
+                    <a href="{{ route('admin.status.wise.products', ['rejected']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg4">
+                                <p>Rejected</p>
+                                <h3>{{ number_format( $rejectedProducts ) }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="row">
@@ -122,27 +156,32 @@
                         <h4>Buying Requirements</h4>
                         <hr>
                     </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg2">
-                            <p>Pending</p>
-                            <h3>{{ number_format( $pendingRequirements ) }}</h3>
+                    <a href="{{ route('admin.status.wise.requirements', ['pending']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg2">
+                                <p>Pending</p>
+                                <h3>{{ number_format( $pendingRequirements ) }}</h3>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg1">
-                            <p>Approved</p>
-                            <h3>{{ number_format( $approvedRequirements ) }}</h3>
+                    </a>
+                    
+                    <a href="{{ route('admin.status.wise.requirements', ['approved']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg1">
+                                <p>Approved</p>
+                                <h3>{{ number_format( $approvedRequirements ) }}</h3>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg4">
-                            <p>Rejected</p>
-                            <h3>{{ number_format( $rejectedRequirements ) }}</h3>
+                    </a>
+                    
+                    <a href="{{ route('admin.status.wise.requirements', ['rejected']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg4">
+                                <p>Rejected</p>
+                                <h3>{{ number_format( $rejectedRequirements ) }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 {{-- <div class="row">

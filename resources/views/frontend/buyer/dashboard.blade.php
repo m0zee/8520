@@ -39,27 +39,33 @@
                         <h4>My Buying Requirement</h4>
                         <hr>
                     </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg2">
-                            <p>Pending Approval</p>
-                            <h3>{{ number_format( $pendingRequirement ) }}</h3>
+                    
+                    <a href="{{ route('status.wise.requirement', ['pending']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg2">
+                                <p>Pending Approval</p>
+                                <h3>{{ number_format( $pendingRequirement ) }}</h3>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg1">
-                            <p>Approved</p>
-                            <h3>{{ number_format( $approvedRequirement ) }}</h3>
+                    </a>
+                    
+                    <a href="{{ route('status.wise.requirement', ['approved']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg1">
+                                <p>Approved</p>
+                                <h3>{{ number_format( $approvedRequirement ) }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg4">
-                            <p>Rejected</p>
-                            <h3>{{ number_format( $rejectedRequirement ) }}</h3>
+                    <a href="{{ route('status.wise.requirement', ['rejected']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg4">
+                                <p>Rejected</p>
+                                <h3>{{ number_format( $rejectedRequirement ) }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     
                 </div>
 
@@ -70,26 +76,32 @@
                         <hr>
                     </div>
 
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg2">
-                            <p>Pending Approval</p>
-                            <h3>{{ number_format( $pendingReviews ) }}</h3>
+                    <a href="{{ route('status.wise.reviews', ['pending']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg2">
+                                <p>Pending Approval</p>
+                                <h3>{{ number_format( $pendingReviews ) }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+                    
+                    <a href="{{ route('status.wise.reviews', ['approved']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg1">
+                                <p>Approved</p>
+                                <h3>{{ number_format( $approvedReviews ) }}</h3>
+                            </div>
+                        </div>
+                    </a>
 
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg1">
-                            <p>Approved</p>
-                            <h3>{{ number_format( $approvedReviews ) }}</h3>
+                    <a href="{{ route('status.wise.reviews', ['rejected']) }}">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="author-info author-info--dashboard mcolorbg4">
+                                <p>Rejected</p>
+                                <h3>{{ number_format( $rejectedReviews ) }}</h3>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div class="author-info author-info--dashboard mcolorbg4">
-                            <p>Rejected</p>
-                            <h3>{{ number_format( $rejectedReviews ) }}</h3>
-                        </div>
-                    </div>
+                    </a>
                 </div>
 
                {{--  <div class="row">

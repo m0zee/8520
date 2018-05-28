@@ -66,6 +66,8 @@ class LoginController extends Controller
                 {
                     return redirect( route( 'profile.create' ) );
                 }
+                else 
+                    return redirect( route('my-account.product.create') );
             break;
 
             case '1':

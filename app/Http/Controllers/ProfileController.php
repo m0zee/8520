@@ -72,7 +72,7 @@ class ProfileController extends Controller
             $imageName  = time().'.'. \File::extension($filename);
             // $request->cover_img->move( $path, $imageName );
             $image_resize = Image::make($files->getRealPath());              
-            $image_resize->resize(495, 200);
+            $image_resize->resize(750, 350);
             $image_resize->save($path.'/'.$imageName);
 
 
@@ -190,7 +190,7 @@ class ProfileController extends Controller
             // $request->cover_img->move( $path, $imageName );
 
             $image_resize = Image::make($files->getRealPath());              
-            $image_resize->resize(495, 200);
+            $image_resize->resize(750, 350);
             $image_resize->save($path.'/'.$imageName);
 
             $cover_img = [

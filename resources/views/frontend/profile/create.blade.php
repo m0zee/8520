@@ -269,7 +269,7 @@
                                             <p class="bold">Cover Image<sup>*</sup></p>
 
                                             <div id="new-cover">
-                                                <img src="{{ url('images/cvrplc.jpg')}}" alt="The great warrior of China" id="old-cover">
+                                                <img src="{{ url('images/authcvr.jpg')}}" alt="The great warrior of China" id="old-cover">
                                             </div>
 
 

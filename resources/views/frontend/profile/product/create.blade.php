@@ -206,7 +206,7 @@
                             <!-- submit button -->
                             <button type="submit" class="btn btn--round btn--fullwidth btn--lg">Submit Your Item for Review</button>
                         </form>
-                        {{ Form::hidden( 'redirectionUrl', route( 'my-account.product' ), [ 'id' => 'redirectionUrl' ] ) }}
+                        {{-- {{ Form::hidden( 'redirectionUrl', route( 'my-account.product' ), [ 'id' => 'redirectionUrl' ] ) }} --}}
                     </div><!-- end /.col-md-8 -->
 
                   {{--   <div class="col-md-4 col-sm-5">

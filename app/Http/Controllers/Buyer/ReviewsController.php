@@ -13,9 +13,37 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( $status_type = NULL )
     {
-        $this->data['reviews'] = \App\Review::where( 'user_id', Auth::user()->id )->with( 'vendor' )->orderBy( 'id', 'DESC' )->paginate( 10 );
+        $this->query = \App\Review::where( 'user_id', Auth::user()->id )->with( 'vendor' )->orderBy( 'id', 'DESC' );
+
+         if ( $status_type != NULL ) 
+        {
+            switch ($status_type) {
+                case 'pending':
+                    $status_id = 1;
+                    break;
+
+                case 'approved':
+                    $status_id = 2;
+                    break;
+                
+                case 'rejected':
+                    $status_id = 3;
+                    break;
+            }
+            $this->reviews = $this->query->where('status_id', $status_id )->paginate( 10 );
+        }
+        else
+        {
+            $this->reviews = $this->query->paginate( 10 );
+
+        }
+
+
+
+        $this->data['reviews'] = $this->reviews;
+
         // return $this->data;
         return view( 'frontend.buyer.review.index', $this->data );
     }

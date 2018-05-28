@@ -77,11 +77,13 @@ Route::group( [ 'middleware' => 'CheckAdminLogin', 'namespace' => 'Backend' ], f
 	Route::get( 'admin/dashboard', 'DashboardController@index' )->name( 'admin.dashboard' );
 	
 	Route::get( 'admin/users/{type}', 				'UserController@index' )->name( 'admin.userlist' );
+	Route::get( 'admin/users/{type}/status/{status}', 				'UserController@index' )->name( 'admin.userlist.status' );
+	Route::get( 'admin/users/vendor/{approved_type}', 				'UserController@vendor_by_type' )->name( 'admin.vendorlist' );
 	Route::put( 'admin/users/{user_id}/approve', 	'UserController@approve' )->name( 'admin.user.approve' );
 	Route::put( 'admin/users/{user_id}/status', 	'UserController@statusUpdate' )->name( 'admin.user.status' );
 	Route::post( 'admin/users/product_limit', 	'UserController@productLimit' );
-	Route::get( 'admin/users/vendor/create', 	'UserController@create' )->name( 'admin.vendor.create' );;
-	Route::post( 'admin/users/vendor/create', 	'UserController@store' )->name( 'admin.vendor.store' );;
+	Route::get( 'admin/users/vendor/create', 	'UserController@create' )->name( 'admin.vendor.create' );
+	Route::post( 'admin/users/vendor/create', 	'UserController@store' )->name( 'admin.vendor.store' );
 
 	Route::resource( 'admin/categories', 'CategoryController', [
 		'names' => [
@@ -119,6 +121,9 @@ Route::group( [ 'middleware' => 'CheckAdminLogin', 'namespace' => 'Backend' ], f
 	    ]
 	]);
 
+	Route::get( 'admin/products/status/{status}', 'ProductController@index' )->name( 'admin.status.wise.products');
+
+
 	Route::put( 'admin/products/{id}/status/{status}', 'ProductController@status' )->name( 'admin.products.status' );
 
 	Route::resource( 'admin/reviews', 'ReviewsController', [
@@ -150,6 +155,8 @@ Route::group( [ 'middleware' => 'CheckAdminLogin', 'namespace' => 'Backend' ], f
 			'show' 	=> 'admin.requirements.show', 
 		] 
 	]);
+	Route::get( 'admin/requirements/status/{status}', 'RequirementController@index' )->name( 'admin.status.wise.requirements');
+
 
 	Route::resource( 'admin/reports', 'ReportsController', [
 		'only' 	=> [ 'index', 'show' ],
@@ -176,8 +183,7 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 				'names' => [ 'index' => 'vendor.dashboard' ] 
 			]);
 
-			Route::get( 'products',  'ProductController@index' )->name( 'my-account.product' );
-			
+			Route::get( 'products',  'ProductController@index' )->name( 'my-account.product' );			
 			Route::group( [ 'middleware' => [ 'IsVendorApproved' ] ], function() {
 				Route::get( 'products/create',  				'ProductController@create' )->name( 'my-account.product.create' );
 				Route::get( 'products/{prodcut_code}/edit',  	'ProductController@edit' )->name( 'my-account.product.edit' );
@@ -188,6 +194,8 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 				Route::get( '{code}/products',					'ProductController@show' )->name( 'my-account.product.show' );
 				Route::post( 'products/{code}/gallery',			'ProductController@add_gallery' )->name( 'my-account.product.add_gallery' );
 			});
+			Route::get( 'products/{status_type}',  'ProductController@index' )->name( 'my-account.product.status' );
+			
 		});
 
 		Route::resource( 'messages', 'MessagesController', [
@@ -200,7 +208,10 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 
 	Route::group( [ 'prefix' => 'buyer', 'middleware' => [ 'IsBuyer' ] ], function() {
 		Route::resource( 'dashboard', 	'Buyer\DashboardController', 	[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.dashboard' ] ] );
+		
 		Route::resource( 'reviews', 	'Buyer\ReviewsController', 		[ 'only' => [ 'index' ], 'names' => [ 'index' => 'buyer.reviews' ] ] );
+		Route::get( 'reviews/status/{status}', 'Buyer\ReviewsController@index' )->name( 'status.wise.reviews');
+
 		Route::resource( 'shortlist', 	'Buyer\ShortlistController', 	[ 
 			'only' => [ 'index', 'store', 'destroy' ], 
 			'names' => [ 
@@ -219,6 +230,8 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 				'update'	=> 'buyer.requirements.update'
 			] 
 		]);
+		Route::get( 'requirements/status/{status}', 'Buyer\RequirementController@index' )->name( 'status.wise.requirement');
+
 	});
 });
 

@@ -38,7 +38,7 @@ class ContactUsEmail extends Mailable
     public function build()
     {
         return $this->from( 'support@pakmaterial.com' )
-        ->subject( 'Email Received from Pak Material at ' . date( 'd-m-Y H:i:s' ) )
+        ->subject( 'Email Received from Pakmaterial at ' . date( 'd-m-Y H:i:s' ) )
         ->view( 'emails.contact_us' );
     }
 }

@@ -24,9 +24,9 @@
 
 
 
-    @if( Auth::check() )
+    {{-- @if( Auth::check() )
         @include( 'components.frontend.vendor_menu' )
-    @endif
+    @endif --}}
 
     <section class="author-profile-area">
         <div class="container">
@@ -74,13 +74,13 @@
                             <div class="message-form mycontact-info">
         
                                
-                             <p><span class="lnr lnr-envelope "></span>{{ $user->email }}</p>
+                             <p><span class="lnr lnr-envelope "></span> {{ $user->email }}</p>
                              
-                            <p><span class="lnr lnr-phone"></span>{{ $user->detail->phone_number }}</p>
+                            <p><span class="lnr lnr-phone"></span> {{ $user->detail->phone_number }}</p>
 
-                            <p><span class="lnr lnr-smartphone"></span>{{ $user->detail->mobile_number }}</p>
+                            <p><span class="lnr lnr-smartphone"></span> {{ $user->detail->mobile_number }}</p>
 
-                            <p><span class="lnr lnr-map-marker"></span>{{ $user->detail->address }}</p>
+                            <p><span class="lnr lnr-map-marker"></span> {{ $user->detail->address }}</p>
 
                             </div><!-- end /.message-form -->
                         </div><!-- end /.freelance-status -->
@@ -89,12 +89,14 @@
 
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                           <div class="author-info mcolorbg4">
-                               <p>Total Products</p>
-                               <h3>{{ number_format( $productCount )}}</h3>
-                           </div>
-                        </div><!-- end /.col-md-4 -->
+                        <a href="{{ route( 'vendors.product.index', $user->code ) }}">
+                            <div class="col-md-6 col-sm-6">
+                               <div class="author-info mcolorbg4">
+                                   <p>Total Products</p>
+                                   <h3>{{ number_format( $productCount )}}</h3>
+                               </div>
+                            </div><!-- end /.col-md-4 -->
+                        </a>
 
                         {{-- <div class="col-md-6 col-sm-6">
                             <div class="author-info pcolorbg">
