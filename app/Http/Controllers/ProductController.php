@@ -31,7 +31,7 @@ class ProductController extends Controller
         ->where('status_id', 2)
         ->paginate( 12 );
         
-        return view( 'frontend.product.index', $this->data )->with( 'blue_menu', true );
+        return view( 'frontend.product.index', $this->data );
     }
 
     /**
@@ -55,28 +55,28 @@ class ProductController extends Controller
     public function search( Request $request )
     {
         $category   = Category::where( 'slug', $request->category )->first();
+        $category_id = ( $category == NULL ) ? 0 : $category->id; 
 
-        $_query     = Product::with( 'sub_category.category', 'user.detail', 'currency', 'unit' )->where( 'status_id', 2 )
-        ->where( 'name', 'like', '%' . $request->get( 'query' ) . '%' )->orderBy( 'id', 'DESC' );
+        $rows = Product::search( $request->get( 'query' ), $category_id );
 
         if( $category != null )
         {
-            $_query->where( 'category_id', $category->id );
+            // $_query->where( 'category_id', $category->id );
 
             $this->data['categories']   = Category::with( 'sub_category' )->where( 'slug', $request->category )->first();
 
-            $views = 'frontend.product.category_wise_products';
+            $views = 'frontend.product.search.category_wise_products';
         }
         else
         {
             $this->data['categories'] = Category::get();
 
-            $views = 'frontend.product.index';
+            $views = 'frontend.product.search.index';
         }
 
-        $this->data['products']     = $_query->paginate( 12 );
+        $this->data['products']     = $rows;
 
-        return view( $views, $this->data )->with( 'blue_menu', true );
+        return view( $views, $this->data );
     }
 
 
@@ -113,7 +113,7 @@ class ProductController extends Controller
 
         $this->data['categories'] = $category;
 
-        return view( 'frontend.product.category_wise_products', $this->data )->with( 'blue_menu', true );
+        return view( 'frontend.product.category_wise_products', $this->data );
     }
 
 
@@ -128,6 +128,7 @@ class ProductController extends Controller
         $this->data['products'] = Product::where( 'sub_category_id', $sub_category->id )
         ->where('status_id', 2)
         ->with( 'sub_category', 'user.detail', 'currency', 'unit' )->paginate( 12 );
-        return view( 'frontend.product.sub_category_wise_products', $this->data )->with( 'blue_menu', true );
+        $this->data['sub_category'] = $sub_category;
+        return view( 'frontend.product.sub_category_wise_products', $this->data );
     }
 }

@@ -15,7 +15,24 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id;
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        if ($user->verified == 0) {
+            $this->data['message'] = 'Please verify your email address';
+        }
+
+        elseif ($user->approved_at == NULL) {
+            $this->data['message'] = 'Please wait for admin approval';
+        }
+
+        elseif ($user->verified == 0 && $user->approved_at == NULL ) {
+            $this->data['message'] = 'Please verify your email and wait for admin approval';
+        }
+        else
+        {
+            $this->data['message'] = '';
+        }
 
         $this->data['pendingProducts']  = \App\Product::where( [ 'status_id' => 1, 'user_id' => $user_id ] )->count( 'id' );
         $this->data['approvedProducts'] = \App\Product::where( [ 'status_id' => 2, 'user_id' => $user_id ] )->count( 'id' );

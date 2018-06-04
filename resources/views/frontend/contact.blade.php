@@ -79,7 +79,7 @@
                                         <div class="contact_form--wrapper">
                                             {{ Form::open( [ 'route' => 'contact.send' ]) }}
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group has-error">
                                                             {{ Form::text( 'name', old( 'name' ), [ 'id' => 'name', 'placeholder' => 'Name' ] )}}
                                                             @if( $errors->has( 'name' ) )
@@ -88,7 +88,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <div class="form-group has-error">
                                                             {{ Form::email( 'email', old( 'email' ), [ 'id' => 'email', 'placeholder' => 'Email' ] )}}
                                                             @if( $errors->has( 'email' ) )
@@ -96,6 +96,16 @@
                                                             @endif
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group has-error">
+                                                            {{ Form::text( 'contact_number', old( 'contact_number' ), [ 'id' => 'contact_number', 'placeholder' => 'Contact Number' ] )}}
+                                                            @if( $errors->has( 'contact_number' ) )
+                                                                <span class="help-block">{{ $errors->first( 'contact_number' ) }}</span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
                                                 <div class="row">

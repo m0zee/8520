@@ -31,10 +31,10 @@
         <div class="dashboard_contents">
             <div class="container">
                 
-                @if (Auth::user()->verified == 0 || Auth::user()->approved_at == NULL )
+                @if ( $message != '' )
                     {{-- expr --}}
                 <div class="alert alert-info text-center">
-                    Please verify your email and wait for admin approval
+                    {{ $message }}
                 </div>
                 @endif
                 <div class="row">

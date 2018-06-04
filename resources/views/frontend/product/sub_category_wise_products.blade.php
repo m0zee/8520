@@ -4,6 +4,23 @@
 @section('content')
 
 
+    <section class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb">
+                        <ul>
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="{{ route('products') }}">Products</a></li>
+                            <li><a href="{{ route('categories.products', [$sub_category->category->slug]) }}">{{$sub_category->category->name}}</a></li>
+                            <li><a href="{{ route('categories.sub-categories.products', [$sub_category->category->slug, $sub_category->slug]) }}">{{$sub_category->name}}</a></li>
+                        </ul>
+                    </div>
+                    <h1 class="page-title">{{ $sub_category->name }}</h1>
+                </div><!-- end /.col-md-12 -->
+            </div><!-- end /.row -->
+        </div><!-- end /.container -->
+    </section>
 
     <!--================================
         START PRODUCTS AREA

@@ -27,6 +27,10 @@ class ProfileController extends Controller
     {
     	$country   = Country::pluck( 'name', 'id' );
     	$user      = Auth::user();
+        if ($user->detail != NULL ) 
+        {
+            return redirect( route( 'profile.edit', [ $user->code ] ) );
+        }
 
     	return view( 'frontend.profile.create', compact( 'country', 'user' ) );
     }
@@ -94,6 +98,8 @@ class ProfileController extends Controller
             'city_id'       => 'required',
             'address'       => 'required',
             'mobile_number' => 'required',
+            'phone_number'  => 'required',
+            'description'   => 'required'
         ], [
             'name.required'             => 'Please enter Name',
             'company_name.required'     => 'Please enter Company Name',
@@ -102,6 +108,8 @@ class ProfileController extends Controller
             'city_id.required'          => 'Please select City',
             'address.required.required' => 'Please enter Address',
             'mobile_number.required'    => 'Please enter Mobile Number',
+            'phone_number.required'     => 'Please enter Phone Number',
+            'description.required'      => 'Please enter About your company',
         ]);
 
         $data = [
@@ -156,6 +164,8 @@ class ProfileController extends Controller
             'city_id'       => 'required',
             'address'       => 'required',
             'mobile_number' => 'required',
+            'phone_number'  => 'required',
+            'description'   => 'required',
             'cover_img' => 'mimes:jpeg,png,jpg|max:2048',
             'profile_img' => 'mimes:jpeg,png,jpg|max:2048'
         ]);

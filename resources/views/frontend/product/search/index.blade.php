@@ -62,10 +62,10 @@
 
                 <!-- start col-md-9 -->
                 <div class="col-md-9">
-                    @if( isset( $products ) && $products->count() > 0 )
+                    @if( isset( $products ) && count($products) > 0 )
                         <div class="row" id="product-container">
                             @foreach( $products as $product )
-                                <div class="col-md-4 col-sm-4">
+                               <div class="col-md-4 col-sm-4">
                                     <!-- start .single-product -->
                                     <div class="product product--card product--card-small">
 
@@ -77,38 +77,46 @@
                                             @endif
                                             
                                             <div class="prod_btn">
-                                                <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="transparent btn--sm btn--round">More Info</a>
-                                                <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round">Profile</a>
+                                                <a href="{{ route('products.show', [$product->category_slug, $product->sub_category_slug, $product->code, $product->slug ]) }}" class="transparent btn--sm btn--round">More Info</a>
+                                                <a href="{{ route( 'profile.show', [ $product->user_code ] ) }}" class="transparent btn--sm btn--round">Profile</a>
                                             </div><!-- end /.prod_btn -->
                                         </div><!-- end /.product__thumbnail -->
 
                                         <div class="product-desc">
-                                            <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ (strlen($product->name) > 23) ? substr($product->name,0,23).'...' :$product->name  }}</h4></a>
+                                            <a href="{{ route('products.show', [$product->category_slug, $product->sub_category_slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ (strlen($product->name) > 23) ? substr($product->name,0,23).'...' :$product->name  }}</h4></a>
 
                                             
                                             <ul class="titlebtm">
-                                                @if( $product->user->detail != null  )
+                                                {{-- @if( $product->user->detail != null  ) --}}
                                                     <li>
-                                                        @if( $product->user->detail->profile_img && file_exists( $product->user->detail->profile_path . '/' . $product->user->detail->profile_img ) )
-                                                            <img class="auth-img" src="{{ asset( 'storage/profile_img/30x30_' . $product->user->detail->profile_img ) }}" alt="author image">
+                                                        @if( $product->user_profile_img && file_exists( $product->user_profile_path . '/' . $product->user_profile_img ) )
+                                                            <img class="auth-img" src="{{ asset( 'storage/profile_img/30x30_' . $product->user_profile_img ) }}" alt="author image">
                                                         @else
                                                             <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
                                                         @endif
-                                                        <p><a href="{{ route('profile.show', [$product->user->code]) }}">{{ $product->user->detail->company_name }}</a></p>
+                                                        <p><a href="{{ route('profile.show', [$product->user_code]) }}">{{ $product->company_name }}</a></p>
                                                     </li>
                                                     <br>
-                                                @endif
+                                                {{-- @endif --}}
                                                 <li>
                                                     <span class="fa fa-folder iconcolor"></span>
-                                                    <a href="{{ route('categories.products', [$product->sub_category->category->slug]) }}">
-                                                        {{ $product->sub_category->category->name }}
+                                                    <a href="{{ route('categories.products', [$product->category_slug]) }}">
+                                                        {{ $product->category_name }}
                                                     </a>
-                                                    {{-- <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->sub_category->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a> --}}
+
+                                                    <span class="fa fa-chevron-right"></span>
+
+
+                                                    <span class="fa fa-folder iconcolor"></span>
+                                                    <a href="{{ route('categories.sub-categories.products', [$product->category_slug, $product->sub_category_slug]) }}">
+                                                        {{ $product->sub_category_name }}
+                                                    </a>
+                                                    {{-- <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a> --}}
                                                 </li>
 
                                                 <li>
                                                    <span class="fa fa-money iconcolor"></span>
-                                                   <strong>{{ $product->price }} {{ $product->currency->name }} - {{ $product->unit->name }}</strong>
+                                                   <strong>{{ $product->price }} {{ $product->currency_name }} - {{ $product->unit_name }}</strong>
                                                 </li>
 
                                                 {{-- <li>
@@ -148,15 +156,7 @@
                 </div><!-- end /.col-md-9 -->
             </div><!-- end /.row -->
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pagination-area categorised_item_pagination">
-                        @if( isset( $products ) && $products->hasPages() )
-                            {{ $products->links( 'vendor.pagination.pak-material' ) }}
-                        @endif
-                    </div>
-                </div>
-            </div><!-- end /.row -->
+            <!-- end /.row -->
         
         </div><!-- end /.container -->
 

@@ -35,12 +35,14 @@ class HomeController extends Controller
     public function send( ContactRequest $request )
     {
         $sender     = $request->email;
+        $name       = $request->name;
         $country    = \App\Country::where( 'id', $request->country_id )->first()->name;
         $state      = \App\State::where( 'id', $request->state_id )->first()->name;
         $city       = \App\City::where( 'id', $request->city_id )->first()->name;
         $message    = $request->message;
+        $contact    = $request->contact_number; 
 
-        Mail::to( 'support@pakmaterial.com' )->send( new ContactUsEmail( $sender, $country, $state, $city, $message ) );
+        Mail::to( 'support@pakmaterial.com' )->send( new ContactUsEmail( $sender, $name, $country, $state, $city, $message, $contact ) );
 
         return redirect()->back()->with( 'success', 'Email has been successfully sent.' );
     }

@@ -106,7 +106,7 @@
                     <div class="col-md-4">
                         <aside class="sidebar sidebar--single-product">
                             <div class="sidebar-card card-pricing">
-                                <div class="price"><h1><sup>{{ $product->currency->name }}</sup> {{ number_format( $product->price ) }}</h1></div>
+                                <div class="price"><h1><sup>{{ $product->currency->name }}</sup> {{ number_format( $product->price ) }} / {{ $product->unit->name }}</h1></div>
                             </div><!-- end /.sidebar--card -->
 
                             <div class="sidebar-card card--product-infos">
@@ -130,21 +130,33 @@
                                 </div>
 
                                 <div class="author-infos">
-                                    <div class="author_avatar">
-                                        <img src="{{ asset('storage/profile_img/'.$product->user->detail->profile_img) }}" alt="Presenting the broken author avatar :D">
-                                    </div>
+                                    <a href="{{ url( 'profile/' . $product->user->code ) }}">
+                                        <div class="author_avatar">
+                                            <img src="{{ asset( 'storage/profile_img/' . $product->user->detail->profile_img ) }}" alt="Presenting the broken author avatar :D">
+                                        </div>
+                                    </a>
 
                                     <div class="author">
-                                        <h4>{{ $product->user->detail->company_name }}</h4>
-                                        <p>Signed Up: {{ $product->user->created_at }}</p>
+                                        <a href="{{ url( 'profile/' . $product->user->code ) }}"><h4>{{ $product->user->detail->company_name }}</h4></a>
+                                        <p>Signed Up: {{ $product->user->updated_at->format( 'd M, Y' ) }}</p>
+
+                                        <div class="message-form mycontact-info">
+                                            <p><span class="lnr lnr-envelope "></span> {{ $product->user->email }}</p>
+                                                                         
+                                            <p><span class="lnr lnr-phone"></span> {{ $product->user->detail->phone_number }}</p>
+                                            
+                                            <p><span class="lnr lnr-smartphone"></span> {{ $product->user->detail->mobile_number }}</p>
+                                            
+                                            <p><span class="lnr lnr-map-marker"></span> {{ $product->user->detail->address }}</p>
+                                        </div>
                                     </div><!-- end /.author -->
 
 
                                     <div class="author-btn">
-                                        <a href="#" class="btn btn--sm btn--round">View Profile</a>
-                                        <a href="#" class="btn btn--sm btn--round">Send Message</a>
+                                        <a href="{{ route( 'vendors.product.index', $product->user->code ) }}" class="btn btn--sm btn--round">Product</a>
+                                        {{-- <button class="btn btn--sm btn--round" id="btn_report">Report</button> --}}
                                     </div><!-- end /.author-btn -->
-                                </div><!-- end /.author-infos -->
+                                </div><!-- end /.author-infos --><!-- end /.author-infos -->
                             </div><!-- end /.author-card -->
                         </aside><!-- end /.aside -->
                     </div><!-- end /.col-md-4 -->

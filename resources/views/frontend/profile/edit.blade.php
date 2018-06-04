@@ -71,7 +71,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                                     <label for="full_name">Full Name <sup>*</sup></label>
-                                                    <input type="text" id="full_name" class="text_field" name="name" placeholder="Full Name" value="{{ old('name') ? old('name') : $user->name  }}">
+                                                    <input type="text" id="full_name" class="text_field" name="name" placeholder="Full Name" value="{{ old('name', $user->name)   }}">
 
                                                      @if ($errors->has('name'))
                                                         <span class="help-block">
@@ -85,7 +85,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">
                                                 <label for="email">Company Name<sup>*</sup></label>
-                                                <input type="text" id="email" class="text_field" name="company_name" placeholder="Company Name" value="{{ old('company_name') ? old('company_name') : $user->detail->company_name  }}">
+                                                <input type="text" id="email" class="text_field" name="company_name" placeholder="Company Name" value="{{ old( 'company_name', $user->detail->company_name )  }}">
 
                                                 @if ($errors->has('company_name'))
                                                     <span class="help-block">
@@ -108,7 +108,7 @@
                                                 <div class="form-group {{ $errors->has('country_id') ? ' has-error' : '' }}">
                                                     <label for="country">Country <sup>*</sup></label>
                                                     <div class="select-wrap select-wrap2">
-                                                        {{ Form::select('country_id', $country, ( $errors->has('country_id') ) ? old('country_id') : $user->detail->country_id, ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
+                                                        {{ Form::select('country_id', $country,  old('country_id', $user->detail->country_id) , ['placeholder' => 'Please Select', 'id' => 'country'] ) }}
                                                         <span class="lnr lnr-chevron-down"></span>
                                                         @if ($errors->has('country_id'))
                                                             <span class="help-block">
@@ -126,7 +126,7 @@
                                                         <select name="state_id" id="state" class="text_field">
                                                             <option value="">Please Select</option>
                                                         </select>
-                                                        <input type="hidden" id="hidden_state_id" value="{{ old('state_id') ? old('state_id') : $user->detail->state_id }}">
+                                                        <input type="hidden" id="hidden_state_id" value="{{ old('state_id', $user->detail->state_id) }}">
                                                         <span class="lnr lnr-chevron-down"></span>
                                                         @if ($errors->has('state_id'))
                                                             <span class="help-block">
@@ -145,7 +145,7 @@
                                                             <option value="">Please Select</option>
                                                         </select>
                                                         <span class="lnr lnr-chevron-down"></span>
-                                                        <input type="hidden" id="hidden_city_id" value="{{ old('city_id') ? old('city_id') : $user->detail->city_id }}">
+                                                        <input type="hidden" id="hidden_city_id" value="{{ old('city_id', $user->detail->city_id ) }}">
 
                                                         @if ($errors->has('city_id'))
                                                             <span class="help-block">
@@ -161,7 +161,7 @@
 
                                         <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
                                             <label for="address">Address <sup>*</sup></label>
-                                            <input type="text" id="address" class="text_field" name="address" value="{{ old('address') ? old('address') : $user->detail->address }}" placeholder="Write your address">
+                                            <input type="text" id="address" class="text_field" name="address" value="{{ old('address', $user->detail->address) }}" placeholder="Write your address">
                                             @if ($errors->has('address'))
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('address') }}</strong>
@@ -173,7 +173,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group{{ $errors->has('mobile_number')  ? ' has-error' : ''}}">
                                                     <label for="mobile_number">Mobile Number <sup>*</sup></label>
-                                                    <input type="text" id="mobile_number" value="{{ old('mobile_number') ? old('mobile_number') : $user->detail->mobile_number }}" name="mobile_number" class="text_field" placeholder="Mobile Number">
+                                                    <input type="text" id="mobile_number" value="{{ old('mobile_number', $user->detail->mobile_number)  }}" name="mobile_number" class="text_field" placeholder="Mobile Number">
 
                                                     @if ($errors->has('mobile_number'))
                                                         <span class="help-block">
@@ -185,7 +185,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group{{ $errors->has('phone_number')  ? ' has-error' : ''}}">
                                                     <label for="phone_number">Phone Number <sup>*</sup></label>
-                                                    <input type="text" id="phone_number" value="{{ old('phone_number') ? old('phone_number') : $user->detail->phone_number }}" name="phone_number" class="text_field" placeholder="Phone Number">
+                                                    <input type="text" id="phone_number" value="{{ old('phone_number', $user->detail->phone_number) }}" name="phone_number" class="text_field" placeholder="Phone Number">
                                                     @if ($errors->has('phone_number'))
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first('phone_number') }}</strong>
@@ -245,9 +245,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="authbio">About Company</label>
-                                            <textarea name="description" id="authbio" class="text_field" placeholder="Short brief about yourself or your account...">{{ $user->detail->description }}</textarea>
+                                        <div class="form-group{{ $errors->has('description')  ? ' has-error' : ''}}">
+                                            <label for="authbio">About Company <sup>*</sup></label>
+                                            <textarea name="description" id="authbio" class="text_field" placeholder="Short brief about yourself or your account...">{{ old('description', $user->detail->description )  }}</textarea>
+                                            @if ($errors->has('description'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('description') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div><!-- end /.information__set -->

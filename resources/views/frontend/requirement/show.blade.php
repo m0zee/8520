@@ -97,6 +97,7 @@
                             <ul class="infos">
                                 <li><p class="data-label">Code:</p><p class="info">{{ $requirement->code }} </p></li>
                                 <li><p class="data-label">Quantity</p><p class="info">{{ $requirement->quantity . ' ' . $requirement->unit->name }}</p></li>
+                                <li><p class="data-label">City</p><p class="info">{{ $requirement->city->name }}</p></li>
                             </ul>
 
                         </div><!-- end /.aside -->

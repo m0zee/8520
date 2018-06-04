@@ -36,4 +36,9 @@ class BuyerRequirement extends Model
     {
         return $this->belongsTo( 'App\SubCategory' );
     }
+
+    public function city()
+    {
+        return $this->hasOne( 'App\City', 'id' );
+    }
 }

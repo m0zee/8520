@@ -3,6 +3,22 @@
 @section( 'title', 'Products' )
 @section( 'content' )
 
+    <section class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb">
+                        <ul>
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="{{ route('products') }}">Products</a></li>
+                            <li class="active"><a href="{{ route('categories.products', [$categories->slug]) }}">{{ $categories->name }}</a></li>
+                        </ul>
+                    </div>
+                    <h1 class="page-title">{{ $categories->name }}</h1>
+                </div><!-- end /.col-md-12 -->
+            </div><!-- end /.row -->
+        </div><!-- end /.container -->
+    </section>
 
     <!--================================
         START PRODUCTS AREA
@@ -188,6 +204,7 @@
     <!--================================
         START CALL TO ACTION AREA
     =================================-->
+@if ( !Auth::check() )
     <section class="call-to-action bgimage">
         <div class="bg_image_holder">
             <img src="images/calltobg.jpg" alt="">
@@ -197,13 +214,14 @@
                 <div class="col-md-12">
                     <div class="call-to-wrap">
                         <h1 class="text--white">Ready to Join Our PakMaterial!</h1>
-                        <h4 class="text--white">Over 25,000 vendors and buyers trust the PakMaterial.</h4>
+                        <h4 class="text--white">Over 25,000 Vendors and Buyers trust the PakMaterial.</h4>
                         <a href="{{ route('register') }}" class="btn btn--lg btn--round btn--white callto-action-btn">Join Us Today</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+@endif
 
     <!-- Modal -->
     @if( Auth::check() )

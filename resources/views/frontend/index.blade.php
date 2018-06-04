@@ -178,7 +178,7 @@
 
 
 
-
+@if ( !Auth::check() )
     <section class="call-to-action bgimage">
         <div class="bg_image_holder">
             <img src="images/calltobg.jpg" alt="">
@@ -195,6 +195,8 @@
             </div>
         </div>
     </section>
+@endif
+
 
     @if( Auth::check() )
         <div class="modal fade not_loggedind_modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="not_loggedind_modal">

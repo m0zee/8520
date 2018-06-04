@@ -115,6 +115,7 @@
                                                         <select name="state_id" id="state" class="text_field">
                                                             <option value="">Please Select</option>
                                                         </select>
+                                                        <input type="hidden" id="hidden_state_id" value="{{ old('state_id') }}">
                                                         <span class="lnr lnr-chevron-down"></span>
                                                     </div>
                                                     @if( $errors->has( 'state_id' ) )
@@ -132,6 +133,7 @@
                                                         <select name="city_id" id="city" class="text_field">
                                                             <option value="">Please Select</option>
                                                         </select>
+                                                        <input type="hidden" id="hidden_city_id" value="{{ old('city_id') }}">
                                                         <span class="lnr lnr-chevron-down"></span>
                                                     </div>
                                                     @if( $errors->has( 'city_id' ) )
@@ -147,7 +149,7 @@
 
                                         <div class="form-group {{ $errors->has( 'address' ) ? ' has-error' : '' }}">
                                             <label for="address">Address <sup>*</sup></label>
-                                            <input type="text" id="address" class="text_field" name="address" placeholder="Write your address">
+                                            <input type="text" id="address" value="{{ old('address') }}" class="text_field" name="address" placeholder="Write your address">
                                             @if( $errors->has( 'address' ) )
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first( 'address' ) }}</strong>
@@ -159,7 +161,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group {{ $errors->has( 'mobile_number' ) ? ' has-error' : '' }}">
                                                     <label for="mobile_number">Mobile Number <sup>*</sup></label>
-                                                    <input type="text" id="mobile_number" name="mobile_number" class="text_field" placeholder="Mobile Number">
+                                                    <input type="text" id="mobile_number" value="{{ old('mobile_number') }}" name="mobile_number" class="text_field" placeholder="Mobile Number">
                                                     @if( $errors->has( 'mobile_number' ) )
                                                         <span class="help-block">
                                                             <strong>{{ $errors->first( 'mobile_number' ) }}</strong>
@@ -168,10 +170,15 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group{{ $errors->has( 'mobile_number' ) ? ' has-error' : '' }}">
                                                     <label for="phone_number">Phone Number <sup>*</sup></label>
-                                                    <input type="text" id="phone_number" name="phone_number" class="text_field" placeholder="Phone Number">
-                                                </div>  
+                                                    <input type="text" id="phone_number" value="{{ old('phone_number') }}" name="phone_number" class="text_field" placeholder="Phone Number">
+                                                    @if ($errors->has('phone_number'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('phone_number') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
 
@@ -225,9 +232,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group{{ $errors->has('description')  ? ' has-error' : ''}}">
                                             <label for="authbio">Description<sup>*</sup></label>
-                                            <textarea name="description" id="authbio" class="text_field" placeholder="Short brief about yourself or your account..."></textarea>
+                                            <textarea name="description" id="authbio" class="text_field" placeholder="Short brief about yourself or your account...">{{ old('description')  }}</textarea>
+                                            @if ($errors->has('description'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('description') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div><!-- end /.information__set -->

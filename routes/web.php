@@ -184,7 +184,7 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 			]);
 
 			Route::get( 'products',  'ProductController@index' )->name( 'my-account.product' );			
-			Route::group( [ 'middleware' => [ 'IsVendorApproved' ] ], function() {
+			// Route::group( [ 'middleware' => [ 'IsVendorApproved' ] ], function() {
 				Route::get( 'products/create',  				'ProductController@create' )->name( 'my-account.product.create' );
 				Route::get( 'products/{prodcut_code}/edit',  	'ProductController@edit' )->name( 'my-account.product.edit' );
 				Route::put( 'products/{prodcut_code}/edit',  	'ProductController@update' )->name( 'my-account.product.update' );
@@ -193,7 +193,7 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 				Route::post( 'products/{id}/gallery/destroy',	'ProductController@destroy' )->name( 'my-account.product.gallery.destroy' );
 				Route::get( '{code}/products',					'ProductController@show' )->name( 'my-account.product.show' );
 				Route::post( 'products/{code}/gallery',			'ProductController@add_gallery' )->name( 'my-account.product.add_gallery' );
-			});
+			// });
 			Route::get( 'products/{status_type}',  'ProductController@index' )->name( 'my-account.product.status' );
 			
 		});

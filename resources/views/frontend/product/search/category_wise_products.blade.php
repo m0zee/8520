@@ -3,7 +3,6 @@
 @section( 'title', 'Products' )
 @section( 'content' )
 
-
     <section class="breadcrumb-area">
         <div class="container">
             <div class="row">
@@ -11,10 +10,11 @@
                     <div class="breadcrumb">
                         <ul>
                             <li><a href="{{ route('home') }}">Home</a></li>
-                            <li class="active"><a href="{{ route('products') }}">Products</a></li>
+                            <li><a href="{{ route('products') }}">Products</a></li>
+                            <li class="active"><a href="{{ route('categories.products', [$categories->slug]) }}">{{ $categories->name }}</a></li>
                         </ul>
                     </div>
-                    <h1 class="page-title">Product List</h1>
+                    <h1 class="page-title">{{ $categories->name }}</h1>
                 </div><!-- end /.col-md-12 -->
             </div><!-- end /.row -->
         </div><!-- end /.container -->
@@ -39,32 +39,45 @@
                             </a>
                             <div class="collapse in collapsible-content" id="collapse1">
                                 <ul class="card-content">
-                                    @if( isset( $categories ) && $categories->count() > 0 )
-                                        @foreach( $categories as $category )
+                                    @if( $categories->sub_category->count() > 0 )
+                                        @foreach( $categories->sub_category as $category )
                                             <li>
-                                                <a href="{{ url( 'categories/' . $category->slug . '/products' ) }}">
+                                                <a href="{{ url( 'categories/' . $categories->slug . '/sub-categories/' . $category->slug . '/products' ) }}">
                                                     <span class="lnr lnr-chevron-right"></span>{{ $category->name }}
                                                 </a>
                                             </li>
                                         @endforeach
-                                    @else
-                                        <li>
-                                            <div class="alert alert-danger text-center">No category found!</div>
-                                        </li>
                                     @endif
                                 </ul>
                             </div><!-- end /.collapsible_content -->
                         </div><!-- end /.sidebar-card -->
 
-                    </aside><!-- end aside -->
+                        <!-- end /.sidebar-card -->
+    
+                       {{--  <div class="sidebar-card card--slider">
+                                <a class="card-title" href="#collapse3" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapse3">
+                                    <h4>Filter Products<span class="lnr lnr-chevron-down"></span></h4>
+                                </a>
+                                <div class="collapse in collapsible-content" id="collapse3">
+                                    <div class="card-content">
+                                        <div class="range-slider price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 6%; width: 54%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 6%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 60%;"></span></div>
 
+                                        <div class="price-ranges">
+                                            <span class="from rounded">$30</span>
+                                            <span class="to rounded">$300</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}<!-- end /.sidebar-card -->
+                        </aside><!-- end aside -->
                 </div><!-- end /.col-md-3 -->
 
                 <!-- start col-md-9 -->
                 <div class="col-md-9">
-                    @if( isset( $products ) && $products->count() > 0 )
-                        <div class="row" id="product-container">
+                    <div class="row" id="product-container">
+                        @if( count($products) > 0 )
                             @foreach( $products as $product )
+
                                 <div class="col-md-4 col-sm-4">
                                     <!-- start .single-product -->
                                     <div class="product product--card product--card-small">
@@ -77,38 +90,46 @@
                                             @endif
                                             
                                             <div class="prod_btn">
-                                                <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="transparent btn--sm btn--round">More Info</a>
-                                                <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}" class="transparent btn--sm btn--round">Profile</a>
+                                                <a href="{{ route('products.show', [$product->category_slug, $product->sub_category_slug, $product->code, $product->slug ]) }}" class="transparent btn--sm btn--round">More Info</a>
+                                                <a href="{{ route( 'profile.show', [ $product->user_code ] ) }}" class="transparent btn--sm btn--round">Profile</a>
                                             </div><!-- end /.prod_btn -->
                                         </div><!-- end /.product__thumbnail -->
 
                                         <div class="product-desc">
-                                            <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ (strlen($product->name) > 23) ? substr($product->name,0,23).'...' :$product->name  }}</h4></a>
+                                            <a href="{{ route('products.show', [$product->category_slug, $product->sub_category_slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ (strlen($product->name) > 23) ? substr($product->name,0,23).'...' :$product->name  }}</h4></a>
 
                                             
                                             <ul class="titlebtm">
-                                                @if( $product->user->detail != null  )
+                                                {{-- @if( $product->user->detail != null  ) --}}
                                                     <li>
-                                                        @if( $product->user->detail->profile_img && file_exists( $product->user->detail->profile_path . '/' . $product->user->detail->profile_img ) )
-                                                            <img class="auth-img" src="{{ asset( 'storage/profile_img/30x30_' . $product->user->detail->profile_img ) }}" alt="author image">
+                                                        @if( $product->user_profile_img && file_exists( $product->user_profile_path . '/' . $product->user_profile_img ) )
+                                                            <img class="auth-img" src="{{ asset( 'storage/profile_img/30x30_' . $product->user_profile_img ) }}" alt="author image">
                                                         @else
                                                             <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
                                                         @endif
-                                                        <p><a href="{{ route('profile.show', [$product->user->code]) }}">{{ $product->user->detail->company_name }}</a></p>
+                                                        <p><a href="{{ route('profile.show', [$product->user_code]) }}">{{ $product->company_name }}</a></p>
                                                     </li>
                                                     <br>
-                                                @endif
+                                                {{-- @endif --}}
                                                 <li>
                                                     <span class="fa fa-folder iconcolor"></span>
-                                                    <a href="{{ route('categories.products', [$product->sub_category->category->slug]) }}">
-                                                        {{ $product->sub_category->category->name }}
+                                                    <a href="{{ route('categories.products', [$product->category_slug]) }}">
+                                                        {{ $product->category_name }}
                                                     </a>
-                                                    {{-- <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->sub_category->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a> --}}
+
+                                                    <span class="fa fa-chevron-right"></span>
+
+
+                                                    <span class="fa fa-folder iconcolor"></span>
+                                                    <a href="{{ route('categories.sub-categories.products', [$product->category_slug, $product->sub_category_slug]) }}">
+                                                        {{ $product->sub_category_name }}
+                                                    </a>
+                                                    {{-- <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a> --}}
                                                 </li>
 
                                                 <li>
                                                    <span class="fa fa-money iconcolor"></span>
-                                                   <strong>{{ $product->price }} {{ $product->currency->name }} - {{ $product->unit->name }}</strong>
+                                                   <strong>{{ $product->price }} {{ $product->currency_name }} - {{ $product->unit_name }}</strong>
                                                 </li>
 
                                                 {{-- <li>
@@ -135,20 +156,30 @@
                                     </div><!-- end /.single-product -->
                                 </div><!-- end /.col-md-4 -->
                             @endforeach
-                        </div>
-                     @else
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="alert alert-danger text-center">
-                                    No Product Found!
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+
+                        
+                    </div>
+                    
                 </div><!-- end /.col-md-9 -->
             </div><!-- end /.row -->
 
-            <div class="row">
+            {{-- <div class="row">
+                <div class="col-md-12">
+                    <div class="pagination-area categorised_item_pagination">
+                        <nav class="navigation pagination" role="navigation">
+                            <div class="nav-links">
+                                <a class="prev page-numbers" href="#"><span class="lnr lnr-arrow-left"></span></a>
+                                <a class="page-numbers current" href="#">1</a>
+                                <a class="page-numbers" href="#">2</a>
+                                <a class="page-numbers" href="#">3</a>
+                                <a class="next page-numbers" href="#"><span class="lnr lnr-arrow-right"></span></a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div> --}}<!-- end /.row -->
+
+            {{-- <div class="row">
                 <div class="col-md-12">
                     <div class="pagination-area categorised_item_pagination">
                         @if( isset( $products ) && $products->hasPages() )
@@ -156,8 +187,12 @@
                         @endif
                     </div>
                 </div>
-            </div><!-- end /.row -->
-        
+            </div> --}}
+            @else
+            <div class="alert alert-danger text-center">
+                No Product Found!
+            </div>
+            @endif
         </div><!-- end /.container -->
 
     </section>
@@ -187,9 +222,6 @@
         </div>
     </section>
 @endif
-    <!--================================
-        END CALL TO ACTION AREA
-    =================================-->
 
     <!-- Modal -->
     @if( Auth::check() )
@@ -447,7 +479,6 @@
             <h3>LOADING...Please wait!</h3>
         </div>
     </div>
-
 @endsection
 
 @section( 'js' )

@@ -114,6 +114,7 @@
     <!--================================
         START CALL TO ACTION AREA
     =================================-->
+@if (! Auth::check() )
     <section class="call-to-action bgimage">
         <div class="bg_image_holder">
             <img src="images/calltobg.jpg" alt="">
@@ -123,13 +124,14 @@
                 <div class="col-md-12">
                     <div class="call-to-wrap">
                         <h1 class="text--white">Ready to Join Our PakMaterial!</h1>
-                        <h4 class="text--white">Over 25,000 vendors and buyers trust the PakMaterial.</h4>
+                        <h4 class="text--white">Over 25,000 Vendors and Buyers trust the PakMaterial.</h4>
                         <a href="{{ route('register') }}" class="btn btn--lg btn--round btn--white callto-action-btn">Join Us Today</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+@endif
     <!--================================
         END CALL TO ACTION AREA
     =================================-->
