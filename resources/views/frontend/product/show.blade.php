@@ -173,7 +173,20 @@
 
                                     <div class="author">
                                         <a href="{{ url( 'profile/' . $product->user->code ) }}"><h4>{{ $product->user->detail->company_name }}</h4></a>
-                                        <p>Signed Up: {{ $product->user->updated_at->format( 'd M, Y' ) }}</p>
+                                        <p>
+                                            {{-- Signed Up: {{ $product->user->updated_at->format( 'd M, Y' ) }} --}}
+                                            <div class="rating product--rating">
+                                                <ul>
+                                                    @for( $i = 0; $i < $avgRatings; $i ++ )
+                                                        <li><span class="fa fa-star"></span></li>
+                                                    @endfor
+                                                    @for( $i = 5; $i > $avgRatings; $i -- )
+                                                        <li><span class="fa fa-star-o"></span></li>
+                                                    @endfor
+                                                </ul>
+                                                <span class="rating__count">({{ $raters }})</span>
+                                            </div>
+                                        </p>
 
                                         <div class="message-form mycontact-info">
                                             <p><span class="lnr lnr-envelope "></span> {{ $product->user->email }}</p>
@@ -188,7 +201,7 @@
 
 
                                     <div class="author-btn">
-                                        <a href="{{ route( 'vendors.product.index', $product->user->code ) }}" class="btn btn--sm btn--round">Product</a>
+                                        <a href="{{ route( 'vendors.product.index', $product->user->code ) }}" class="btn btn--sm btn--round">More Product</a>
                                         {{-- <button class="btn btn--sm btn--round" id="btn_report">Report</button> --}}
                                     </div><!-- end /.author-btn -->
                                 </div><!-- end /.author-infos -->

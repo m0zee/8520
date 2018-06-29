@@ -42,10 +42,23 @@ class ProductController extends Controller
      */
     public function show( $category, $sub_category, $code, $slug )
     {
-        $this->data['product'] = Product::where( 'code', $code )->with( 'category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery' )->first();
+        $product = Product::where( 'code', $code )->with( 'category', 'sub_category', 'currency', 'unit', 'user.detail', 'country', 'gallery' )->first();
+        $this->data['product'] = $product;
         $this->data['relativeProducts'] = Product::where( 'code', '!=', $code )->where('sub_category_id', $this->data['product']->sub_category->id )->with( 'category', 'sub_category', 'currency', 'unit', 'user.detail' )->take( 3 )->get();
 
+        $this->getRatings( $product->user->code );
+
         return view( 'frontend.product.show', $this->data );
+    }
+
+    private function getRatings( $user_code )
+    {
+        $ratings = \App\Review::select([
+            DB::raw( 'SUM( ratings ) AS stars' ), DB::raw( 'COUNT( id ) AS raters' )
+        ])->where( [ 'vendor_code' =>  $user_code, 'status_id' => 2 ] )->first();
+
+        $this->data['raters']       = $ratings->raters;
+        $this->data['avgRatings']   = ( $ratings->stars != null ) ? round( (int)$ratings->stars / (int)$ratings->raters ) : 0;
     }
 
 
