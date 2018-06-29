@@ -174,7 +174,6 @@
                                     <div class="author">
                                         <a href="{{ url( 'profile/' . $product->user->code ) }}"><h4>{{ $product->user->detail->company_name }}</h4></a>
                                         <p>
-                                            {{-- Signed Up: {{ $product->user->updated_at->format( 'd M, Y' ) }} --}}
                                             <div class="rating product--rating">
                                                 <ul>
                                                     @for( $i = 0; $i < $avgRatings; $i ++ )
