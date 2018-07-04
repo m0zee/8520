@@ -326,51 +326,48 @@ class ProductController extends Controller
 
     public function gallery( $code )
     {
-        $this->data['product']                = Product::where( 'code', $code )->first();
+        $this->data['product']  = Product::where( 'code', $code )->first();
         $this->data['gallery']  = ProductGallery::where( 'product_id', $this->data['product']->id )->get();
 
-        return view('frontend.profile.product.gallery', $this->data );
+        return view( 'frontend.profile.product.gallery', $this->data );
     }
 
 
     public function add_gallery(Request $request, $code)
     {
-
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make( $request->all(), [
             'file' => 'mimes:jpeg,jpg,png|max:2000',
         ]);
 
-        if ($validator->fails()) 
+        if( $validator->fails() ) 
         {
             echo json_encode( [ 'err' => $validator->errors()->first('file') ] );
             die();
         }
-        $file = $request->file;
-        $filename    = $file->getClientOriginalName();
-        $img_name = time().'.'. \File::extension($filename);
-        $path = public_path('storage/product/gallery');
 
-        $this->resize_img_and_watermark($file, $img_name, $path);
+        $file       = $request->file;
+        $filename   = $file->getClientOriginalName();
+        $img_name   = time() . '.' . \File::extension( $filename );
+        $path       = public_path( 'storage/product/gallery' );
 
-        $product = Product::where('code', $code)->first();
+        $this->resize_img_and_watermark( $file, $img_name, $path );
+
+        $product = Product::where( 'code', $code )->first();
 
         $options = [ 
-            'product_id' => $product->id,
-            'img' => $img_name,
-            'path' => $path, 
+            'product_id'    => $product->id,
+            'img'           => $img_name,
+            'path'          => $path, 
         ];
 
-
         $img_id = $this->add_additional_image_info( $options, $product->id );
-
-        
 
         if( $img_id > 0 )
         {
             $img_uploaded_info = [
                 'id'            => $img_id,
-                'img_path'      => asset('storage/product/gallery/361x230_'.$img_name),
-                'delete_url'    => route('my-account.product.gallery.destroy', [$img_id]),
+                'img_path'      => asset( 'storage/product/gallery/361x230_' . $img_name ),
+                'delete_url'    => route( 'my-account.product.gallery.destroy', [$img_id] ),
                 'product_id'    => $product->id
             ];
 
@@ -384,27 +381,29 @@ class ProductController extends Controller
         }
         else
         {
-            echo json_encode( [ 'err' => 'Could not save the image. Please try again' ] );
+            echo json_encode( [ 'err' => 'Image could not be saved. Please try again' ] );
         }
-
     }
 
     private function add_additional_image_info( $upload_info, $product_id )
     {
-        $images = ProductGallery::where('product_id', $product_id)->get();
-        if($images->count() >= 4)
+        $images = ProductGallery::where( 'product_id', $product_id )->get();
+        if( $images->count() >= 4 )
+        {
             return 'limit exceeds';
+        }
 
         $img_id = ProductGallery::create( $upload_info );
+
         return $img_id->id;
     }
 
 
     public function remove_additional_image( $img_data )
     {
-        $img_path   = $img_data['path'].'/'.$img_data['img'];
-        $thumb_path = $img_data['path'].'/80x80_'.$img_data['img'];
-        $product_img = $img_data['path'].'/361x230_'.$img_data['img'];
+        $img_path       = $img_data['path'].'/'.$img_data['img'];
+        $thumb_path     = $img_data['path'].'/80x80_'.$img_data['img'];
+        $product_img    = $img_data['path'].'/361x230_'.$img_data['img'];
 
         if( file_exists( $img_path ) && is_file( $img_path ) )
         {
@@ -425,33 +424,33 @@ class ProductController extends Controller
 
     public function resize_img_and_watermark($file, $img_name, $path)
     {
-        $image_resize = Image::make($file->getRealPath());              
-        $image_resize->resize(750, 430);
-        $image_resize->save($path.'/'.$img_name);
+        $image_resize = Image::make( $file->getRealPath() );
+        // $image_resize->resize( 750, 430 );
+        $image_resize->save( $path . '/' . $img_name );
 
-        $image_resize = Image::make($file->getRealPath());              
-        $image_resize->resize(80, 80);
-        $image_resize->save($path.'/80x80_'.$img_name);
+        $image_resize = Image::make( $file->getRealPath() );              
+        $image_resize->resize( 80, 80 );
+        $image_resize->save( $path . '/80x80_' . $img_name );
 
 
-        $image_resize = Image::make($file->getRealPath());              
-        $image_resize->resize(361, 230);
-        $image_resize->save($path.'/361x230_'.$img_name);
+        $image_resize = Image::make( $file->getRealPath() );              
+        $image_resize->resize( 361, 230 );
+        $image_resize->save( $path . '/361x230_' . $img_name );
 
-        $value = $path.'/'.$img_name;
-        $img = Image::make($value);
-        $img->insert(public_path('images/watermark/1.png'), 'center');
+        $value = $path . '/' . $img_name;
+        $img = Image::make( $value );
+        $img->insert( public_path( 'images/watermark/1.png' ), 'center' );
         $img->save($value);
 
-        $value = $path.'/80x80_'.$img_name;
-        $img = Image::make($value);
-        $img->insert(public_path('images/watermark/1.png'), 'center');
-        $img->save($value);
+        $value = $path . '/80x80_' . $img_name;
+        $img = Image::make( $value );
+        $img->insert( public_path( 'images/watermark/1.png' ), 'center' );
+        $img->save( $value );
 
 
-        $value = $path.'/361x230_'.$img_name;
-        $img = Image::make($value);
-        $img->insert(public_path('images/watermark/1.png'), 'center');
-        $img->save($value);
+        $value = $path . '/361x230_' . $img_name;
+        $img = Image::make( $value );
+        $img->insert( public_path( 'images/watermark/1.png' ), 'center' );
+        $img->save( $value );
     }
 }

@@ -99,9 +99,9 @@ button.my-btn:hover, .my-btn:hover
     padding-bottom: 20px;
 }
 
-.item-preview {
+/*.item-preview {
     height:640px;
-}
+}*/
 
 .item-info .tab-content {
     margin-top: 0px;
@@ -144,4 +144,9 @@ button.my-btn:hover, .my-btn:hover
 .profile_images .profile_image_area img{
     width: 100px;
     height: 100px;
+}
+
+.prev-slide img{
+    max-height: 430px;
+    width: 100%;
 }

@@ -2,6 +2,11 @@
 
 
 @section( 'title', 'Products' )
+
+@section( 'css' )
+    <link rel="stylesheet" href="{{ url( 'js/vendor/fancybox/jquery.fancybox-1.3.4.css' ) }}">
+@endsection
+
 @section( 'content' )
 
 <!--================================
@@ -33,11 +38,6 @@
     @if( $product != null )
 
         <section class="single-product-desc">
-            {{-- @if ($product->status_id != 2)
-                <div class="alert alert-info text-center">
-                    <strong>This Product status is {{ $product->status->name }} </strong>
-                </div>
-            @endif --}}
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
@@ -52,7 +52,8 @@
                                 @if( $product->gallery->count() > 0 )
                                     @foreach( $product->gallery as $gallery )
                                         <div class="prev-slide">
-                                            <img src="{{ asset( 'storage/product/gallery/' . $gallery->img ) }}" alt="Keep calm this isn't the end of the world, the preview is just missing.">
+                                            <img src="{{ asset( 'storage/product/gallery/' . $gallery->img ) }}" 
+                                                alt="Keep calm this isn't the end of the world, the preview is just missing.">
                                         </div>
                                     @endforeach
                                 @endif
@@ -68,7 +69,7 @@
                                             <img src="{{ asset( 'storage/product/80x80_' . $product->img ) }}" alt="This is the thumbnail of the item">
                                         </a>
 
-                                        @foreach($product->gallery as $gallery)
+                                        @foreach( $product->gallery as $gallery )
                                             <a class="item-thumb" data-image="{{ asset( 'storage/product/gallery/' . $gallery->img ) }}" 
                                                 data-zoom-image="{{ asset( 'storage/product/gallery/' . $gallery->img ) }}">
                                                 <img src="{{ asset( 'storage/product/gallery/80x80_' . $gallery->img ) }}" alt="This is the thumbnail of the item">
@@ -78,11 +79,8 @@
                                 </div>
                             </div><!-- end /.item__preview-thumb-->
 
-
+                            <div style="clear:both"></div>
                         </div><!-- end /.item-preview-->
-
-
-                       {{--  <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> --}}
 
                         <div class="item-info">
                             <div class="item-navigation">
@@ -201,7 +199,6 @@
 
                                     <div class="author-btn">
                                         <a href="{{ route( 'vendors.product.index', $product->user->code ) }}" class="btn btn--sm btn--round">More Product</a>
-                                        {{-- <button class="btn btn--sm btn--round" id="btn_report">Report</button> --}}
                                     </div><!-- end /.author-btn -->
                                 </div><!-- end /.author-infos -->
 
@@ -219,7 +216,6 @@
                     <!-- start col-md-12 -->
                     <div class="col-md-12">
                         <div class="section-title">
-                            {{-- {{ $product->user->detail->company_name }} --}}
                             <h1>Related <span class="highlighted">Products</span></h1>
                         </div>
                     </div><!-- end /.col-md-12 -->
@@ -611,6 +607,7 @@
 
 @section( 'js' )
     <script src="{{ asset( 'js/vendor/jquery.elevatezoom.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/vendor/fancybox/jquery.fancybox-1.3.4.js' ) }}"></script>
     <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
     <script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
     <script src="{{ asset( 'js/page/home/show.js' ) }}"></script>

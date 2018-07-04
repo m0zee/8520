@@ -99,7 +99,7 @@ $.pakMaterial = $.pakMaterial || {};
                     }
                 },
                 error: function( err ) {
-                    console.log( err );  
+                    // console.log( err );  
                 } 
             });
         };
