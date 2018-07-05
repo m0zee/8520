@@ -35,7 +35,7 @@
                     <aside class="sidebar product--sidebar">
                         <div class="sidebar-card card--category">
                             <a class="card-title" href="#collapse1" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapse1">
-                                <h4 >Categories <span class="lnr lnr-chevron-down"></span></h4>
+                                <h4 >Sub Categories <span class="lnr lnr-chevron-down"></span></h4>
                             </a>
                             <div class="collapse in collapsible-content" id="collapse1">
                                 <ul class="card-content">
@@ -95,7 +95,7 @@
                                             </div><!-- end /.prod_btn -->
                                         </div><!-- end /.product__thumbnail -->
 
-                                        <div class="product-desc">
+                                        <div class="product-desc size175">
                                             <a href="{{ route('products.show', [$product->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ (strlen($product->name) > 23) ? substr($product->name,0,23).'...' :$product->name  }}</h4></a>
 
                                             

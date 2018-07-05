@@ -87,12 +87,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="radio-inline" >
-                                    <input type="radio" id="buyer" value="1" checked name="user_type_id">Buyer
-                                </label>
-                                
                                 <label class="radio-inline">
-                                    <input type="radio" id="vendor" value="2" name="user_type_id" >Vendor
+                                    <input type="radio" id="vendor" value="2" name="user_type_id" checked>Vendor
+                                </label>
+
+                                <label class="radio-inline" >
+                                    <input type="radio" id="buyer" value="1" name="user_type_id">Buyer
                                 </label>
                             </div>
 

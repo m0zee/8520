@@ -333,7 +333,7 @@ class ProductController extends Controller
     }
 
 
-    public function add_gallery(Request $request, $code)
+    public function add_gallery( Request $request, $code )
     {
         $validator = Validator::make( $request->all(), [
             'file' => 'mimes:jpeg,jpg,png|max:2000',
@@ -341,6 +341,9 @@ class ProductController extends Controller
 
         if( $validator->fails() ) 
         {
+            echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
+            print_r( 'reached here' );
+            echo '</pre>'; die;
             echo json_encode( [ 'err' => $validator->errors()->first('file') ] );
             die();
         }

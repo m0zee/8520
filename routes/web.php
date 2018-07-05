@@ -230,6 +230,7 @@ Route::group( [ 'middleware' => [ 'CheckLogin' ] ], function() {
 				'update'	=> 'buyer.requirements.update'
 			] 
 		]);
+		
 		Route::get( 'requirements/status/{status}', 'Buyer\RequirementController@index' )->name( 'status.wise.requirement');
 
 	});
@@ -249,9 +250,8 @@ Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
 			'store' => 'vendors.reviews.store'
 		] 
 	]);
-
 	
-	Route::get( 'products', 			'ProfileController@product' )->name( 'vendors.product.index' );
+	Route::get( 'products', 'ProfileController@product' )->name( 'vendors.product.index' );
 });
 
 

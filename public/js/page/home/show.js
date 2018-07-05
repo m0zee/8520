@@ -2,6 +2,7 @@ $.productDetail = $.productDetail || {};
 
 $(function() {
 	$.productDetail.baseUrl 		= $( '#base_url' ).val();
+	$.productDetail.zoomIndicator	= $( '.zoom-indicator' );
 	$.productDetail.mainImg 		= $( '#main_img' );
 	$.productDetail.btnReport		= $( '#btn_report' );
 	$.productDetail.reportModal 	= $( '#report_modal' );
@@ -77,6 +78,12 @@ $(function() {
     });
 
     $.productDetail.mainImg.on( 'click', function( e ) {
+    	var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
+    	$.fancybox( ez.getGalleryList() );
+
+    	return false;
+    });
+    $.productDetail.zoomIndicator.on( 'click', function( e ) {
     	var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
     	$.fancybox( ez.getGalleryList() );
 

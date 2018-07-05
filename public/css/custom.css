@@ -58,43 +58,54 @@ button.my-btn:hover, .my-btn:hover
     margin-right: -1px;
 }
 
-#new-dp{
+#new-dp
+{
     display: inline-block;
 }
-.social_icon span.fa-linkedin{
 
+.social_icon span.fa-linkedin
+{
     background-color: #0077b5;
 }
 
-.product--card .product-desc{
+.product--card .product-desc
+{
     height: 200px;
 }
 
-.sidebar_author .message-card .mycontact-info p{
+.sidebar_author .message-card .mycontact-info p
+{
     text-align: left;
 }
 
-.sidebar_author .message-card .mycontact-info p span{
+.sidebar_author .message-card .mycontact-info p span
+{
     color:#0674ec;
 }
 
-.product--card .product-desc {
+.product--card .product-desc
+{
     height: 190px;
 }
 
-.iconcolor{
+.iconcolor
+{
     color:#0674ec;
 }
 
-.hero-area::before{
+.hero-area::before
+{
     background: none;
 }
 
-.info-contact li .info-icon, .info-contact li .info {
+.info-contact li .info-icon, .info-contact li .info
+{
     display: inline-block;
     vertical-align: top;
 }
-.section--padding {
+
+.section--padding
+{
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -103,11 +114,13 @@ button.my-btn:hover, .my-btn:hover
     height:640px;
 }*/
 
-.item-info .tab-content {
+.item-info .tab-content
+{
     margin-top: 0px;
 }
 
-.card_content .delete{
+.card_content .delete
+{
     position: relative;
     margin-bottom:20px;
 }
@@ -117,7 +130,8 @@ button.my-btn:hover, .my-btn:hover
     height: auto;
 }*/
 
-.delete .btn {
+.delete .btn
+{
     position: absolute;
     top: 10%;
     left: 15%;
@@ -132,21 +146,64 @@ button.my-btn:hover, .my-btn:hover
     text-align: center;
 }
 
-.product .prod_btn{
+.product .prod_btn
+{
     z-index: 2;
 }
 
-.author-card .author-infos .author_avatar, .product-desc ul.titlebtm .auth-img, .profile_images .profile_image_area img{
+.author-card .author-infos .author_avatar, .product-desc ul.titlebtm .auth-img, .profile_images .profile_image_area img
+{
     -webkit-border-radius: 0px;
     border-radius: 0px;
 }
 
-.profile_images .profile_image_area img{
+.profile_images .profile_image_area img
+{
     width: 100px;
     height: 100px;
 }
 
-.prev-slide img{
+.prev-slide img
+{
     max-height: 430px;
     width: 100%;
+}
+
+/*==============================
+        Product Detail
+===============================*/
+.item-preview .item__preview-thumb
+{
+    padding: 15px 30px 15px 30px;
+}
+
+.item-preview .prev-thumb
+{
+    padding: 0;
+}
+
+.zoom-indicator
+{
+    position: absolute;
+    z-index: 999;
+    color: #999;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+/*==============================
+    Product Detail ends here
+===============================*/
+
+/*==============================
+   Home, Category wise product
+===============================*/
+.product--card .product-desc.size175
+{
+    height: 175px;
+}
+
+.product--card .product-desc
+{
+    height: 150px;
 }

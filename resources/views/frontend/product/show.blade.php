@@ -41,8 +41,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
+                        <div class="zoom-indicator">
+                            <span class="fa fa-search-plus fa-3x"></span>  {{-- title="Hover over the image to see the large image or click the image to show in popup" --}}
+                        </div>
                         <div class="item-preview">
-
                             <div class="item__preview-slider" style="width:99.9%">
                                 <div class="prev-slide">
                                     <img id="main_img" src="{{ asset( 'storage/product/' . $product->img ) }}"  
@@ -79,7 +81,6 @@
                                 </div>
                             </div><!-- end /.item__preview-thumb-->
 
-                            <div style="clear:both"></div>
                         </div><!-- end /.item-preview-->
 
                         <div class="item-info">
@@ -115,10 +116,9 @@
                     <div class="col-md-4">
                         <aside class="sidebar sidebar--single-product">
                             <div class="sidebar-card card-pricing">
-                                <div class="price"><h1><sup>{{ $product->currency->name }}</sup> {{ number_format( $product->price ) }} / {{ $product->unit->name }}</h1></div>
-
-
-
+                                <div class="price">
+                                    <h1><sup>{{ $product->currency->name }}</sup> {{ number_format( $product->price ) }} / <sup>{{ $product->unit->name }}</sup></h1>
+                                </div>
 
                                 <div class="product-purchase text-center" id="product-container">
                                     <button data-product-id="{{ $product->id }}" data-shortlisted="{{ 0 }}"

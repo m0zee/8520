@@ -82,7 +82,7 @@
                                             </div><!-- end /.prod_btn -->
                                         </div><!-- end /.product__thumbnail -->
 
-                                        <div class="product-desc">
+                                        <div class="product-desc size175">
                                             <a href="{{ route('products.show', [$product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ]) }}" class="product_title"><h4>{{ (strlen($product->name) > 23) ? substr($product->name,0,23).'...' :$product->name  }}</h4></a>
 
                                             
@@ -100,20 +100,20 @@
                                                 @endif
                                                 <li>
                                                     <span class="fa fa-folder iconcolor"></span>
-                                                    <a href="{{ route('categories.products', [$product->sub_category->category->slug]) }}">
+                                                    <a href="{{ route( 'categories.products', [ $product->sub_category->category->slug ] ) }}">
                                                         {{ $product->sub_category->category->name }}
                                                     </a>
-                                                    {{-- <span class="lnr lnr-chevron-right"></span><a href="{{ route('categories.sub-categories.products', [$product->sub_category->category->slug, $product->sub_category->slug]) }}">{{ $product->sub_category->name }}</a> --}}
+                                                    <span class="fa fa-angle-double-right"></span>
+                                                    <span class="fa fa-folder iconcolor"></span>
+                                                    <a href="{{ route( 'categories.sub-categories.products', [ $product->sub_category->category->slug, $product->sub_category->slug ] ) }}">
+                                                        {{ $product->sub_category->name }}
+                                                    </a>
                                                 </li>
 
                                                 <li>
                                                    <span class="fa fa-money iconcolor"></span>
                                                    <strong>{{ $product->price }} {{ $product->currency->name }} - {{ $product->unit->name }}</strong>
                                                 </li>
-
-                                                {{-- <li>
-                                                   <span class="fa fa-barcode iconcolor"></span> </strong>{{ strtoupper($product->code) }}</strong>
-                                                </li> --}}
                                             </ul>
                                         </div><!-- end /.product-desc -->
 
