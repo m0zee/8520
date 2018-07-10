@@ -4,6 +4,11 @@
 @endphp
 
 @section('title', 'Products')
+
+@section( 'css' )
+    <link rel="stylesheet" href="{{ url( 'js/vendor/fancybox/jquery.fancybox-1.3.4.css' ) }}">
+@endsection
+
 @section('content')
 <!--================================
         START BREADCRUMB AREA
@@ -45,6 +50,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
+                    <div class="zoom-indicator">
+                        <span class="fa fa-search-plus fa-3x"></span>  {{-- title="Hover over the image to see the large image or click the image to show in popup" --}}
+                    </div>
                     <div class="item-preview">
                         <div class="item__preview-slider" style="width:99.9%">
                             {{-- <div class="prev-slide"><img src="images/p1.jpg" alt="Keep calm this isn't the end of the world, the preview is just missing."></div> --}}
@@ -123,7 +131,7 @@
                 <div class="col-md-4">
                     <aside class="sidebar sidebar--single-product">
                         <div class="sidebar-card card-pricing">
-                            <div class="price"><h1><sup>{{ $product->currency->name }}</sup> {{ number_format($product->price) }} / {{ $product->unit->name }}</h1></div>
+                            <div class="price"><h1><sup>{{ $product->currency->name }}</sup> {{ number_format( $product->price ) }} / <sup>{{ $product->unit->name }}</sup></h1></div>
                         </div><!-- end /.sidebar--card -->
 
                         <div class="sidebar-card card--product-infos">
@@ -204,24 +212,42 @@
 @section('js')
 
 <script src="{{ asset('js/vendor/jquery.elevatezoom.min.js') }}"></script>
+<script src="{{ asset( 'js/vendor/fancybox/jquery.fancybox-1.3.4.js' ) }}"></script>
 <script>
-    $("#img_01").elevateZoom({
+    $.productDetail = $.productDetail || {};
+    $.productDetail.mainImg = $( '#img_01' );
+    $.productDetail.zoomIndicator   = $( '.zoom-indicator' );
+    $( "#img_01" ).elevateZoom({
         gallery:'thumb-slider',
-        cursor: 'pointer',
+        cursor: 'crosshair',
         galleryActiveClass: 'active',
-        imageCrossfade: true,
-        scrollZoom : true,
+        responsive: true,
+        // easing: true,
+        // imageCrossfade: true,
+        scrollZoom: true,
+        // zoomLens: true,
+        // lensSize: 800,
         // zoomWindowPosition
-        zoomType: 'window',
-        zoomWindowWidth: 400, 
-zoomWindowHeight:    400 ,
-zoomWindowOffetx :   0 ,  
-zoomWindowOffety :   0 , 
-zoomWindowPosition  :1,
-        
-        responsive:true,
-        loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}); 
-    
-    // {gallery:'gallery_01', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'}
+        zoomType: 'inner',
+        // zoomWindowWidth: 400, 
+        // zoomWindowHeight: 400,
+        // zoomWindowOffetx: 0,  
+        // zoomWindowOffety: 0, 
+        // zoomWindowPosition: 1,
+        loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
+    }); 
+
+    $.productDetail.mainImg.on( 'click', function( e ) {
+        var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
+        $.fancybox( ez.getGalleryList() );
+
+        return false;
+    });
+    $.productDetail.zoomIndicator.on( 'click', function( e ) {
+        var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
+        $.fancybox( ez.getGalleryList() );
+
+        return false;
+    });
 </script>
 @endsection

@@ -341,9 +341,9 @@ class ProductController extends Controller
 
         if( $validator->fails() ) 
         {
-            echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
-            print_r( 'reached here' );
-            echo '</pre>'; die;
+            // echo '<pre>FILE: ' . __FILE__ . '<br>LINE: ' . __LINE__ . '<br>';
+            // print_r( 'reached here' );
+            // echo '</pre>'; die;
             echo json_encode( [ 'err' => $validator->errors()->first('file') ] );
             die();
         }

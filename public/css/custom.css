@@ -207,3 +207,20 @@ button.my-btn:hover, .my-btn:hover
 {
     height: 150px;
 }
+
+@media only screen and (max-width: 767px) {
+   .prev-slide img
+    {
+        max-height: 240px;
+        width: 100%;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+   .prev-slide img
+    {
+        max-height: 166px;
+        width: 100%;
+    }
+}

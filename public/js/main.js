@@ -167,7 +167,7 @@ $.pakMaterial = $.pakMaterial || {};
         if(windowWidth <= 991){
         var $slideNav = $('#for_mobile .nav');
         $slideNav.slideUp();
-        $('.nav`r-toggle').on('click',function(){
+        $('.navr-toggle').on('click',function(){
               $slideNav.slideToggle();
             })
         }
