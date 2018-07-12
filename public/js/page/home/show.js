@@ -3,7 +3,7 @@ $.productDetail = $.productDetail || {};
 $(function() {
 	$.productDetail.baseUrl 		= $( '#base_url' ).val();
 	$.productDetail.zoomIndicator	= $( '.zoom-indicator' );
-	$.productDetail.mainImg 		= $( '#main_img' );
+	// $.productDetail.mainImg 		= $( '#main_img' );
 	$.productDetail.btnReport		= $( '#btn_report' );
 	$.productDetail.reportModal 	= $( '#report_modal' );
 	$.productDetail.id 				= $.productDetail.reportModal.find( '#product_id' ).val();
@@ -57,38 +57,41 @@ $(function() {
 	// 				PLUGINS INIT
 	// =============================================
 
-	$.productDetail.mainImg.elevateZoom({
-        gallery:'thumb-slider',
-        cursor: 'crosshair',
-        galleryActiveClass: 'active',
-		responsive: true,
-		// easing: true,
-        // imageCrossfade: true,
-        scrollZoom: true,
-        // zoomLens: true,
-        // lensSize: 800,
-        // zoomWindowPosition
-        zoomType: 'inner',
-        // zoomWindowWidth: 400, 
-        // zoomWindowHeight: 400,
-        // zoomWindowOffetx: 0,  
-        // zoomWindowOffety: 0, 
-        // zoomWindowPosition: 1,
-        loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
-    });
+	// $.productDetail.mainImg.elevateZoom({
+ //        gallery:'thumb-slider',
+ //        cursor: 'crosshair',
+ //        galleryActiveClass: 'active',
+	// 	responsive: true,
+	// 	// easing: true,
+ //        // imageCrossfade: true,
+ //        scrollZoom: true,
+ //        // zoomLens: true,
+ //        // lensSize: 800,
+ //        // zoomWindowPosition
+ //        zoomType: 'inner',
+ //        // zoomWindowWidth: 400, 
+ //        // zoomWindowHeight: 400,
+ //        // zoomWindowOffetx: 0,  
+ //        // zoomWindowOffety: 0, 
+ //        // zoomWindowPosition: 1,
+ //        loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
+ //    });
 
-    $.productDetail.mainImg.on( 'click', function( e ) {
-    	var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
-    	$.fancybox( ez.getGalleryList() );
+ //    $.productDetail.mainImg.on( 'click', function( e ) {
+ //    	var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
+ //    	$.fancybox( ez.getGalleryList() );
 
-    	return false;
-    });
-    $.productDetail.zoomIndicator.on( 'click', function( e ) {
-    	var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
-    	$.fancybox( ez.getGalleryList() );
+ //    	return false;
+ //    });
+ //    $.productDetail.zoomIndicator.on( 'click', function( e ) {
+ //    	var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
+ //    	$.fancybox( ez.getGalleryList() );
 
-    	return false;
-    });
+ //    	return false;
+ //    });
+
+
+
 
 
 

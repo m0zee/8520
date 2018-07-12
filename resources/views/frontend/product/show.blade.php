@@ -4,7 +4,8 @@
 @section( 'title', 'Products' )
 
 @section( 'css' )
-    <link rel="stylesheet" href="{{ url( 'js/vendor/fancybox/jquery.fancybox-1.3.4.css' ) }}">
+    {{-- <link rel="stylesheet" href="{{ url( 'js/vendor/fancybox/jquery.fancybox-1.3.4.css' ) }}"> --}}
+    <link rel="stylesheet" href="{{ asset( 'js/vendor/lightbox/css/lightbox.min.css' ) }}">
 @endsection
 
 @section( 'content' )
@@ -42,20 +43,26 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="zoom-indicator">
-                            <span class="fa fa-search-plus fa-3x"></span>  {{-- title="Hover over the image to see the large image or click the image to show in popup" --}}
+                            <a href="{{ asset( 'storage/product/' . $product->img ) }}" data-lightbox="gallery" >
+                                <span class="fa fa-search-plus fa-3x"></span>
+                            </a>  {{-- title="Hover over the image to see the large image or click the image to show in popup" --}}
                         </div>
                         <div class="item-preview">
                             <div class="item__preview-slider" style="width:99.9%">
                                 <div class="prev-slide">
-                                    <img id="main_img" src="{{ asset( 'storage/product/' . $product->img ) }}"  
-                                        data-zoom-image="{{ asset( 'storage/product/' . $product->img ) }}" 
-                                        alt="Keep calm this isn't the end of the world, the preview is just missing.">
+                                    <a href="{{ asset( 'storage/product/' . $product->img ) }}" data-lightbox="gallery" >
+                                        <img id="main_img" src="{{ asset( 'storage/product/' . $product->img ) }}"  
+                                            data-zoom-image="{{ asset( 'storage/product/' . $product->img ) }}" 
+                                            alt="Keep calm this isn't the end of the world, the preview is just missing.">
+                                    </a>
                                 </div>
                                 @if( $product->gallery->count() > 0 )
                                     @foreach( $product->gallery as $gallery )
                                         <div class="prev-slide">
-                                            <img src="{{ asset( 'storage/product/gallery/' . $gallery->img ) }}" 
-                                                alt="Keep calm this isn't the end of the world, the preview is just missing.">
+                                            <a href="{{ asset( 'storage/product/gallery/' . $gallery->img ) }}" data-lightbox="gallery">
+                                                <img src="{{ asset( 'storage/product/gallery/' . $gallery->img ) }}" 
+                                                    alt="Keep calm this isn't the end of the world, the preview is just missing.">
+                                            </a>
                                         </div>
                                     @endforeach
                                 @endif
@@ -606,8 +613,9 @@
 @endsection
 
 @section( 'js' )
-    <script src="{{ asset( 'js/vendor/jquery.elevatezoom.min.js' ) }}"></script>
-    <script src="{{ asset( 'js/vendor/fancybox/jquery.fancybox-1.3.4.js' ) }}"></script>
+    {{-- <script src="{{ asset( 'js/vendor/jquery.elevatezoom.min.js' ) }}"></script> --}}
+    {{-- <script src="{{ asset( 'js/vendor/fancybox/jquery.fancybox-1.3.4.js' ) }}"></script> --}}
+    <script src="{{ asset( 'js/vendor/lightbox/js/lightbox-plus-jquery.min.js' ) }}"></script>
     <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
     <script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
     <script src="{{ asset( 'js/page/home/show.js' ) }}"></script>

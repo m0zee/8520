@@ -208,6 +208,10 @@ button.my-btn:hover, .my-btn:hover
     height: 150px;
 }
 
+/*.zoomWindow{
+    background-size: 1050px 1000px;
+}*/
+
 @media only screen and (max-width: 767px) {
    .prev-slide img
     {
