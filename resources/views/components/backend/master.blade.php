@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="PakMaterial - Where Vendor and Buyer meet">
     <meta name="keywords" content="PakMaterial, multi vendor, buying requirement">
-    <meta name="csrf_token" content="{{ csrf_token() }}">
+    {{-- <meta name="csrf_token" content="{{ csrf_token() }}"> --}}
 
 
     <title>PakMaterial - @yield( 'title' )</title>
@@ -63,6 +63,8 @@
 <!--================================
     END FOOTER AREA
 =================================-->
+
+<input type="hidden" id="_csrf_token" value="{{ csrf_token() }}">
 
 <!--//////////////////// JS GOES HERE ////////////////-->
 

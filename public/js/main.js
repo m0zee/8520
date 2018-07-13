@@ -4,7 +4,7 @@ $.pakMaterial = $.pakMaterial || {};
         $.pakMaterial.messageCountBadge = $( '#messageCountBadge' );
         // ======> added by AG-devs //
         $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $( 'meta[name="csrf_token"]' ).attr( 'content' ) }
+            headers: { 'X-CSRF-TOKEN': $( '#_csrf_token' ).val() }
         });
 
         $( '.tip' ).tooltip();

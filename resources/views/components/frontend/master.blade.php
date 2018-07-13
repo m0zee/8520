@@ -18,7 +18,8 @@
     <meta property="og:description"   content="{{ ( isset($product) && $product != null ) ? strip_tags($product->description) : 'Product Not Available' }}" />
 
 
-    <meta name="csrf_token" content="{{ csrf_token() }}">
+    {{-- <meta name="csrf_token" content="{{ csrf_token() }}"> --}}
+
 
 
     <title>Pak Material - @yield( 'title' )</title>
@@ -104,12 +105,13 @@
     END FOOTER AREA
 =================================-->
 
+<input type="hidden" id="base_url" value="{{ url('') }}">
+<input type="hidden" id="_csrf_token" value="{{ csrf_token() }}">
+{{ Form::hidden( 'comparisonProduct', session( 'productCount' ), [ 'id' => 'hiddComparisonProductCount' ] ) }}
+
 <!--//////////////////// JS GOES HERE ////////////////-->
 
 <!-- inject:js -->
-<input type="hidden" id="base_url" value="{{ url('') }}">
-{{ Form::hidden( 'comparisonProduct', session( 'productCount' ), [ 'id' => 'hiddComparisonProductCount' ] ) }}
-
 <script src="{{ url( 'js/vendor/jquery/jquery-1.12.3.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/jquery/uikit.min.js' ) }}"></script>
 <script src="{{ url( 'js/vendor/bootstrap.min.js' ) }}"></script>

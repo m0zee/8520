@@ -83,6 +83,7 @@ $(function() {
 
     	return false;
     });
+    
     $.productDetail.zoomIndicator.on( 'click', function( e ) {
     	var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
     	$.fancybox( ez.getGalleryList() );

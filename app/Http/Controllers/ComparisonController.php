@@ -34,7 +34,7 @@ class ComparisonController extends Controller
     public function store( Request $request )
     {
         $count = session( 'productCount' );
-        // return $count;
+
         if( session()->exists( 'comparisonList' ) )
         {
             $list   = session( 'comparisonList' );
@@ -44,9 +44,7 @@ class ComparisonController extends Controller
             {
                 $list[ $request->product_id ] = Product::with( 'user', 'currency', 'country', 'unit', 'sub_category', 'category' )->where( 'id', $request->product_id )->first();
 
-                $count = count( $list );
-
-                session( [ 'comparisonList' => $list, 'productCount' => $count ] );
+                session( [ 'comparisonList' => $list, 'productCount' => count( $list ) ] );
             }
         }
         else
