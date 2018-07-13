@@ -226,6 +226,7 @@ $.product.addToCompareList = function( _el ) {
 		type: 		'POST',
 		dataType: 	'JSON',
 		data: {
+			_token : $('meta[name="csrf_token"]').attr('content'),
 			product_id: $.product.productId
 		},
 		success: function( res ) { 

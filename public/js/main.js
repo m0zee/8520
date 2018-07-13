@@ -3,8 +3,8 @@ $.pakMaterial = $.pakMaterial || {};
         $.pakMaterial.baseUrl           = $( '#base_url' ).val();
         $.pakMaterial.messageCountBadge = $( '#messageCountBadge' );
         // ======> added by AG-devs //
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $( 'meta[name="csrf_token"]' ).attr( 'content' ) }
+        $.ajaxSetup({   
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content') }
         });
 
         $( '.tip' ).tooltip();

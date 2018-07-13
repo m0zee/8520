@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="PakMaterial - Where Vendor and buyer meet">
     <meta name="keywords" content="marketplace, easy digital download, digital product, digital, html5">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     
 
     <meta property="fb:app_id"        content="164484080926748" />

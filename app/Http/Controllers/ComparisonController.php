@@ -33,8 +33,9 @@ class ComparisonController extends Controller
      */
     public function store( Request $request )
     {
-        $count = session( 'productCount' );
-        // return $count;
+        $count = ( session()->exists( 'productCount' ) ) ? session( 'productCount' ) : 0 ;
+
+
         if( session()->exists( 'comparisonList' ) )
         {
             $list   = session( 'comparisonList' );
@@ -46,7 +47,10 @@ class ComparisonController extends Controller
 
                 $count = count( $list );
 
+                // return $list;
+
                 session( [ 'comparisonList' => $list, 'productCount' => $count ] );
+                
             }
         }
         else
