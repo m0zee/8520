@@ -86,14 +86,22 @@
                             
                             <div class="message-form mycontact-info">
         
-                               
-                             <p><span class="lnr lnr-envelope "></span> {{ $vendor->email }}</p>
-                             
-                            <p><span class="lnr lnr-phone"></span> {{ $vendor->detail->phone_number }}</p>
-
-                            <p><span class="lnr lnr-smartphone"></span> {{ $vendor->detail->mobile_number }}</p>
-
-                            <p><span class="lnr lnr-map-marker"></span> {{ $vendor->detail->address }}</p>
+                            
+                            @if ($vendor->email)
+                                <p><span class="lnr lnr-envelope "></span> {{ $vendor->email }}</p>
+                            @endif
+                            
+                            @if ($vendor->detail->phone_number)
+                                <p><span class="lnr lnr-phone"></span> {{ $vendor->detail->phone_number }}</p>
+                            @endif
+                            
+                            @if ($vendor->detail->mobile_number)
+                                <p><span class="lnr lnr-smartphone"></span> {{ $vendor->detail->mobile_number }}</p>
+                            @endif
+                            
+                            @if ($vendor->detail->address)
+                                <p><span class="lnr lnr-map-marker"></span> {{ $vendor->detail->address }}</p>
+                            @endif
 
                             </div><!-- end /.message-form -->
                         </div><!-- end /.freelance-status -->

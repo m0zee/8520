@@ -193,13 +193,24 @@
                                         </p>
 
                                         <div class="message-form mycontact-info">
-                                            <p><span class="lnr lnr-envelope "></span> {{ $product->user->email }}</p>
-                                                                         
-                                            <p><span class="lnr lnr-phone"></span> {{ $product->user->detail->phone_number }}</p>
+
+                                            @if ($product->user->email)
+                                                
+                                                <p><span class="lnr lnr-envelope "></span> {{ $product->user->email }}</p>
+                                            @endif
+                                                
+                                            @if ($product->user->detail->phone_number)
+                                               <p><span class="lnr lnr-phone"></span> {{ $product->user->detail->phone_number }}</p>
+                                            @endif                       
                                             
-                                            <p><span class="lnr lnr-smartphone"></span> {{ $product->user->detail->mobile_number }}</p>
+                                            @if ($product->user->detail->mobile_number)
+                                                <p><span class="lnr lnr-smartphone"></span> {{ $product->user->detail->mobile_number }}</p>
+                                            @endif
                                             
-                                            <p><span class="lnr lnr-map-marker"></span> {{ $product->user->detail->address }}</p>
+                                            @if ($product->user->detail->address)
+                                                <p><span class="lnr lnr-map-marker"></span> {{ $product->user->detail->address }}</p>
+                                            @endif
+                                            
                                         </div>
                                     </div><!-- end /.author -->
 

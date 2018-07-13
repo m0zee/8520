@@ -46,8 +46,6 @@ class ComparisonController extends Controller
 
                 $count = count( $list );
 
-                // return $list;
-
                 session( [ 'comparisonList' => $list, 'productCount' => $count ] );
             }
         }

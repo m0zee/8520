@@ -86,14 +86,23 @@
                             
                             <div class="message-form mycontact-info">
         
-                               
-                             <p><span class="lnr lnr-envelope "></span> {{ $vendor->email }}</p>
-                             
-                            <p><span class="lnr lnr-phone"></span> {{ $vendor->detail->phone_number }}</p>
-
-                            <p><span class="lnr lnr-smartphone"></span> {{ $vendor->detail->mobile_number }}</p>
-
-                            <p><span class="lnr lnr-map-marker"></span> {{ $vendor->detail->address }}</p>
+                            
+                            @if ($vendor->email)
+                                <p><span class="lnr lnr-envelope "></span> {{ $vendor->email }}</p>
+                            @endif
+                            
+                            @if ($vendor->detail->phone_number)
+                                <p><span class="lnr lnr-phone"></span> {{ $vendor->detail->phone_number }}</p>
+                            @endif
+                            
+                            @if ($vendor->detail->mobile_number)
+                                <p><span class="lnr lnr-smartphone"></span> {{ $vendor->detail->mobile_number }}</p>
+                            @endif
+                            
+                            @if ($vendor->detail->address)
+                                <p><span class="lnr lnr-map-marker"></span> {{ $vendor->detail->address }}</p>
+                            @endif
+                            
 
                             </div><!-- end /.message-form -->
                         </div><!-- end /.freelance-status -->
@@ -141,7 +150,7 @@
                             @if( isset( $products ) && $products->count() > 0 )
                         <div class="row" id="product-container">
                             @foreach( $products as $product )
-                                <div class="col-md-4 col-sm-4">
+                                <div class="col-md-6 col-sm-6">
                                     <!-- start .single-product -->
                                     <div class="product product--card product--card-small">
 
@@ -199,16 +208,16 @@
                                                 <span class="fa fa-heart-o"></span>
                                             </button>
 
-                                            
+                                            <button class="btn--icon my-btn btn--round btn-contact" data-product-id="{{ $product->id }}">
+                                                <span class="lnr lnr-envelope"></span> Contact
+                                            </button>   
 
                                             <button data-product-id="{{ $product->id }}" 
                                                 class="btn--icon my-btn btn--round tip add-compare" title="Click to add this product to comparison list">
                                                 <span class="fa fa-plus"></span> 
                                             </button>
 
-                                            <button style="margin-top: 10px" class="btn--icon my-btn btn--round btn-contact" data-product-id="{{ $product->id }}">
-                                                <span class="lnr lnr-envelope"></span> Contact
-                                            </button>
+                                            
                                         </div><!-- end /.product-purchase -->
                                     </div><!-- end /.single-product -->
                                 </div><!-- end /.col-md-4 -->
