@@ -615,7 +615,7 @@
 @section( 'js' )
     {{-- <script src="{{ asset( 'js/vendor/jquery.elevatezoom.min.js' ) }}"></script> --}}
     {{-- <script src="{{ asset( 'js/vendor/fancybox/jquery.fancybox-1.3.4.js' ) }}"></script> --}}
-    <script src="{{ asset( 'js/vendor/lightbox/js/lightbox-plus-jquery.min.js' ) }}"></script>
+    <script src="{{ asset( 'js/vendor/lightbox/js/lightbox.min.js' ) }}"></script>
     <script src="{{ asset( 'js/vendor/jquery-validation/jquery.validate.min.js' ) }}"></script>
     <script src="{{ asset( 'js/vendor/jquery-validation/additional-methods.min.js' ) }}"></script>
     <script src="{{ asset( 'js/page/home/show.js' ) }}"></script>

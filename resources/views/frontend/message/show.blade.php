@@ -116,7 +116,7 @@
                                     <div class="head">
                                         <div class="chat_avatar">
                                             @if( $message->sender->detail == null || $message->sender->detail->profile_path == null || ! file_exists( $message->sender->detail->profile_path . '/' . $message->sender->detail->profile_img ) )
-                                                <img src="{{ asset( 'images/notification_head5.png' ) }}" alt="Notification avatar">
+                                                <img src="{{ asset( 'images/usr_avatar.png' ) }}" alt="Notification avatar">
                                             @else
                                                 <img src="{{ asset( 'storage/profile_img/' . $message->sender->detail->profile_img ) }}" alt="Notification avatar">
                                             @endif
