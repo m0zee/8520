@@ -30,12 +30,10 @@
         END BREADCRUMB AREA
     =================================-->
 
-    @if (Auth::user()->user_type_id == '1')
-        {{-- expr --}}
-    @include( 'components.frontend.buyer_menu' )
+    @if( Auth::user()->user_type_id == '1' )
+        @include( 'components.frontend.buyer_menu' )
     @else
-    @include( 'components.frontend.vendor_menu' )
-
+        @include( 'components.frontend.vendor_menu' )
     @endif
     <!--================================
             START DASHBOARD AREA
@@ -45,6 +43,7 @@
 
             <div class="row">
                 <div class="col-xs-12">
+
                     <div class="chat_area cardify">
 
                         <div class="chat_area--title">
@@ -54,6 +53,22 @@
                                         <div class="alert alert-danger text-center">
                                             Your reply could not be sent. Please enter your reply
                                         </div>
+                                    </div>
+                                @endif
+
+                                @if( session( 'success' ) )
+                                    <div class="alert alert-success text-center">
+                                        <strong>{{ session( 'success' ) }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span class="lnr lnr-cross" aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                @elseif( session( 'error' ) )
+                                    <div class="alert alert-danger text-center">
+                                        <strong>{{ session( 'error' ) }}</strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span class="lnr lnr-cross" aria-hidden="true"></span>
+                                        </button>
                                     </div>
                                 @endif
 

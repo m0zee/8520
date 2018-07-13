@@ -22,7 +22,7 @@
                     </li>
                      <li class="{{ ( $active == 'messages') ? 'active' : ''  }}">
                         <a href="{{ route( 'messages.index' ) }}">
-                            <span class="lnr lnr-envelope"></span> Messages
+                            <span class="lnr lnr-envelope"></span> Messages <span id="messageCountBadge" class="badge"></span>
                         </a>
                     </li>
                     <li class="{{ ( $active == 'requirement') ? 'active' : ''  }}">

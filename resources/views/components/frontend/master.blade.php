@@ -49,17 +49,6 @@
 {{-- <body class="home1 mutlti-vendor"> --}}
 <body class="@yield( 'body_class' )">
 
-{{-- <div id="fb-root"></div>
- --}}{{-- <script>
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4&appId=241110544128";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script> --}}
-
 <script>
   window.fbAsyncInit = function() {
     FB.init({
