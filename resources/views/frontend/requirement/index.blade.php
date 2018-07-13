@@ -71,7 +71,7 @@
 
                                     <p> <span class="lnr lnr-cart">{{ $req->quantity . ' ' . $req->unit->name }} Required</p>
 
-                                    <p>{{ $req->description }}</p>
+                                    {{-- <p>{{ $req->description }}</p> --}}
                                 </div>
 
                                 <div class="product-purchase text-center">
