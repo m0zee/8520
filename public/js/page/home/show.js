@@ -57,44 +57,6 @@ $(function() {
 	// 				PLUGINS INIT
 	// =============================================
 
-	// $.productDetail.mainImg.elevateZoom({
- //        gallery:'thumb-slider',
- //        cursor: 'crosshair',
- //        galleryActiveClass: 'active',
-	// 	responsive: true,
-	// 	// easing: true,
- //        // imageCrossfade: true,
- //        scrollZoom: true,
- //        // zoomLens: true,
- //        // lensSize: 800,
- //        // zoomWindowPosition
- //        zoomType: 'inner',
- //        // zoomWindowWidth: 400, 
- //        // zoomWindowHeight: 400,
- //        // zoomWindowOffetx: 0,  
- //        // zoomWindowOffety: 0, 
- //        // zoomWindowPosition: 1,
- //        loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
- //    });
-
- //    $.productDetail.mainImg.on( 'click', function( e ) {
- //    	var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
- //    	$.fancybox( ez.getGalleryList() );
-
- //    	return false;
- //    });
- //    $.productDetail.zoomIndicator.on( 'click', function( e ) {
- //    	var ez =  $.productDetail.mainImg.data( 'elevateZoom' );
- //    	$.fancybox( ez.getGalleryList() );
-
- //    	return false;
- //    });
-
-
-
-
-
-
 
 
 	// =============================================

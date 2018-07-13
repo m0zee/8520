@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get( '/',		'HomeController@index' )->name( 'home' );
+Route::get( 'contact',	'HomeController@getContact' )->name( 'contact' );
+Route::post( 'contact',	'HomeController@send' )->name( 'contact.send' );
+Route::get( 'verifyemail/{token}',	'Auth\RegisterController@verify' );
+
+
 Route::get( 'recover-password', function () {
     return view( 'frontend.recover_password' );
 });
@@ -255,11 +262,6 @@ Route::group( [ 'prefix' => 'vendors/{vendor_code}' ], function() {
 });
 
 
-Route::get( '/',		'HomeController@index' )->name( 'home' );
-Route::get( 'contact',	'HomeController@getContact' )->name( 'contact' );
-Route::post( 'contact',	'HomeController@send' )->name( 'contact.send' );
-
-Route::get( 'verifyemail/{token}',	'Auth\RegisterController@verify' );
 
 Route::post( 'get_country_state', function( Request $request ) {
 	return \App\Country::find( $request->country_id )->state;

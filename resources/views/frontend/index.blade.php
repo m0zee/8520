@@ -116,7 +116,14 @@
                                                     @else
                                                         <img class="auth-img" src="{{ asset( 'images/auth.jpg' ) }}" alt="author image">
                                                     @endif
-                                                    <p><a href="{{ route( 'profile.show', [ $product->user->code ] ) }}">{{ $product->user->detail->company_name }}</a></p>
+                                                    <p>
+                                                        @php
+                                                            $company_name = ( strlen( $product->user->detail->company_name ) > 35 ) ? substr( $product->user->detail->company_name, 0, 34 ) . '...' : $product->user->detail->company_name;
+                                                        @endphp
+                                                        <a href="{{ route( 'profile.show', [ $product->user->code ] ) }}">
+                                                            {{ $company_name }}
+                                                        </a>
+                                                    </p>
                                                 </li>
                                                 <br>
                                             @endif

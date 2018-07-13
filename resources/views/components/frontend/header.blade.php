@@ -62,7 +62,6 @@
                                                     <span class="fa fa-archive"></span> Products
                                                 </a>
                                             </li>
-
                                             <li>
                                                 <a href="{{ route( 'admin.reviews.index' ) }}">
                                                     <span class="fa fa-star"></span> Reviews

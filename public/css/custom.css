@@ -68,10 +68,10 @@ button.my-btn:hover, .my-btn:hover
     background-color: #0077b5;
 }
 
-.product--card .product-desc
+/*.product--card .product-desc
 {
     height: 200px;
-}
+}*/
 
 .sidebar_author .message-card .mycontact-info p
 {
@@ -83,10 +83,10 @@ button.my-btn:hover, .my-btn:hover
     color:#0674ec;
 }
 
-.product--card .product-desc
+/*.product--card .product-desc
 {
     height: 190px;
-}
+}*/
 
 .iconcolor
 {
@@ -198,19 +198,20 @@ button.my-btn:hover, .my-btn:hover
 /*==============================
    Home, Category wise product
 ===============================*/
-.product--card .product-desc.size175
+/*.product--card .product-desc.size175
 {
     height: 175px;
-}
+}*/
 
 .product--card .product-desc
 {
-    height: 150px;
+    height: 200px;
 }
 
-/*.zoomWindow{
-    background-size: 1050px 1000px;
-}*/
+.titlebtm li
+{
+    padding: 0 0 10px 0;
+}
 
 @media only screen and (max-width: 767px) {
    .prev-slide img

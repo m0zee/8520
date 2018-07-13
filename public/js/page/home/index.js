@@ -194,7 +194,8 @@ $.product.shortlist = function( _el ) {
 		type: 		_type,
 		dataType: 	'JSON',
 		data: {
-			product_id: $.product.productId
+			product_id: $.product.productId,
+			"_token": $( '#_csrf_token' ).val()
 		},
 		success: function( res ) { 
 			if( res.status === 'success' ) {

@@ -29,7 +29,6 @@ class MessagesController extends Controller
 
     public function getNewMessageCount()
     {
-        
         switch( Auth::user()->user_type_id )
         {
             case 3:
@@ -66,7 +65,7 @@ class MessagesController extends Controller
             'seen_by_user'      => 0,
             'seen_by_admin'     => 0
         ];
-        // return $message;
+        
         $message = Message::create( $message );
         
         $this->saveMessageDetail( $request, $message->id );
@@ -146,7 +145,7 @@ class MessagesController extends Controller
         $message->seen_by_user  = 0;
         $message->seen_by_admin = 0;
         $message->save();
-        // return $message;
+
         $receiver_id = ( $message->receiver_id == Auth::user()->id ) ? $message->sender_id : $message->receiver_id;
         $this->saveMessageDetail( $request, $message->id, $receiver_id );
 
