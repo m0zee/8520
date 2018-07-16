@@ -106,7 +106,7 @@
                                     <div class="product-desc">
                                         <a href="{{ route( 'products.show', [ $product->sub_category->category->slug, $product->sub_category->slug, $product->code, $product->slug ] ) }}"
                                             class="product_title">
-                                            <h4>{{ ( strlen( $product->name ) > 28 ) ? substr( $product->name, 0, 28 ) . '...' : $product->name }}</h4>
+                                            <h4>{{ ( strlen( $product->name ) > 34 ) ? substr( $product->name, 0, 33 ) . '...' : $product->name }}</h4>
                                         </a>
                                         <ul class="titlebtm">
                                             @if( $product->user->detail != null )
