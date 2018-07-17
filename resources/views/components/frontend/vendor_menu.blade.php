@@ -30,11 +30,12 @@
     </div><!-- end /.container -->
 </div><!-- end /.dashboard_menu_area -->
 
- @if( session( 'success' ) )
+ {{-- @if( session( 'success' ) )
     <div class="alert alert-success text-center">
         <strong>{{ session( 'success' ) }}</strong>
     </div>
-@elseif( session( 'error' ) )
+@else --}}
+@if( session( 'error' ) )
     <div class="alert alert-danger text-center">
         <strong>{{ session( 'error' ) }}</strong>
     </div>
